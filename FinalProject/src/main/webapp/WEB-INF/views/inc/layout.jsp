@@ -14,7 +14,8 @@
 
 header{
 	padding: 20px;
-	background-color: blue;
+	background-color: black;
+	color: white
 }
 
 nav{
