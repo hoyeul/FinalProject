@@ -17,6 +17,15 @@ header{
 	background-color: blue;
 }
 
+nav{
+	background-color: aqua;
+	padding: 20px;
+}
+
+nav ul{
+	list-style: none;
+}
+
 section{
 	padding: 50px;
 }
@@ -31,6 +40,9 @@ footer{
 
 <!-- header 부분 -->
 <tiles:insertAttribute name="header" />
+
+<!-- nav 부분 -->
+<tiles:insertAttribute name="nav" />
 
 <!-- section 부분 -->
 <tiles:insertAttribute name="section" />

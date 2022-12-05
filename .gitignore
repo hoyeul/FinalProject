@@ -1,0 +1,6 @@
+/.metadata/
+Servers/
+*.Class
+*.Classpath
+/target/
+/bin/
