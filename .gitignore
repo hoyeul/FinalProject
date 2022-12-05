@@ -2,5 +2,5 @@
 Servers/
 *.Class
 *.Classpath
-/target/
-/bin/
+target/
+bin/
