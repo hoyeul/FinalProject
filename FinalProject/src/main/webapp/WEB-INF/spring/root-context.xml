@@ -11,6 +11,5 @@
 		<property name="username" value="System"></property>
 		<property name="password" value="1234"></property>
 	</bean>
-		
-		
+	
 </beans>
