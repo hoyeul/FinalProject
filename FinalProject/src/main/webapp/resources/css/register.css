@@ -1,0 +1,39 @@
+@charset "UTF-8";
+section{
+	padding: 0 auto;
+}
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+table caption{
+	font-size: 24px;
+}
+table tr{
+	hegith: 20px;
+}
+table td{
+	border: 1px solid black;
+}
+tr td:nth-child(1){
+	padding: 5px;
+	text-align: center;
+	width: 100px;
+	font-size: 15px;
+}
+tr td:nth-child(2){
+	padding: 0 5px;
+	width: 200px;
+}
+#checkId{
+	border: 0px;
+	font-size: 10px;
+	color: red;
+	width: 150px;
+}
+button{
+	width: 60px;
+	padding: 5px;
+	margin:5px;
+}

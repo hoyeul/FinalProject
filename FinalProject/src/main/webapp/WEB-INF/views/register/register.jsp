@@ -105,7 +105,8 @@ function validate(form) {
 					<td>아이디</td>
 					<td>
 						<input name="user_id" id="user_id">
-						<input id="checkId" readonly="readonly">
+						<br>
+						<input id="checkId" readonly="readonly" value="사용할 수 없는 아이디입니다.">
 					</td>
 					
 				</tr>
@@ -130,7 +131,7 @@ function validate(form) {
 					<td><input name="user_address"  id="user_address"></td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<button>등록</button>
 						<button type="button" onclick="location.href=''">취소</button>
 					</td>
