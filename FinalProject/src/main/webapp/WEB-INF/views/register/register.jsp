@@ -6,7 +6,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/register.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	//alert("되나?");
+	$('#user_id').focusout(function(){
+		//alert("여기")
+		let userId = $('#user_id').val(); // input_id에 입력되는 값
+		$.ajax({
+			url : "IdCheckService",
+			type : "post",
+			data : {user_id: userId},
+			dataType : 'json',
+			success : function(result){
+				if(result == 0){
+					$("#checkId").html('사용할 수 없는 아이디입니다.');
+					$("#checkId").attr('color','red');
+				} else{
+					$("#checkId").html('사용할 수 있는 아이디입니다.');
+					$("#checkId").attr('color','green');
+				} 
+			},
+			error : function(){
+				alert("서버요청실패");
+			}
+		});
+		 
+	});
+});
+
 function validate(form) {
     // validation code here ...
     var user_nm = document.getElementById('user_nm').value;
@@ -52,32 +80,8 @@ function validate(form) {
         return confirm('Do you really want to submit the form?');
     }
 }
-</script>
-<script src = "js/jquery-3.6.0.min.js"></script>
-<script>
-	$('.user_id').focusout(function(){
-		let userId = $('.user_id').val(); // input_id에 입력되는 값
-		
-		$.ajax({
-			url : "IdCheckService",
-			type : "post",
-			data : {user_id: user_id},
-			dataType : 'json',
-			success : function(result){
-				if(result == 0){
-					$("#checkId").html('사용할 수 없는 아이디입니다.');
-					$("#checkId").attr('color','red');
-				} else{
-					$("#checkId").html('사용할 수 있는 아이디입니다.');
-					$("#checkId").attr('color','green');
-				} 
-			},
-			error : function(){
-				alert("서버요청실패");
-			}
-		})
-		 
-	})
+
+
  </script>
 
 </head>
@@ -101,7 +105,7 @@ function validate(form) {
 					<td>아이디</td>
 					<td>
 						<input name="user_id" id="user_id">
-						<input name="checkId"type="button">
+						<input id="checkId" readonly="readonly">
 					</td>
 					
 				</tr>

@@ -56,13 +56,8 @@ public class RegisterController {
 		
 		return "home";
 	}
-	@RequestMapping( value="/check_nm" , method= RequestMethod.GET)
-	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException { 		
-		BufferedReader r = new BufferedReader( new InputStreamReader( request.getInputStream()));
-		String re="";
-		while( (re = r.readLine()) != null) {
-			System.out.println( re);
-		}		 
+	@RequestMapping( value="/customer/IdCheckService" , method= RequestMethod.POST)
+	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
 		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
 		response.setCharacterEncoding("EUC-KR");
