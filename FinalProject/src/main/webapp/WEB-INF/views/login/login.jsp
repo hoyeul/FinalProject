@@ -13,12 +13,14 @@
 </head>
 <body>
 <section>
-	<input type="text" name="id" placeholder="id" value="${cookie.id.value }">
-	<input type="password" name="pw" placeholder="pw">
-	<button type="button" id="loginBtn">로그인</button>
-	<a href="/Controller/findID">아이디찾기</a>/
-	<a href="/Controller/findPW">비밀번호찾기</a>/
-	<a href="/Controller/reg">회원가입</a>
+	<div class="loginForm">
+		<input type="text" name="id" placeholder="id" value="${cookie.id.value }">
+		<input type="password" name="pw" placeholder="pw">
+		<button type="button" id="loginBtn">로그인</button>
+		<a href="/Controller/findID">아이디찾기</a>/
+		<a href="/Controller/findPW">비밀번호찾기</a>/
+		<a href="/Controller/reg">회원가입</a>
+	</div>
 </section>
 </body>
 </html>

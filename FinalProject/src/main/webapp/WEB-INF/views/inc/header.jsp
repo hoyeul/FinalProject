@@ -7,6 +7,7 @@
 		<div class="header_lefthomeBtn"><a href="/Controller/home">header</a></div>
 	</div>
 	<div class="header_right">
+	<div class="header_right_login">
 	<c:choose>
 		<c:when test="${sessionID ne null }">
 			<div><a href="/Controller/logout">로그아웃</a></div>
@@ -16,6 +17,7 @@
 			<div><a href="#">회원가입</a></div>
 		</c:otherwise>
 	</c:choose>
+	</div>
 		<div class="myPageIcon"></div>
 	</div>
 </header>
