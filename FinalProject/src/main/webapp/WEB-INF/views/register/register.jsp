@@ -10,7 +10,66 @@
 <script type="text/javascript">
 $(function(){
 	//alert("되나?");
-	$('#user_id').focusout(function(){
+	//맞지 않는 입력값 거부
+	$("#user_nm").on("keyup", function(){
+		$(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/,""));
+	});
+	$("input[name='jumin1']").on("keyup", function() {
+	    $(this).val($(this).val().replace(/[^0-9]/,""));
+	});
+	$("input[name='jumin2']").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/,""));
+	});
+	$("input[name='user_id']").on("keyup", function() {
+	      $(this).val($(this).val().replace(/[^a-z|A-Z|0-9]/,""));
+	});
+	$("input[name='user_phone1']").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/,""));
+	});
+	$("input[name='user_phone2']").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/,""));
+	});
+	$("input[name='user_phone3']").on("keyup", function() {
+		$(this).val($(this).val().replace(/[^0-9]/,""));
+	});
+	$("input[name='user_email']").on("keyup", function() {
+	      $(this).val($(this).val().replace(/[^a-z|A-Z|0-9]/,""));
+	});
+	$("input[name='user_domain']").on("keyup", function() {
+	      $(this).val($(this).val().replace(/[^a-z|.|]/,""));
+	});
+	
+	//비밀번호 자릿수 확인
+	$("#user_pw").blur(function(){
+		let userPw = $('#user_pw').val();
+		let reg =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
+		if( !reg.test(userPw) ) {
+			setTimeout(function(){
+				alert("비밀번호가 최소 8자, 문자와 숫자를 사용해야 합니다.");
+	        }, 10)
+		    setTimeout(function(){
+		    	$("#user_pw").focus();
+	        }, 10)
+		}else{
+			setTimeout(function(){
+		    	$("#user_pwc").focus}, 10)
+		}
+	});
+	//비밀번호확인 일치여부
+/*	$("#user_pwc").blur(function(){
+		let userPwc = $('#user_pwc').val();
+		let userPw = $('#user_pw').val();
+		if( !(userPwc == userPw)) {
+			setTimeout(function(){
+				alert("비밀번호 확인이 일치하지 않습니다.");
+	        }, 10)
+		    setTimeout(function(){
+		    	$("#user_pwc").focus}, 10)
+		}
+	});
+*/	
+	//아이디 중복확인
+	$('#user_id').blur(function(){
 		//alert("여기")
 		let userId = $('#user_id').val(); // input_id에 입력되는 값
 		$.ajax({
@@ -32,6 +91,11 @@ $(function(){
 			}
 		});
 		 
+	});
+	
+	//이메일 select
+	$("#emailSelect").on("change", function(){
+		$("input[name='user_domain']").val($("#emailSelect").val());
 	});
 });
 
@@ -99,7 +163,11 @@ function validate(form) {
 				</tr>
 				<tr>
 					<td>주민번호</td>
-					<td><input name="user_regnum" id="user_regnum"></td>
+					<td>
+						<input name="jumin1" id="jumin1" maxlength="6">
+						-
+						<input type="password" name="jumin2" id="jumin2" maxlength="7">
+					</td>
 				</tr>
 				<tr>
 					<td>아이디</td>
@@ -112,23 +180,40 @@ function validate(form) {
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input name="user_pw" id="user_pw"></td>
+					<td><input type="password" name="user_pw" id="user_pw"></td>
 				</tr>
 				<tr>
 					<td>비밀번호확인</td>
-					<td><input name="user_pwc" id="user_pwc"></td>
+					<td><input type="password" name="user_pwc" id="user_pwc"></td>
 				</tr>
 				<tr>
 					<td>전화번호</td>
-					<td><input name="user_phone" id="user_phone"></td>
+					<td>
+						<input name="user_phone1" id="user_phone1" maxlength="3">
+						-
+						<input name="user_phone2" id="user_phone2" maxlength="4">
+						-
+						<input name="user_phone3" id="user_phone3" maxlength="4">
+					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><input name="user_email"  id="user_email"></td>
+					<td>
+						<input name="user_email"  id="user_email">
+						@
+						<input name="user_domain"  id="user_domain">
+						<select id="emailSelect">
+							<option value="">선택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="google.com">google.com</option>
+							<option value="">직접입력</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>주소</td>
 					<td><input name="user_address"  id="user_address"></td>
+
 				</tr>
 				<tr>
 					<td colspan="2">

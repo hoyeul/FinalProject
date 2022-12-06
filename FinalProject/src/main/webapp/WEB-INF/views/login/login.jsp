@@ -14,12 +14,29 @@
 <body>
 <section>
 	<div class="loginForm">
-		<input type="text" name="id" placeholder="id" value="${cookie.id.value }">
-		<input type="password" name="pw" placeholder="pw">
-		<button type="button" id="loginBtn">로그인</button>
-		<a href="/Controller/findID">아이디찾기</a>/
-		<a href="/Controller/findPW">비밀번호찾기</a>/
-		<a href="/Controller/reg">회원가입</a>
+		<div class="caption_wrap">로그인</div>
+		<div class="pwid_wrap">
+			<div class="id">
+				<span>UserID</span> <br>
+				<input type="text" name="id" placeholder=" 아이디를 입력하시오" value="${cookie.id.value }">
+			</div>	
+			<div class="pw">
+				<span>Password</span> <br>
+				<input type="password" name="pw" placeholder=" 비밀번호를 입력하시오">
+			</div>
+		</div>
+		<div class="btn_wrap">
+			<input type="button" id="loginBtn" value="로그인">
+		</div>
+			
+		<div class="function_wrap">
+				<a href="/Controller/reg">회원가입</a>
+			<br>
+			<a class="find" href="/Controller/findID">아이디찾기</a> |
+			<a class="find" href="/Controller/findPW">비밀번호찾기</a>
+	
+		</div>
+		
 	</div>
 </section>
 </body>

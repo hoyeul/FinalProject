@@ -4,7 +4,10 @@
 	padding: 0;
 	margin: 0;
 }
-
+a{
+	text-decoration: none;
+	color: black;
+}
 .wrap{
 	min-width: 1000px;
 }
@@ -16,11 +19,6 @@ header{
 	line-height: 25px;
 	font-size: 17px;
 	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-}
-
-header a{
-	text-decoration: none;
-	color: black;
 }
 
 .header_left div{

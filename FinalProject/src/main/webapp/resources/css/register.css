@@ -1,19 +1,21 @@
 @charset "UTF-8";
-section{
-	padding: 0 auto;
-}
+
 table {
+	margin: 0 auto;
+	margin-top: 20px;
 	border: 1px solid black;
 	border-collapse: collapse;
 	
 }
 table caption{
 	font-size: 24px;
+	margin-bottom: 10px;
 }
 table tr{
 	hegith: 20px;
 }
 table td{
+	padding: 5px;
 	border: 1px solid black;
 }
 tr td:nth-child(1){
