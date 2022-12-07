@@ -18,16 +18,12 @@
 	<tiles:insertAttribute name="header" />
 	
 	<div class="underHeader">
-		<div class="navPart">
-			<!-- nav 부분 -->
-			<tiles:insertAttribute name="nav" />
-		</div>
-		<div class="sectionAndFooterPart">
-			<!-- section 부분 -->
-			<tiles:insertAttribute name="section" />
-			
-			<!-- footer 부분 -->
-			<tiles:insertAttribute name="footer" />
+		<!-- nav 부분 -->
+		<tiles:insertAttribute name="nav" />
+	
+		<div class="section">
+		<!-- section 부분 -->
+		<tiles:insertAttribute name="section" />
 		</div>
 	</div>
 </div>
