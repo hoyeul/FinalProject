@@ -18,18 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Register.CustomerDto;
-import com.FinalProject.Model.Register.CustomerRegDao;
+import com.FinalProject.Model.Register.RegisterDto;
+import com.FinalProject.Model.Register.RegisterDao;
 
 @Controller
 public class RegisterController {
 	
-	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerGet() {
 		
 		return "register/register";
 	}
-	@RequestMapping(value = "/customer/reg", method = RequestMethod.POST)
+	@RequestMapping(value = "/register/reg", method = RequestMethod.POST)
 	public String registerPost(HttpServletRequest request) {
 		String user_nm  = request.getParameter("user_nm");
 		String user_id = request.getParameter("user_id");
@@ -48,15 +48,15 @@ public class RegisterController {
 //		System.out.println(user_regnum) ; 	
 		
 		//Customer 객체 생성 및 입력
-		CustomerDto customer = new CustomerDto(user_nm,user_id,user_pw,user_phone,user_email,user_address,user_regnum);
+		RegisterDto customer = new RegisterDto(user_nm,user_id,user_pw,user_phone,user_email,user_address,user_regnum);
 		
 		//Customer 객체를 Dao를 통해 DB에 입력
-		CustomerRegDao dao = new CustomerRegDao();
+		RegisterDao dao = new RegisterDao();
 		dao.insert(customer);
 		
 		return "home";
 	}
-	@RequestMapping( value="/customer/IdCheckService" , method= RequestMethod.POST)
+	@RequestMapping( value="/register/IdCheckService" , method= RequestMethod.POST)
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
 		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
@@ -67,7 +67,7 @@ public class RegisterController {
 		// value값은 유저가 실제로 적은 값, String userId에는 value값이 들어간다.
 		PrintWriter out = response.getWriter();
 				
-		CustomerRegDao dao = new CustomerRegDao();
+		RegisterDao dao = new RegisterDao();
 				
 		int idChcek = dao.checkId(userId);
 

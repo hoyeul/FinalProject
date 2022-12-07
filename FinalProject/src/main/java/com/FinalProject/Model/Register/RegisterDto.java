@@ -1,6 +1,6 @@
 package com.FinalProject.Model.Register;
 
-public class CustomerDto {
+public class RegisterDto {
 	String user_nm;
 	String user_id;
 	String user_pw;
@@ -9,8 +9,8 @@ public class CustomerDto {
 	String user_address;
 	String user_regnum;
 	
-	public CustomerDto() {}
-	public CustomerDto(String user_nm, String user_id, String user_pw, String user_phone, String user_email,
+	public RegisterDto() {}
+	public RegisterDto(String user_nm, String user_id, String user_pw, String user_phone, String user_email,
 			String user_address, String user_regnum) {
 		super();
 		this.user_nm = user_nm;

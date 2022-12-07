@@ -151,6 +151,7 @@ function validate(form) {
 </head>
 <body>
 <section>
+<<<<<<< Updated upstream
 	<div class="reg_wrap">
 	<form action="customer/reg" method="post" onsubmit="return validate(this);">
 		<div class="info caption">회원가입</div>
@@ -203,6 +204,57 @@ function validate(form) {
 			<button>등록</button>
 			<button type="button" onclick="location.href=''">취소</button>
 		</div>			
+=======
+	<form action="register/reg" method="post" onsubmit="return validate(this);">
+		<table>
+			<caption>회원가입</caption>
+				<tr>
+					<td>이름</td>
+					<td>
+						<input name="user_nm" id="user_nm">
+						
+					</td>
+				</tr>
+				<tr>
+					<td>주민번호</td>
+					<td><input name="user_regnum" id="user_regnum"></td>
+				</tr>
+				<tr>
+					<td>아이디</td>
+					<td>
+						<input name="user_id" id="user_id">
+						<input id="checkId" readonly="readonly">
+					</td>
+					
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input name="user_pw" id="user_pw"></td>
+				</tr>
+				<tr>
+					<td>비밀번호확인</td>
+					<td><input name="user_pwc" id="user_pwc"></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input name="user_phone" id="user_phone"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input name="user_email"  id="user_email"></td>
+				</tr>
+				<tr>
+					<td>주소</td>
+					<td><input name="user_address"  id="user_address"></td>
+				</tr>
+				<tr>
+					<td>
+						<button>등록</button>
+						<button type="button" onclick="location.href=''">취소</button>
+					</td>
+				</tr>
+		</table>
+>>>>>>> Stashed changes
 	</form>
 	</div>
 </section>

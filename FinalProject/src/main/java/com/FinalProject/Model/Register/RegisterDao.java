@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerRegDao {
+public class RegisterDao {
 	@Autowired
 	DataSource datasource;	
 	
 	//insert	
-		public void insert(CustomerDto customer ) {		
+		public void insert(RegisterDto customer ) {		
 			String sql ="insert into customer_tbl  values(?,?,?,?,?,?,?)";
 			Connection  conn= null;
 			PreparedStatement pst= null;		
