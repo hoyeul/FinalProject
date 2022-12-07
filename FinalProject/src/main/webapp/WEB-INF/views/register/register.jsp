@@ -151,78 +151,60 @@ function validate(form) {
 </head>
 <body>
 <section>
+	<div class="reg_wrap">
 	<form action="customer/reg" method="post" onsubmit="return validate(this);">
-		<table>
-			<caption>회원가입</caption>
-				<tr>
-					<td>이름</td>
-					<td>
-						<input name="user_nm" id="user_nm">
-						
-					</td>
-				</tr>
-				<tr>
-					<td>주민번호</td>
-					<td>
-						<input name="jumin1" id="jumin1" maxlength="6">
-						-
-						<input type="password" name="jumin2" id="jumin2" maxlength="7">
-					</td>
-				</tr>
-				<tr>
-					<td>아이디</td>
-					<td>
-						<input name="user_id" id="user_id">
-						<br>
-						<input id="checkId" readonly="readonly" value="사용할 수 없는 아이디입니다.">
-					</td>
-					
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="user_pw" id="user_pw"></td>
-				</tr>
-				<tr>
-					<td>비밀번호확인</td>
-					<td><input type="password" name="user_pwc" id="user_pwc"></td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td>
-						<input name="user_phone1" id="user_phone1" maxlength="3">
-						-
-						<input name="user_phone2" id="user_phone2" maxlength="4">
-						-
-						<input name="user_phone3" id="user_phone3" maxlength="4">
-					</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>
-						<input name="user_email"  id="user_email">
-						@
-						<input name="user_domain"  id="user_domain">
-						<select id="emailSelect">
-							<option value="">선택</option>
-							<option value="naver.com">naver.com</option>
-							<option value="google.com">google.com</option>
-							<option value="">직접입력</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td><input name="user_address"  id="user_address"></td>
-
-				</tr>
-				<tr>
-					<td colspan="2">
-						<button>등록</button>
-						<button type="button" onclick="location.href=''">취소</button>
-					</td>
-				</tr>
-		</table>
+		<div class="info caption">회원가입</div>
+		<div class="info">
+			<span>이름</span><br>
+			<input name="user_nm" id="user_nm">
+		</div>
+		<div class="info">
+			<span>주민번호</span><br>
+			<input name="jumin1" class="jumin" id="jumin1" maxlength="6"> -
+			<input type="password" name="jumin2" class="jumin" id="jumin2" maxlength="7">
+		</div>
+		<div class="info">
+			<span>아이디</span><br>
+			<input name="user_id" id="user_id">
+			<br>
+			<input id="checkId" readonly="readonly" value="사용할 수 없는 아이디입니다.">
+		</div>
+		<div class="info">
+			<span>비밀번호</span><br>
+			<input type="password" name="user_pw" id="user_pw">
+		</div>
+		<div class="info">
+			<span>비밀번호확인</span><br>
+			<input type="password" name="user_pwc" id="user_pwc">
+		</div>
+		<div class="info">
+			<span>전화번호</span><br>
+			<input name="user_phone1" class= user_phone id="user_phone1" maxlength="3">-
+			<input name="user_phone2" class= user_phone id="user_phone2" maxlength="4">-
+			<input name="user_phone3" class= user_phone id="user_phone3" maxlength="4">
+		</div>			
+		<div class="info">
+			<span>이메일</span><br>
+			<input name="user_email"  id="user_email">
+			@
+			<input name="user_domain"  id="user_domain">
+			<select id="emailSelect">
+				<option value="">선택</option>
+				<option value="naver.com">naver.com</option>
+				<option value="google.com">google.com</option>
+				<option value="">직접입력</option>
+			</select>
+		</div>			
+		<div class="info">
+			<span>주소</span><br>
+			<input name="user_address"  id="user_address">
+		</div>					
+		<div class="btn_wrap">
+			<button>등록</button>
+			<button type="button" onclick="location.href=''">취소</button>
+		</div>			
 	</form>
+	</div>
 </section>
 </body>
 </html>
