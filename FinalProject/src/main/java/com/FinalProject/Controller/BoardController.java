@@ -33,12 +33,17 @@ public class BoardController {
 		return "Board/Boardreg";
 	}
 	
-	@RequestMapping(value ="boardreg", method = RequestMethod.POST)
+	@RequestMapping(value ="/boardreg", method = RequestMethod.POST)
 	public String Board_insert(BoardDto dto) {
 		
 		dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText());
-		
-		return "Board/Boardreg";
+		System.out.println("post boardreg");
+		return "redirect:/board";
 	}
 	
+	@RequestMapping(value ="/boardone", method = RequestMethod.GET)
+	public String array2(Model model) {
+
+		return "Board/Boardone";
+	}
 }

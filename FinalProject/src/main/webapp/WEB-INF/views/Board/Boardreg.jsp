@@ -12,6 +12,7 @@
 <script src="${path}/resources/js/boardreg.js"></script>
 
 <body>
+	<section>
 	<form name="frm" action="/Controller/boardreg" method="post">
 		<table>
 			<caption>게시글 등록</caption>
@@ -59,5 +60,6 @@
 				</tbody>
 		</table>
 	</form>
+	</section>
 </body>
 </html>

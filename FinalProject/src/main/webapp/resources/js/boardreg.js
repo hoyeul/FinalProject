@@ -6,10 +6,10 @@ function boardreg(){
 	let text = frm.text;
 	
 	if(continent.value == ""){
-		alert("대륙을 선택해주세요.");
+		alert("게시판을 선택해주세요.");
 		continent.focus();
 	}else if(select.value == ""){
-		alert("게시판을 선택해주세요");
+		alert("말머리를 선택해주세요");
 		select.focus();
 	}else if(title.value == ""){
 		alert("제목을 입력해주세요");
@@ -20,5 +20,4 @@ function boardreg(){
 	}else{
 		frm.submit();
 	}
-	
 }
