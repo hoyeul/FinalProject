@@ -13,21 +13,32 @@ public class BoardDto {
 	public BoardDto() {
 		
 	}
-	
-	public BoardDto(String continent, String select, String title, String text) {
-		super();
-		Continent = continent;
-		Select = select;
-		Title = title;
-		Text = text;
+	public BoardDto( int num,String continent, String select, String title,String Text) {
+		this.Num = num;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text =Text;
 	}
-	
 	public BoardDto(int num, String continent, String select, String title, String date, int number,String id) {
 		this.Num = num;
 		this.Continent = continent;
 		this.Select = select;
 		this.Title = title;
 		this.Date = date;
+		this.number = number;
+		this.id = id;
+	}
+	
+	public BoardDto(int num, String continent, String select, String title, String text, String date, int number,
+			String id) {
+		super();
+		Num = num;
+		Continent = continent;
+		Select = select;
+		Title = title;
+		Text = text;
+		Date = date;
 		this.number = number;
 		this.id = id;
 	}
@@ -79,6 +90,9 @@ public class BoardDto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "BoardDto [Num=" + Num + ", Continent=" + Continent + ", Select=" + Select + ", Title=" + Title
+				+ ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id + "]";
+	}
 }

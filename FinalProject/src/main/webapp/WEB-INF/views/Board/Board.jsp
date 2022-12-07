@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${path}/resources/css/board.css">
 
 <body>
+<section>
 	<table>
 		<caption>문의 게시판</caption>
             <tr class="board-order">
@@ -25,10 +26,10 @@
             </tr>
 <c:forEach var="item" items="${list}">
         <tr class="board-order__item">
-            <td><a href="">${item.num}</a></td>
+            <td>${item.num}</td>
             <td>${item.continent}</td>
             <td>${item.select}</td>
-            <td>${item.title}</td>
+            <td><a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a></td>
             <td>${item.id}</td>
             <td>${item.date}</td>
             <td>${item.number}</td>
@@ -40,5 +41,6 @@
             </td>
         </tr>
 	</table>
+	</section>
 </body>
 </html>
