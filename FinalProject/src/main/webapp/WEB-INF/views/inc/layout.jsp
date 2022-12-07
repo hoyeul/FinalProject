@@ -13,6 +13,7 @@
 <script src="${path}/resources/js/layout.js"></script>
 </head>
 <body>
+
 <div class="wrap">
 	<!-- header 부분 -->
 	<tiles:insertAttribute name="header" />
@@ -21,10 +22,8 @@
 		<!-- nav 부분 -->
 		<tiles:insertAttribute name="nav" />
 	
-		<div class="section">
 		<!-- section 부분 -->
 		<tiles:insertAttribute name="section" />
-		</div>
 	</div>
 </div>
 </body>

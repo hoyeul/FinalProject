@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${path}/resources/css/board.css">
 
 <body>
+<section>
 	<table>
 		<caption>문의 게시판</caption>
             <tr class="board-order">
@@ -40,5 +41,6 @@
             </td>
         </tr>
 	</table>
+	</section>
 </body>
 </html>

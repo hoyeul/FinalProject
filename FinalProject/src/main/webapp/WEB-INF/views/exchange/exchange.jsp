@@ -15,14 +15,14 @@ $(function(){
 	    dataType:'json',
 	    success: function(data) {
 	        //console.log(data);
-	    	str = '<TR>'; 
+	    	str = '<TR>';
             $.each(data , function(i){
-                str += '<TD>' + data[i].cur_nm + '</TD>';
+               	str += '<TD>' + data[i].cur_nm + '</TD>';
                 str += '<TD>' + data[i].cur_unit + '</TD>';
                 str += '<TD>' + data[i].deal_bas_r + '</TD>';        
                 str += '</TR>';
             });
-        $('#tbody').append(str);
+       		$('#tbody').append(str);
 	    },
 	    error: function(err) {
 	        alert("error");
@@ -43,13 +43,13 @@ $(function(){
 </style>
 </head>
 <body>
-<section>
+<section class="section">
 <table>
 	<thead>
 	<tr>
 		<td>통화명</td>
 		<td>통화코드</td>
-		<td>금액</td>
+		<td>원</td>
 	</tr>
 	</thead>
 	<tbody id="tbody"></tbody>
