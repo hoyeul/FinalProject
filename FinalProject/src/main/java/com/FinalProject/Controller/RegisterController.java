@@ -19,67 +19,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Register.RegisterDto;
+import com.FinalProject.Model.Register.RegisterService;
 import com.FinalProject.Model.Register.RegisterDao;
 
 @Controller
 public class RegisterController {
+	
+	@Autowired
+	RegisterDao service;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerGet() {
 		
 		return "register/register";
 	}
-	@RequestMapping(value = "/register/reg", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(HttpServletRequest request) {
-		String user_nm  = request.getParameter("user_nm");
-		String user_id = request.getParameter("user_id");
-		String user_pw = request.getParameter("user_pw");			
-		String user_phone = request.getParameter("user_phone");			
-		String user_email = request.getParameter("user_email");			
-		String user_address = request.getParameter("user_address");			
-		String user_regnum = request.getParameter("user_regnum");	
+		//System.out.println("registerPost");
+		String name = request.getParameter("name");		
+			String jumin1 = request.getParameter("jumin1");
+			String jumin2 = request.getParameter("jumin2");
+		String jumin = jumin1 + '-' + jumin2;
+		String id = request.getParameter("id");			
+		String pw = request.getParameter("pw");			
+			String phone1 = request.getParameter("phone1");	
+			String phone2 = request.getParameter("phone2");			
+			String phone3 = request.getParameter("phone3");			
+		String phone = phone1 + '-' + phone2 + '-' + phone3;			
+			String email1 = request.getParameter("email1");		
+			String email2 = request.getParameter("email2");	
+		String email = email1 + '@' + email2;
+		String address = request.getParameter("address");	
 		
-//		System.out.println(user_nm) ;
-//		System.out.println(user_id) ;
-//		System.out.println(user_pw) ; 	
-//		System.out.println(user_phone) ; 	
-//		System.out.println(user_email) ; 	
-//		System.out.println(user_address) ; 	
-//		System.out.println(user_regnum) ; 	
+		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address);
+		System.out.println(dto);
 		
-		//Customer 객체 생성 및 입력
-		RegisterDto customer = new RegisterDto(user_nm,user_id,user_pw,user_phone,user_email,user_address,user_regnum);
+		service.insert(dto);
 		
-		//Customer 객체를 Dao를 통해 DB에 입력
-		RegisterDao dao = new RegisterDao();
-		dao.insert(customer);
-		
-		return "home";
+		return "redirect:/login";
 	}
-	@RequestMapping( value="/register/IdCheckService" , method= RequestMethod.POST)
-	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
+	@ResponseBody
+	@RequestMapping( value="/register/IdCheck" , method= RequestMethod.POST)
+	public String IdCheckService(String userId, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
 		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
 		response.setCharacterEncoding("EUC-KR");
 					
-		String userId = request.getParameter("userId");
 		// join.jsp에서 받아온 key값이 userId이고
 		// value값은 유저가 실제로 적은 값, String userId에는 value값이 들어간다.
-		PrintWriter out = response.getWriter();
-				
-		RegisterDao dao = new RegisterDao();
-				
-		int idChcek = dao.checkId(userId);
-
+										
+		int idCheck = service.checkId(userId);
+		
 		// 성공여부 확인 : 개발자용
-		if (idChcek == 0) {
+		if (idCheck == 0) {
 			System.out.println("이미 존재하는 아이디입니다.");
-		} else if (idChcek == 1) {
+		} else if (idCheck == 1) {
 			System.out.println("사용 가능한 아이디입니다.");
 		}
-				
-		out.write(idChcek + ""); // --> ajax 결과값인 result가 됨
-				// --> String으로 값을 내보낼 수 있도록 + "" 를 해준다
+		
+		return String.valueOf(idCheck);
 		
 	}
 }
