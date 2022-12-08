@@ -39,52 +39,52 @@ $(function(){
 	      $(this).val($(this).val().replace(/[^a-z|.|]/,""));
 	});
 	
-	//비밀번호 자릿수 확인
+	//비밀번호 유효성 확인
 	$("#user_pw").blur(function(){
 		let userPw = $('#user_pw').val();
 		let reg =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
 		if( !reg.test(userPw) ) {
-			setTimeout(function(){
-				alert("비밀번호가 최소 8자, 문자와 숫자를 사용해야 합니다.");
-	        }, 10)
-		    setTimeout(function(){
-		    	$("#user_pw").focus();
-	        }, 10)
+			$("#checkpw").html("비밀번호가 최소 8자, 문자와 숫자를 사용해야 합니다.");
+			$("#checkpw").css('color','red');
 		}else{
-			setTimeout(function(){
-		    	$("#user_pwc").focus}, 10)
+			$("#checkpw").html("사용가능한 비밀번호 입니다.");
+			$("#checkpw").css('color','green');
 		}
 	});
-	//비밀번호확인 일치여부
-/*	$("#user_pwc").blur(function(){
+	//비밀번호확인(pwc) 일치여부
+	$("#user_pwc").blur(function(){
 		let userPwc = $('#user_pwc').val();
 		let userPw = $('#user_pw').val();
 		if( !(userPwc == userPw)) {
-			setTimeout(function(){
-				alert("비밀번호 확인이 일치하지 않습니다.");
-	        }, 10)
-		    setTimeout(function(){
-		    	$("#user_pwc").focus}, 10)
+			$("#checkpwc").html("비밀번호 확인이 일치하지 않습니다.");
+			$("#checkpwc").css('color','red');
+		}else{
+			$("#checkpwc").html("비밀번호 확인이 일치합니다.");
+			$("#checkpwc").css('color','green');
 		}
 	});
-*/	
+
 	//아이디 중복확인
 	$('#user_id').blur(function(){
 		//alert("여기")
 		let userId = $('#user_id').val(); // input_id에 입력되는 값
+		//alert(userId);
 		$.ajax({
-			url : "IdCheckService",
+			url : "/Controller/register/IdCheck",
 			type : "post",
-			data : {user_id: userId},
+			data : {userId: userId},
 			dataType : 'json',
 			success : function(result){
+				//alert(result);
 				if(result == 0){
+					//alert("사용할수없음");
 					$("#checkId").html('사용할 수 없는 아이디입니다.');
-					$("#checkId").attr('color','red');
-				} else{
+					$("#checkId").css('color','red');
+				}else if(result == 1){
+					//alert("사용할수있음");
 					$("#checkId").html('사용할 수 있는 아이디입니다.');
-					$("#checkId").attr('color','green');
-				} 
+					$("#checkId").css('color','green');
+				}else{}
 			},
 			error : function(){
 				alert("서버요청실패");
@@ -95,7 +95,7 @@ $(function(){
 	
 	//이메일 select
 	$("#emailSelect").on("change", function(){
-		$("input[name='user_domain']").val($("#emailSelect").val());
+		$("input[name='email2']").val($("#emailSelect").val());
 	});
 });
 
@@ -151,110 +151,69 @@ function validate(form) {
 </head>
 <body>
 <section>
-<<<<<<< Updated upstream
 	<div class="reg_wrap">
-	<form action="customer/reg" method="post" onsubmit="return validate(this);">
+	<form action="register" method="post" onsubmit="return validate(this);">
 		<div class="info caption">회원가입</div>
 		<div class="info">
-			<span>이름</span><br>
-			<input name="user_nm" id="user_nm">
+			<span class="key">이름</span><br>
+			<input name="name" class="input" id="user_nm">
 		</div>
 		<div class="info">
-			<span>주민번호</span><br>
-			<input name="jumin1" class="jumin" id="jumin1" maxlength="6"> -
-			<input type="password" name="jumin2" class="jumin" id="jumin2" maxlength="7">
+			<span class="key">주민번호</span><br>
+			<div class="jumin_wrap">
+				<input name="jumin1" class="jumin" id="jumin1" maxlength="6"> 
+				<div class="jumin_dash">-</div>
+				<input name="jumin2" class="jumin" id="jumin2" maxlength="7" type="password">
+			</div>
 		</div>
 		<div class="info">
-			<span>아이디</span><br>
-			<input name="user_id" id="user_id">
-			<br>
-			<input id="checkId" readonly="readonly" value="사용할 수 없는 아이디입니다.">
+			<span class="key">아이디</span><br>
+			<input name="id" class="input" id="user_id"><br>
+			<span id="checkId" class="caution">아이디를 입력하세요</span>
 		</div>
 		<div class="info">
-			<span>비밀번호</span><br>
-			<input type="password" name="user_pw" id="user_pw">
+			<span class="key">비밀번호</span><br>
+			<input name="pw" class="input" id="user_pw" type="password" ><br>
+			<span id="checkpw" class="caution">비밀번호를 입력하세요</span>
 		</div>
 		<div class="info">
-			<span>비밀번호확인</span><br>
-			<input type="password" name="user_pwc" id="user_pwc">
+			<span class="key">비밀번호확인</span><br>
+			<input name="pwc" class="input" id="user_pwc" type="password"><br>
+			<span id="checkpwc" class="caution">비밀번호확인을 입력하세요</span>
 		</div>
 		<div class="info">
-			<span>전화번호</span><br>
-			<input name="user_phone1" class= user_phone id="user_phone1" maxlength="3">-
-			<input name="user_phone2" class= user_phone id="user_phone2" maxlength="4">-
-			<input name="user_phone3" class= user_phone id="user_phone3" maxlength="4">
+			<span class="key">전화번호</span><br>
+			<div class="phone_wrap">
+				<input name="phone1" class= phone id="user_phone1" maxlength="3">
+				<div class="phone_dash">-</div>
+				<input name="phone2" class= phone id="user_phone2" maxlength="4">
+				<div class="phone_dash">-</div>
+				<input name="phone3" class= phone id="user_phone3" maxlength="4">
+			</div>
 		</div>			
 		<div class="info">
-			<span>이메일</span><br>
-			<input name="user_email"  id="user_email">
-			@
-			<input name="user_domain"  id="user_domain">
-			<select id="emailSelect">
-				<option value="">선택</option>
-				<option value="naver.com">naver.com</option>
-				<option value="google.com">google.com</option>
-				<option value="">직접입력</option>
+			<span class="key">이메일</span><br>
+			<div class="email_wrap">
+				<input name="email1"  class="email1" id="user_email">
+				<div class="email_at">@</div>
+				<input name="email2" class="email2" id="user_domain">
+				<div class="email_space"> </div>
+			<select id="emailSelect" class="email_select"> 
+					<option value="">선택</option>
+					<option value="naver.com">naver.com</option>
+					<option value="google.com">google.com</option>
+					<option value="">직접입력</option>
 			</select>
+			</div>
 		</div>			
 		<div class="info">
-			<span>주소</span><br>
-			<input name="user_address"  id="user_address">
+			<span class="key">주소</span><br>
+			<input name="address" class="input"  id="user_address">
 		</div>					
 		<div class="btn_wrap">
 			<button>등록</button>
 			<button type="button" onclick="location.href=''">취소</button>
 		</div>			
-=======
-	<form action="register/reg" method="post" onsubmit="return validate(this);">
-		<table>
-			<caption>회원가입</caption>
-				<tr>
-					<td>이름</td>
-					<td>
-						<input name="user_nm" id="user_nm">
-						
-					</td>
-				</tr>
-				<tr>
-					<td>주민번호</td>
-					<td><input name="user_regnum" id="user_regnum"></td>
-				</tr>
-				<tr>
-					<td>아이디</td>
-					<td>
-						<input name="user_id" id="user_id">
-						<input id="checkId" readonly="readonly">
-					</td>
-					
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input name="user_pw" id="user_pw"></td>
-				</tr>
-				<tr>
-					<td>비밀번호확인</td>
-					<td><input name="user_pwc" id="user_pwc"></td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td><input name="user_phone" id="user_phone"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input name="user_email"  id="user_email"></td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td><input name="user_address"  id="user_address"></td>
-				</tr>
-				<tr>
-					<td>
-						<button>등록</button>
-						<button type="button" onclick="location.href=''">취소</button>
-					</td>
-				</tr>
-		</table>
->>>>>>> Stashed changes
 	</form>
 	</div>
 </section>

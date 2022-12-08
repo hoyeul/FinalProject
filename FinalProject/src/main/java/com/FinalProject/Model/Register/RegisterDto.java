@@ -1,67 +1,77 @@
 package com.FinalProject.Model.Register;
 
 public class RegisterDto {
-	String user_nm;
-	String user_id;
-	String user_pw;
-	String user_phone;
-	String user_email;
-	String user_address;
-	String user_regnum;
+	int num;
+	String name;
+	String jumin;
+	String id;
+	String pw;
+	String phone;
+	String email;
+	String address;
 	
 	public RegisterDto() {}
-	public RegisterDto(String user_nm, String user_id, String user_pw, String user_phone, String user_email,
-			String user_address, String user_regnum) {
+	public RegisterDto(String name, String jumin, String id, String pw, String phone, String email,
+			String address) {
 		super();
-		this.user_nm = user_nm;
-		this.user_id = user_id;
-		this.user_pw = user_pw;
-		this.user_phone = user_phone;
-		this.user_email = user_email;
-		this.user_address = user_address;
-		this.user_regnum = user_regnum;
+		this.name = name;
+		this.jumin = jumin;
+		this.id = id;
+		this.pw = pw;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
 	}
-	public String getUser_nm() {
-		return user_nm;
+	public int getNum() {
+		return num;
 	}
-	public void setUser_nm(String user_nm) {
-		this.user_nm = user_nm;
+	public String getName() {
+		return name;
 	}
-	public String getUser_id() {
-		return user_id;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public String getJumin() {
+		return jumin;
 	}
-	public String getUser_pw() {
-		return user_pw;
+	public void setJumin(String jumin) {
+		this.jumin = jumin;
 	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public String getId() {
+		return id;
 	}
-	public String getUser_phone() {
-		return user_phone;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public void setUser_phone(String user_phone) {
-		this.user_phone = user_phone;
+	public String getPw() {
+		return pw;
 	}
-	public String getUser_email() {
-		return user_email;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public String getPhone() {
+		return phone;
 	}
-	public String getUser_address() {
-		return user_address;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
+	public String getEmail() {
+		return email;
 	}
-	public String getUser_regnum() {
-		return user_regnum;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public void setUser_regnum(String user_regnum) {
-		this.user_regnum = user_regnum;
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	@Override
+	public String toString() {
+		return "RegisterDto [num=" + num + ", name=" + name + ", jumin=" + jumin + ", id=" + id + ", pw=" + pw
+				+ ", phone=" + phone + ", email=" + email + ", address=" + address + "]";
 	}
 	
 	
