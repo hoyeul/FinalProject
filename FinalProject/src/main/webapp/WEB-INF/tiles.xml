@@ -7,10 +7,18 @@
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
     <put-attribute name="nav" value="/WEB-INF/views/inc/nav.jsp" />
     <put-attribute name="section" value="" />
-    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition>
   
-  <definition name="*/*" extends="layout">
+  <definition name="empty" template="/WEB-INF/views/inc/no-layout.jsp">
+    <put-attribute name="section" value="" />
+  </definition>
+  
+  <definition name="login/*" extends="empty">
+		<put-attribute name="section" value="/WEB-INF/views/login/{1}.jsp" />
+  </definition>
+  
+   <definition name="*/*" extends="layout">
 		<put-attribute name="section" value="/WEB-INF/views/{1}/{2}.jsp" />
-	</definition>
+  </definition>
+  
 </tiles-definitions>

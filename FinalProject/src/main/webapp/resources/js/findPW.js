@@ -52,7 +52,7 @@ $(function(){
 			       		alert("정보를 잘못 입력하셨거나 존재하는 아이디가 없습니다");
 			       }else{
 			       		alert("고객님의 비밀번호는 " + data + " 입니다");
-			       		location.href="/Controller/login"
+			       		location.href="/FinalProject/login"
 			       }
 			   }
 		    },

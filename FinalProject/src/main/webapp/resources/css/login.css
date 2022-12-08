@@ -1,7 +1,10 @@
 @charset "UTF-8";
-section{
-	position: relative;
+
+*{
+	padding: 0;
+	margin: 0;
 }
+
 .loginForm{
 	position: absolute;
     top: 50%;

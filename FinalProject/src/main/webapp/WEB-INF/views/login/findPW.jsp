@@ -14,7 +14,7 @@
 <body>
 <section>
 <table>
-	<caption>아이디 찾기</caption>
+	<caption>비밀번호 찾기</caption>
 	<tr>
 		<td>아이디</td>
 		<td><input type="text" name="id"></td>
@@ -45,7 +45,7 @@
 	<tr>
 		<td colspan="2">
 			<button type="button" id="find">비밀번호 찾기</button>
-			<button type="button" onclick="window.location.href='/Controller/login'">이전화면으로</button>
+			<button type="button" onclick="window.location.href='/FinalProject/login'">이전화면으로</button>
 		</td>
 	</tr>
 </table>

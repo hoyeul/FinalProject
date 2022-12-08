@@ -13,34 +13,36 @@
 
 <body>
 <section>
-	<table>
-		<caption><a href="/Controller/board">전체 게시판</a></caption>
-            <tr class="board-order">
-                <td>번호</td>
-                <td>대륙</td>
-                <td>종류</td>
-                <td>제목</td>
-                <td>작성자</td>
-                <td>날짜</td>
-                <td>조회수</td>
-            </tr>
-<c:forEach var="item" items="${list}">
-        <tr class="board-order__item">
-            <td>${item.num}</td>
-            <td>${item.continent}</td>
-            <td>${item.select}</td>
-            <td><a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a></td>
-            <td>${item.id}</td>
-            <td>${item.date}</td>
-            <td>${item.number}</td>
-        </tr> 
-</c:forEach>
-        <tr >
-            <td class="enter__btn" colspan="7">
-               <a href="/Controller/boardreg"><button>등록</button></a>
-            </td>
-        </tr>
-	</table>
+	<div class="boardwrap">
+		<table class="mainboard">
+			<caption><a href="/Controller/board" class="board_title">전체 게시판</a></caption>
+	            <tr>
+	                <td>번호</td>
+	                <td>대륙</td>
+	                <td>종류</td>
+	                <td>제목</td>
+	                <td>작성자</td>
+	                <td>날짜</td>
+	                <td>조회수</td>
+	            </tr>
+					<c:forEach var="item" items="${list}">
+			        <tr>
+			            <td>${item.num}</td>
+			            <td>${item.continent}</td>
+			            <td>${item.select}</td>
+			            <td><a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a></td>
+			            <td>${item.id}</td>
+			            <td>${item.date}</td>
+			            <td>${item.number}</td>
+			        </tr> 
+					</c:forEach>
+	        	<tr>
+		            <td class="" colspan="7">
+		               <a href="/FinalProject/boardreg"><button>등록</button></a>
+		            </td>
+	        	</tr>
+			</table>
+		</div>
 	</section>
 </body>
 </html>
