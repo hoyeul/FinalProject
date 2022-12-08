@@ -25,10 +25,10 @@
             </tr>
 <c:forEach var="item" items="${list}">
         <tr class="board-order__item">
-            <td><a href="">${item.num}</a></td>
+            <td>${item.num}</td>
             <td>${item.continent}</td>
             <td>${item.select}</td>
-            <td>${item.title}</td>
+            <td><a href="">${item.title}</a></td>
             <td>${item.id}</td>
             <td>${item.date}</td>
             <td>${item.number}</td>

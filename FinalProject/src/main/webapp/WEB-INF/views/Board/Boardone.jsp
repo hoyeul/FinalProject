@@ -14,30 +14,26 @@
 <body>
 	<section>
 		<table>
-			<caption>게시글 등록</caption>
-	            <tr class="board-order">
-	            	<td>게시판</td>
-	                <td></td>
-	                <td>말머리</td>
-	                <td></td>
+            <tr class="board-order">
+            	<td>${item.continent}</td>
+            </tr>
+            <tr>
+            	<td>말머리</td><td>글제목</td>
+            </tr>
+			<tbody>
+	            <tr>
+	                <td class="board_text" colspan="4">
+	                   <textarea name="text" class="in_text" contenteditable="true">
+	                   	
+	                   </textarea>
+	                </td>
 	            </tr>
 	            <tr>
-	            	<td colspan="3"></td>
+	                <td class="content_btn" colspan="3">
+	                    <button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
+	                </td>
 	            </tr>
-				<tbody>
-		            <tr>
-		                <td class="board_text" colspan="4">
-		                   <textarea name="text" class="in_text" contenteditable="true">
-		                   	
-		                   </textarea>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td class="content_btn" colspan="3">
-		                    <button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
-		                </td>
-		            </tr>
-				</tbody>
+			</tbody>
 		</table>
 	</section>
 </body>

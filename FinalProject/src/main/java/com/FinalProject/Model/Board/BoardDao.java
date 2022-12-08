@@ -48,6 +48,7 @@ public class BoardDao {
 		return list;
 	}
 	
+	
 	public void boardreg(String continent, String select, String title, String text) {
 		
 		Connection con = null;
