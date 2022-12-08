@@ -30,10 +30,10 @@
 		</div>
 			
 		<div class="function_wrap">
-				<a href="/Controller/reg">회원가입</a>
+				<a href="/FinalProject/register">회원가입</a>
 			<br>
-			<a class="find" href="/Controller/findID">아이디찾기</a> |
-			<a class="find" href="/Controller/findPW">비밀번호찾기</a>
+			<a class="find" href="/FinalProject/findID">아이디찾기</a> |
+			<a class="find" href="/FinalProject/findPW">비밀번호찾기</a>
 	
 		</div>
 		

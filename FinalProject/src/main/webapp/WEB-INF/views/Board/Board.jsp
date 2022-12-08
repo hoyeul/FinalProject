@@ -37,7 +37,7 @@
 </c:forEach>
         <tr >
             <td class="enter__btn" colspan="7">
-               <a href="/Controller/boardreg"><button>등록</button></a>
+               <a href="/FinalProject/boardreg"><button>등록</button></a>
             </td>
         </tr>
 	</table>

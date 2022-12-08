@@ -30,7 +30,7 @@
 	            </tr>
 	            <tr>
 	                <td class="content_btn" colspan="3">
-	                    <button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
+	                    <button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
 	                </td>
 	            </tr>
 			</tbody>

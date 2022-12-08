@@ -41,7 +41,7 @@
 	<tr>
 		<td colspan="2">
 			<button type="button" id="find">아이디 찾기</button>
-			<button type="button" onclick="window.location.href='/Controller/login'">이전화면으로</button>
+			<button type="button" onclick="window.location.href='/FinalProject/login'">이전화면으로</button>
 		</td>
 	</tr>
 </table>

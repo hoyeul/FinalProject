@@ -10,7 +10,7 @@
 <script>
 $(function(){
 	$.ajax({
-	    url:'/Controller/exchange', //request 보낼 서버의 경로
+	    url:'/FinalProject/exchange', //request 보낼 서버의 경로
 	    type:'post',
 	    dataType:'json',
 	    success: function(data) {
@@ -43,13 +43,13 @@ $(function(){
 </style>
 </head>
 <body>
-<section class="section">
+<section>
 <table>
 	<thead>
 	<tr>
 		<td>통화명</td>
 		<td>통화코드</td>
-		<td>원</td>
+		<td>환율(원)</td>
 	</tr>
 	</thead>
 	<tbody id="tbody"></tbody>
