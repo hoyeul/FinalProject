@@ -9,7 +9,10 @@ public class RegisterDto {
 	String user_address;
 	String user_regnum;
 	
-	public RegisterDto() {}
+	public RegisterDto() {
+		
+	}
+	
 	public RegisterDto(String user_nm, String user_id, String user_pw, String user_phone, String user_email,
 			String user_address, String user_regnum) {
 		super();
@@ -21,6 +24,7 @@ public class RegisterDto {
 		this.user_address = user_address;
 		this.user_regnum = user_regnum;
 	}
+	
 	public String getUser_nm() {
 		return user_nm;
 	}

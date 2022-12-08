@@ -2,23 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.ArrayList" %>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/boardin.js"></script>
+<script src="${path}/resources/js/board.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/boardin.css">
 </head>
 <body>
 	<section>
 	 	<table>
-			<caption>${a.continent}</caption>
+			<caption><a href="/Controller/board">${a.continent}</a></caption>
 				 <tr class="board-order">
-				    <td>번호</td>
-				    <td>대륙</td>
+				    <td>게시판</td>
 				    <td>종류</td>
 				    <td>제목</td>
 				    <td>작성자</td>
@@ -26,7 +25,6 @@
 				    <td>조회</td>
 				</tr>
 				<tr class="board-order__item">
-					<td>${a.num}</td>
 					<td>${a.continent}</td>
 					<td>${a.select}</td>
 					<td>${a.title}</td>
@@ -35,12 +33,13 @@
 					<td>${a.number}</td>
 				</tr>
 			    <tr>
-				    <td  class="enter__btn" colspan="8">
+				    <td class="enter__btn" colspan="8">
 				       <textarea name="content" readonly="readonly"> ${a.text}</textarea>
 				    </td>
 			    </tr>
 				<tr>
 				    <td class="enter__btn" colspan="8">
+				    	<a href="/Controller/board"><button>목록으로</button></a>
 				        <a href="boardUp?num=${a.num}"><button>수정</button></a>
 						<a href="boardDE?num=${a.num}"><button>삭제</button></a>
 				    </td>
@@ -49,7 +48,7 @@
 		<table class="CMTable">
 			<c:forEach var="list" items="${list}">
 				<tr class="comment">
-					<td><textarea id="text" class="text" readonly="readonly">${list.text}</textarea></td>
+					<td><textarea  style="display-block" id="text" class="text" readonly="readonly">${list.text}</textarea></td>
 					<td>${list.name}</td>
 					<td>${list.date}</td>
 				</tr>
@@ -62,20 +61,21 @@
 					</td>
 				</tr> 
 			</c:forEach>
-	      </table>
+		</table>
 <div id="result"> 
 </div>
 		<table>
 			<tr>
 				<td><textarea class="CMreg"></textarea></td>
-				<td><button class="button5" type="button" value="${a.num}">등록</button></td>
 			</tr>
 			<tr>
 				<td>
+					<button class="button5" type="button" value="${a.num}">등록</button>
 					<button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
 				</td>
 			</tr>
 		</table>
 	</section>
+</head>
 </body>
 </html>

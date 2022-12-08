@@ -13,11 +13,13 @@ public class BoardDto {
 	public BoardDto() {
 		
 	}
-	
-	public BoardDto(String title, String text, String date) {
+
+	public BoardDto( int num,String continent, String select, String title,String Text) {
+		this.Num = num;
+		this.Continent = continent;
+		this.Select = select;
 		this.Title = title;
-		this.Text = text;
-		this.Date = date;
+		this.Text =Text;
 	}
 	
 	public BoardDto(int num, String continent, String select, String title, String date, int number,String id) {
@@ -90,9 +92,11 @@ public class BoardDto {
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	@Override
 	public String toString() {
 		return "BoardDto [Num=" + Num + ", Continent=" + Continent + ", Select=" + Select + ", Title=" + Title
 				+ ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id + "]";
 	}
+
 }

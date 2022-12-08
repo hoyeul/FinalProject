@@ -14,7 +14,7 @@
 <body>
 <section>
 	<table>
-		<caption>전체 게시판</caption>
+		<caption><a href="/Controller/board">전체 게시판</a></caption>
             <tr class="board-order">
                 <td>번호</td>
                 <td>대륙</td>

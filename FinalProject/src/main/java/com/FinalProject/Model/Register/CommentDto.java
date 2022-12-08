@@ -1,4 +1,4 @@
-package com.FinalProject.Model.Board;
+package com.FinalProject.Model.Register;
 
 public class CommentDto {
  int num;
@@ -6,7 +6,11 @@ public class CommentDto {
  String text;
  String name;
  String date;
- public CommentDto() {}
+ 
+public CommentDto() {
+	
+}
+
 public CommentDto(int num,int cnum, String text, String name, String date) {
 	super();
 	this.num = num;
@@ -15,6 +19,7 @@ public CommentDto(int num,int cnum, String text, String name, String date) {
 	this.name = name;
 	this.date = date;
 }
+
 public CommentDto(int num,String text) {
 	this.num=num;
 	this.text = text;
@@ -52,10 +57,5 @@ public int getCnum() {
 public void setCnum(int cnum) {
 	Cnum = cnum;
 }
-@Override
-public String toString() {
-	return "CommentDto [num=" + num + ", Cnum=" + Cnum + ", text=" + text + ", name=" + name + ", date=" + date + "]";
-}
 
- 
 }

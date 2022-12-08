@@ -9,11 +9,11 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${path}/resources/css/boardreg.css">
-<script src="${path}/resources/js/boardreg.js"></script>
+<script src="${path}/resources/js/board.js"></script>
 
 <body>
 	<section>
-	<form name="frm" action="/Controller/boardreg" method="post">
+	<form name="regfrm" action="/Controller/boardreg" method="post">
 		<table>
 			<caption>게시글 등록</caption>
 	            <tr class="board-order">

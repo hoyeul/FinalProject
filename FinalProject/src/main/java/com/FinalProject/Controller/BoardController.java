@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
-import com.FinalProject.Model.Board.CommentDto;
+import com.FinalProject.Model.Register.CommentDto;
 
 @Controller
 public class BoardController {
@@ -50,8 +50,6 @@ public class BoardController {
 		dao.updateNum(b, s);
 		BoardDto a =dao.select(s);
 		m.addAttribute("a",a);
-		ArrayList<CommentDto> list = dao.ArrayCM(s);
-		m.addAttribute("list", list);
 		return "Board/BoardIn";
 	}
 	
@@ -72,13 +70,14 @@ public class BoardController {
 		m.addAttribute("a",a);
 		return "Board/BoardUp";
 	}
-	
+
 	@RequestMapping(value ="boardUp",produces="text/plain;charset=UTF-8" ,method = RequestMethod.POST)
 	public String Up2(BoardDto dto) {	
 		dao.update(dto);
+		System.out.println();
 		return "redirect:/boardIn?num="+dto.getNum()+"";
 	}
-	
+
 	@RequestMapping(value ="/boardDE", method = RequestMethod.GET)
 	public String delete(BoardDto dto) {
 		System.out.println(dto.getNum());
@@ -94,6 +93,7 @@ public class BoardController {
 		dao.deletCM(s);
 		return "Board/BoardIn";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
 	public String UpdateCM(  CommentDto dto) {
