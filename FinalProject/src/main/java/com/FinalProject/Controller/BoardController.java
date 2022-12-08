@@ -49,8 +49,6 @@ public class BoardController {
 		dao.updateNum(b, s);
 		BoardDto a =dao.select(s);
 		m.addAttribute("a",a);
-		ArrayList<CommentDto> list = dao.ArrayCM(s);
-		m.addAttribute("list", list);
 		return "Board/BoardIn";
 	}
 	
