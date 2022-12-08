@@ -14,7 +14,7 @@
 <body>
 <section>
 	<table>
-		<caption>문의 게시판</caption>
+		<caption>전체 게시판</caption>
             <tr class="board-order">
                 <td>번호</td>
                 <td>대륙</td>
@@ -29,7 +29,7 @@
             <td>${item.num}</td>
             <td>${item.continent}</td>
             <td>${item.select}</td>
-            <td><a href="">${item.title}</a></td>
+            <td><a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a></td>
             <td>${item.id}</td>
             <td>${item.date}</td>
             <td>${item.number}</td>
