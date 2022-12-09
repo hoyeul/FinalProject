@@ -62,19 +62,19 @@ public class RegisterController {
 	@RequestMapping( value="/register/IdCheck" , method= RequestMethod.POST)
 	public String IdCheckService(String userId, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
-		// ajax·Î °ªÀ» ¹Ş±â ¶§¹®¿¡ UTF-8·Î ÀÎÄÚµùÇØÁØ´Ù
+		// ajaxë¡œ ê°’ì„ ë°›ê¸° ë•Œë¬¸ì— UTF-8ë¡œ ì¸ì½”ë”©í•´ì¤€ë‹¤
 		response.setCharacterEncoding("EUC-KR");
 					
-		// join.jsp¿¡¼­ ¹Ş¾Æ¿Â key°ªÀÌ userIdÀÌ°í
-		// value°ªÀº À¯Àú°¡ ½ÇÁ¦·Î ÀûÀº °ª, String userId¿¡´Â value°ªÀÌ µé¾î°£´Ù.
+		// join.jspì—ì„œ ë°›ì•„ì˜¨ keyê°’ì´ userIdì´ê³ 
+		// valueê°’ì€ ìœ ì €ê°€ ì‹¤ì œë¡œ ì ì€ ê°’, String userIdì—ëŠ” valueê°’ì´ ë“¤ì–´ê°„ë‹¤.
 										
 		int idCheck = service.checkId(userId);
 		
-		// ¼º°ø¿©ºÎ È®ÀÎ : °³¹ßÀÚ¿ë
+		// ì„±ê³µì—¬ë¶€ í™•ì¸ : ê°œë°œììš©
 		if (idCheck == 0) {
-			System.out.println("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			System.out.println("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 		} else if (idCheck == 1) {
-			System.out.println("»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			System.out.println("ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë””ì…ë‹ˆë‹¤.");
 		}
 		
 		return String.valueOf(idCheck);

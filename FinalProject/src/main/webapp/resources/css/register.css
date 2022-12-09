@@ -8,19 +8,12 @@ select{
 	border: 0px;
 	border-radius: 3px;
 }
-section{
-	position: relative;
-}
 .reg_wrap{
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	margin: 0 auto;
 	width: 500px;
 	background-color: #c0c0c0;
 	border-radius: 15px;
 }
-
 .key{
 	font-size: 12px;
 	padding-left: 2px;
