@@ -4,10 +4,12 @@
 	padding: 0;
 	margin: 0;
 }
+
 a{
 	text-decoration: none;
 	color: black;
 }
+
 .wrap{
 	position: relative;
     overflow: hidden;
@@ -16,7 +18,7 @@ a{
 }
 
 header{
-	height: 60px;
+	height: 7.5vh;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -29,28 +31,19 @@ header{
 .header_left div{
 	position: absolute;
 	top: 15px;
-	left: 30px;
+	left: 20px;
 }
 
 .navIcon{
-	width: 27px;
-	height: 27px;
-	background-image: url("../image/menuIcon2.png");
-	background-size: cover;
-	background-position: center;
 	cursor : pointer;
 }
 
 .header_lefthomeBtn{
-	margin-left: 100px;
+	margin-left: 50px;
 }
 
 .myPageIcon{
-	width: 4px;
-	height: 25px;
-	background-image: url("../image/mypageIcon.png");
-	background-size: contain;
-	background-position: center;
+	cursor : pointer;
 }
 
 .header_right{
@@ -76,21 +69,91 @@ nav{
 	z-index: 2;
 }
 
-nav ul{
-	list-style: none;
+i{
+	margin-right: .6rem;
+	vertical-align: -6px;
 }
 
-nav li{
-	padding: 20px;
-	text-align: center;
+.nav_home{
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+.nav_a{
+	padding: 0 20px;
+	font-size: 14px;
+}
+
+.nav_information{
+	padding: 10px 0;
+}
+
+.nav_information_a{
+	display: block;
+	padding: 0 20px;
+	position: relative;
+	font-size: 14px;
+}
+
+.chevron_right{
+	position: absolute;
+	right: 0;
+}
+
+.nav_information_menu{
+	display: none;
+}
+
+.nav_information_menu_div{
+	margin-left: 31px;
+	padding-left: 5px;
+	border-left: 1px solid #d4dae3;
+}
+
+.nav_information_menu_a{
+	display: block;
+	font-size: 14px;
+	padding: 10px 0 10px 20px;
+}
+
+.nav_board{
+	padding: 10px 0;
+}
+
+.nav_board_a{
+	display: block;
+	padding: 0 20px;
+	position: relative;
+	font-size: 14px;
+}
+
+
+.nav_board_menu{
+	display: none;
+}
+
+.nav_board_menu_div{
+	margin-left: 31px;
+	padding-left: 5px;
+	border-left: 1px solid #d4dae3;
+}
+
+.nav_board_menu_a{
+	display: block;
+	font-size: 14px;
+	padding: 10px 0 10px 20px;
+}
+
+.section{
+	margin-top: 7.5vh;
+	min-height: 92.5vh;
+	min-width: 1000px;
+	background-color: #F5F7FF;
+    z-index: 1;
 }
 
 section{
-	padding: 100px;
-	min-width: 1000px;
-	height: 130vh;
-	background-color: #F5F7FF;
-    z-index: 1;
+	margin: 30px;
 }
 
 .sectionPart{

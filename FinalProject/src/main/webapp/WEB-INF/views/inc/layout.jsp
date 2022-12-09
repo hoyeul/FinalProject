@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>title</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" />
 <link rel="stylesheet" href="${path}/resources/css/layout.css">
 <script src="${path}/resources/js/layout.js"></script>
 </head>
