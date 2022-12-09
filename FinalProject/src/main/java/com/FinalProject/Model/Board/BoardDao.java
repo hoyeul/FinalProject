@@ -17,26 +17,31 @@ public class BoardDao {
 	@Autowired
 	DataSource dataSource;
 	
-	public ArrayList<BoardDto> Array() {
+	public ArrayList<BoardDto> ArraySelect(int page) {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
-        String sql = "select b_num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from board";
+        int start =(page-1)*10+1;
+        int end = page*10;       
+        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from( select  rownum num,b_num ,b_continent,b_select,b_title,b_date,b_count,b_name from board where b_continent='아프리카') where num BETWEEN ? and ? order by num";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
 	        conn = dataSource.getConnection();
 	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, start);
+	        pstmt.setInt(2, end);
 	        rs  = pstmt.executeQuery();         
 	        while( rs.next()){
 	        BoardDto dto = new BoardDto();
 	        int a= rs.getInt(1);
-	    	String b=rs.getString(2);
-	    	String c=rs.getString(3);
-	    	String d=rs.getString(4);
-	    	String e=rs.getString(5);
-	    	int f=rs.getInt(6);
-	    	String g=rs.getString(7);
-	    	dto = new BoardDto(a,b,c,d,e,f,g);
+	        int h= rs.getInt(2);
+	    	String b=rs.getString(3);
+	    	String c=rs.getString(4);
+	    	String d=rs.getString(5);
+	    	String e=rs.getString(6);
+	    	int f=rs.getInt(7);
+	    	String g=rs.getString(8);
+	    	dto = new BoardDto(a,h,b,c,d,e,f,g);
 	    	list.add(dto);
 	    }
 		} catch (SQLException e) {
@@ -85,7 +90,6 @@ public class BoardDao {
 		return list;
 	}
 	public int count() {
-		BoardDto dto = null;
 		Connection conn  =null;
 		PreparedStatement pst =null;
 		ResultSet  rs = null;	

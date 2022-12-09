@@ -1,72 +1,62 @@
 package com.FinalProject.Model.Board;
 
 public class PageDto {
-	int currentPage; 
-	int listCount;   
-    int pageLimit;   
-    int maxPage;  
-    int startPage; 
-    int endPage;    
-    int boardLimit;
+	int currentGrp; 
+	int index;   
+    int grpEndPage;   
+    int totalPage;  
+
     public PageDto() {}
-	public PageDto(int currentPage, int listCount, int pageLimit, int maxPage, int startPage, int endPage,
-			int boardLimit) {
+    
+    public PageDto(int currentGrp) {
+    	this.currentGrp = currentGrp;
+    }
+
+	public PageDto(int currentGrp, int index, int grpEndPage, int totalPage) {
 		super();
-		this.currentPage = currentPage;
-		this.listCount = listCount;
-		this.pageLimit = pageLimit;
-		this.maxPage = maxPage;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.boardLimit = boardLimit;
+		this.currentGrp = currentGrp;
+		this.index = index;
+		this.grpEndPage = grpEndPage;
+		this.totalPage = totalPage;
 	}
-	public int getCurrentPage() {
-		return currentPage;
+
+	public int getCurrentGrp() {
+		return currentGrp;
 	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
+
+	public void setCurrentGrp(int currentGrp) {
+		this.currentGrp = currentGrp;
 	}
-	public int getListCount() {
-		return listCount;
+
+	public int getIndex() {
+		return index;
 	}
-	public void setListCount(int listCount) {
-		this.listCount = listCount;
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
-	public int getPageLimit() {
-		return pageLimit;
+
+	public int getGrpEndPage() {
+		return grpEndPage;
 	}
-	public void setPageLimit(int pageLimit) {
-		this.pageLimit = pageLimit;
+
+	public void setGrpEndPage(int grpEndPage) {
+		this.grpEndPage = grpEndPage;
 	}
-	public int getMaxPage() {
-		return maxPage;
+
+	public int getTotalPage() {
+		return totalPage;
 	}
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
-	public int getStartPage() {
-		return startPage;
-	}
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-	public int getEndPage() {
-		return endPage;
-	}
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-	public int getBoardLimit() {
-		return boardLimit;
-	}
-	public void setBoardLimit(int boardLimit) {
-		this.boardLimit = boardLimit;
-	}
+
 	@Override
 	public String toString() {
-		return "pageDto [currentPage=" + currentPage + ", listCount=" + listCount + ", pageLimit=" + pageLimit
-				+ ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage=" + endPage + ", boardLimit="
-				+ boardLimit + "]";
+		return "PageDto [currentGrp=" + currentGrp + ", index=" + index + ", grpEndPage=" + grpEndPage + ", totalPage="
+				+ totalPage + "]";
 	}
+
 	
 }

@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
 import com.FinalProject.Model.Board.CommentDto;
-import com.FinalProject.Model.Board.PageDto;
-import com.FinalProject.Model.Board.Pagination;
+
+import com.FinalProject.Model.Board.SearchDto;
 
 @Controller
 public class BoardController {
@@ -24,18 +23,34 @@ public class BoardController {
 	
 
 	@RequestMapping(value ="/board", method = RequestMethod.GET)
-	public String array(Model model,String p) {
+	public String array(Model model,String p,SearchDto dto) {
+		String text=dto.getText();
+		String content=dto.getSelectcontent();
+		String type=dto.getSelecttype();
+		String continent=dto.getContinent();
+		String Pa=dto.getPage();
+		System.out.println("continent="+continent);
+		System.out.println("type="+type);
+		System.out.println("content="+content);
+		System.out.println("text="+text);
+		System.out.println("page="+Pa);
 		int page=0;
-		if(p == null) {
+		if(Pa == null) {
 			page=1;
 		}else {
-			page=Integer.parseInt(p);
+			page=Integer.parseInt(Pa);
 		}
-		System.out.println(page);
-		ArrayList<BoardDto> list = dao.ArrayTen(page);
-		model.addAttribute("a", dao.count());
+		if(text=="" || text==null) {
+			ArrayList<BoardDto> list = dao.ArrayTen(page);
+			model.addAttribute("list", list);
+			model.addAttribute("text", text);
+		}else {
+		ArrayList<BoardDto> list = dao.ArraySelect(page);
 		model.addAttribute("list", list);
-		 model.addAttribute("p", page);
+		model.addAttribute("text", text);
+		}
+		model.addAttribute("a", dao.count());
+		model.addAttribute("p", page);
 		
 		return "Board/Board";
 	}
