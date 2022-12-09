@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
-import com.FinalProject.Model.Register.CommentDto;
+import com.FinalProject.Model.Board.CommentDto;
+import com.FinalProject.Model.Board.PageDto;
+import com.FinalProject.Model.Board.Pagination;
 
 @Controller
 public class BoardController {
@@ -19,13 +22,19 @@ public class BoardController {
 	@Autowired
 	BoardDao dao;
 	
+
 	@RequestMapping(value ="/board", method = RequestMethod.GET)
-	public String array(Model model) {
-
-		ArrayList<BoardDto> list = dao.Array();
-		System.out.println(list);
+	public String array(Model model,String p) {
+		int page=0;
+		if(p == null) {
+			page=1;
+		}else {
+			page=Integer.parseInt(p);
+		}
+		System.out.println(page);
+		ArrayList<BoardDto> list = dao.ArrayTen(page);
+		model.addAttribute("a", dao.count());
 		model.addAttribute("list", list);
-
 		return "Board/Board";
 	}
 	
@@ -45,9 +54,11 @@ public class BoardController {
 	@RequestMapping(value ="/boardIn", method = RequestMethod.GET)
 	public String array2(BoardDto dto,Model m) {
 		int s = dto.getNum();
+		System.out.println("d1231231="+s);
 		int b= dto.getNumber()+1;
 		dao.updateNum(b, s);
 		BoardDto a =dao.select(s);
+		System.out.println("dasdasdasda="+a);
 		m.addAttribute("a",a);
 		return "Board/BoardIn";
 	}
