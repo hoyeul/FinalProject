@@ -15,14 +15,29 @@
 
 <section>
 <form name="frm" action="/Controller/board" method="get">
+
 <div>
-              		<button name="continent" value="all">전체</button>
-	                <button name="continent" value="아시아">아시아</button>
-	                <button name="continent" value="아프리카">아프리카</button>
-	                <button name="continent" value="유럽">유럽</button>
-	                <button name="continent" value="오세아니아">오세아니아</button>
-	                <button name="continent" value="북아메리카">북아메리카</button>
-	                <button  value="남아메리카">남아메리카</button>
+  			<input type="radio"  class="radio" id="all" name="continent" value="all"
+             checked>
+             <input type="radio" class="radio" id="아시아" name="continent" value="아시아"
+             checked>
+             <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카"
+             checked>
+             <input type="radio" class="radio" id="유럽" name="continent" value="유럽"
+             checked>
+             <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아"
+             checked>
+             <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카"
+             checked>
+             <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카"
+             checked>
+      <label for="all">전체</label>
+      <label for="아시아">아시아</label>
+      <label for="아프리카">아프리카</label>
+      <label for="유럽">유럽</label>
+      <label for="오세아니아">오세아니아</label>
+      <label for="북아메리카">북아메리카</label>
+      <label for="남아메리카">남아메리카</label>
 </div>
 	<table>
 		<caption>문의 게시판</caption>
@@ -81,7 +96,7 @@
 	 } 	 
 	 while( index <= grpEndPage){		 
 	 %>
-	 	<button name="page" value="<%=index %>"><%=index %> </button>
+	 	<button name="page" value="<%=index%>"><%=index %> </button>
         <%
 		  index ++;       
 	 }	 
