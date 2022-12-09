@@ -55,7 +55,7 @@ public class BoardDao {
         int end = page*10;
         
         
-        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from( select  rownum num,b_num ,b_continent,b_select,b_title,b_date,b_count,b_name from board) where b_num BETWEEN ? and ? ";
+        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from( select  rownum num,b_num ,b_continent,b_select,b_title,b_date,b_count,b_name from board) where num BETWEEN ? and ? order by num";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
 	        conn = dataSource.getConnection();

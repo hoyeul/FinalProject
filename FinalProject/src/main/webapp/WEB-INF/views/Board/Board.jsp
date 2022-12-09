@@ -42,18 +42,20 @@
                <a href="/Controller/boardreg"><button>등록</button></a>
             </td>
         </tr>
-	</table>
-</section>
-<%
+        <tr>
+        <td colspan="7">
+        <%
 	int currentPage=1;
-	if( request.getAttribute("p") != null){
-		 currentPage  =(Integer) request.getAttribute("p");
-	}
- 
+	 if( request.getAttribute("p") != null){
+	 	 currentPage  =(Integer) request.getAttribute("p");
+	 }
+	 int countpage  =(Integer) request.getAttribute("a");
 	
+	 
+	 
      
-	 int totRecords =5 ; // 총 레코드 수 
-	 int pageSize =2;    //페이지 사이즈  (데이터 건수 , 한 페이징 보이는 레코드 수 )
+	 int totRecords =countpage ; // 총 레코드 수 
+	 int pageSize =10;    //페이지 사이즈  (데이터 건수 , 한 페이징 보이는 레코드 수 )
 	 	 
  
 	 
@@ -117,5 +119,9 @@
 		   <a href="/Controller/board?p=<%=index%>">[ 다음 ]</a>  
 	<% }
 	%>
+        </td>
+        </tr>
+	</table>
+</section>
 </body>
 </html>

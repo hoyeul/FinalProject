@@ -35,6 +35,8 @@ public class BoardController {
 		ArrayList<BoardDto> list = dao.ArrayTen(page);
 		model.addAttribute("a", dao.count());
 		model.addAttribute("list", list);
+		 model.addAttribute("p", page);
+		
 		return "Board/Board";
 	}
 	
