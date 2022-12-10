@@ -7,10 +7,41 @@
 	margin-top: 20px;
 }
 
-caption{
-	text-align: left;
-	font-size: 20px;
-	margin-bottom: 30px;
+.board_head, .board_nav{
+	width: 70%;
+	margin: auto;
+}
+
+.board_head{
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+.board_head a{
+	font-weight: bold;
+}
+
+.board_nav{
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px #aaa;
+	padding: 10px 0px;
+	border-radius: 5px;
+	font-weight: bold;
+	border: 1px solid silver;
+	display: flex;
+}
+
+.board_all{
+}
+
+.board_nav a{
+	margin-left:20px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.first_a {
+	margin: 0px 12px 0px 12px;
 }
 
 .mainboard{
@@ -22,6 +53,11 @@ caption{
 
 tr{
 	border-top: 0.5px solid grey;
+	border-bottom: 0.5px solid grey;
+}
+
+table tr:nth-child(1){
+	font-weight: bold;
 }
 
 td{
@@ -29,4 +65,25 @@ td{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 10px 0px;
+	font-size: 13px;
+}
+
+.tb_nav{
+}
+
+.reg_btn{
+	width: 70%;
+	margin: auto;
+	text-align: right;
+	margin-top: 10px;
+}
+
+.reg_btn button{
+	width: 70px;
+	padding: 5px;
+	background-color: #303030;
+	color: white;
+	font-size: bold;
+	border-radius: 5px;
+	border: none;
 }

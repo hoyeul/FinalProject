@@ -1,22 +1,12 @@
 package com.FinalProject.Controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Register.RegisterDto;
 import com.FinalProject.Model.Register.RegisterDao;
@@ -47,10 +37,10 @@ public class RegisterController {
 //		System.out.println(user_address) ; 	
 //		System.out.println(user_regnum) ; 	
 		
-		//Customer °´Ã¼ »ý¼º ¹× ÀÔ·Â
+		//Customer ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½
 		RegisterDto customer = new RegisterDto(user_nm,user_id,user_pw,user_phone,user_email,user_address,user_regnum);
 		
-		//Customer °´Ã¼¸¦ Dao¸¦ ÅëÇØ DB¿¡ ÀÔ·Â
+		//Customer ï¿½ï¿½Ã¼ï¿½ï¿½ Daoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ ï¿½Ô·ï¿½
 		RegisterDao dao = new RegisterDao();
 		dao.insert(customer);
 		
@@ -59,27 +49,27 @@ public class RegisterController {
 	@RequestMapping( value="/register/IdCheckService" , method= RequestMethod.POST)
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
-		// ajax·Î °ªÀ» ¹Þ±â ¶§¹®¿¡ UTF-8·Î ÀÎÄÚµùÇØÁØ´Ù
+		// ajaxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UTF-8ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 		response.setCharacterEncoding("EUC-KR");
 					
 		String userId = request.getParameter("userId");
-		// join.jsp¿¡¼­ ¹Þ¾Æ¿Â key°ªÀÌ userIdÀÌ°í
-		// value°ªÀº À¯Àú°¡ ½ÇÁ¦·Î ÀûÀº °ª, String userId¿¡´Â value°ªÀÌ µé¾î°£´Ù.
+		// join.jspï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ keyï¿½ï¿½ï¿½ï¿½ userIdï¿½Ì°ï¿½
+		// valueï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, String userIdï¿½ï¿½ï¿½ï¿½ valueï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½.
 		PrintWriter out = response.getWriter();
 				
 		RegisterDao dao = new RegisterDao();
 				
 		int idChcek = dao.checkId(userId);
 
-		// ¼º°ø¿©ºÎ È®ÀÎ : °³¹ßÀÚ¿ë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½
 		if (idChcek == 0) {
-			System.out.println("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			System.out.println("ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if (idChcek == 1) {
-			System.out.println("»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµðÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
 		}
 				
-		out.write(idChcek + ""); // --> ajax °á°ú°ªÀÎ result°¡ µÊ
-				// --> StringÀ¸·Î °ªÀ» ³»º¸³¾ ¼ö ÀÖµµ·Ï + "" ¸¦ ÇØÁØ´Ù
+		out.write(idChcek + ""); // --> ajax ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ resultï¿½ï¿½ ï¿½ï¿½
+				// --> Stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ + "" ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½
 		
 	}
 }

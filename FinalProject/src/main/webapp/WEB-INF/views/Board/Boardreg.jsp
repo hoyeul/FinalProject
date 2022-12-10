@@ -19,7 +19,7 @@
 	            <tr class="board-order">
 	            	<td>게시판</td>
 	                <td>
-	                	<select name="continent">
+	                	<select id="continent" name="continent">
 	                		<option value="">선택하세요</option>
 	                		<option value="아시아">아시아</option>
 	                		<option value="아프리카">아프리카</option>
@@ -31,7 +31,7 @@
 	                </td>
 	                <td>말머리</td>
 	                <td>
-						<select name="select">
+						<select id="select" name="select">
 	                		<option value="">선택하세요</option>
 	                		<option value="자유">자유</option>
 	                		<option value="질문">질문</option>

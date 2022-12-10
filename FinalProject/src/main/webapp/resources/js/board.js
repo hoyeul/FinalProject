@@ -22,6 +22,18 @@ function boardreg(){
 	}
 }
 
+$(function(){
+	// console.log("ggg="+  $('.b_con'));
+	let b_cons =  document.querySelectorAll(".b_con");
+	for(let i=0 ; i< b_cons.length; i++){
+	    let b_con = b_cons[i];
+	    //alert( b_con.innerHTML);
+	    let country = b_con.innerHTML;
+	    if(country.trim() == "[아시아]"){	            
+	        b_con.style.color='red';
+	    }
+	}
+});
 
 function boardup() {
 	let upfrm = document.upfrm;
@@ -46,7 +58,6 @@ function boardup() {
 		upfrm.submit();
 	}
 }
-
 
 $(document).ready(function() {
 	showList1();

@@ -23,7 +23,7 @@ public class BoardDao {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "select b_num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from board";
+        String sql = "select b_num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from board order by b_date desc";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
 	        conn = dataSource.getConnection();
