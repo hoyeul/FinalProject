@@ -10,6 +10,35 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${path}/resources/css/board.css">
+<script>
+window.addEventListener("load",function(){
+	let frm = document.frm;
+	let selecttypeName = frm.selecttypeH.value;
+	let selectcontentName = frm.selectcontentH.value;
+	let continentName = frm.continentH.value;
+	
+	let selecttype = frm.selecttype;
+	for(let i=0; i<selecttype.options.length; i++){
+		if(selecttype.options[i].value==selecttypeName){
+			selecttype.options[i].selected=true;
+		}
+	}
+	
+	let selectcontent = frm.selectcontent;
+	for(let i=0; i<selectcontent.options.length; i++){
+		if(selectcontent.options[i].value==selectcontentName){
+			selectcontent.options[i].selected=true;
+		}
+	}
+	
+	let continentRadio = frm.continent;
+	for(let i=0;i<continentRadio.length; i++){
+		if(continentRadio[i].value==continentName){
+			continentRadio[i].checked=true;
+}
+	}
+});
+</script>
 
 <body>
 
@@ -17,21 +46,21 @@
 <form name="frm" action="/Controller/board" method="get">
 
 <div>
-  			<input type="radio"  class="radio" id="all" name="continent" value="all"
+  			<input type="radio"  class="radio" id="전체" name="continent" value="" onclick="location='/Controller/board?continent='"
              checked>
-             <input type="radio" class="radio" id="아시아" name="continent" value="아시아"
+             <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/Controller/board?continent=아시아'"
              checked>
-             <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카"
+             <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/Controller/board?continent=아프리카'"
              checked>
-             <input type="radio" class="radio" id="유럽" name="continent" value="유럽"
+             <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/Controller/board?continent=유럽'"
              checked>
-             <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아"
+             <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/Controller/board?continent=오세아니아'"
              checked>
-             <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카"
+             <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/Controller/board?continent=북아메리카'"
              checked>
-             <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카"
+             <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/Controller/board?continent=남아메리카'"
              checked>
-      <label for="all">전체</label>
+      <label for="전체">전체</label>
       <label for="아시아">아시아</label>
       <label for="아프리카">아프리카</label>
       <label for="유럽">유럽</label>
@@ -109,15 +138,15 @@
         </tr>
         <tr>
          <td colspan="7">
-	     	<select name="selecttype" >
-	                		<option value="all">전체</option>
+	     	<select name="selecttype" value="${type}" >
+	                		<option value="">전체</option>
 	                		<option value="자유">자유</option>
 	                		<option value="질문">질문</option>
 	                		<option value="후기">후기</option>
 	                		<option value="정보">정보</option>
 	     	</select>
-	     <select name="selectcontent">
-	                		<option value="all">전체</option>
+	     <select name="selectcontent" value="${content}">
+	                		<option value="">전체</option>
 	                		<option value="제목">제목/내용</option>
 	                		<option value="작성자">작성자</option>
 	     	</select>	
@@ -125,6 +154,9 @@
          </td>
         </tr>
         </table>
+        <input type="hidden" name="selecttypeH" value="${type}">
+        <input type="hidden" name="selectcontentH" value="${content}">
+        <<input type="hidden" name="continentH" value="${continent}">
         </form>
         <table>
             <tr >

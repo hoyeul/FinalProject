@@ -23,11 +23,10 @@ public class BoardController {
 	
 
 	@RequestMapping(value ="/board", method = RequestMethod.GET)
-	public String array(Model model,String p,SearchDto dto) {
+	public String array(Model model,String p,String continent,SearchDto dto) {
 		String text=dto.getText();
 		String content=dto.getSelectcontent();
 		String type=dto.getSelecttype();
-		String continent=dto.getContinent();
 		String Pa=dto.getPage();
 		System.out.println("continent="+continent);
 		System.out.println("type="+type);
@@ -35,23 +34,39 @@ public class BoardController {
 		System.out.println("text="+text);
 		System.out.println("page="+Pa);
 		int page=0;
-		if(Pa == null) {
+		if(Pa == null && continent==null && content==null && type==null && text==null) {
 			page=1;
-		}else {
-			page=Integer.parseInt(Pa);
-		}
-		if(text=="" || text==null) {
 			ArrayList<BoardDto> list = dao.ArrayTen(page);
 			model.addAttribute("list", list);
-			model.addAttribute("text", text);
+		}else if(Pa == null && continent!=null && content==null && type==null && text==null) {
+			page=1;
+			type="";
+			text="";
+			content="";
+			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
+			model.addAttribute("list", list);
+		}else if(Pa == null) {
+			page=1;
+			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
+			model.addAttribute("list", list);
 		}else {
-		ArrayList<BoardDto> list = dao.ArraySelect(page);
-		model.addAttribute("list", list);
-		model.addAttribute("text", text);
+			if(content.equals("작성자")) {
+				
+			}else if(content.equals("제목")) {
+				
+			}else{
+			}
+			page=Integer.parseInt(Pa);
+			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
+			model.addAttribute("list", list);
 		}
+		
 		model.addAttribute("a", dao.count());
 		model.addAttribute("p", page);
-		
+		model.addAttribute("text", text);
+		model.addAttribute("type", type);
+		model.addAttribute("content", content);
+		model.addAttribute("continent", continent);	
 		return "Board/Board";
 	}
 	
