@@ -1,4 +1,4 @@
-package com.FinalProject.Model.Register;
+package com.FinalProject.Model.Board;
 
 public class CommentDto {
  int num;

@@ -53,7 +53,8 @@
         
         
         <property name="java-output-path" value="target/classes"/>
-        <property name="context-root" value="sample"/>
+                
+        <property name="context-root" value="Controller"/>
                                                                 	
     
     
