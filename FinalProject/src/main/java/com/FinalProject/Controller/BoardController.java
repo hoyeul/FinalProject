@@ -21,7 +21,6 @@ public class BoardController {
    @Autowired
    BoardDao dao;
    
-
    @RequestMapping(value ="/board", method = RequestMethod.GET)
    public String array(Model model,String p,String continent,SearchDto dto) {
       String text=dto.getText();

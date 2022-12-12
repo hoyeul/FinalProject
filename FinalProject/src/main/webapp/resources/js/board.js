@@ -216,6 +216,6 @@ window.addEventListener("load",function(){
 	for(let i=0;i<continentRadio.length; i++){
 		if(continentRadio[i].value==continentName){
 			continentRadio[i].checked=true;
-}
 	}
+		}
 });
