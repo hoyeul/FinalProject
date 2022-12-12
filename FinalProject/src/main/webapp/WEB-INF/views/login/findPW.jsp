@@ -7,48 +7,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path }/resources/css/findPW.css">
+<link rel="stylesheet" href="${path}/resources/css/findPW.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${path}/resources/js/findPW.js"></script>
 </head>
 <body>
 <section>
-<table>
-	<caption>비밀번호 찾기</caption>
-	<tr>
-		<td>아이디</td>
-		<td><input type="text" name="id"></td>
-	</tr>
-	<tr>
-		<td>이름</td>
-		<td><input type="text" name="nm"></td>
-	</tr>
-	<tr>
-		<td>주민등록번호</td>
-		<td>
-			<input type="text" name="jumin1" maxlength="6">-
+	<div class="findPwWrap">
+	<div class="caption">비밀번호 찾기</div>
+	<div class="infoWrap">
+		<div class="userId">
+			<span>아이디</span><br/>
+			<input type="text" name="id">
+		</div>
+		<div class="name">
+			<span>이름</span><br/>
+			<input type="text" name="name">
+		</div>
+		<div class="jumin">
+			<span>주민등록번호</span><br/>
+			<input type="text" name="jumin1" maxlength="6">
+			<div class="juminDash">-</div>
 			<input type="password" name="jumin2" maxlength="7">
-		</td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td>
-			<input type="text" name="email1"> @ <input type="text" name="email2">
-			<select id="emailSelect">
-				<option value="">선택</option>
-				<option value="naver.com">naver.com</option>
-				<option value="google.com">google.com</option>
-				<option value="">직접입력</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<button type="button" id="find">비밀번호 찾기</button>
-			<button type="button" onclick="window.location.href='/FinalProject/login'">이전화면으로</button>
-		</td>
-	</tr>
-</table>
+		</div>
+		<div class="email">
+			<span>이메일</span><br/>
+			<input type="text" name="email1">
+			<div class="emailAt">@</div>
+			<input type="text" name="email2">
+		</div>
+	</div>
+	<div class="btn_wrap">
+		<button type="button" id="find">비밀번호 찾기</button>
+		<div><a href="/FinalProject/home">홈으로</a></div>
+	</div>
+	</div>
 </section>
 </body>
 </html>

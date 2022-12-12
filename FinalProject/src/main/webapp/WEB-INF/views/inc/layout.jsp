@@ -26,8 +26,11 @@
 		<div class="section_nav"></div>
 		
 		<div class="section">
-		<!-- section 부분 -->
-		<tiles:insertAttribute name="section" />
+			<!-- section 부분 -->
+			<tiles:insertAttribute name="section" />
+			<div class="section_footer">
+				<span>footer영역 입니다.</span>
+			</div>
 		</div>
 	</div>
 	

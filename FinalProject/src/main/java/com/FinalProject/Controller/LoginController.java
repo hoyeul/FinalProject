@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Login.loginDao;
 import com.FinalProject.Model.Login.loginDto;
 import com.FinalProject.Model.Login.loginService;
 
@@ -19,7 +18,7 @@ import com.FinalProject.Model.Login.loginService;
 public class LoginController {
 
 	@Autowired
-	loginDao dao;
+	loginService s;
 	
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -30,7 +29,6 @@ public class LoginController {
 	public void login(HttpServletRequest request, HttpServletResponse response, 
 			String id, String pw) throws Exception {
 		
-		loginService s = new loginService(dao);
 		int num = s.loginConfirm(new loginDto(id, pw));
 		
 		if(num == 1) {
@@ -60,13 +58,12 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findID", method = RequestMethod.POST)
-	public String findID(String nm, String jumin1, String jumin2, String email1, String email2){
+	public String findID(String name, String jumin1, String jumin2, String email1, String email2){
 		
 		String jumin = jumin1 + "-" + jumin2;
 		String email = email1 + "@" + email2;
 		
-		loginService s = new loginService(dao);
-		String id = s.findID(new loginDto(nm, jumin, email));
+		String id = s.findID(new loginDto(name, jumin, email));
 		return id;
 	}
 	
@@ -77,13 +74,12 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findPW", method = RequestMethod.POST)
-	public String findPW(String nm, String jumin1, String jumin2, String id, String email1, String email2){
+	public String findPW(String id, String name, String jumin1, String jumin2, String email1, String email2){
 		
 		String jumin = jumin1 + "-" + jumin2;
 		String email = email1 + "@" + email2;
 		
-		loginService s = new loginService(dao);
-		String pw = s.findPW(new loginDto(nm, jumin, id, email));
+		String pw = s.findPW(new loginDto(id, name, jumin, email));
 		return pw;
 	}
 	

@@ -32,4 +32,5 @@ $(function(){
 			$(".nav_board_menu").css("display", "none");
 		}
 	});
+	
 });	

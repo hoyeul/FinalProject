@@ -5,12 +5,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ExchangeService {
 
 	public String exchangeApi() {
 		
 		StringBuffer result = new StringBuffer(); 
 		String strResult = "";
+		
 		try { 
 			// URL 설정 
 			StringBuilder urlBuilder = new StringBuilder("https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=1SbTZQ1Vrt4KIeKvlx5ULicZAHB7tI1U&data=AP01"); 
@@ -36,12 +40,12 @@ public class ExchangeService {
 			 } 
 			rd.close(); 
 			conn.disconnect(); 
-			strResult = result.toString(); 
+			strResult = result.toString();
+			
 		} catch ( Exception e ){
 			e.printStackTrace(); 
 		} 
 		return strResult;
 	}
-	
 	
 }
