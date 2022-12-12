@@ -28,6 +28,7 @@ public class BoardController {
 		String content=dto.getSelectcontent();
 		String type=dto.getSelecttype();
 		String Pa=dto.getPage();
+		String name="";
 		System.out.println("continent="+continent);
 		System.out.println("type="+type);
 		System.out.println("content="+content);
@@ -43,24 +44,51 @@ public class BoardController {
 			type="";
 			text="";
 			content="";
-			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
+			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
 			model.addAttribute("list", list);
 		}else if(Pa == null) {
 			page=1;
-			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
-			model.addAttribute("list", list);
+			if(content.equals("累己磊")) {
+				name=text;
+				text="";
+				System.out.println("name="+name);
+				System.out.println("text="+text);
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
+				text=name;
+			}else if(content.equals("力格")) {
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
+				System.out.println("name="+name);
+				System.out.println("text="+text);
+			}else{
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
+			}
 		}else {
 			if(content.equals("累己磊")) {
-				
+				name=text;
+				text="";
+				System.out.println("name="+name);
+				System.out.println("text="+text);
+				page=Integer.parseInt(Pa);
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
+				text=name;
 			}else if(content.equals("力格")) {
-				
+				page=Integer.parseInt(Pa);
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
+				System.out.println("name="+name);
+				System.out.println("text="+text);
 			}else{
+				page=Integer.parseInt(Pa);
+				ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+				model.addAttribute("list", list);
 			}
-			page=Integer.parseInt(Pa);
-			ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text);
-			model.addAttribute("list", list);
 		}
-		
+		System.out.println("page2="+page);
+		System.out.println("name="+name);
 		model.addAttribute("a", dao.count());
 		model.addAttribute("p", page);
 		model.addAttribute("text", text);

@@ -17,7 +17,7 @@ public class BoardDao {
 	@Autowired
 	DataSource dataSource;
 	
-	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text) {
+	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name) {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
@@ -25,7 +25,7 @@ public class BoardDao {
         int end = page*10;       
         String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'yyyy.mm.dd hh24:mi:ss'),b_count,b_name from(";
         sql+=" select  rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
-        sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_text like '%"+text+"%' or b_title like '%"+text+"%' )";
+        sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
         sql+=" where num BETWEEN ? and ? order by num";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();

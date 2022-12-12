@@ -150,7 +150,7 @@ window.addEventListener("load",function(){
 	                		<option value="제목">제목/내용</option>
 	                		<option value="작성자">작성자</option>
 	     	</select>	
-         <input type =text name="text" value="${text}"><<button>검색</button>
+         <input type =text name="text" value="${text}"><button>검색</button>
          </td>
         </tr>
         </table>
