@@ -50,7 +50,7 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "login/home";
+		return "home/home";
 	}
 	
 	@RequestMapping(value="/findID")

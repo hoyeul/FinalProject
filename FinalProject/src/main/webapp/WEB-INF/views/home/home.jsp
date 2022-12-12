@@ -6,10 +6,12 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-body {
-  width: 100vw;
-  height: 100vh;
+.canvas_wrap{
+	width: 90%;
+	hegith: 90%;
+	margin: 0 auto;
 }
+
 </style>
 <script src="https://unpkg.com/chart.js@3"></script>
 <script src="https://unpkg.com/chartjs-chart-geo@3"></script>
@@ -45,6 +47,10 @@ const chart = new Chart(document.getElementById("canvas").getContext("2d"), {
 </script>
 </head>
 <body>
-	<canvas id="canvas"></canvas>
+	<section>
+		<div class="canvas_wrap">
+			<canvas id="canvas"></canvas>
+		</div>
+	</section>
 </body>
 </html>
