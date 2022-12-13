@@ -15,66 +15,36 @@
 <body>
 	<section>
 		<div class="board-in-all-wrap">
-		 	<table>
-					 <tr class="board-order">
-					    <td>게시판</td>
-					    <td>종류</td>
-					    <td>제목</td>
-					    <td>작성자</td>
-					    <td>날짜</td>
-					    <td>조회</td>
-					</tr>
-					<tr class="board-order__item">
-						<td>${a.continent}</td>
-						<td>${a.select}</td>
-						<td>${a.title}</td>
-						<td>${a.id}</td>
-						<td>${a.date}</td>
-						<td>${a.number}</td>
-					</tr>
-				    <tr>
-					    <td class="enter__btn" colspan="8">
-					       <textarea name="content" readonly="readonly"> ${a.text}</textarea>
-					    </td>
-				    </tr>
-					<tr>
-					    <td class="enter__btn" colspan="8">
-					    	<a href="/Controller/board"><button>목록으로</button></a>
-					        <a href="boardUp?num=${a.num}"><button>수정</button></a>
-							<a href="boardDE?num=${a.num}"><button>삭제</button></a>
-					    </td>
-					</tr>
-			</table>
-			<table class="CMTable">
-				<c:forEach var="list" items="${list}">
-					<tr class="comment">
-						<td><textarea  style="display-block" id="text" class="text" readonly="readonly">${list.text}</textarea></td>
-						<td>${list.name}</td>
-						<td>${list.date}</td>
-					</tr>
-					<tr class="comment2">
-						<td> 
-							<button id="button1" class="button1" type="button" >수정</button>
-							<button id="button2" class="button2" type="button" value="${list.num}" onclick="click1()">삭제</button>
-							<button id="button3" class="button3" type="button" value="${list.num}" style="display:none">수정완료</button>
-							<button id="button4" class="button4" type="button" style="display:none">취소</button>
-						</td>
-					</tr> 
-				</c:forEach>
-			</table>
-	<div id="result"> 
-	</div>
-			<table>
-				<tr>
-					<td><textarea class="CMreg"></textarea></td>
-				</tr>
-				<tr>
-					<td>
-						<button class="button5" type="button" value="${a.num}">등록</button>
-						<button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
-					</td>
-				</tr>
-			</table>
+			<div class="board-in-continent-title">
+				<a href="/Controller/board?continent=아시아">${b.continent} 게시판</a>
+			</div>
+			<hr class="under-continent-title">
+			<div class="board-in-title">
+				<span>[${b.select}] ${b.title}</span>
+				<span>${b.id}</span>
+				<span> | </span>
+				<span>${b.date}</span>
+				<span>조회수 ${b.number}</span>
+			</div>
+			<hr class="under-board-in-title">
+			<div class="board-in-textarea">
+			    <textarea name="content" readonly="readonly">${b.text}</textarea>
+			</div>
+			<div class="update-nav">
+			    <a href="/Controller/board"><button>목록으로</button></a>
+			    <a href="boardUp?num=${b.num}"><button>수정</button></a>
+				<a href="boardDE?num=${b.num}"><button>삭제</button></a>
+			</div>
+			<div id="board-in-comment-box"></div>
+			<div class="comment-edit-area">
+				<textarea></textarea>
+				<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
+			</div>
+			<div class="comment-edit-nav">
+				<button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
+				<a href="/Controller/boardreg"><button>글쓰기</button></a>
+			</div>
+			<a href="http://192.168.0.91:8090/Controller/chat-ws.jsp">아무거나</a>
 		</div>
 	</section>
 </head>

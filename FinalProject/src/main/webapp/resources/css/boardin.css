@@ -3,3 +3,54 @@
     margin: 0px;
 }
 
+textarea{
+	resize:none;
+}
+
+.board-in-all-wrap{
+	margin-top: 20px;
+	width: 70%;
+	margin: auto;
+}
+
+.board-in-continent-title{
+	margin: 20px 0px;
+}
+
+.under-continent-title{
+	border-top: 3px solid darkblue;
+}
+
+.board-in-continent-title a{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.board-in-title{
+	padding: 15px 0px;
+}
+
+.board-in-title span:nth-child(1){
+	font-weight: bold;
+	font-size: 20px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.board-in-title span{
+	font-size: 13px;
+}
+
+.board-in-title span:nth-child(5){
+	float: right;
+}
+
+.under-board-in-title{
+	border: 1px solid silver;
+	margin-bottom: 15px;
+}
+
+.board-in-textarea textarea{
+	width: 100%;
+	height: 80vh;
+}

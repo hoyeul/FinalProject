@@ -62,7 +62,7 @@ function boardup() {
 $(document).ready(function() {
 	showList1();
 	
-	$("#result").on("click",".button2",function(){
+	$("#board-in-comment-box").on("click",".comment-box-delete",function(){
 		let num =$(this).attr('value');
 		$.ajax( {
 			  type:"GET" ,
@@ -79,15 +79,15 @@ $(document).ready(function() {
 		});  
 	});
 	
-	$("#result").on("click",".button1",function(){
+	$("#board-in-comment-box").on("click",".comment-box-update",function(){
 		showList2();
 	});
 	
-	$("#result").on("click",".button4",function(){
+	$("#board-in-comment-box").on("click",".button4",function(){
 		showList1();
 	});
 	
-	$(".button5").click(function(){
+	$(".comment-edit-btn").click(function(){
 		let text = document.querySelector('.CMreg').value;
 		let Cnum =$(this).attr('value');
 		$.ajax( {
@@ -108,10 +108,10 @@ $(document).ready(function() {
 		});  
 	});
 	
-	$("#result").on("click",".button3",function(){
+	$("#board-in-comment-box").on("click",".button3",function(){
 		let num =$(this).attr('value');
 		let p = this.parentElement.parentElement.previousSibling;
-  	  	let text =  p.querySelector(".text").value;
+  	  	let text = p.querySelector(".text").value;
 		$.ajax( {
 			  type:"POST" ,
 			  url :"CommentUP",
@@ -130,7 +130,7 @@ $(document).ready(function() {
 });
 
 function showList1(){
-	let Cnum = document.querySelector('.button5').value;
+	let Cnum = document.querySelector('.comment-edit-btn').value;
 	  $.ajax(
 			    {
 			    	type:"GET" ,
@@ -138,7 +138,7 @@ function showList1(){
 			    	data : {Cnum:Cnum},
 			    	success:function(data){
 			    		 let dataHtml  = toHtml1(data);
-			    		 $("#result").html(dataHtml);
+			    		 $("#board-in-comment-box").html(dataHtml);
 			    		console.log(data);			    		
 			    	},
 			    	error: function(){
@@ -149,14 +149,23 @@ function showList1(){
 }
 
 function toHtml1(data){
-	let str="<table>";
+	let str="<div class='board-in-comment'>";
 	for( let i=0 ; i< data.length; i++){
 		let item = data[i];
-		str+= '<tr class="comment"><td><textarea class="text" readonly="readonly">'+ item.text+'</textarea></td>'
-		+'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td><button class="button1" type="button">수정</button>'
-		+'<button class="button2" type="button" value="'+item.num+'">삭제</button></td></tr>'
+		str+=
+		 '<div class="comment-info">'
+		+'<span class="comment-user">'+item.name+'</span>'
+		+'<span class="comment-date">'+'('+item.date+')'+'</span>'
+		+'</div>'
+		+'<div class="comment-area">'
+		+'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
+		+'</div>'
+		+'<div>'
+		+'<button class="comment-box-update" type="button">수정</button>'
+		+'<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
+		+'</div>'
 	}
-	str+= "</table>";
+	str+= "</div>";
 	return  str;
 }
 
@@ -169,7 +178,7 @@ function showList2(){
 			    	data : {Cnum:Cnum},
 			    	success:function(data){
 			    		 let dataHtml  = toHtml2(data);
-			    		 $("#result").html(dataHtml);
+			    		 $("#board-in-comment-box").html(dataHtml);
 			    		console.log(data);			    		
 			    	},
 			    	error: function(){

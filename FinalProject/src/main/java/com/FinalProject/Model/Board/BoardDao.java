@@ -17,16 +17,17 @@ public class BoardDao {
 	@Autowired
 	DataSource dataSource;
 	
-	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name) {
+	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count) {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
-        int start =(page-1)*10+1;
-        int end = page*10;       
+        System.out.println("count="+count);
+        int end =count-((page-1)*10);
+        int start = count-(page*10)+1;       
         String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
         sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
         sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
-        sql+=" where num BETWEEN ? and ? order by b_date desc";
+        sql+=" where num BETWEEN ? and ? order by num desc";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 		try {
@@ -56,51 +57,14 @@ public class BoardDao {
 	return list;
 	}
 
-	public ArrayList<BoardDto> ArrayTen(int page) {
-		Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs=null;
-        int start = (page-1)*10+1;
-        int end = page*10;
-        
-        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( select  rownum num,b_num ,b_continent,b_select,b_title,b_date,b_count,b_name from board) where num BETWEEN ? and ? order by b_date desc";
-        ArrayList<BoardDto> list = new ArrayList<BoardDto>();
-		try {
-	        conn = dataSource.getConnection();
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, start);
-	        pstmt.setInt(2, end);
-	        rs  = pstmt.executeQuery();         
-	        while( rs.next()){
-	        BoardDto dto = new BoardDto();
-	        int a= rs.getInt(1);
-	        int h= rs.getInt(2);
-	    	String b=rs.getString(3);
-	    	String c=rs.getString(4);
-	    	String d=rs.getString(5);
-	    	String e=rs.getString(6);
-	    	int f=rs.getInt(7);
-	    	String g=rs.getString(8);
-	    	dto = new BoardDto(a,h,b,c,d,e,f,g);
-	    	list.add(dto);
-	    }
-		} catch (SQLException e) {
-        e.printStackTrace();
-	         
-	    } finally { 
-	    	close(rs,pstmt, conn);      
-	    }
-		return list;
-	}
-	
-	public int count() {
+	public int count(String continent,String type,String text,String name) {
 		Connection conn  =null;
 		PreparedStatement pst =null;
 		ResultSet  rs = null;	
 		int num=0;
 		try {
 			conn  =dataSource.getConnection();
-			String sql  = "select count(b_num) from board ";			
+			String sql  = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
 			pst= conn.prepareStatement(sql);
 			 rs  =pst.executeQuery();			
 			if( rs.next()) {
