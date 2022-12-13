@@ -26,7 +26,7 @@ header{
 	left: 0;
 	right: 0;
 	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-	z-index: 3;
+	z-index: 5;
 	background-color: white;
 }
 
@@ -68,6 +68,7 @@ nav{
 	min-width: 180px;
 	display: none;
 	z-index: 2;
+	background-color: white;
 	box-shadow: .15rem 0 1.75rem 0 rgba(58,59,69,.15);
 }
 
@@ -165,24 +166,5 @@ i{
 	min-height: 92.5vh;
 	background-color: #F5F7FF;
     z-index: 1;
-}
-
-section{
-	min-height: 82.5vh;
-}
-
-.section_footer{
-	height: 10vh;
-}
-
-.sectionPart{
-	display: flex;
-}
-
-.section_nav{
-	width: 0;
-}
-
-.section{
-	width: 100%;
+    width: 100%;
 }
