@@ -72,8 +72,7 @@ select{
 	text-align:center;
 	height: 30px;
 	line-height: 30px;
-	font-size: 15px;
-}
+	font-size: 15px;}
 .email2{
 	width:30%;
 	height: 30px;
@@ -97,6 +96,9 @@ select{
 .caution{
 	font-size: 8px;
 }
+.email_at{
+	line-height: 30px;
+}
 select{
 	font-size: 13px;
 }
@@ -110,7 +112,6 @@ select{
 .add_spacer{
 	width: 55%;
 }
-
 .d_btn{
 	width: 25%;
 	font-size: 11px;

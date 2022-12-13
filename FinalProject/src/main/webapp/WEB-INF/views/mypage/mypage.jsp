@@ -1,37 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/register.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypage.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/AddressAPI.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/register.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 </head>
 <body>
 <section>
 	<div class="reg_wrap">
-	<form action="register" method="post" onsubmit="return validate(this);">
-		<div class="info caption">회원가입</div>
+	<form action="mypage" method="post" onsubmit="return validate(this);">
+		<div class="info caption">회원정보 수정</div>
 		<div class="info">
 			<span class="key">이름</span><br>
-			<input name="name" class="input" id="name">
-		</div>
-		<div class="info">
-			<span class="key">주민번호</span><br>
-			<div class="jumin_wrap">
-				<input name="jumin1" class="jumin" id="jumin1" maxlength="6"> 
-				<div class="jumin_dash">-</div>
-				<input name="jumin2" class="jumin" id="jumin2" maxlength="7" type="password">
-			</div>
+			<input name="name" class="input" id="name" value="${registerDto.getName()}" readonly="readonly">
 		</div>
 		<div class="info">
 			<span class="key">아이디</span><br>
-			<input name="id" class="input" id="id"><br>
-			<span id="checkId" class="caution">아이디를 입력하세요</span>
+			<input name="id" class="input" id="id" value="${registerDto.getId()}" readonly="readonly"><br>
+		</div>
+		<div class="info">
+			<span class="key">기존비밀번호</span><br>
+			<input name="old_pw" class="input" id="old_pw" type="password" ><br>
 		</div>
 		<div class="info">
 			<span class="key">비밀번호</span><br>
@@ -46,19 +42,19 @@
 		<div class="info">
 			<span class="key">전화번호</span><br>
 			<div class="phone_wrap">
-				<input name="phone1" class= phone id="phone1" maxlength="3">
+				<input name="phone1" class= "phone" id="phone1" maxlength="3">
 				<div class="phone_dash">-</div>
-				<input name="phone2" class= phone id="phone2" maxlength="4">
+				<input name="phone2" class= "phone" id="phone2" maxlength="4">
 				<div class="phone_dash">-</div>
-				<input name="phone3" class= phone id="phone3" maxlength="4">
+				<input name="phone3" class= "phone" id="phone3" maxlength="4">
 			</div>
 		</div>			
 		<div class="info">
 			<span class="key">이메일</span><br>
 			<div class="email_wrap">
-				<input name="email1"  class="email1" id="email">
+				<input name="email1"  class="email1" id="email1">
 				<div class="email_at">@</div>
-				<input name="email2" class="email2" id="domain">
+				<input name="email2" class="email2" id="email2">
 				<div class="email_space"> </div>
 			<select id="emailSelect" class="email_select"> 
 					<option value="">선택</option>
@@ -73,20 +69,20 @@
 			<div class="add_key_wrap">
 				<span class="key add_key">주소</span>
 				<div class="add_spacer"></div>
-				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="d_btn">
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="d_btn">
 			</div>
 			<div class="postcode_road">
-				<input type="text" name="postcode" id="postcode" class="input d_form mini" placeholder="우편번호" readonly="readonly">
+				<input type="text" id="sample4_postcode" class="input d_form mini" placeholder="우편번호" readonly="readonly">
 				<div class="postcode_spacer"></div>
-				<input type="text" name="roadAddress" id="roadAddress" class="input d_form std" placeholder="도로명주소" readonly="readonly">
+				<input type="text" id="sample4_roadAddress" class="input d_form std" placeholder="도로명주소" readonly="readonly">
 			</div>
-			<input type="text" id="jibunAddress" class="input d_form std dn" placeholder="지번주소">
+			<input type="text" id="sample4_jibunAddress" class="input d_form std dn" placeholder="지번주소">
 			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" name="detailAddress" id="detailAddress" class="input d_form" placeholder="상세주소">
-			<input type="text" id="extraAddress" class="input d_form dn" placeholder="참고항목">
-		</div>						
+			<input type="text" id="sample4_detailAddress" class="input d_form" placeholder="상세주소">
+			<input type="text" id="sample4_extraAddress" class="input d_form dn" placeholder="참고항목">
+		</div>																
 		<div class="btn_wrap">
-			<button type="submit">등록</button>
+			<button>수정</button>
 			<button type="button" onclick="location.href=''">취소</button>
 		</div>			
 	</form>

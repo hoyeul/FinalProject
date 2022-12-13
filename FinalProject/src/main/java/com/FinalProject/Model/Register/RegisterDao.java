@@ -15,10 +15,10 @@ public class RegisterDao {
 	@Autowired
 	DataSource datasource;	
 	
-		//È¸¿ø°¡ÀÔ Á¤º¸ ÀÔ·Â
+		//íšŒì›ê°€ì… ì •ë³´ ì…ë ¥
 		public void insert(RegisterDto dto ) {		
-			System.out.println("insert¸Ş¼Òµå");
-			String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?)";
+			System.out.println("insertë©”ì†Œë“œ");
+			String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?,?)";
 			Connection  conn= null;
 			PreparedStatement pst= null;		
 			try {
@@ -30,7 +30,8 @@ public class RegisterDao {
 				  pst.setString(4, dto.getPw());	
 				  pst.setString(5, dto.getPhone());			  
 				  pst.setString(6, dto.getEmail());			  
-				  pst.setString(7, dto.getAddress());			  
+				  pst.setString(7, dto.getPostcode());
+				  pst.setString(8, dto.getAddress());
 				  pst.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -38,9 +39,9 @@ public class RegisterDao {
 				close( pst, conn);			
 			} 		
 		}
-		// ¾ÆÀÌµğ Áßº¹È®ÀÎ
+		// ì•„ì´ë”” ì¤‘ë³µí™•ì¸
 		public int checkId(String id) {  
-			String sql = "select * from login_info_221208 where id = ?"; // ÀÔ·Â°ªÀÌ Å×ÀÌºí¿¡ ÀÖ´ÂÁö È®ÀÎ
+			String sql = "select * from login_info_221208 where id = ?"; // ì…ë ¥ê°’ì´ í…Œì´ë¸”ì— ìˆëŠ”ì§€ í™•ì¸
 			Connection  conn= null;
 			PreparedStatement pst= null;
 			ResultSet rs = null;
@@ -53,9 +54,9 @@ public class RegisterDao {
 				rs = pst.executeQuery();
 						
 				if(rs.next() || id.equals("")) {
-					idCheck = 0;  // ÀÌ¹Ì Á¸ÀçÇÏ´Â °æ¿ì, »ı¼º ºÒ°¡´É
+					idCheck = 0;  // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ê²½ìš°, ìƒì„± ë¶ˆê°€ëŠ¥
 				} else {
-					idCheck = 1;  // Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì, »ı¼º °¡´É
+					idCheck = 1;  // ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ìƒì„± ê°€ëŠ¥
 				}
 				
 			} catch (SQLException e) {

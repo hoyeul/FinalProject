@@ -15,7 +15,7 @@
 			</c:when>
 			<c:otherwise>
 				<div><a href="/FinalProject/login">로그인</a></div>
-				<div><a href="#">회원가입</a></div>
+				<div><a href="/FinalProject/register">회원가입</a></div>
 			</c:otherwise>
 		</c:choose>
 		</div>
