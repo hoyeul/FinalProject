@@ -122,7 +122,7 @@ public class BoardDao {
 		ResultSet  rs = null;	
 		try {
 			conn  =dataSource.getConnection();
-			String sql  = "select * from board  where b_num = ? ";			
+			String sql  = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
 			pst= conn.prepareStatement(sql);
 			pst.setInt(1, b);
 			 rs  =pst.executeQuery();			

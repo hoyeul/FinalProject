@@ -110,6 +110,7 @@ public class BoardController {
       
       return "redirect:/board";
    }
+   
    @RequestMapping(value ="/boardIn", method = RequestMethod.GET)
    public String array2(BoardDto dto,Model m) {
       int s = dto.getNum();
@@ -140,11 +141,13 @@ public class BoardController {
       m.addAttribute("a",a);
       return "Board/BoardUp";
    }
+   
    @RequestMapping(value ="boardUp",produces="text/plain;charset=UTF-8" ,method = RequestMethod.POST)
    public String Up2(BoardDto dto) {   
       dao.update(dto);
       return "redirect:/boardIn?num="+dto.getNum()+"";
    }
+   
    @RequestMapping(value ="/boardDE", method = RequestMethod.GET)
    public String delete(BoardDto dto) {
       System.out.println(dto.getNum());
@@ -153,6 +156,7 @@ public class BoardController {
       dao.delet(s);
       return "redirect:/board";
    }
+   
    @ResponseBody
    @RequestMapping(value ="/CommentDE", method = RequestMethod.GET)
    public String deleteCM( CommentDto dto) {
@@ -160,16 +164,19 @@ public class BoardController {
       dao.deletCM(s);
       return "Board/BoardIn";
    }
+   
    @ResponseBody
    @RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
    public String UpdateCM(  CommentDto dto) {
       dao.update(dto);
       return "Board/BoardIn";
    }
+   
    @ResponseBody
    @RequestMapping(value = "/CommentReg", method = RequestMethod.POST)
    public String member2(CommentDto dto) {   
       dao.insert(dto);
       return "Board/BoardIn";
    }
+   
 }

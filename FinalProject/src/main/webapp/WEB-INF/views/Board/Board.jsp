@@ -60,52 +60,53 @@
 			        </tr> 
 					</c:forEach>
 			<tr>
-        <td colspan="7">
-        <%
-		 int currentPage=1;
-		 if( request.getAttribute("p") != null){
-		 	 currentPage  =(Integer) request.getAttribute("p");
-		 }
-		 int countpage  =(Integer) request.getAttribute("a");
-		 int totRecords =countpage ; 
-		 int pageSize = 10; 
-		 int totalPage;               	 
-		 int grpSize = 5;             
-		 int currentGrp = 0;  	  	 	 
-		 int reamin = totRecords  %  pageSize ;		 
-		 if( reamin == 0 )
-			 totalPage = totRecords / pageSize;		 
-		 else 
-			 totalPage = totRecords / pageSize +1;
-		 int remain2 = currentPage % grpSize;    
-		 if( remain2 == 0 )
-			 currentGrp  = currentPage  / grpSize ;     		 
-		 else 
-			 currentGrp = currentPage  / grpSize  +1;   	 
-		 int grpStartPage = ( currentGrp -1 ) * grpSize +1 ;  
-		 int grpEndPage = currentGrp * grpSize;                
-		 if( grpEndPage > totalPage){
-			 grpEndPage = totalPage;    
-		 }	 	 
-		 int index = grpStartPage;	 
-		 if( currentGrp >1){
-	 	%>		 
-		 <button name="page" value="<%=index-1 %>">이전 </button> 	    
-		 <%
-		 } 	 
-		 while( index <= grpEndPage){		 
-		 %>
-		 	<button class="pagebtn" name="page" value="<%=index%>"><%=index %> </button>
-	        <%
-			  index ++;       
-		 }	 
-		 if( index <= totalPage){%>	
-		 <button name="page" value="<%=index %>">다음 </button>
-		<% }
-		%>
-        </td>
-        </tr>
-        </table>
+	</table>
+		<div class="page-move-button-wrap">
+			<div class="p-g-b-inner-wrap">
+		        <%
+				 int currentPage=1;
+				 if( request.getAttribute("p") != null){
+				 	 currentPage  =(Integer) request.getAttribute("p");
+				 }
+				 int countpage  =(Integer) request.getAttribute("a");
+				 int totRecords =countpage ; 
+				 int pageSize = 10; 
+				 int totalPage;               	 
+				 int grpSize = 5;             
+				 int currentGrp = 0;  	  	 	 
+				 int reamin = totRecords  %  pageSize ;		 
+				 if( reamin == 0 )
+					 totalPage = totRecords / pageSize;		 
+				 else 
+					 totalPage = totRecords / pageSize +1;
+				 int remain2 = currentPage % grpSize;    
+				 if( remain2 == 0 )
+					 currentGrp  = currentPage  / grpSize ;     		 
+				 else 
+					 currentGrp = currentPage  / grpSize  +1;   	 
+				 int grpStartPage = ( currentGrp -1 ) * grpSize +1 ;  
+				 int grpEndPage = currentGrp * grpSize;                
+				 if( grpEndPage > totalPage){
+					 grpEndPage = totalPage;    
+				 }	 	 
+				 int index = grpStartPage;	 
+				 if( currentGrp >1){
+			 	%>		 
+				 <button class="movepage-btn" name="page" value="<%=index-1 %>">＜이전</button> 	    
+				 <%
+				 } 	 
+				 while( index <= grpEndPage){		 
+				 %>
+				 	<button class="pagebtn" name="page" value="<%=index%>"><%=index %> </button>
+			        <%
+					  index ++;       
+				 }	 
+				 if( index <= totalPage){%>	
+				 <button class="movepage-btn" name="page" value="<%=index %>">다음＞</button>
+				<% }
+				%>
+			</div>
+		</div>
         	<div class="search_wrap">
         		<div class="search_area">
         			<div class="search-inner-area">
@@ -122,7 +123,7 @@
 			              		<option value="작성자">작성자</option>
 		  				</select>	
 		       			<input type = text name="text" value="${text}">
-		       			<button class="search-btn-area"><img class="search_img" alt="" src="<c:url value="resources/image/searchIcon.png"/>"></button>
+		       			<button class="search-btn-area"><img class="search-img" alt="" src="<c:url value="resources/image/searchIcon.png"/>"></button>
        				</div>
        			</div>
          	</div>
@@ -131,7 +132,7 @@
 <input type="hidden" name="continentH" value="${continent}">
 	</div>
 </form>
-	<div class="reg_btn">
+	<div class="edit-btn">
 		<a href="/Controller/boardreg"><button>글쓰기</button></a>
 	</div>
 </section>
