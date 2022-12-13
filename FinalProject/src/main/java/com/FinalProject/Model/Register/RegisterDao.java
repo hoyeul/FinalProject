@@ -18,7 +18,7 @@ public class RegisterDao {
 		//회원가입 정보 입력
 		public void insert(RegisterDto dto ) {		
 			System.out.println("insert메소드");
-			String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?)";
+			String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?,?)";
 			Connection  conn= null;
 			PreparedStatement pst= null;		
 			try {
@@ -30,7 +30,8 @@ public class RegisterDao {
 				  pst.setString(4, dto.getPw());	
 				  pst.setString(5, dto.getPhone());			  
 				  pst.setString(6, dto.getEmail());			  
-				  pst.setString(7, dto.getAddress());			  
+				  pst.setString(7, dto.getPostcode());
+				  pst.setString(8, dto.getAddress());
 				  pst.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -8,10 +8,10 @@ public class RegisterDto {
 	String phone;
 	String email;
 	String address;
+	String postcode;
 	
 	public RegisterDto() {}
-	public RegisterDto(String name, String id, String pw, String phone, String email,
-			String address) {
+	public RegisterDto(String name, String id, String pw, String phone, String email,String address) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -20,8 +20,7 @@ public class RegisterDto {
 		this.email = email;
 		this.address = address;
 	}
-	public RegisterDto(String name, String jumin, String id, String pw, String phone, String email,
-			String address) {
+	public RegisterDto(String name, String jumin, String id, String pw, String phone, String email, String address, String postcode) {
 		super();
 		this.name = name;
 		this.jumin = jumin;
@@ -30,7 +29,9 @@ public class RegisterDto {
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.postcode = postcode;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -73,12 +74,17 @@ public class RegisterDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 	@Override
 	public String toString() {
 		return "RegisterDto [name=" + name + ", jumin=" + jumin + ", id=" + id + ", pw=" + pw + ", phone=" + phone
-				+ ", email=" + email + ", address=" + address + "]";
+				+ ", email=" + email + ", address=" + address + ", postcode=" + postcode + "]";
 	}
-	
 	
 	
 }

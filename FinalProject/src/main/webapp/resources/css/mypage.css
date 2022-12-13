@@ -2,7 +2,8 @@
 input{
 	text-align:center;
 	border: 0px;
-	border-radius: 3px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	outline: 0px;
 }
 select{
 	border: 0px;
@@ -10,9 +11,11 @@ select{
 }
 .reg_wrap{
 	margin: 0 auto;
+	margin-top: 15px;
 	width: 500px;
-	background-color: #c0c0c0;
+	background-color: white;
 	border-radius: 15px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
 }
 .key{
 	font-size: 12px;
@@ -68,7 +71,8 @@ select{
 	width:7%;
 	text-align:center;
 	height: 30px;
-}
+	line-height: 30px;
+	font-size: 15px;}
 .email2{
 	width:30%;
 	height: 30px;
@@ -95,6 +99,9 @@ select{
 .email_at{
 	line-height: 30px;
 }
+select{
+	font-size: 13px;
+}
 .add_key_wrap{
 	display: flex;
 	margin-top: 15px;
@@ -106,9 +113,14 @@ select{
 	width: 55%;
 }
 .d_btn{
-	height: 16px;
 	width: 25%;
-	font-size: 12px;
+	font-size: 11px;
+	border: 1px solid #1089ff;
+    border-radius: 20px;
+    background-color: #1089ff;
+    cursor: pointer;
+    color: white;
+    padding: 1px 0;
 }
 .dn{
 	display: none;
@@ -134,6 +146,10 @@ select{
 button{
 	width: 80px;
 	padding: 5px;
-	border-radius: 5px;
-	margin: 0 5px 20px 5px;
+	margin: 0 5px 30px 5px;
+	border: 1px solid #1089ff;
+    border-radius: 20px;
+    background-color: #1089ff;
+    cursor: pointer;
+    color: white;
 }

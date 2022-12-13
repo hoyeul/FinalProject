@@ -26,7 +26,7 @@ import com.FinalProject.Model.Register.RegisterDao;
 public class RegisterController {
 	
 	@Autowired
-	RegisterService service;
+	RegisterDao service;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerGet() {
@@ -49,9 +49,12 @@ public class RegisterController {
 			String email1 = request.getParameter("email1");		
 			String email2 = request.getParameter("email2");	
 		String email = email1 + '@' + email2;
-		String address = request.getParameter("address");	
-		
-		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address);
+		String postcode = request.getParameter("postcode");	
+			String roadAddress = request.getParameter("roadAddress");	
+			String detailAddress = request.getParameter("detailAddress");	
+		String address = roadAddress + ',' + detailAddress;	
+
+		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address,postcode);
 		System.out.println(dto);
 		
 		service.insert(dto);
@@ -59,7 +62,7 @@ public class RegisterController {
 		return "redirect:/login";
 	}
 	@ResponseBody
-	@RequestMapping( value="/mypage/IdCheck" , method= RequestMethod.POST)
+	@RequestMapping( value="/register/IdCheck" , method= RequestMethod.POST)
 	public String IdCheckService(String userId, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
 		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
