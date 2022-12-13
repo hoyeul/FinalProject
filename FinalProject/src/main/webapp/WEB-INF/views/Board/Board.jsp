@@ -48,7 +48,7 @@
 	            </tr>
 					<c:forEach var="item" items="${list}">
 			        <tr>
-			            <td>${item.num}</td>
+			            <td>${item.num2}</td>
 			            <td style=" text-align: left;">
 				            <span class="b_con">[${item.continent}] </span>
 				            <span class="b_sel">[${item.select}] </span>

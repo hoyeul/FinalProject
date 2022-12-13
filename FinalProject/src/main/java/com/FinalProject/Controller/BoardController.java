@@ -36,14 +36,20 @@ public class BoardController {
       int page=0;
       if(Pa == null && continent==null && content==null && type==null && text==null) {
          page=1;
-         ArrayList<BoardDto> list = dao.ArrayTen(page);
+         type="";
+         text="";
+         content="";
+         continent="";
+         dao.count(continent,type,text,name);
+         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
          model.addAttribute("list", list);
       }else if(Pa == null && continent!=null && content==null && type==null && text==null) {
          page=1;
          type="";
          text="";
          content="";
-         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+         dao.count(continent,type,text,name);
+         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
          model.addAttribute("list", list);
       }else if(Pa == null) {
          page=1;
@@ -52,43 +58,44 @@ public class BoardController {
             text="";
             System.out.println("name="+name);
             System.out.println("text="+text);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
             text=name;
          }else if(content.equals("제목")) {
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
             System.out.println("name="+name);
             System.out.println("text="+text);
          }else{
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
          }
       }else {
          if(content.equals("작성자")) {
             name=text;
             text="";
+            dao.count(continent,type,text,name);
             System.out.println("name="+name);
             System.out.println("text="+text);
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
             text=name;
          }else if(content.equals("제목")) {
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
             System.out.println("name="+name);
             System.out.println("text="+text);
          }else{
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name);
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
             model.addAttribute("list", list);
          }
       }
       System.out.println("page2="+page);
       System.out.println("name="+name);
-      model.addAttribute("a", dao.count());
+      model.addAttribute("a", dao.count(continent,type,text,name));
       model.addAttribute("p", page);
       model.addAttribute("text", text);
       model.addAttribute("type", type);
