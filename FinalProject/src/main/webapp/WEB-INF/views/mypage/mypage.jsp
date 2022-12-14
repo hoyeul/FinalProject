@@ -69,17 +69,17 @@
 			<div class="add_key_wrap">
 				<span class="key add_key">주소</span>
 				<div class="add_spacer"></div>
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="d_btn">
+				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="d_btn">
 			</div>
 			<div class="postcode_road">
-				<input type="text" id="sample4_postcode" class="input d_form mini" placeholder="우편번호" readonly="readonly">
+				<input type="text" id="postcode" class="input d_form mini" placeholder="우편번호" readonly="readonly">
 				<div class="postcode_spacer"></div>
-				<input type="text" id="sample4_roadAddress" class="input d_form std" placeholder="도로명주소" readonly="readonly">
+				<input type="text" id="roadAddress" class="input d_form std" placeholder="도로명주소" readonly="readonly">
 			</div>
-			<input type="text" id="sample4_jibunAddress" class="input d_form std dn" placeholder="지번주소">
+			<input type="text" id="jibunAddress" class="input d_form std dn" placeholder="지번주소">
 			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="sample4_detailAddress" class="input d_form" placeholder="상세주소">
-			<input type="text" id="sample4_extraAddress" class="input d_form dn" placeholder="참고항목">
+			<input type="text" id="detailAddress" class="input d_form" placeholder="상세주소">
+			<input type="text" id="extraAddress" class="input d_form dn" placeholder="참고항목">
 		</div>																
 		<div class="btn_wrap">
 			<button>수정</button>

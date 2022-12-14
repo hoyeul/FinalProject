@@ -68,6 +68,7 @@ public class MypageController {
 		System.out.println(old_pw);
 		int pwCheck = service.checkOldPw(id,old_pw);
 		
+		System.out.println(pwCheck);
 		// 성공여부 확인 : 개발자용
 		if (pwCheck == 1) {
 			System.out.println("기존비밀번호가 일치합니다");
