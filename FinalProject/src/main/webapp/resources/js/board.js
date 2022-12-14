@@ -61,7 +61,6 @@ function boardup() {
 
 $(document).ready(function() {
 	showList1();
-	
 	$("#board-in-comment-box").on("click",".comment-box-delete",function(){
 		let num =$(this).attr('value');
 		$.ajax( {
@@ -73,7 +72,7 @@ $(document).ready(function() {
 	        	  alert("삭제완료");
 	        	  console.log( data);  },
 	          error: function(){
-	        	  alert("error");
+	        	  alert("readyerror");
 	        	  console.log( data);        	  
 	          }	
 		});  
@@ -91,19 +90,18 @@ $(document).ready(function() {
 		let text = document.querySelector('.CMreg').value;
 		let Cnum =$(this).attr('value');
 		$.ajax( {
-			  type:"POST" ,
-			  url :"CommentReg",
+			 type:"POST" ,
+			 url :"CommentReg",
 			 data : {Cnum:Cnum,text:text},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
 			 success: function(data){ 
 	        	  document.querySelector('.CMreg').value='';
 	        	  showList1();
 	        	  alert("입력완료");
-	        	  console.log( data); 
+	        	  console.log(data); 
 	        	  },
 	          error: function(){
-	        	  alert("error");
-	        	  console.log( data);
-	        	  
+	        	  alert("comment-edit-btn error");
+	        	  console.log(data);
 	          }	
 		});  
 	});
@@ -113,15 +111,15 @@ $(document).ready(function() {
 		let p = this.parentElement.parentElement.previousSibling;
   	  	let text = p.querySelector(".text").value;
 		$.ajax( {
-			  type:"POST" ,
-			  url :"CommentUP",
-			 data :  {num:num,text:text},
+			 type:"POST" ,
+			 url : "CommentUP",
+			 data : {num:num,text:text},
 			 success: function(data){ 
 	        	  alert("수정완료");
-	        	  console.log( data);  },
+	        	  console.log(data);  },
 	          error: function(){
 	        	  alert("CommentUPerror");
-	        	  console.log( data); 	  
+	        	  console.log(data); 	  
 	          }	
 		}); 
 		showList1();     
@@ -131,21 +129,21 @@ $(document).ready(function() {
 
 function showList1(){
 	let Cnum = document.querySelector('.comment-edit-btn').value;
-	  $.ajax(
+	  	$.ajax(
 			    {
 			    	type:"GET" ,
-			    	url: "RegIn" ,
+			    	url : "/Controller/RegIn" ,
 			    	data : {Cnum:Cnum},
 			    	success:function(data){
-			    		 let dataHtml  = toHtml1(data);
-			    		 $("#board-in-comment-box").html(dataHtml);
+			    		let dataHtml  = toHtml1(data);
+			    		$("#board-in-comment-box").html(dataHtml);
 			    		console.log(data);			    		
 			    	},
 			    	error: function(){
-			    		alert(" showList1error");	    		
+			    		alert("showList1error");	    		
 			    	}	
 			    }		
-			);
+		);
 }
 
 function toHtml1(data){
@@ -170,7 +168,7 @@ function toHtml1(data){
 }
 
 function showList2(){
-	let Cnum = document.querySelector('.button5').value;
+	let Cnum = document.querySelector('.comment-edit-btn').value;
 	  $.ajax(
 			    {
 			    	type:"GET" ,
@@ -182,7 +180,7 @@ function showList2(){
 			    		console.log(data);			    		
 			    	},
 			    	error: function(){
-			    		alert(" showList2error");	    		
+			    		alert("showList2error");	    		
 			    	}	
 			    }		
 			);
@@ -195,7 +193,7 @@ function toHtml2(data){
 		str+= '<tr class="comment"><td><textarea data-id='+item.text+' id="text" class="text">'+ item.text+'</textarea></td>'
 		+'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td>'
 		+'<button class="button3" type="button" value="'+item.num+'">수정완료</button>'
-		+'<button class="button4" type="button"  >취소</button></td></tr>'  	   
+		+'<button class="button4" type="button">취소</button></td></tr>'  	   
 	}
 	str+= "</table>";
 	return  str;

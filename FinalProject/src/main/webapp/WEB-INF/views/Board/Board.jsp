@@ -39,28 +39,27 @@
 			</div>
 		</div>
 		<table class="mainboard">
-	            <tr>
-	                <td style="width:10%;"></td>
-	                <td style="width:60%;">제목</td>
-	                <td>작성자</td>
-	                <td>날짜</td>
-	                <td>조회수</td>
-	            </tr>
-					<c:forEach var="item" items="${list}">
-			        <tr>
-			            <td>${item.num2}</td>
-			            <td style=" text-align: left;">
-				            <span class="b_con">[${item.continent}] </span>
-				            <span class="b_sel">[${item.select}] </span>
-				            <a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a>
-			            </td>
-			            <td>${item.id}</td>
-			            <td style="">${item.date}</td>
-			            <td>${item.number}</td>
-			        </tr> 
-					</c:forEach>
-			<tr>
-	</table>
+            <tr>
+                <td style="width:10%;"></td>
+                <td style="width:60%;">제목</td>
+                <td>작성자</td>
+                <td>날짜</td>
+                <td>조회수</td>
+            </tr>
+			<c:forEach var="item" items="${list}">
+	        <tr>
+	            <td>${item.num2}</td>
+	            <td style=" text-align: left;">
+		            <span class="b_con">[${item.continent}] </span>
+		            <span class="b_sel">[${item.select}] </span>
+		            <a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a>
+	            </td>
+	            <td>${item.id}</td>
+	            <td style="">${item.date}</td>
+	            <td>${item.number}</td>
+	        </tr> 
+			</c:forEach>
+		</table>
 		<div class="page-move-button-wrap">
 			<div class="p-g-b-inner-wrap">
 		        <%
