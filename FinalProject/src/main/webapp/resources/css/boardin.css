@@ -24,6 +24,8 @@
 
 .board-in-title{
 	padding: 15px 0px;
+	border-bottom: 2px solid silver;
+	margin-bottom: 30px;
 }
 
 .board-in-title span:nth-child(1){
@@ -39,11 +41,6 @@
 
 .board-in-title span:nth-child(5){
 	float: right;
-}
-
-.under-board-in-title{
-	border: 1px solid silver;
-	margin-bottom: 30px;
 }
 
 .board-in-textarea textarea{
@@ -75,6 +72,7 @@
     border-radius: 5px;
     margin: 0px 5px;
     background-color: white;
+    cursor: pointer;
 }
 
 .recommend-btn:nth-child(1){
@@ -113,6 +111,7 @@
 	color: blue;
 	background-color: #e0e0e0;
 	border: 0.5px solid silver;
+	cursor: pointer;
 }
 
 .update-nav-update-btn{
@@ -137,10 +136,21 @@
 	color: blue;
 	background-color: #e0e0e0;
 	border: 0.5px solid silver;
+	cursor: pointer;
 }
 
 .board-in-comment{
 	margin-top: 20px;
+	padding: 10px 0px;
+}
+
+.comment-info{
+	border-bottom: 1px solid silver;
+	padding: 15px;
+}
+
+.comment-area{
+	padding-top: 10px;
 }
 
 .comment-user{
@@ -152,3 +162,35 @@
 	font-size: 12px;
 	color: #848484;
 }
+
+.comment-box-delete{
+	width: 60px;
+    padding: 2px;
+    border: 0.5px solid silver;
+    border-radius: 5px;
+	float: right;
+}
+
+.comment-box-update{
+	width: 60px;
+    padding: 2px;
+    border: 0.5px solid silver;
+    border-radius: 5px;
+	float: right;
+	margin-right: 10px;
+}
+
+.comment-box-delete:hover{
+	color: blue;
+	background-color: #e0e0e0;
+	border: 0.5px solid silver;
+	cursor: pointer;
+}
+
+.comment-box-update:hover{
+	color: blue;
+	background-color: #e0e0e0;
+	border: 0.5px solid silver;
+	cursor: pointer;
+}
+

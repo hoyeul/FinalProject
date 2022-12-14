@@ -26,7 +26,6 @@
 				<span>${b.date}</span>
 				<span>조회수 ${b.number}</span>
 			</div>
-			<hr class="under-board-in-title">
 			<div class="board-in-textarea">
 			    <textarea name="content" readonly="readonly">${b.text}</textarea>
 			</div>

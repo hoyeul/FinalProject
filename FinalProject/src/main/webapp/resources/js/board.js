@@ -154,13 +154,11 @@ function toHtml1(data){
 		 '<div class="comment-info">'
 		+'<span class="comment-user">'+item.name+'</span>'
 		+'<span class="comment-date">'+'('+item.date+')'+'</span>'
-		+'</div>'
 		+'<div class="comment-area">'
 		+'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
-		+'</div>'
-		+'<div>'
-		+'<button class="comment-box-update" type="button">수정</button>'
 		+'<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
+		+'<button class="comment-box-update" type="button">수정</button>'
+		+'</div>'
 		+'</div>'
 	}
 	str+= "</div>";
