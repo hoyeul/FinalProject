@@ -17,12 +17,12 @@
 		<div class="caption_wrap">로그인</div>
 		<div class="pwid_wrap">
 			<div class="id">
-				<span>UserID</span> <br>
-				<input type="text" name="id" placeholder=" 아이디를 입력하시오" value="${cookie.id.value }">
+				<span>아이디</span> <br>
+				<input type="text" name="id" value="${cookie.id.value }">
 			</div>	
 			<div class="pw">
-				<span>Password</span> <br>
-				<input type="password" name="pw" placeholder=" 비밀번호를 입력하시오">
+				<span>비밀번호</span> <br>
+				<input type="password" name="pw">
 			</div>
 		</div>
 		<div class="btn_wrap">
@@ -30,13 +30,10 @@
 		</div>
 			
 		<div class="function_wrap">
-				<a href="/FinalProject/register">회원가입</a>
-			<br>
-			<a class="find" href="/FinalProject/findID">아이디찾기</a> |
-			<a class="find" href="/FinalProject/findPW">비밀번호찾기</a>
-	
+			<a href="/FinalProject/register">회원가입</a> <span>|</span>
+			<a href="/FinalProject/findID">아이디찾기</a> <span>|</span>
+			<a href="/FinalProject/findPW">비밀번호찾기</a>
 		</div>
-		
 	</div>
 </section>
 </body>

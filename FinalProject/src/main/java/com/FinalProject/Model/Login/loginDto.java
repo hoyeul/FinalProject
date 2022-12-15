@@ -2,7 +2,7 @@ package com.FinalProject.Model.Login;
 
 public class loginDto {
 
-	String nm;
+	String name;
 	String jumin;
 	String id;
 	String pw;
@@ -16,36 +16,36 @@ public class loginDto {
 		this.pw = pw;
 	}
 	
-	public loginDto(String nm, String jumin, String email) {
+	public loginDto(String name, String jumin, String email) {
 		super();
-		this.nm = nm;
+		this.name = name;
 		this.jumin = jumin;
 		this.email = email;
 	}
 	
-	public loginDto(String nm, String jumin, String id, String email) {
+	public loginDto(String id, String name, String jumin, String email) {
 		super();
-		this.nm = nm;
-		this.jumin = jumin;
 		this.id = id;
+		this.name = name;
+		this.jumin = jumin;
 		this.email = email;
 	}
 
-	public loginDto(String nm, String jumin, String id, String pw, String email) {
+	public loginDto(String name, String jumin, String id, String pw, String email) {
 		super();
-		this.nm = nm;
+		this.name = name;
 		this.jumin = jumin;
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
 	}
 
-	public String getNm() {
-		return nm;
+	public String getName() {
+		return name;
 	}
 
-	public void setNm(String nm) {
-		this.nm = nm;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getJumin() {

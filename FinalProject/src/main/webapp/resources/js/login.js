@@ -26,4 +26,21 @@ $(function(){
 		    }
 		});
 	});
+	
+	$("input[name='id']").focus(function(){
+		$("input[name='id']").css("border-bottom", "1px solid #1089ff");
+	});
+	
+	$("input[name='id']").blur(function(){
+		$("input[name='id']").css("border-bottom", "1px solid rgba(0, 0, 0, 0.1)");
+	});
+	
+	$("input[name='pw']").focus(function(){
+		$("input[name='pw']").css("border-bottom", "1px solid #1089ff");
+	});
+	
+	$("input[name='pw']").blur(function(){
+		$("input[name='pw']").css("border-bottom", "1px solid rgba(0, 0, 0, 0.1)");
+	});
+	
 });

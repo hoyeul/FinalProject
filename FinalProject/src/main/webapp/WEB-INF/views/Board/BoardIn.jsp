@@ -16,7 +16,7 @@
 	<section>
 		<div class="board-in-all-wrap">
 			<div class="board-in-continent-title">
-				<a href="/Controller/board?continent=아시아">${b.continent} 게시판</a>
+				<a href="/FinalProject/board?continent=아시아">${b.continent} 게시판</a>
 			</div>
 			<hr class="under-continent-title">
 			<div class="board-in-title">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="update-nav">
 				<div class="update-nav-goList">
-			    	<a href="/Controller/board"><button>목록으로</button></a>
+			    	<a href="/FinalProject/board"><button>목록으로</button></a>
 			    </div>
 			    <div class="update-nav-update-btn">
 			    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
@@ -56,8 +56,8 @@
 				<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
 			</div>
 			<div class="comment-edit-nav">
-				<button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
-				<a href="/Controller/boardreg"><button>글쓰기</button></a>		
+				<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+				<a href="/FinalProject/boardreg"><button>글쓰기</button></a>		
 			</div>
 		</div>
 	</section>

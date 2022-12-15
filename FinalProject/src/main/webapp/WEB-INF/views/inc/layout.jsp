@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>title</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="${path}/resources/css/layout.css">
 <script src="${path}/resources/js/layout.js"></script>
 </head>
@@ -21,13 +22,9 @@
 	<!-- nav 부분 -->
 	<tiles:insertAttribute name="nav" />
 
-	<div class="sectionPart">
-		<div class="section_nav"></div>
-		
-		<div class="section">
+	<div class="section">
 		<!-- section 부분 -->
 		<tiles:insertAttribute name="section" />
-		</div>
 	</div>
 	
 </div>

@@ -18,44 +18,44 @@ public class BoardDao {
 	DataSource dataSource;
 	
 	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count) {
-	      Connection conn = null;
-	        PreparedStatement pstmt = null;
-	        ResultSet rs = null;
-	        System.out.println("count="+count);
-	        int end =count-((page-1)*10);
-	        int start = count-(page*10)+1;
-	        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
-	        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
-	        sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
-	        sql+=" where num BETWEEN ? and ? order by b_date desc";
-	        
-	        ArrayList<BoardDto> list = new ArrayList<BoardDto>();
-	      try {
-	           conn = dataSource.getConnection();
-	           pstmt = conn.prepareStatement(sql);
-	           pstmt.setInt(1, start);
-	           pstmt.setInt(2, end);
-	           rs  = pstmt.executeQuery();         
-	           while( rs.next()){
-	           BoardDto dto = new BoardDto();
-	           int a= rs.getInt(1);
-	           int h= rs.getInt(2);
-	          String b=rs.getString(3);
-	          String c=rs.getString(4);
-	          String d=rs.getString(5);
-	          String e=rs.getString(6);
-	          int f=rs.getInt(7);
-	          String g=rs.getString(8);
-	          dto = new BoardDto(a,h,b,c,d,e,f,g);
-	          list.add(dto);
-	       }
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	       } finally { 
-	          close(rs,pstmt, conn);      
-	       }
-	   return list;
-	   }
+	    Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        System.out.println("count="+count);
+        int end =count-((page-1)*10);
+        int start = count-(page*10)+1;
+        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
+        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
+        sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
+        sql+=" where num BETWEEN ? and ? order by b_date desc";
+        
+        ArrayList<BoardDto> list = new ArrayList<BoardDto>();
+    	try {
+    		conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+            rs  = pstmt.executeQuery();         
+            while( rs.next()){
+            BoardDto dto = new BoardDto();
+            int a= rs.getInt(1);
+            int h= rs.getInt(2);
+            String b=rs.getString(3);
+            String c=rs.getString(4);
+            String d=rs.getString(5);
+            String e=rs.getString(6);
+            int f=rs.getInt(7);
+            String g=rs.getString(8);
+            dto = new BoardDto(a,h,b,c,d,e,f,g);
+            list.add(dto);
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(rs,pstmt, conn);      
+		}
+		return list;
+	}
 
 	public int count(String continent,String type,String text,String name) {
 		Connection conn  =null;
@@ -63,14 +63,13 @@ public class BoardDao {
 		ResultSet  rs = null;	
 		int num=0;
 		try {
-			conn  =dataSource.getConnection();
-			String sql  = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
-			pst= conn.prepareStatement(sql);
-			 rs  =pst.executeQuery();			
-			if( rs.next()) {
-				 num  =rs.getInt(1);				
+			conn = dataSource.getConnection();
+			String sql = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();			
+			if(rs.next()) {
+				num = rs.getInt(1);				
 			}				
-			
 		} catch (SQLException e) {		   
 			e.printStackTrace();
 		}finally {
@@ -81,25 +80,25 @@ public class BoardDao {
 	
 	public BoardDto select(int b) {
 		BoardDto dto = null;
-		Connection conn  =null;
-		PreparedStatement pst =null;
-		ResultSet  rs = null;	
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
 		try {
-			conn  =dataSource.getConnection();
-			String sql  = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
-			pst= conn.prepareStatement(sql);
+			conn = dataSource.getConnection();
+			String sql = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
+			pst = conn.prepareStatement(sql);
 			pst.setInt(1, b);
-			 rs  =pst.executeQuery();			
+			rs = pst.executeQuery();			
 			if( rs.next()) {
-				int num  =rs.getInt(1);
-				int num2= rs.getInt(2);
-				String Continent  = rs.getString(3);	
-				String Select  = rs.getString(4);
-				String Title  = rs.getString(5);
-				String Text  = rs.getString(6);
-				String Date  = rs.getString(7);
-				int number  = rs.getInt(8);
-				String ida  = rs.getString(9);
+				int num =rs.getInt(1);
+				int num2 = rs.getInt(2);
+				String Continent = rs.getString(3);	
+				String Select = rs.getString(4);
+				String Title = rs.getString(5);
+				String Text = rs.getString(6);
+				String Date = rs.getString(7);
+				int number = rs.getInt(8);
+				String ida = rs.getString(9);
 				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida);
 			}				
 			
@@ -120,9 +119,9 @@ public class BoardDao {
 			conn = dataSource.getConnection();
 			String sql1 = "delete from CM where Cnum = ? ";	
 			String sql2 = "delete from board where b_num = ? ";			
-			pst1= conn.prepareStatement(sql1);
+			pst1 = conn.prepareStatement(sql1);
 			pst1.setInt(1, a);
-			pst2= conn.prepareStatement(sql2);
+			pst2 = conn.prepareStatement(sql2);
 			pst2.setInt(1, a);
 			rs = pst1.executeQuery();
 			rs = pst2.executeQuery();

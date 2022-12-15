@@ -14,21 +14,22 @@
 
 <body>
 <section>
-<form name="frm" action="/Controller/board" method="get">
-	<div class="boardwrap">
+
+<div class="boardwrap">
+	<form name="frm" action="/FinalProject/board" method="get">
 		<div class="board_head">
-			<a href="/Controller/board">전체 게시판</a>	
+			<a href="/FinalProject/board">전체 게시판</a>	
 		</div>
 		<div class="board_nav">
 			<div class="board_all"><a href="" class="first_a">인기</a></div>
 			<div class="tb_nav">
-	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/Controller/board?continent='"checked>
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/Controller/board?continent=아시아'" checked>
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/Controller/board?continent=아프리카'" checked>
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/Controller/board?continent=유럽'" checked>
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/Controller/board?continent=오세아니아'" checked>
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/Controller/board?continent=북아메리카'" checked>
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/Controller/board?continent=남아메리카'" checked>
+	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/FinalProject/board?continent='"checked>
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아'" checked>
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카'" checked>
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽'" checked>
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아'" checked>
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카'" checked>
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카'" checked>
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
 			    <label for="아프리카">아프리카</label>
@@ -45,6 +46,7 @@
                 <td>작성자</td>
                 <td>날짜</td>
                 <td>조회수</td>
+                <td>추천수</td>
             </tr>
 			<c:forEach var="item" items="${list}">
 	        <tr>
@@ -106,34 +108,36 @@
 				%>
 			</div>
 		</div>
-        	<div class="search_wrap">
-        		<div class="search_area">
-        			<div class="search-inner-area">
-			     		<select name="selecttype" value="${type}">
-			            		<option value="">전체</option>
-			            		<option value="자유">자유</option>
-			            		<option value="질문">질문</option>
-			            		<option value="후기">후기</option>
-			            		<option value="정보">정보</option>
-			     		</select>
-			     		<select name="selectcontent" value="${content}">
-			              		<option value="">전체</option>
-			              		<option value="제목">제목/내용</option>
-			              		<option value="작성자">작성자</option>
-		  				</select>	
-		       			<input type = text name="text" value="${text}">
-		       			<button class="search-btn-area"><img class="search-img" alt="" src="<c:url value="resources/image/searchIcon.png"/>"></button>
-       				</div>
-       			</div>
-         	</div>
+       	<div class="search_wrap">
+       		<div class="search_area">
+       			<div class="search-inner-area">
+		     		<select name="selecttype" value="${type}">
+		            		<option value="">전체</option>
+		            		<option value="자유">자유</option>
+		            		<option value="질문">질문</option>
+		            		<option value="후기">후기</option>
+		            		<option value="정보">정보</option>
+		     		</select>
+		     		<select name="selectcontent" value="${content}">
+		              		<option value="">전체</option>
+		              		<option value="제목">제목/내용</option>
+		              		<option value="작성자">작성자</option>
+	  				</select>	
+	       			<input type = text name="text" value="${text}">
+	       			<button class="search-btn-area"><img class="search-img" alt="" src="<c:url value="resources/image/searchIcon.png"/>"></button>
+      				</div>
+      			</div>
+        	</div>
 <input type="hidden" name="selecttypeH" value="${type}">
 <input type="hidden" name="selectcontentH" value="${content}">
 <input type="hidden" name="continentH" value="${continent}">
+		<div class="edit-btn">
+			<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
+		</div>
+	</form>
 	</div>
-</form>
-	<div class="edit-btn">
-		<a href="/Controller/boardreg"><button>글쓰기</button></a>
-	</div>
+
+	
 </section>
 </body>
 </html>

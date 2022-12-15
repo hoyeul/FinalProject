@@ -4,7 +4,9 @@
 }
 
 .boardwrap{
-	margin-top: 20px;
+	padding-top: 30px;
+	width: 1000px;
+	margin: auto;
 }
 
 .board_head, .board_nav{

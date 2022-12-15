@@ -132,7 +132,7 @@ function showList1(){
 	  	$.ajax(
 			    {
 			    	type:"GET" ,
-			    	url : "/Controller/RegIn" ,
+			    	url : "/FinalProject/RegIn" ,
 			    	data : {Cnum:Cnum},
 			    	success:function(data){
 			    		let dataHtml  = toHtml1(data);

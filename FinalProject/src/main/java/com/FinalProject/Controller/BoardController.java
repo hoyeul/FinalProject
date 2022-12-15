@@ -186,4 +186,8 @@ public class BoardController {
       return "Board/BoardIn";
    }
    
+   @ResponseBody
+   @RequestMapping(value = "/boardIn", method = RequestMethod.POST)
+   public int updateRecommend(int r_num, String r_id, )
+   
 }

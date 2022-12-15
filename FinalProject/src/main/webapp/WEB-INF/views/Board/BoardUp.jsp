@@ -13,9 +13,9 @@
 </head>
 <body>
 	<section>
-		<form name="upfrm" action="/Controller/boardUp" method="post">
+		<form name="upfrm" action="/FinalProject/boardUp" method="post">
 			<table>
-				<caption><a href="/Controller/board">게시판</a></caption>
+				<caption><a href="/FinalProject/board">게시판</a></caption>
 				<tr class="board-order">
 					<td>게시판</td>
 					<td>종류</td>
