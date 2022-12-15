@@ -16,7 +16,7 @@ a{
     overflow: hidden;
     width: 100%;
     height: 100%;
-    min-width: 1200px;
+    min-width: 1500px;
 }
 
 header{
@@ -38,6 +38,11 @@ header{
 
 .navIcon{
 	cursor : pointer;
+	font-variation-settings:
+	'FILL' 0,
+	'wght' 200,
+	'GRAD' 0,
+	'opsz' 20
 }
 
 .header_lefthomeBtn{
@@ -70,6 +75,7 @@ nav{
 	z-index: 2;
 	background-color: white;
 	box-shadow: .15rem 0 1.75rem 0 rgba(58,59,69,.15);
+	opacity: 0.8;
 }
 
 .nav_menu_wrap{
@@ -89,6 +95,11 @@ nav{
 i{
 	margin-right: .6rem;
 	vertical-align: -6px;
+	font-variation-settings:
+	'FILL' 0,
+	'wght' 200,
+	'GRAD' 0,
+	'opsz' 20
 }
 
 .nav_home{

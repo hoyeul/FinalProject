@@ -19,7 +19,7 @@
 		</div>
 		<div class="nav_information_menu">
 			<div class="nav_information_menu_div">
-				<a class="nav_information_menu_a">선택1</a>
+				<a href="/FinalProject/navy" class="nav_information_menu_a">단계별 여행경보</a>
 				<a class="nav_information_menu_a">선택2</a>
 				<a class="nav_information_menu_a">선택3</a>
 			</div>
