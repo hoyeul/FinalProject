@@ -140,7 +140,6 @@
 }
 
 .board-in-comment{
-	margin-top: 20px;
 	padding: 10px 0px;
 }
 
@@ -151,6 +150,10 @@
 
 .comment-area{
 	padding-top: 10px;
+}
+
+.comment-text{
+	font-size: 14px;
 }
 
 .comment-user{
@@ -192,5 +195,59 @@
 	background-color: #e0e0e0;
 	border: 0.5px solid silver;
 	cursor: pointer;
+}
+
+.comment-edit-area{
+	padding: 5px;
+	display: flex;
+	background-color: #eeeeee;
+	border-radius: 3px;
+}
+
+.comment-textarea{
+	width: 85%;
+	min-width: 85%;
+	max-width: 85%;
+	height: 50px;
+	min-height: 50px;
+	margin-right: 15px;
+	padding: 10px;
+	font-size: 14px;
+	border-radius: 5px;
+	border: 1px solid silver;
+	outline: none;
+}
+
+.comment-edit-btn{
+	width: 72px;
+	height: 72px;
+	border-radius: 10px;
+	border: 1px solid silver;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: white;
+}
+
+.comment-edit-btn:hover{
+	color: blue;
+	border: 0.5px solid silver;
+	cursor: pointer;
+	box-shadow: 0 0 2px #aaa;
+}
+
+.comment-edit-nav{
+	margin-top: 20px;
+	float: right;
+}
+
+.comment-edit-nav button{
+	width: 70px;
+    padding: 5px;
+    background-color: #303030;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 

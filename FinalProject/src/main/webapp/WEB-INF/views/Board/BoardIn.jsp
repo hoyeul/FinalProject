@@ -46,18 +46,18 @@
 			    	<a href="/Controller/board"><button>목록으로</button></a>
 			    </div>
 			    <div class="update-nav-update-btn">
+			    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
 				    <a href="boardUp?num=${b.num}"><button>수정</button></a>
-					<a href="boardDE?num=${b.num}"><button>삭제</button></a>
 				</div>
 			</div>
 			<div id="board-in-comment-box"></div>
 			<div class="comment-edit-area">
-				<textarea class="CMreg"></textarea>
+				<textarea class="comment-textarea"></textarea>
 				<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
 			</div>
 			<div class="comment-edit-nav">
 				<button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
-				<a href="/Controller/boardreg"><button>글쓰기</button></a>
+				<a href="/Controller/boardreg"><button>글쓰기</button></a>		
 			</div>
 		</div>
 	</section>

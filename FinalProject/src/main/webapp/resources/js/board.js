@@ -87,14 +87,14 @@ $(document).ready(function() {
 	});
 	
 	$(".comment-edit-btn").click(function(){
-		let text = document.querySelector('.CMreg').value;
+		let text = document.querySelector('.comment-textarea').value;
 		let Cnum =$(this).attr('value');
 		$.ajax( {
 			 type:"POST" ,
 			 url :"CommentReg",
 			 data : {Cnum:Cnum,text:text},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
 			 success: function(data){ 
-	        	  document.querySelector('.CMreg').value='';
+	        	  document.querySelector('.comment-textarea').value='';
 	        	  showList1();
 	        	  alert("입력완료");
 	        	  console.log(data); 
