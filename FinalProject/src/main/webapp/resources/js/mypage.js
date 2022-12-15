@@ -98,32 +98,36 @@ $(function(){
 			$("#checkpwc").css('color','green');
 		}
 	});
-	
 });
 function checkPw(){
-	let old_pw = $('#old_pw').val(); // input_id에 입력되는 값
-	let id = $('#id').val(); // input_id에 입력되는 값
+	alert("checkpw");
+	let old_pw2 = $('#old_pw').val();
+	alert(old_pw2);
+	let id = $('#id').val();
+	alert(id);
 	$.ajax({
 		url : "/FinalProject/mypage/pwCheck",
 		type : "post",
-		data : {old_pw: old_pw, id: id},
+		data : {old_pw: old_pw2, id: id},
 		dataType : 'json',
 		success : function(result){
 			//alert(result);
 			if(result == 0){
 				alert('기존비밀번호가 일치하지 않습니다.');
-		        return false;
+				return result;
 			}else if(result == 1){
 				alert('기존비밀번호와 일치합니다 ');
+				return result;
 			}else{}
 		},
 		error : function(){
-			alert("서버요청실패");
+			alert('서버요청실패');
 		}
 	});	 
 }
 function validate(form) {
-	
+	//alert("validation");
+    var old_pw = document.getElementById('old_pw').value;	
     var pw = document.getElementById('pw').value;
     var pwc = document.getElementById('pwc').value;
     var phone1 = document.getElementById('phone1').value;
@@ -133,13 +137,16 @@ function validate(form) {
 	var email1 = document.getElementById('email1').value;
     var email2 = document.getElementById('email2').value;
     var emailCheck = email1 + email2;
-	var address = document.getElementById('address').value;
+	var postcode = document.getElementById('postcode').value;
+	var roadAddress = document.getElementById('roadAddress').value;
+	var detailAddress = document.getElementById('detailAddress').value;
 
     if(old_pw == "") {
-        alert('기본비밀번호를를 입력하세요');
+        alert('기존비밀번호를를 입력하세요');
         return false;
-    }else if(old_pw != ""){
-        checkPw();
+    }else if(true){
+    	checkPw();
+    	return false;
     }else if(pw == ""){
         alert('비밀번호를 입력하세요');
         return false;
@@ -155,10 +162,10 @@ function validate(form) {
     }else if(emailCheck == ""){
         alert('이메일을 입력하세요');
         return false;
-    }else if(address == ""){
+    }else if(postcode == "" || roadAddress == "" || detailAddress == ""){
         alert('주소를 입력하세요');
         return false;
     }else{
-        return confirm('Do you really want to submit the form?');
+        return confirm('이 정보로 회원정보를 수정하시겠습니까?');
     }
 }
