@@ -50,8 +50,7 @@
 			<div class="nav_cusInfo_menu_div">
 				<c:choose>
 					<c:when test="${sessionID ne null }">
-						<a class="nav_cusInfo_menu_a">회원정보수정</a>
-						<a class="nav_cusInfo_menu_a">회원탈퇴</a>
+						<a href="/FinalProject/mypage" class="nav_cusInfo_menu_a">회원정보수정</a>
 					</c:when>
 					<c:otherwise>
 						<a href="/FinalProject/findID" class="nav_cusInfo_menu_a">아이디찾기</a>
