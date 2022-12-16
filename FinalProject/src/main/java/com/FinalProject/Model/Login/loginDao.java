@@ -17,12 +17,10 @@ public class loginDao {
 	DataSource ds;
 	
 	public int loginConfirm(loginDto dto) {
-		
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		String sql = " select pw from log where id = ? ";
-		
+		String sql = " select pw from login_info_221208 where id = ? ";
 		try {
 			con = ds.getConnection();
 			pst = con.prepareStatement(sql);
@@ -47,13 +45,13 @@ public class loginDao {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		String sql = " select id from log where name = ? and jumin = ? and email = ? ";
+		String sql = " select id from login_info_221208 where name = ? and jumin = ? and email = ? ";
 		String id = "";
 		
 		try {
 			con = ds.getConnection();
 			pst = con.prepareStatement(sql);
-			pst.setString(1, dto.getNm());
+			pst.setString(1, dto.getName());
 			pst.setString(2, dto.getJumin());
 			pst.setString(3, dto.getEmail());
 			rs = pst.executeQuery();
@@ -75,15 +73,15 @@ public class loginDao {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		String sql = " select pw from log where name = ? and jumin = ? and id = ? and email = ? ";
+		String sql = " select pw from login_info_221208 where id = ? and name = ? and jumin = ? and email = ? ";
 		String id = "";
 		
 		try {
 			con = ds.getConnection();
 			pst = con.prepareStatement(sql);
-			pst.setString(1, dto.getNm());
-			pst.setString(2, dto.getJumin());
-			pst.setString(3, dto.getId());
+			pst.setString(1, dto.getId());
+			pst.setString(2, dto.getName());
+			pst.setString(3, dto.getJumin());
 			pst.setString(4, dto.getEmail());
 			rs = pst.executeQuery();
 			

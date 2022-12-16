@@ -9,11 +9,11 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${path}/resources/css/boardreg.css">
-<script src="${path}/resources/js/board.js"></script>
+<script src="${path}/resources/js/boardreg.js"></script>
 
 <body>
 	<section>
-	<form name="regfrm" action="/Controller/boardreg" method="post">
+	<form name="regfrm" action="/FinalProject/boardreg" method="post">
 		<table>
 			<caption>게시글 등록</caption>
 	            <tr class="board-order">
@@ -54,7 +54,7 @@
 			            <tr>
 			                <td class="content_btn" colspan="3">
 			                    <button type="button" onclick="boardreg()">등록</button>
-			                    <button type="button" onclick="window.location.href='/Controller/board'">목록으로</button>
+			                    <button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
 			                </td>
 			            </tr>
 				</tbody>

@@ -1,9 +1,5 @@
 $(function(){	
-	$("#emailSelect").on("change", function(){
-		$("input[name='email2']").val($("#emailSelect").val());
-	});
-	
-	$("input[name='nm']").on("keyup", function() {
+	$("input[name='name']").on("keyup", function() {
       $(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/g,""));
    });
 	
@@ -17,10 +13,10 @@ $(function(){
 	
 	$("#find").on("click",function(){
 		$.ajax({
-		    url:'/Controller/findID', //request 보낼 서버의 경로
+		    url:'/FinalProject/findID', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
-		    	nm: $("input[name='nm']").val(),
+		    	name: $("input[name='name']").val(),
 				jumin1: $("input[name='jumin1']").val(),
 				jumin2: $("input[name='jumin2']").val(),
 				email1: $("input[name='email1']").val(),
@@ -28,9 +24,9 @@ $(function(){
 		    }, //보낼 데이터
 		    dataType: 'text',	//받을 데이터
 		    success: function(data) {
-		       if($("input[name='nm']").val() == ""){
+		       if($("input[name='name']").val() == ""){
 		       		alert("이름을 입력해주세요");
-		       		$("input[name='nm']").focus();
+		       		$("input[name='name']").focus();
 		       }else if($("input[name='jumin1']").val() == ""){
 		       		alert("주민번호를 입력해주세요");
 		       		$("input[name='jumin1']").focus();

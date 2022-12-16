@@ -10,9 +10,25 @@ public class BoardDto {
 	String Date;
 	int number;
 	String id;
+	String recommend;
 	
 	public BoardDto() {
 		
+	}
+
+	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
+			int number, String id, String recommend) {
+		super();
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text = text;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+		this.recommend = recommend;
 	}
 
 	public BoardDto( int num,String continent, String select, String title,String Text) {
@@ -47,7 +63,6 @@ public class BoardDto {
 	
 	public BoardDto(int num,int num2, String continent, String select, String title, String text, String date, int number,
 			String id) {
-		super();
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -114,10 +129,19 @@ public class BoardDto {
 		Num2 = num2;
 	}
 
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDto [Num=" + Num + ", Num2=" + Num2 + ", Continent=" + Continent + ", Select=" + Select
-				+ ", Title=" + Title + ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id + "]";
+				+ ", Title=" + Title + ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id
+				+ ", recommend=" + recommend + "]";
 	}
 
 }

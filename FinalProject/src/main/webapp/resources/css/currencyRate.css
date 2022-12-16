@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.exchange_wrap{
+	margin: 0 auto;
+	width: 700px;
+	height: 400px;
+	background-color: white;
+	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+	border-radius: 15px;
+	padding-top: 20px;
+}
+#continent{
+	width: 80px;
+}
+#country{
+	width: 80px;
+}
+.select_wrap{
+	text-align: right;
+	margin-right: 30px;
+}
+#curve_chart{
+	width: 700px;
+	height: 350px;
+}

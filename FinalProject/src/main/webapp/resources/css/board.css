@@ -4,7 +4,9 @@
 }
 
 .boardwrap{
-	margin-top: 20px;
+	padding-top: 30px;
+	width: 1000px;
+	margin: auto;
 }
 
 .board_head, .board_nav{
@@ -83,9 +85,10 @@ td{
 	padding: 5px;
 	background-color: #303030;
 	color: white;
-	font-size: bold;
+	font-weight: bold;
 	border-radius: 5px;
 	border: none;
+	cursor: pointer;
 }
 
 .radio{

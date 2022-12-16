@@ -30,25 +30,25 @@ public class BoardDao {
         sql+=" where num BETWEEN ? and ? order by num desc";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
-		try {
-	        conn = dataSource.getConnection();
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, start);
-	        pstmt.setInt(2, end);
-	        rs  = pstmt.executeQuery();         
-	        while( rs.next()){
-	        BoardDto dto = new BoardDto();
-	        int a= rs.getInt(1);
-	        int h= rs.getInt(2);
-	    	String b=rs.getString(3);
-	    	String c=rs.getString(4);
-	    	String d=rs.getString(5);
-	    	String e=rs.getString(6);
-	    	int f=rs.getInt(7);
-	    	String g=rs.getString(8);
-	    	dto = new BoardDto(a,h,b,c,d,e,f,g);
-	    	list.add(dto);
-	    }
+    	try {
+    		conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+            rs  = pstmt.executeQuery();         
+            while( rs.next()){
+            BoardDto dto = new BoardDto();
+            int a= rs.getInt(1);
+            int h= rs.getInt(2);
+            String b=rs.getString(3);
+            String c=rs.getString(4);
+            String d=rs.getString(5);
+            String e=rs.getString(6);
+            int f=rs.getInt(7);
+            String g=rs.getString(8);
+            dto = new BoardDto(a,h,b,c,d,e,f,g);
+            list.add(dto);
+            }
 		} catch (SQLException e) {
 			e.printStackTrace();
 	    } finally { 
@@ -70,7 +70,6 @@ public class BoardDao {
 			if( rs.next()) {
 				 num  =rs.getInt(1);				
 			}				
-			
 		} catch (SQLException e) {		   
 			e.printStackTrace();
 		}finally {
@@ -81,25 +80,25 @@ public class BoardDao {
 	
 	public BoardDto select(int b) {
 		BoardDto dto = null;
-		Connection conn  =null;
-		PreparedStatement pst =null;
-		ResultSet  rs = null;	
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
 		try {
-			conn  =dataSource.getConnection();
-			String sql  = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
-			pst= conn.prepareStatement(sql);
+			conn = dataSource.getConnection();
+			String sql = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
+			pst = conn.prepareStatement(sql);
 			pst.setInt(1, b);
-			 rs  =pst.executeQuery();			
+			rs = pst.executeQuery();			
 			if( rs.next()) {
-				int num  =rs.getInt(1);
-				int num2= rs.getInt(2);
-				String Continent  = rs.getString(3);	
-				String Select  = rs.getString(4);
-				String Title  = rs.getString(5);
-				String Text  = rs.getString(6);
-				String Date  = rs.getString(7);
-				int number  = rs.getInt(8);
-				String ida  = rs.getString(9);
+				int num =rs.getInt(1);
+				int num2 = rs.getInt(2);
+				String Continent = rs.getString(3);	
+				String Select = rs.getString(4);
+				String Title = rs.getString(5);
+				String Text = rs.getString(6);
+				String Date = rs.getString(7);
+				int number = rs.getInt(8);
+				String ida = rs.getString(9);
 				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida);
 			}				
 			
@@ -120,9 +119,9 @@ public class BoardDao {
 			conn = dataSource.getConnection();
 			String sql1 = "delete from CM where Cnum = ? ";	
 			String sql2 = "delete from board where b_num = ? ";			
-			pst1= conn.prepareStatement(sql1);
+			pst1 = conn.prepareStatement(sql1);
 			pst1.setInt(1, a);
-			pst2= conn.prepareStatement(sql2);
+			pst2 = conn.prepareStatement(sql2);
 			pst2.setInt(1, a);
 			rs = pst1.executeQuery();
 			rs = pst2.executeQuery();
@@ -260,13 +259,13 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,'acorn2',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,'ㅤㅤ↳acorn2',CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setInt(2, s);
-			pst.setString(3, "↳"+dto.getText());
+			pst.setString(3, "ㅤㅤ"+dto.getText());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();
