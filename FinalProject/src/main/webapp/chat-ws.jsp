@@ -42,14 +42,15 @@
         
         var nickname = $("#nickname").val();
         var msg = $("#message").val();
-        wsocket.send("msg:"+nickname+":" + msg);
+        wsocket.send("msg:"+nickname+"님=>" + msg);
         $("#message").val("");
     }
 
     function appendMessage(msg) {
-        
+    	
         $("#chatMessageArea").append(msg+"<br>");
         
+    
         var chatAreaHeight = $("#chatArea").height();
         
         var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;

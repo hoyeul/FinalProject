@@ -3,6 +3,7 @@ package com.FinalProject.Model.Board;
 public class CommentDto {
  int num;
  int Cnum;
+ int Recm;
  String text;
  String name;
  String date;
@@ -11,8 +12,21 @@ public CommentDto() {
 	
 }
 
-public CommentDto(int num,int cnum, String text, String name, String date) {
+
+
+public CommentDto(int num, int cnum, int recm, String text, String name, String date) {
 	super();
+	this.num = num;
+	this.Cnum = cnum;
+	this.Recm = recm;
+	this.text = text;
+	this.name = name;
+	this.date = date;
+}
+
+
+
+public CommentDto(int num,int cnum, String text, String name, String date) {
 	this.num = num;
 	this.Cnum = cnum;
 	this.text = text;
@@ -57,5 +71,28 @@ public int getCnum() {
 public void setCnum(int cnum) {
 	Cnum = cnum;
 }
+
+
+
+public int getRecm() {
+	return Recm;
+}
+
+
+
+public void setRecm(int recm) {
+	Recm = recm;
+}
+
+
+
+@Override
+public String toString() {
+	return "CommentDto [num=" + num + ", Cnum=" + Cnum + ", Recm=" + Recm + ", text=" + text + ", name=" + name
+			+ ", date=" + date + "]";
+}
+
+
+
 
 }

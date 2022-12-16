@@ -61,6 +61,37 @@ function boardup() {
 
 $(document).ready(function() {
 	showList1();
+	$("#result").on("click",".reply",function(){
+		let p = this.parentElement.parentElement.nextSibling;
+		console.log(p);
+		p.style.display="block";
+	});
+	$("#result").on("click",".replyreg",function(){
+		let Cnum =$(this).attr('value');
+		let p = this.parentElement.parentElement.previousSibling;
+		let Recm =  p.querySelector(".reply").value;
+		let q = this.parentElement.parentElement;
+		let text=q.querySelector(".text").value;
+		$.ajax( {
+			  type:"POST" ,
+			  url :"ReplyCm",
+			 data : {Recm:Recm,Cnum:Cnum,text:text},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+			 success: function(data){ 
+	        	  showList1();
+	        	  alert("입력완료");
+	        	  console.log( data); 
+	        	  },
+	          error: function(){
+	        	  alert("error");
+	        	  console.log( data);
+	        	  
+	          }	
+		});  
+	});
+	
+	function showList3(Recm){
+	alert(Recm);
+	}
 	
 	$("#result").on("click",".button2",function(){
 		let num =$(this).attr('value');
@@ -153,8 +184,10 @@ function toHtml1(data){
 	for( let i=0 ; i< data.length; i++){
 		let item = data[i];
 		str+= '<tr class="comment"><td><textarea class="text" readonly="readonly">'+ item.text+'</textarea></td>'
-		+'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td><button class="button1" type="button">수정</button>'
-		+'<button class="button2" type="button" value="'+item.num+'">삭제</button></td></tr>'
+		+'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td><button class="reply" type="button" value="'+item.recm+'">답글</button><button class="button1" type="button">수정</button>'
+		+'<button class="button2" type="button" value="'+item.num+'">삭제</button></td></tr><tr class ="replySpace"><td><textarea id="text" class="text"></textarea></td>'
+		+'<td><button class="replyreg" type="button" value="'+item.cnum+'">등록</button>'
+		+'<button class="button4" type="button">취소</button></td></tr>'
 	}
 	str+= "</table>";
 	return  str;
@@ -191,6 +224,8 @@ function toHtml2(data){
 	str+= "</table>";
 	return  str;
 }
+
+
 
 window.addEventListener("load",function(){
 	let frm = document.frm;

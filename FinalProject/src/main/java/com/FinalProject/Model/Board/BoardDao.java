@@ -176,7 +176,7 @@ public class BoardDao {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "select num, Cnum, text, name,to_char(C_date,'yyyy.mm.dd hh24:mi:ss') from CM where Cnum=?";
+        String sql = "select num, Cnum,RECM, text, name,to_char(C_date,'yyyy.mm.dd hh24:mi:ss') from CM where Cnum=? ORDER BY RECM,num";
         ArrayList<CommentDto> list = new ArrayList<CommentDto>();
         
 		try {
@@ -188,10 +188,11 @@ public class BoardDao {
 		        CommentDto dto = new CommentDto();
 		        int a = rs.getInt(1);
 		        int b = rs.getInt(2);
-		    	String c = rs.getString(3);
+		        int c = rs.getInt(3);
 		    	String d = rs.getString(4);
 		    	String e = rs.getString(5);
-		    	dto = new CommentDto(a,b,c,d,e);
+		    	String f = rs.getString(6);
+		    	dto = new CommentDto(a,b,c,d,e,f);
 		    	list.add(dto);
 	        }
 		}catch (SQLException e) {
@@ -241,12 +242,31 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,'acorn2',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,'acorn2',CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setString(2, dto.getText());
+			pst.executeUpdate();		
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);			
+		}				
+	}
+	
+	public void ReplyCM(CommentDto dto,int s) {		
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,'acorn2',CURRENT_timestamp) ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getCnum());
+			pst.setInt(2, s);
+			pst.setString(3, "↳"+dto.getText());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();
