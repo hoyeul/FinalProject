@@ -1,26 +1,18 @@
 package com.FinalProject.Controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Register.RegisterDto;
-import com.FinalProject.Model.Register.RegisterService;
 import com.FinalProject.Model.Register.RegisterDao;
+import com.FinalProject.Model.Register.RegisterDto;
 
 @Controller
 public class RegisterController {
@@ -58,9 +50,10 @@ public class RegisterController {
 		System.out.println(dto);
 		
 		service.insert(dto);
-		
+	
 		return "redirect:/login";
 	}
+	
 	@ResponseBody
 	@RequestMapping( value="/register/IdCheck" , method= RequestMethod.POST)
 	public String IdCheckService(String userId, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
@@ -83,4 +76,6 @@ public class RegisterController {
 		return String.valueOf(idCheck);
 		
 	}
+	
+	
 }

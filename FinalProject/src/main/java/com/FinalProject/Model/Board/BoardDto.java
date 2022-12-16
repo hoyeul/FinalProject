@@ -2,6 +2,7 @@ package com.FinalProject.Model.Board;
 
 public class BoardDto {
 	int Num;
+	int Num2;
 	String Continent;
 	String Select;
 	String Title;
@@ -9,17 +10,33 @@ public class BoardDto {
 	String Date;
 	int number;
 	String id;
+	String recommend;
 	
 	public BoardDto() {
 		
 	}
-	
-	public BoardDto(String continent, String select, String title, String text) {
+
+	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
+			int number, String id, String recommend) {
 		super();
-		Continent = continent;
-		Select = select;
-		Title = title;
-		Text = text;
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text = text;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+		this.recommend = recommend;
+	}
+
+	public BoardDto( int num,String continent, String select, String title,String Text) {
+		this.Num = num;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text =Text;
 	}
 	
 	public BoardDto(int num, String continent, String select, String title, String date, int number,String id) {
@@ -27,6 +44,31 @@ public class BoardDto {
 		this.Continent = continent;
 		this.Select = select;
 		this.Title = title;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+	}
+
+	
+	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number,String id) {
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+	}
+	
+	public BoardDto(int num,int num2, String continent, String select, String title, String text, String date, int number,
+			String id) {
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text = text;
 		this.Date = date;
 		this.number = number;
 		this.id = id;
@@ -79,6 +121,27 @@ public class BoardDto {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
+
+	public int getNum2() {
+		return Num2;
+	}
+	public void setNum2(int num2) {
+		Num2 = num2;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDto [Num=" + Num + ", Num2=" + Num2 + ", Continent=" + Continent + ", Select=" + Select
+				+ ", Title=" + Title + ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id
+				+ ", recommend=" + recommend + "]";
+	}
+
 }

@@ -82,6 +82,26 @@ public class MypageDao {
 			close(rs, pst, con);
 		}
 	}
+	
+	//회원탈퇴
+	public void delete(String sessionID) {
+		System.out.println(sessionID);
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		String sql = "DELETE FROM login_info_221208 WHERE id = ?";
+		try {
+			con = ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, sessionID);
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pst, con);
+		}
+	}
 	// 기존비밀번호 일치 확인
 			public int checkOldPw(String id, String old_pw) {  
 				String sql = "select pw from login_info_221208 where id = ?"; // 입력값이 테이블에 있는지 확인
@@ -113,6 +133,9 @@ public class MypageDao {
 				}
 				return pwCheck;
 			}
+			
+	
+	
 	private void close(AutoCloseable ...autoCloseables) {
 		for(AutoCloseable a: autoCloseables) {
 			if(a!=null) {

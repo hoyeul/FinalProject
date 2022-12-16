@@ -9,7 +9,7 @@ public class RegisterDto {
 	String email;
 	String address;
 	String postcode;
-	
+
 	public RegisterDto() {}
 	public RegisterDto(String name, String id, String pw, String phone, String email,String address) {
 		super();
