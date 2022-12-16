@@ -86,6 +86,10 @@
 			<button type="button" onclick="location.href=''">취소</button>
 		</div>			
 	</form>
+	<form action="mypage/withdraw" method="post">
+		<button>회원탈퇴</button>
+	</form>
+	
 	</div>
 </section>
 </body>

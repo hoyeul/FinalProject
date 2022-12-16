@@ -79,4 +79,13 @@ public class MypageController {
 		return String.valueOf(pwCheck);
 		
 	}
+	
+	@RequestMapping(value="/mypage/withdraw", method = RequestMethod.POST)
+	public String select(HttpSession session) {
+		String sessionID = (String) session.getAttribute("sessionID");
+		System.out.println(sessionID);
+		service.withdraw(sessionID);
+		return "redirect:/login";
+	}
+	
 }

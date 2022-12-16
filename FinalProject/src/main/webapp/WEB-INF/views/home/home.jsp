@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .canvas_wrap{
-	width: 90%;
-	hegith: 90%;
+	width: 100%;
 	margin: 0 auto;
 }
 
