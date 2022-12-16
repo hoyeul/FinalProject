@@ -27,6 +27,10 @@ public class MypageService {
 			return dao.checkOldPw(id, pw);
 			
 		}
+		public void withdraw(String sessionID) {
+			dao.delete(sessionID);
+			
+		}
 		
 		
 }
