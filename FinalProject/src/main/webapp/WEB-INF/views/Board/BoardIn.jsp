@@ -25,17 +25,19 @@
 				<span> | </span>
 				<span>${b.date}</span>
 				<span>조회수 ${b.number}</span>
+				<input type="text" value="${b.num}" id="bno" />
+				<input type="text" value="Jaeho" id="userid"/>
 			</div>
 			<div class="board-in-textarea">
 			    <textarea name="content" readonly="readonly">${b.text}</textarea>
 			</div>
 			<div class="recommend-btn-area">
 				<div class="rec-btn-inner-area">
-					<button class="recommend-btn">
+					<button class="recommend-btn" id="recUp">
 						<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-up.png"/>">
-						<span class="rec-text">추천</span>
+						<span class="rec-text">추천 ${b.recommend}</span>
 					</button>
-					<button class="recommend-btn">
+					<button class="recommend-btn" id="recDown">
 						<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-down.png"/>">
 						<span class="rec-text">비추천</span>
 					</button>

@@ -10,25 +10,10 @@ public class BoardDto {
 	String Date;
 	int number;
 	String id;
-	String recommend;
+	int recommend;
 	
 	public BoardDto() {
 		
-	}
-
-	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
-			int number, String id, String recommend) {
-		super();
-		this.Num = num;
-		this.Num2 = num2;
-		this.Continent = continent;
-		this.Select = select;
-		this.Title = title;
-		this.Text = text;
-		this.Date = date;
-		this.number = number;
-		this.id = id;
-		this.recommend = recommend;
 	}
 
 	public BoardDto( int num,String continent, String select, String title,String Text) {
@@ -50,7 +35,7 @@ public class BoardDto {
 	}
 
 	
-	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number,String id) {
+	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number, String id, int recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -59,10 +44,12 @@ public class BoardDto {
 		this.Date = date;
 		this.number = number;
 		this.id = id;
+		this.recommend = recommend;
+		
 	}
 	
 	public BoardDto(int num,int num2, String continent, String select, String title, String text, String date, int number,
-			String id) {
+			String id, int recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -72,7 +59,9 @@ public class BoardDto {
 		this.Date = date;
 		this.number = number;
 		this.id = id;
+		this.recommend = recommend;
 	}
+	
 	public int getNum() {
 		return Num;
 	}
@@ -129,11 +118,11 @@ public class BoardDto {
 		Num2 = num2;
 	}
 
-	public String getRecommend() {
+	public int getRecommend() {
 		return recommend;
 	}
 
-	public void setRecommend(String recommend) {
+	public void setRecommend(int recommend) {
 		this.recommend = recommend;
 	}
 
@@ -143,5 +132,4 @@ public class BoardDto {
 				+ ", Title=" + Title + ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id
 				+ ", recommend=" + recommend + "]";
 	}
-
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
 import com.FinalProject.Model.Board.CommentDto;
-
+import com.FinalProject.Model.Board.RecommendDto;
 import com.FinalProject.Model.Board.SearchDto;
 
 @Controller
@@ -23,11 +23,11 @@ public class BoardController {
    
    @RequestMapping(value ="/board", method = RequestMethod.GET)
    public String array(Model model,String p,String continent,SearchDto dto) {
-      String text=dto.getText();
-      String content=dto.getSelectcontent();
-      String type=dto.getSelecttype();
-      String Pa=dto.getPage();
-      String name="";
+      String text = dto.getText();
+      String content = dto.getSelectcontent();
+      String type = dto.getSelecttype();
+      String Pa = dto.getPage();
+      String name = "";
       System.out.println("continent="+continent);
       System.out.println("type="+type);
       System.out.println("content="+content);
@@ -120,16 +120,16 @@ public class BoardController {
    
    @RequestMapping(value ="/boardIn", method = RequestMethod.GET)
    public String array2(BoardDto dto1,Model model,String p,String continent,SearchDto dto) {
-      int s = dto1.getNum();
-      System.out.println("d1231231="+s);
-      int b= dto1.getNumber()+1;
-      dao.updateNum(b, s);
-      BoardDto a =dao.select(s);
-      System.out.println("dasdasdasda="+a);
-      model.addAttribute("b",a);
-      return "Board/BoardIn";
+	   
+       int s = dto1.getNum();
+       System.out.println("d1231231="+s);
+       int b= dto1.getNumber()+1;
+       dao.updateNum(b, s);
+       BoardDto a =dao.select(s);
+       System.out.println("dasdasdasda="+a);
+       model.addAttribute("b",a);
+       return "Board/BoardIn";
    }
-   
    
    @ResponseBody
    @RequestMapping(value ="/RegIn", method = RequestMethod.GET)
@@ -160,7 +160,7 @@ public class BoardController {
       System.out.println(dto.getNum());
       int s = dto.getNum();
       System.out.println(s);
-      dao.delet(s);
+      dao.delete(s);
       return "redirect:/board";
    }
    
@@ -187,7 +187,13 @@ public class BoardController {
    }
    
    @ResponseBody
-   @RequestMapping(value = "/boardIn", method = RequestMethod.POST)
-   public int updateRecommend(int r_num, String r_id, )
+   @RequestMapping(value = "/RecommendReg", method = RequestMethod.POST)
+   public String recUp(RecommendDto dto) {
+	   System.out.println(dto.getId() + "테스트");
+       System.out.println(dto.getB_num()  + "테스트2");
+	   dao.recUp(dto);
+      
+      return "Board/BoardIn";
+   }
    
 }

@@ -24,8 +24,8 @@ public class BoardDao {
         System.out.println("count="+count);
         int end =count-((page-1)*10);
         int start = count-(page*10)+1;
-        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
-        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
+        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name,b_recommend from( ";
+        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name,b_recommend from board where b_continent like ";
         sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
         sql+=" where num BETWEEN ? and ? order by b_date desc";
         
@@ -38,15 +38,16 @@ public class BoardDao {
             rs  = pstmt.executeQuery();         
             while( rs.next()){
             BoardDto dto = new BoardDto();
-            int a= rs.getInt(1);
-            int h= rs.getInt(2);
-            String b=rs.getString(3);
-            String c=rs.getString(4);
-            String d=rs.getString(5);
-            String e=rs.getString(6);
-            int f=rs.getInt(7);
-            String g=rs.getString(8);
-            dto = new BoardDto(a,h,b,c,d,e,f,g);
+            int b_num = rs.getInt(1);
+            int num = rs.getInt(2);
+            String b_continent = rs.getString(3);
+            String b_select = rs.getString(4);
+            String b_title = rs.getString(5);
+            String b_date = rs.getString(6);
+            int b_count = rs.getInt(7);
+            String b_name = rs.getString(8);
+            int b_recommend = rs.getInt(9);
+            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
 		} catch (SQLException e) {
@@ -58,10 +59,10 @@ public class BoardDao {
 	}
 
 	public int count(String continent,String type,String text,String name) {
-		Connection conn  =null;
-		PreparedStatement pst =null;
-		ResultSet  rs = null;	
-		int num=0;
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
+		int num = 0;
 		try {
 			conn = dataSource.getConnection();
 			String sql = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
@@ -85,7 +86,7 @@ public class BoardDao {
 		ResultSet rs = null;	
 		try {
 			conn = dataSource.getConnection();
-			String sql = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name from board where b_num = ? ";			
+			String sql = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name, b_recommend from board where b_num = ? ";			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, b);
 			rs = pst.executeQuery();			
@@ -99,7 +100,8 @@ public class BoardDao {
 				String Date = rs.getString(7);
 				int number = rs.getInt(8);
 				String ida = rs.getString(9);
-				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida);
+				int recommend = rs.getInt(10);
+				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida,recommend);
 			}				
 			
 		} catch (SQLException e) {		   
@@ -110,7 +112,7 @@ public class BoardDao {
 		return dto;		
 	}
 	
-	public void delet(int a) {
+	public void delete(int a) {
 		Connection conn = null;
 		PreparedStatement pst1 = null;
 		PreparedStatement pst2 = null;
@@ -258,7 +260,7 @@ public class BoardDao {
 		
 		Connection con = null;
         PreparedStatement pst = null;
-        String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,'Jaeho')";
+        String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,'Jaeho',0)";
         try {
 			con = dataSource.getConnection();
 			pst = con.prepareStatement(sql);
@@ -274,11 +276,30 @@ public class BoardDao {
 	    }
 	}
 	
+	public void recUp(RecommendDto dto) {		
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
+		String sql = " insert into board_recommend values('1','0',?,?) ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getB_num());
+			pst.setString(2, dto.getId());
+			pst.executeUpdate();		
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);		
+		}				
+	}
+	
 	private void close(AutoCloseable... autoCloseables) {
 	    for(AutoCloseable a :autoCloseables)
 	        try { if(a!=null) a.close(); 
-	        } catch(Exception e) { 
-	        	e.printStackTrace(); 
-	        }
+        } catch(Exception e) { 
+        	e.printStackTrace(); 
+        }
 	}
+	
 }

@@ -61,11 +61,12 @@ function boardup() {
 
 $(document).ready(function() {
 	showList1();
+	
 	$("#board-in-comment-box").on("click",".comment-box-delete",function(){
 		let num =$(this).attr('value');
 		$.ajax( {
-			  type:"GET" ,
-			  url :"CommentDE",
+			 type:"GET" ,
+			 url :"CommentDE",
 			 data : {num:num},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
 			 success: function(data){ 
 	        	  showList1();
@@ -173,8 +174,8 @@ function showList2(){
 			    	url: "RegIn" ,
 			    	data : {Cnum:Cnum},
 			    	success:function(data){
-			    		 let dataHtml  = toHtml2(data);
-			    		 $("#board-in-comment-box").html(dataHtml);
+			    		let dataHtml = toHtml2(data);
+			    		$("#board-in-comment-box").html(dataHtml);
 			    		console.log(data);			    		
 			    	},
 			    	error: function(){
@@ -224,3 +225,46 @@ window.addEventListener("load",function(){
 	}
 		}
 });
+
+
+$(function(){
+		$("#recUp").click(function(){
+			let id = $("#userid").val();
+			let b_num = $("#bno").val();
+			alert(id);
+			alert(b_num);
+			$.ajax({
+				url: "RecommendReg",
+                type: "POST",
+                data: {
+                   id : id ,
+                   b_num : b_num
+                },
+                success : function () {
+			        // alert("이미 추천하셨습니다.");
+                },
+                error : function () {
+			    	// alert("이미 추천하셨습니다.");
+			   	}
+			})
+		})
+})
+
+function recCount(){
+
+	let userid = $("#userid").val();
+	 let bno = $("#bno").val();
+	 alert(userid);
+	 alert(bno);
+
+	$.ajax({
+		url: "/FinalProject/RecommendReg",
+		type: "POST",
+		data : {
+			
+		},
+		success : function (count) {
+			
+		}
+	})
+}

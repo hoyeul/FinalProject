@@ -59,6 +59,7 @@
 	            <td>${item.id}</td>
 	            <td style="">${item.date}</td>
 	            <td>${item.number}</td>
+	            <td>${item.recommend}</td>
 	        </tr> 
 			</c:forEach>
 		</table>
@@ -131,11 +132,11 @@
 <input type="hidden" name="selecttypeH" value="${type}">
 <input type="hidden" name="selectcontentH" value="${content}">
 <input type="hidden" name="continentH" value="${continent}">
-		<div class="edit-btn">
-			<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
-		</div>
 	</form>
+	<div class="edit-btn">
+		<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
 	</div>
+</div>
 
 	
 </section>
