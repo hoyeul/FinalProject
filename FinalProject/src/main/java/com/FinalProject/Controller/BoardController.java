@@ -122,11 +122,11 @@ public class BoardController {
    public String array2(BoardDto dto1,Model model,String p,String continent,SearchDto dto) {
 	   
        int s = dto1.getNum();
-       System.out.println("d1231231="+s);
-       int b= dto1.getNumber()+1;
+       System.out.println("게시글 번호="+s);
+       int b = dto1.getNumber()+1;
        dao.updateNum(b, s);
-       BoardDto a =dao.select(s);
-       System.out.println("dasdasdasda="+a);
+       BoardDto a = dao.select(s);
+       System.out.println("게시글 조회 ="+a);
        model.addAttribute("b",a);
        return "Board/BoardIn";
    }
@@ -192,8 +192,8 @@ public class BoardController {
 	   System.out.println(dto.getId() + "테스트");
        System.out.println(dto.getB_num()  + "테스트2");
 	   dao.recUp(dto);
-      
-      return "Board/BoardIn";
+	   
+	   return "Board/BoardIn";
    }
    
 }

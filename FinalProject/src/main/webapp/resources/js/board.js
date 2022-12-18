@@ -229,10 +229,10 @@ window.addEventListener("load",function(){
 
 $(function(){
 		$("#recUp").click(function(){
-			let id = $("#userid").val();
-			let b_num = $("#bno").val();
-			alert(id);
-			alert(b_num);
+			let id = $("#user_id").val();
+			let b_num = $("#board_num").val();
+			// alert(id);
+			// alert(b_num);
 			$.ajax({
 				url: "RecommendReg",
                 type: "POST",
@@ -241,30 +241,12 @@ $(function(){
                    b_num : b_num
                 },
                 success : function () {
-			        // alert("이미 추천하셨습니다.");
+                	
                 },
                 error : function () {
-			    	// alert("이미 추천하셨습니다.");
+			    	alert("이미 추천하셨습니다.");
 			   	}
 			})
 		})
 })
 
-function recCount(){
-
-	let userid = $("#userid").val();
-	 let bno = $("#bno").val();
-	 alert(userid);
-	 alert(bno);
-
-	$.ajax({
-		url: "/FinalProject/RecommendReg",
-		type: "POST",
-		data : {
-			
-		},
-		success : function (count) {
-			
-		}
-	})
-}

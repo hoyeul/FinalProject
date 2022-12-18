@@ -279,7 +279,7 @@ public class BoardDao {
 	public void recUp(RecommendDto dto) {		
 		Connection conn = null;
 		PreparedStatement pst = null;
-		ResultSet rs = null;	
+		ResultSet rs = null;
 		String sql = " insert into board_recommend values('1','0',?,?) ";
 		try {
 			conn = dataSource.getConnection();			

@@ -25,8 +25,8 @@
 				<span> | </span>
 				<span>${b.date}</span>
 				<span>조회수 ${b.number}</span>
-				<input type="text" value="${b.num}" id="bno" />
-				<input type="text" value="Jaeho" id="userid"/>
+				<input type="text" value="${b.num}" id="board_num" />
+				<input type="text" value="Jaeho" id="user_id"/>
 			</div>
 			<div class="board-in-textarea">
 			    <textarea name="content" readonly="readonly">${b.text}</textarea>
