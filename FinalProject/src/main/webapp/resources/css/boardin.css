@@ -3,10 +3,14 @@
     margin: 0px;
 }
 
-.board-in-all-wrap{
-	margin-top: 20px;
-	width: 70%;
+.boardin-all-wrap{
+	padding-top: 20px;
 	margin: auto;
+}
+
+.boardin-inner-wrap{
+	margin: auto;
+	width: 800px;
 }
 
 .board-in-continent-title{
