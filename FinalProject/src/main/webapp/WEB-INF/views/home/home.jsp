@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="java.util.ArrayList" %>
+    <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+=======
+>>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +33,31 @@
 }
 
 .main_board{
-	width: 600px;
+	width: 700px;
 	height: 300px;
-	border: 1px solid black;
+	padding: 20px 0px;
+	text-align: center;
+}
+table{
+	text-align: center;
+	margin: 0px auto;
+	border-collapse: collapse
+}
+tr{
+	border-top: 0.5px solid grey;
+	border-bottom: 0.5px solid grey;
+}
+table tr:nth-child(1){
+	font-weight: bold;
 }
 
+td{
+	white-space: no-wrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 10px;
+	font-size: 13px;
+}
 </style>
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -117,16 +143,47 @@ chart.appear(1000, 100);
 	<section>
 			<div id="chartdiv"></div>
 		<div class="section_wrap">
+<<<<<<< HEAD
+			<!-- 지도api -->
+=======
 			<!-- ����api -->
+>>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
 			<div class="canvas_wrap">
 				<canvas id="canvas"></canvas>
 			</div>
 			
 			<div class="main_center">
 				
+<<<<<<< HEAD
+				<!-- 게시판영역 -->
+=======
 				<!-- �Խ��ǿ��� -->
+>>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
 				<div class="main_board">
-					
+					<table class="mainboard">	
+					<caption><h3>최신순</h3></caption>
+		            <tr>
+		                <td style="width:10%;"></td>
+		                <td style="width:50%;">제목</td>
+		                <td>작성자</td>
+		                <td>날짜</td>
+		                <td>조회수</td>
+		                <td>추천수</td>
+		            </tr>
+					<c:forEach var="list" items="${list}">
+			        <tr>
+			            <td>${list.num2}</td>
+			            <td style=" text-align: left;">
+				            <span class="b_con">[${list.continent}] </span>
+				            <span class="b_sel">[${list.select}] </span>
+				            <a href="boardIn?num=${list.num}&number=${list.number}">${list.title}</a>
+			            </td>
+			            <td>${list.id}</td>
+			            <td style="">${list.date}</td>
+			            <td>${list.number}</td>
+			        </tr> 
+					</c:forEach>
+					</table>
 				</div>
 				
 				<!-- Currency Converter Script - FxExchangeRate.com  -->
