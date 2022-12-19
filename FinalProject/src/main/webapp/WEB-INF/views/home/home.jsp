@@ -7,10 +7,31 @@
 <title>Insert title here</title>
 <style>
 #chartdiv {
+<style type="text/css">
+.section_wrap{
+	padding: 50px 0;
+}
+
+.canvas_wrap{
+	width: 100%;
 	margin: 0 auto;
   	width: 800px;
   	height: 500px;
 }
+
+.main_center{
+	display: flex;
+	width: 1000px;
+	margin: 0 auto;
+	justify-content: space-between;
+}
+
+.main_board{
+	width: 600px;
+	height: 300px;
+	border: 1px solid black;
+}
+
 </style>
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -95,6 +116,29 @@ chart.appear(1000, 100);
 <body>
 	<section>
 			<div id="chartdiv"></div>
+		<div class="section_wrap">
+			<!-- ����api -->
+			<div class="canvas_wrap">
+				<canvas id="canvas"></canvas>
+			</div>
+			
+			<div class="main_center">
+				
+				<!-- �Խ��ǿ��� -->
+				<div class="main_board">
+					
+				</div>
+				
+				<!-- Currency Converter Script - FxExchangeRate.com  -->
+				<div style="width:248px;height:auto;border:1px solid #2D6AB4;text-align:center;font-size:16px;font-family:sans-serif,Arial,Helvetica;border-top-right-radius:5px; border-top-left-radius:5px;background-color:#FFFFFF;">
+					<div style="width:100%; height:24px;padding:5px 0px 0px 0px;background-color:#2D6AB4;font-weight:bold;">
+						<a rel="nofollow" style="color:#FFFFFF;text-decoration:none;" href="https://www.fxexchangerate.com/">Currency Converter</a>
+					</div>
+					<script type="text/javascript" src="https://w.fxexchangerate.com/converter.php?fm=USD&ft=EUR&lg=kr&am=1&ty=1"></script>
+				</div>
+				<!--  End of Currency Converter Script -  FxExchangeRate.com -->
+			</div>
+		</div>
 	</section>
 </body>
 </html>

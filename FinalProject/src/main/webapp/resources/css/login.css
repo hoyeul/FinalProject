@@ -28,7 +28,7 @@ body{
 }
 .pwid_wrap{
 	padding-top: 10px;
-	height: 30%;
+	height: 28%;
 	width: 100%;
 }
 .pwid_wrap .id{
@@ -52,9 +52,15 @@ body{
 	background-color: transparent;
 	outline: none;
 }
+
+.cookie_id{
+	width: 78%;
+	margin: 0 auto;
+}
 .btn_wrap{
 	text-align: center;
 	height: 8%;
+	margin-top: 20px;
 }
 .btn_wrap input{
 	width: 80%;

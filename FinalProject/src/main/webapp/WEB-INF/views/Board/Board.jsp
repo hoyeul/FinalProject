@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/board.js"></script>
+<script src="${path}/resources/js/board.js">
+</script>
 <link rel="stylesheet" href="${path}/resources/css/board.css">
 
 <body>
@@ -40,6 +41,7 @@
 			</div>
 		</div>
 		<table class="mainboard">
+
             <tr>
                 <td style="width:10%;"></td>
                 <td style="width:60%;">제목</td>
@@ -131,10 +133,10 @@
 <input type="hidden" name="selecttypeH" value="${type}">
 <input type="hidden" name="selectcontentH" value="${content}">
 <input type="hidden" name="continentH" value="${continent}">
+	</form>
 		<div class="edit-btn">
 			<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
 		</div>
-	</form>
 	</div>
 
 	

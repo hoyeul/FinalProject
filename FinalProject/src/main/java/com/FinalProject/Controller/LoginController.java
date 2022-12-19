@@ -27,16 +27,22 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public void login(HttpServletRequest request, HttpServletResponse response, 
-			String id, String pw) throws Exception {
+			loginDto dto, boolean ckbox) throws Exception {
 		
-		int num = s.loginConfirm(new loginDto(id, pw));
+		int num = s.loginConfirm(new loginDto(dto.getId(), dto.getPw()));
 		
 		if(num == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("sessionID", id);
-			Cookie cookie = new Cookie("id", id);
-			response.addCookie(cookie);
-			response.getWriter().print(num);
+			session.setAttribute("sessionID", dto.getId());
+			if(ckbox == true) {
+				Cookie cookie = new Cookie("id", dto.getId());
+				response.addCookie(cookie);
+				response.getWriter().print(num);
+			}else {
+				Cookie cookie = new Cookie("id", null);
+				response.addCookie(cookie);
+				response.getWriter().print(num);
+			}
 		}
 		else	{
 			response.getWriter().print(num);
@@ -58,12 +64,9 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findID", method = RequestMethod.POST)
-	public String findID(String name, String jumin1, String jumin2, String email1, String email2){
+	public String findID(loginDto dto){
 		
-		String jumin = jumin1 + "-" + jumin2;
-		String email = email1 + "@" + email2;
-		
-		String id = s.findID(new loginDto(name, jumin, email));
+		String id = s.findID(new loginDto(dto.getName(), dto.getJumin(), dto.getEmail()));
 		return id;
 	}
 	
@@ -74,12 +77,9 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findPW", method = RequestMethod.POST)
-	public String findPW(String id, String name, String jumin1, String jumin2, String email1, String email2){
+	public String findPW(loginDto dto){
 		
-		String jumin = jumin1 + "-" + jumin2;
-		String email = email1 + "@" + email2;
-		
-		String pw = s.findPW(new loginDto(id, name, jumin, email));
+		String pw = s.findPW(new loginDto(dto.getId(), dto.getName(), dto.getJumin(), dto.getEmail()));
 		return pw;
 	}
 	

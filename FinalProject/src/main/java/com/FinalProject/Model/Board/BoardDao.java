@@ -18,16 +18,16 @@ public class BoardDao {
 	DataSource dataSource;
 	
 	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count) {
-	    Connection conn = null;
+		Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        ResultSet rs=null;
         System.out.println("count="+count);
         int end =count-((page-1)*10);
-        int start = count-(page*10)+1;
+        int start = count-(page*10)+1;       
         String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
         sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
         sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
-        sql+=" where num BETWEEN ? and ? order by b_date desc";
+        sql+=" where num BETWEEN ? and ? order by num desc";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -51,10 +51,10 @@ public class BoardDao {
             }
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally { 
-			close(rs,pstmt, conn);      
-		}
-		return list;
+	    } finally { 
+	    	close(rs,pstmt, conn);      
+	    }
+	return list;
 	}
 
 	public int count(String continent,String type,String text,String name) {
@@ -63,12 +63,12 @@ public class BoardDao {
 		ResultSet  rs = null;	
 		int num=0;
 		try {
-			conn = dataSource.getConnection();
-			String sql = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
-			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();			
-			if(rs.next()) {
-				num = rs.getInt(1);				
+			conn  =dataSource.getConnection();
+			String sql  = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
+			pst= conn.prepareStatement(sql);
+			 rs  =pst.executeQuery();			
+			if( rs.next()) {
+				 num  =rs.getInt(1);				
 			}				
 		} catch (SQLException e) {		   
 			e.printStackTrace();
@@ -175,7 +175,7 @@ public class BoardDao {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "select num, Cnum, text, name,to_char(C_date,'yyyy.mm.dd hh24:mi:ss') from CM where Cnum=?";
+        String sql = "select num, Cnum,RECM, text, name,to_char(C_date,'yyyy.mm.dd hh24:mi:ss') from CM where Cnum=? ORDER BY RECM,num";
         ArrayList<CommentDto> list = new ArrayList<CommentDto>();
         
 		try {
@@ -187,10 +187,11 @@ public class BoardDao {
 		        CommentDto dto = new CommentDto();
 		        int a = rs.getInt(1);
 		        int b = rs.getInt(2);
-		    	String c = rs.getString(3);
+		        int c = rs.getInt(3);
 		    	String d = rs.getString(4);
 		    	String e = rs.getString(5);
-		    	dto = new CommentDto(a,b,c,d,e);
+		    	String f = rs.getString(6);
+		    	dto = new CommentDto(a,b,c,d,e,f);
 		    	list.add(dto);
 	        }
 		}catch (SQLException e) {
@@ -240,12 +241,31 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,'acorn2',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,'acorn2',CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setString(2, dto.getText());
+			pst.executeUpdate();		
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);			
+		}				
+	}
+	
+	public void ReplyCM(CommentDto dto,int s) {		
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;	
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,'ㅤㅤ↳acorn2',CURRENT_timestamp) ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getCnum());
+			pst.setInt(2, s);
+			pst.setString(3, "ㅤㅤ"+dto.getText());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();

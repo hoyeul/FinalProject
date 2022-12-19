@@ -173,6 +173,14 @@ public class BoardController {
    }
    
    @ResponseBody
+   @RequestMapping(value ="/ReplyCm", method = RequestMethod.POST)
+   public String ReplyCM( CommentDto dto) {
+      int s = dto.getRecm();
+      dao.ReplyCM(dto,s);
+      return "Board/BoardIn";
+   }
+   
+   @ResponseBody
    @RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
    public String UpdateCM(  CommentDto dto) {
       dao.update(dto);
