@@ -49,9 +49,11 @@
 	
 	<interceptors>	
         <interceptor>	
-            <mapping path="/*.do" /> 	
+            <mapping path="/*.do" />
             <beans:bean class="com.FinalProject.Interceptor.SessionInterceptor" />	
         </interceptor>	
 	</interceptors>
+	
+	<context:property-placeholder location="classpath:/db-config/email.properties" />
 	
 </beans:beans>
