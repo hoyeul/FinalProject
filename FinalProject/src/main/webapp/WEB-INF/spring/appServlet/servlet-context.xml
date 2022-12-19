@@ -46,12 +46,14 @@
 	<context:component-scan base-package="com.FinalProject.Model.Mypage" />
 	<context:component-scan base-package="com.FinalProject.Interceptor" />
 	<context:component-scan base-package="com.FinalProject.Model.TravelWarning" />
+	<context:component-scan base-package="com.FinalProject.Model.Embassy" />
 	
 	<interceptors>	
         <interceptor>	
-            <mapping path="/*.do" /> 	
+            <mapping path="/*.do" />
             <beans:bean class="com.FinalProject.Interceptor.SessionInterceptor" />	
         </interceptor>	
 	</interceptors>
+	
 	
 </beans:beans>

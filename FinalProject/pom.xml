@@ -113,7 +113,6 @@
 		    <version>3.0.8</version>
 		</dependency>
 		
-		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
