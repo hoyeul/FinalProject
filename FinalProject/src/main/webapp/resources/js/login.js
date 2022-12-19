@@ -5,7 +5,8 @@ $(function(){
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
 		    	id: $("input[name='id']").val(),
-				pw: $("input[name='pw']").val()
+				pw: $("input[name='pw']").val(),
+				ckbox: $("input:checkbox[name='ckbox']:checked").val()
 		    }, //보낼 데이터
 		    dataType: 'text',	//받을 데이터
 		    success: function(data) {

@@ -7,9 +7,14 @@ public class MypageDto {
 	String pw;
 	String phone;
 	String email;
-	String address;
+	String postcode;
+	String roadAddress;
+	String detailAddress;
 	
-	public MypageDto(String name, String id, String old_pw, String pw, String phone, String email, String address) {
+	public MypageDto() {}
+
+	public MypageDto(String name, String id, String old_pw, String pw, String phone, String email, String postcode,
+			String roadAddress, String detailAddress) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -17,7 +22,9 @@ public class MypageDto {
 		this.pw = pw;
 		this.phone = phone;
 		this.email = email;
-		this.address = address;
+		this.postcode = postcode;
+		this.roadAddress = roadAddress;
+		this.detailAddress = detailAddress;
 	}
 
 	public String getName() {
@@ -68,12 +75,36 @@ public class MypageDto {
 		this.email = email;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getPostcode() {
+		return postcode;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
+
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	@Override
+	public String toString() {
+		return "MypageDto [name=" + name + ", id=" + id + ", old_pw=" + old_pw + ", pw=" + pw + ", phone=" + phone
+				+ ", email=" + email + ", postcode=" + postcode + ", roadAddress=" + roadAddress + ", detailAddress="
+				+ detailAddress + "]";
+	}
+	
 	
 }
