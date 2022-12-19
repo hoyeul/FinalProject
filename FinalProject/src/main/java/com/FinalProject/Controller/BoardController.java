@@ -104,7 +104,7 @@ public class BoardController {
       return "Board/Board";
    }
    
-   @RequestMapping(value ="/boardreg", method = RequestMethod.GET)
+   @RequestMapping(value ="/boardreg.do", method = RequestMethod.GET)
    public String boardreg(Model model) {
       
       return "Board/Boardreg";
@@ -141,7 +141,7 @@ public class BoardController {
       return list;
    }
    
-   @RequestMapping(value ="/boardUp", method = RequestMethod.GET)
+   @RequestMapping(value ="/boardUp.do", method = RequestMethod.GET)
    public String Up1(BoardDto dto,Model m) {
       int s = dto.getNum();
       BoardDto a =dao.select(s);
@@ -155,7 +155,7 @@ public class BoardController {
       return "redirect:/boardIn?num="+dto.getNum()+"";
    }
    
-   @RequestMapping(value ="/boardDE", method = RequestMethod.GET)
+   @RequestMapping(value ="/boardDE.do", method = RequestMethod.GET)
    public String delete(BoardDto dto) {
       System.out.println(dto.getNum());
       int s = dto.getNum();
@@ -165,7 +165,7 @@ public class BoardController {
    }
    
    @ResponseBody
-   @RequestMapping(value ="/CommentDE", method = RequestMethod.GET)
+   @RequestMapping(value ="/CommentDE.do", method = RequestMethod.GET)
    public String deleteCM( CommentDto dto) {
       int s = dto.getNum();
       dao.deletCM(s);
