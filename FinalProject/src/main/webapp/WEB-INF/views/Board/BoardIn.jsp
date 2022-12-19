@@ -36,11 +36,11 @@
 					<div class="rec-btn-inner-area">
 						<button class="recommend-btn" id="recUp">
 							<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-up.png"/>">
-							<span class="rec-text">추천 ${b.recommend}</span>
+							<span class="rec-text">추천 ${b.upcnt}</span>
 						</button>
 						<button class="recommend-btn" id="recDown">
 							<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-down.png"/>">
-							<span class="rec-text">비추천</span>
+							<span class="rec-text">비추천 ${b.downcnt}</span>
 						</button>
 					</div>
 				</div>

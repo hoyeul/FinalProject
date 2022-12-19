@@ -5,12 +5,11 @@
 
 .boardwrap{
 	padding-top: 30px;
-	width: 1000px;
+	width: 800px;
 	margin: auto;
 }
 
 .board_head, .board_nav{
-	width: 70%;
 	margin: auto;
 }
 
@@ -34,7 +33,7 @@
 }
 
 .board_nav a{
-	margin-left:20px;
+	margin-left: 20px;
 	font-size: 14px;
 	text-align: center;
 }
@@ -50,8 +49,8 @@
 }
 
 .mainboard{
+	width: 100%;
 	text-align: center;
-	width: 70%;
 	margin: auto;
 	border-collapse: collapse
 }
@@ -74,10 +73,9 @@ td{
 }
 
 .edit-btn{
-	width: 70%;
 	margin: auto;
 	text-align: right;
-	margin-top: 10px;
+	margin: 10px 0px 20px;
 }
 
 .edit-btn button{
@@ -96,7 +94,6 @@ td{
 }
 
 .page-move-button-wrap{
-	width: 70%;
 	margin: auto;
 	display: flex;
 	padding: 20px 0px;
@@ -137,7 +134,6 @@ td{
 }
 
 .search_wrap{
-	width: 70%;
 	margin: auto;
 	text-align: center;
 	margin-top: 10px;

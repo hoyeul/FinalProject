@@ -189,10 +189,18 @@ function toHtml2(data){
 	let str="<table>";
 	for( let i=0 ; i< data.length; i++){
 		let item = data[i];
-		str+= '<tr class="comment"><td><textarea data-id='+item.text+' id="text" class="text">'+ item.text+'</textarea></td>'
-		+'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td>'
+		str+= 
+		 '<tr class="comment">'
+		+'<td><textarea data-id='+item.text+' id="text" class="text">'+ item.text+'</textarea></td>'
+		+'<td>'+item.name+'</td>'
+		+'<td>'+item.date+'</td>'
+		+'</tr>'
+		+'<tr class="comment2" colspan="3">'
+		+'<td>'
 		+'<button class="button3" type="button" value="'+item.num+'">수정완료</button>'
-		+'<button class="button4" type="button">취소</button></td></tr>'  	   
+		+'<button class="button4" type="button">취소</button>'
+		+'</td>'
+		+'</tr>'  	   
 	}
 	str+= "</table>";
 	return  str;
@@ -231,8 +239,6 @@ $(function(){
 		$("#recUp").click(function(){
 			let id = $("#user_id").val();
 			let b_num = $("#board_num").val();
-			// alert(id);
-			// alert(b_num);
 			$.ajax({
 				url: "RecommendReg",
                 type: "POST",
@@ -241,7 +247,7 @@ $(function(){
                    b_num : b_num
                 },
                 success : function () {
-                	
+                	alert("추천되었습니다.");
                 },
                 error : function () {
 			    	alert("이미 추천하셨습니다.");
@@ -250,3 +256,23 @@ $(function(){
 		})
 })
 
+$(function(){
+		$("#recDown").click(function(){
+			let id = $("#user_id").val();
+			let b_num = $("#board_num").val();
+			$.ajax({
+				url: "RecommendDown",
+                type: "POST",
+                data: {
+                   id : id ,
+                   b_num : b_num
+                },
+                success : function () {
+                	alert("비추천되었습니다.");
+                },
+                error : function () {
+			    	alert("이미 비추천하셨습니다.");
+			   	}
+			})
+		})
+})

@@ -30,7 +30,7 @@ public class loginDao {
 			if(rs.next()) {
 				if(rs.getString(1).equals(dto.getPw())) return 1;
 				else return 0;
-			}else	return -1;
+			}else return -1;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

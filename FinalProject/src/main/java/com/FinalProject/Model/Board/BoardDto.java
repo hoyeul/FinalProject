@@ -10,10 +10,27 @@ public class BoardDto {
 	String Date;
 	int number;
 	String id;
-	int recommend;
-	
+	String recommend;
+	String upcnt;
+	String downcnt;
+
 	public BoardDto() {
 		
+	}
+
+	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
+			int number, String id, String upcnt, String downcnt) {
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Text = text;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+		this.upcnt = upcnt;
+		this.downcnt = downcnt;
 	}
 
 	public BoardDto( int num,String continent, String select, String title,String Text) {
@@ -35,7 +52,7 @@ public class BoardDto {
 	}
 
 	
-	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number, String id, int recommend) {
+	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number, String id, String recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -49,7 +66,7 @@ public class BoardDto {
 	}
 	
 	public BoardDto(int num,int num2, String continent, String select, String title, String text, String date, int number,
-			String id, int recommend) {
+			String id, String recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -118,12 +135,27 @@ public class BoardDto {
 		Num2 = num2;
 	}
 
-	public int getRecommend() {
+	public String getRecommend() {
 		return recommend;
 	}
 
-	public void setRecommend(int recommend) {
+	public void setRecommend(String recommend) {
 		this.recommend = recommend;
+	}
+	public String getUpcnt() {
+		return upcnt;
+	}
+
+	public void setUpcnt(String upcnt) {
+		this.upcnt = upcnt;
+	}
+
+	public String getDowncnt() {
+		return downcnt;
+	}
+
+	public void setDowncnt(String downcnt) {
+		this.downcnt = downcnt;
 	}
 
 	@Override

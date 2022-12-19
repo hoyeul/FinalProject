@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Mypage.MypageDao;
 import com.FinalProject.Model.Mypage.MypageDto;
 import com.FinalProject.Model.Mypage.MypageService;
-import com.FinalProject.Model.Register.RegisterDao;
 import com.FinalProject.Model.Register.RegisterDto;
 
 @Controller

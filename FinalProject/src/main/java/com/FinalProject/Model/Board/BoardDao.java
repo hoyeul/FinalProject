@@ -1,3 +1,4 @@
+
 package com.FinalProject.Model.Board;
 
 import java.sql.Connection;
@@ -22,12 +23,15 @@ public class BoardDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         System.out.println("count="+count);
-        int end =count-((page-1)*10);
+        int end = count-((page-1)*10);
         int start = count-(page*10)+1;
-        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name,b_recommend from( ";
-        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name,b_recommend from board where b_continent like ";
-        sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
-        sql+=" where num BETWEEN ? and ? order by b_date desc";
+        String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi') b_date, b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
+        sql+=" from (select rownum  num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ";
+        sql+=" where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')) b ";
+        sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM ";
+        sql+=" where num BETWEEN ? and ? ";
+        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi'),b.b_count, b.b_name ";
+        sql+=" order by b_date desc ";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -46,7 +50,7 @@ public class BoardDao {
             String b_date = rs.getString(6);
             int b_count = rs.getInt(7);
             String b_name = rs.getString(8);
-            int b_recommend = rs.getInt(9);
+            String b_recommend = rs.getString(9);
             dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
@@ -86,7 +90,9 @@ public class BoardDao {
 		ResultSet rs = null;	
 		try {
 			conn = dataSource.getConnection();
-			String sql = "select b_num, num, b_continent, b_select,b_title, b_text, to_char(b_date,'yyyy-mm-dd hh24:mi:ss'), b_count, b_name, b_recommend from board where b_num = ? ";			
+			String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b.b_text, to_char(b.b_date,'yyyy-mm-dd hh24:mi:ss'), b.b_count, b.b_name, nvl(sum(rec_up),0) as upcnt, nvl(sum(rec_down),0) as downcnt ";
+				   sql+= " from board b left outer join board_recommend br on b.B_NUM = br.B_NUM where b.b_num = ? ";
+				   sql+= " group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b.b_text, to_char(b.b_date,'yyyy-mm-dd hh24:mi:ss'), b.b_count, b.b_name ";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, b);
 			rs = pst.executeQuery();			
@@ -100,8 +106,9 @@ public class BoardDao {
 				String Date = rs.getString(7);
 				int number = rs.getInt(8);
 				String ida = rs.getString(9);
-				int recommend = rs.getInt(10);
-				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida,recommend);
+				String upcnt = rs.getString(10);
+				String downcnt = rs.getString(11);
+				dto = new BoardDto( num,num2 ,Continent,Select,Title,Text,Date,number,ida,upcnt,downcnt);
 			}				
 			
 		} catch (SQLException e) {		   
@@ -291,7 +298,46 @@ public class BoardDao {
 			e.printStackTrace();
 		}finally {
 			close( rs, pst, conn);		
-		}				
+		}
+	}
+	
+	public void recdown(RecommendDto dto) {		
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		String sql = " insert into board_recommend values('0','1',?,?) ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getB_num());
+			pst.setString(2, dto.getId());
+			pst.executeUpdate();		
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);		
+		}
+	}
+	
+	public void recUpConfirm(RecommendDto dto) {		
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		String sql = " select * from board_recommend where rec_up = 1 and id = ? and b_num = ? ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, dto.getB_num());
+			pst.setString(2, dto.getId());
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+			}
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);		
+		}
 	}
 	
 	private void close(AutoCloseable... autoCloseables) {
@@ -301,5 +347,4 @@ public class BoardDao {
         	e.printStackTrace(); 
         }
 	}
-	
 }
