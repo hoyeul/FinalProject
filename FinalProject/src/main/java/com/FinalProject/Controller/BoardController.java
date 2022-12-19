@@ -193,5 +193,8 @@ public class BoardController {
       dao.insert(dto);
       return "Board/BoardIn";
    }
-   
+   @RequestMapping(value ="/Chatting", method = RequestMethod.GET)
+   public String Chatting(Model model) {
+      return "Board/chat-ws";
+   }
 }

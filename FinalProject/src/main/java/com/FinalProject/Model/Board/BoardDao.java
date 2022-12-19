@@ -56,6 +56,37 @@ public class BoardDao {
 	    }
 	return list;
 	}
+	
+	public ArrayList<BoardDto> arrayRecent() {
+		Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;     
+        String sql = "select * from(select  b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from board order by b_date desc) where rownum<=5";
+        ArrayList<BoardDto> list = new ArrayList<BoardDto>();
+    	try {
+    		conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            rs  = pstmt.executeQuery();         
+            while( rs.next()){
+            BoardDto dto = new BoardDto();
+            int b_num= rs.getInt(1);
+            int num= rs.getInt(2);
+            String b_continent=rs.getString(3);
+            String b_select=rs.getString(4);
+            String b_title=rs.getString(5);
+            String b_date=rs.getString(6);
+            int b_count=rs.getInt(7);
+            String b_name=rs.getString(8);
+            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name);
+            list.add(dto);
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+	    } finally { 
+	    	close(rs,pstmt, conn);      
+	    }
+	return list;
+	}
 
 	public int count(String continent,String type,String text,String name) {
 		Connection conn  =null;

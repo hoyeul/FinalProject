@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="java.util.ArrayList" %>
+    <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 .section_wrap{
@@ -23,11 +26,31 @@
 }
 
 .main_board{
-	width: 600px;
+	width: 700px;
 	height: 300px;
-	border: 1px solid black;
+	padding: 20px 0px;
+	text-align: center;
+}
+table{
+	text-align: center;
+	margin: 0px auto;
+	border-collapse: collapse
+}
+tr{
+	border-top: 0.5px solid grey;
+	border-bottom: 0.5px solid grey;
+}
+table tr:nth-child(1){
+	font-weight: bold;
 }
 
+td{
+	white-space: no-wrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 10px;
+	font-size: 13px;
+}
 </style>
 <script src="https://unpkg.com/chart.js@3"></script>
 <script src="https://unpkg.com/chartjs-chart-geo@3"></script>
@@ -65,16 +88,39 @@ const chart = new Chart(document.getElementById("canvas").getContext("2d"), {
 <body>
 	<section>
 		<div class="section_wrap">
-			<!-- ����api -->
+			<!-- 지도api -->
 			<div class="canvas_wrap">
 				<canvas id="canvas"></canvas>
 			</div>
 			
 			<div class="main_center">
 				
-				<!-- �Խ��ǿ��� -->
+				<!-- 게시판영역 -->
 				<div class="main_board">
-					
+					<table class="mainboard">	
+					<caption><h3>최신순</h3></caption>
+		            <tr>
+		                <td style="width:10%;"></td>
+		                <td style="width:50%;">제목</td>
+		                <td>작성자</td>
+		                <td>날짜</td>
+		                <td>조회수</td>
+		                <td>추천수</td>
+		            </tr>
+					<c:forEach var="list" items="${list}">
+			        <tr>
+			            <td>${list.num2}</td>
+			            <td style=" text-align: left;">
+				            <span class="b_con">[${list.continent}] </span>
+				            <span class="b_sel">[${list.select}] </span>
+				            <a href="boardIn?num=${list.num}&number=${list.number}">${list.title}</a>
+			            </td>
+			            <td>${list.id}</td>
+			            <td style="">${list.date}</td>
+			            <td>${list.number}</td>
+			        </tr> 
+					</c:forEach>
+					</table>
 				</div>
 				
 				<!-- Currency Converter Script - FxExchangeRate.com  -->
