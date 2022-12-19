@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="java.util.ArrayList" %>
-    <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-=======
->>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.ArrayList" %>
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,25 +137,13 @@ chart.appear(1000, 100);
 </script>
 </head>
 <body>
-	<section>
-			<div id="chartdiv"></div>
+<section>
+	<div id="chartdiv"></div>
 		<div class="section_wrap">
-<<<<<<< HEAD
-			<!-- 지도api -->
-=======
-			<!-- ����api -->
->>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
 			<div class="canvas_wrap">
 				<canvas id="canvas"></canvas>
 			</div>
-			
 			<div class="main_center">
-				
-<<<<<<< HEAD
-				<!-- 게시판영역 -->
-=======
-				<!-- �Խ��ǿ��� -->
->>>>>>> 787890e9a4a6cf350bad3b4595a942ac7b330cd0
 				<div class="main_board">
 					<table class="mainboard">	
 					<caption><h3>최신순</h3></caption>

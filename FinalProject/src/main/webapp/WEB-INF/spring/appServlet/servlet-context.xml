@@ -46,6 +46,7 @@
 	<context:component-scan base-package="com.FinalProject.Model.Mypage" />
 	<context:component-scan base-package="com.FinalProject.Interceptor" />
 	<context:component-scan base-package="com.FinalProject.Model.TravelWarning" />
+	<context:component-scan base-package="com.FinalProject.Model.Embassy" />
 	
 	<interceptors>	
         <interceptor>	
@@ -54,6 +55,5 @@
         </interceptor>	
 	</interceptors>
 	
-	<context:property-placeholder location="classpath:/db-config/email.properties" />
 	
 </beans:beans>
