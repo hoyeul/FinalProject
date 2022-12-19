@@ -25,6 +25,11 @@
 				<input type="password" name="pw">
 			</div>
 		</div>
+		
+		<div class="cookie_id">
+			<input name="ckbox" type="checkbox"> <span style="font-size: 12px;">아이디 기억하기</span>
+		</div>
+		
 		<div class="btn_wrap">
 			<input type="button" id="loginBtn" value="로그인">
 		</div>
