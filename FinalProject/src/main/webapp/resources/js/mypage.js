@@ -98,13 +98,10 @@ $(function(){
 			$("#checkpwc").css('color','green');
 		}
 	});
-});
-function checkPw(){
-	alert("checkpw");
+	//기존비밀번호 확인
+	$("#old_pw").blur(function(){
 	let old_pw2 = $('#old_pw').val();
-	alert(old_pw2);
 	let id = $('#id').val();
-	alert(id);
 	$.ajax({
 		url : "/FinalProject/mypage/pwCheck",
 		type : "post",
@@ -113,18 +110,20 @@ function checkPw(){
 		success : function(result){
 			//alert(result);
 			if(result == 0){
-				alert('기존비밀번호가 일치하지 않습니다.');
-				return result;
+    			$("#checkOldPw").html("기존비밀번호가 일치하지 않습니다.");
+				$("#checkOldPw").css('color','red');
 			}else if(result == 1){
-				alert('기존비밀번호와 일치합니다 ');
-				return result;
+				$("#checkOldPw").html("기존비밀번호와 일치합니다.");
+				$("#checkOldPw").css('color','green');
 			}else{}
 		},
 		error : function(){
 			alert('서버요청실패');
 		}
 	});	 
-}
+});
+});
+
 function validate(form) {
 	//alert("validation");
     var old_pw = document.getElementById('old_pw').value;	
@@ -144,9 +143,6 @@ function validate(form) {
     if(old_pw == "") {
         alert('기존비밀번호를를 입력하세요');
         return false;
-    }else if(true){
-    	checkPw();
-    	return false;
     }else if(pw == ""){
         alert('비밀번호를 입력하세요');
         return false;

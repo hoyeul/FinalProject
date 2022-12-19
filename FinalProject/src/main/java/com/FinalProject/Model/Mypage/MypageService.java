@@ -21,7 +21,7 @@ public class MypageService {
 			return dao.Select(sessionID);
 		}
 		public void update(MypageDto dto) {
-			
+			dao.update(dto);
 		}
 		public int checkOldPw(String id, String pw) {
 			return dao.checkOldPw(id, pw);

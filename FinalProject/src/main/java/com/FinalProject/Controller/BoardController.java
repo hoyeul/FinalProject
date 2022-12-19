@@ -193,5 +193,5 @@ public class BoardController {
       dao.insert(dto);
       return "Board/BoardIn";
    }
-   
+     
 }
