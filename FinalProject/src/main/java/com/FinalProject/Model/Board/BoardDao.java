@@ -272,7 +272,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,'acorn2',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,'Jaeho',CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.ArrayList" %>
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page import="java.util.ArrayList" %>
+    <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,6 +137,7 @@ pointSeries.data.setAll([{
 
 </head>
 <body>
+
 <section>	
 	<div id="chartdiv"></div>
 		<div class="main_center">
@@ -165,6 +166,7 @@ pointSeries.data.setAll([{
 		        </tr> 
 				</c:forEach>
 				</table>
+
 			</div>
 			<div class="exchangeRate">
 				<!-- Currency Converter Script - FxExchangeRate.com  -->
