@@ -12,7 +12,7 @@
     function connect() {
         
         wsocket = new WebSocket(
-                "ws://192.168.0.91:8090/Controller/chat-ws");
+                "ws://192.168.0.84:8090/FinalProject/chat-ws");
         
         wsocket.onopen = onOpen;
         wsocket.onmessage = onMessage;
@@ -77,7 +77,7 @@ var keycode = (event.keyCode ? event.keyCode : event.which);
 </script>
 <style>
 #chatArea {
-    width: 500px; height: 500px; overflow-y: auto; border: 1px solid black;
+    width: 400px; height: 500px; overflow-y: auto; border: 1px solid black;
 }
 </style>
 </head>

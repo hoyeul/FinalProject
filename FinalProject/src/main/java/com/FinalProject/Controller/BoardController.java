@@ -195,6 +195,10 @@ public class BoardController {
    }
    @RequestMapping(value ="/Chatting", method = RequestMethod.GET)
    public String Chatting(Model model) {
-      return "Board/chat-ws";
+      return "/chat-ws";
+   }
+   @RequestMapping(value ="/chatting_main", method = RequestMethod.GET)
+   public String Chatting_main(Model model) {
+      return "chatting/chatting";
    }
 }

@@ -35,7 +35,7 @@
 		<div class="nav_board_menu">
 			<div class="nav_board_menu_div">
 				<a class="nav_board_menu_a" href="/FinalProject/board">전체 게시판</a>
-				<a class="nav_board_menu_a">선택5</a>
+				<a class="nav_board_menu_a" href="/FinalProject/chatting_main">채팅방</a>
 			</div>
 		</div>
 		
