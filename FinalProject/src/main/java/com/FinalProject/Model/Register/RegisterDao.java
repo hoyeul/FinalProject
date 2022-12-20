@@ -47,7 +47,7 @@ public class RegisterDao {
 		ResultSet rs = null;
 		int idCheck = 0;
 	    try {
-	    	conn =datasource.getConnection();
+	    	conn = datasource.getConnection();
 	    	pst = conn.prepareStatement(sql);
 	    	pst.setString(1, id);
 			

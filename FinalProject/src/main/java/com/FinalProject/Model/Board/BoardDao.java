@@ -1,4 +1,3 @@
-
 package com.FinalProject.Model.Board;
 
 import java.sql.Connection;
@@ -283,43 +282,69 @@ public class BoardDao {
 	    }
 	}
 	
-	public void recUp(RecommendDto dto) {		
+	public int recUp(RecommendDto dto) {		
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
+		int upCount = 0;
 		String sql = " insert into board_recommend values('1','0',?,?) ";
+		String sql2 = " select sum(rec_up) from board_recommend ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getB_num());
 			pst.setString(2, dto.getId());
-			pst.executeUpdate();		
+			pst.executeUpdate();
+			pst.close(); // 등록
+			
+			pst = conn.prepareStatement(sql2);
+		    rs = pst.executeQuery();
+		    if( rs.next()) {
+		    	upCount = rs.getInt(1);
+		    }
+			
 		} catch (SQLException e) {		   
 			e.printStackTrace();
 		}finally {
 			close( rs, pst, conn);		
 		}
+		return upCount;
 	}
 	
-	public void recdown(RecommendDto dto) {		
+	public int recdown(RecommendDto dto) {		
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
+		
+		int downcnt = 0;
 		String sql = " insert into board_recommend values('0','1',?,?) ";
+		String sql2 = " select sum(rec_down) from board_recommend where id = ? and b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getB_num());
 			pst.setString(2, dto.getId());
-			pst.executeUpdate();		
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = conn.prepareStatement(sql2);
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
+		    rs = pst.executeQuery();
+		    if( rs.next()) {
+		    	downcnt = rs.getInt(1);
+		    }
+			
 		} catch (SQLException e) {		   
 			e.printStackTrace();
 		}finally {
 			close( rs, pst, conn);		
 		}
+		return downcnt;
 	}
 	
-	public void recUpConfirm(RecommendDto dto) {		
+	public boolean recUpConfirm(RecommendDto dto) {
+		boolean flag = true;
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -327,17 +352,45 @@ public class BoardDao {
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
-			pst.setInt(1, dto.getB_num());
-			pst.setString(2, dto.getId());
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
 			rs = pst.executeQuery();
 			
-			if(rs.next()) {
+			if( rs.next()) {
+				flag = false;
 			}
+			
 		} catch (SQLException e) {		   
 			e.printStackTrace();
 		}finally {
 			close( rs, pst, conn);		
 		}
+		return flag;
+	}
+	
+	public boolean recdownConfirm(RecommendDto dto) {
+		boolean flag = true;
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		String sql = " select * from board_recommend where rec_down = 1 and id = ? and b_num = ? ";
+		try {
+			conn = dataSource.getConnection();			
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
+			rs = pst.executeQuery();
+			
+			if( rs.next()) {
+				flag = false;
+			}
+			
+		} catch (SQLException e) {		   
+			e.printStackTrace();
+		}finally {
+			close( rs, pst, conn);		
+		}
+		return flag;
 	}
 	
 	private void close(AutoCloseable... autoCloseables) {

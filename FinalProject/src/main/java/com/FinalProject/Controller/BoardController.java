@@ -187,23 +187,27 @@ public class BoardController {
    }
    
    @ResponseBody
-   @RequestMapping(value = "/RecommendReg", method = RequestMethod.POST)
-   public String recUp(RecommendDto dto) {
-	   System.out.println(dto.getId() + "테스트");
-       System.out.println(dto.getB_num()  + "테스트2");
-	   dao.recUp(dto);
+   @RequestMapping(value = "/RecommendReg", method = RequestMethod.POST)	// 정상적인경우 1:추천, 비정상 0:이미추천 
+   public int recUp(RecommendDto dto) {
 	   
-	   return "Board/BoardIn";
+	   int upConut = 0;
+	   boolean flag = dao.recUpConfirm(dto);	// 0 , 1
+	   if(flag) {
+		   upConut = dao.recUp(dto);		  
+	   }  
+	   return upConut; // 0 ,   5 =>  "5"
    }
    
    @ResponseBody
    @RequestMapping(value = "/RecommendDown", method = RequestMethod.POST)
-   public String recdown(RecommendDto dto) {
-	   System.out.println(dto.getId() + "테스트3");
-       System.out.println(dto.getB_num()  + "테스트4");
-	   dao.recdown(dto);
+   public int recdown(RecommendDto dto) {
 	   
-	   return "Board/BoardIn";
+	   int downcntCheck = 0;
+	   boolean flag = dao.recdownConfirm(dto);
+	   if(flag) {
+		   downcntCheck = dao.recdown(dto);
+	   }
+	   return downcntCheck;
    }
    
 }

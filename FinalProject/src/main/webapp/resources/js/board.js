@@ -246,11 +246,18 @@ $(function(){
                    id : id ,
                    b_num : b_num
                 },
-                success : function () {
-                	alert("추천되었습니다.");
+                datatype:"text",
+                success : function (upcntResult) {
+                	if( upcntResult == 0){
+                		alert("이미 추천하셨습니다.");  
+                	} 
+                	else{
+                		alert("추천되었습니다.");
+                		$("#recUpHtml").html(upcntResult);
+                	}
                 },
                 error : function () {
-			    	alert("이미 추천하셨습니다.");
+                	alert("추천기능에러");
 			   	}
 			})
 		})
@@ -267,11 +274,18 @@ $(function(){
                    id : id ,
                    b_num : b_num
                 },
-                success : function () {
-                	alert("비추천되었습니다.");
+                datatype:"text",
+                success : function (downcntResult) {
+                	if( downcntResult == 0){
+                		alert("이미 비추천하셨습니다.");
+                	}
+                	else{
+                	 alert("비추천되었습니다.");
+                	 $("#recDownHtml").html(downcntResult);
+                	}
                 },
                 error : function () {
-			    	alert("이미 비추천하셨습니다.");
+			    	alert("추천기능에러");
 			   	}
 			})
 		})
