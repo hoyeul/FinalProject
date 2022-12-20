@@ -173,6 +173,14 @@ public class BoardController {
    }
    
    @ResponseBody
+   @RequestMapping(value ="/ReplyCm", method = RequestMethod.POST)
+   public String ReplyCM( CommentDto dto) {
+      int s = dto.getRecm();
+      dao.ReplyCM(dto,s);
+      return "Board/BoardIn";
+   }
+   
+   @ResponseBody
    @RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
    public String UpdateCM(  CommentDto dto) {
       dao.update(dto);
@@ -210,4 +218,13 @@ public class BoardController {
 	   return downcntCheck;
    }
    
+   @RequestMapping(value ="/Chatting", method = RequestMethod.GET)
+   public String Chatting(Model model) {
+      return "/chat-ws";
+   }
+   
+   @RequestMapping(value ="/chatting_main", method = RequestMethod.GET)
+   public String Chatting_main(Model model) {
+      return "chatting/chatting";
+   }
 }

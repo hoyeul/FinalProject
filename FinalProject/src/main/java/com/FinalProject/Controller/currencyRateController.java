@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class currencyRateController {
 	
 	@RequestMapping(value = "/currencyrate")
-	public String home() {
+	public String currencyRate() {
 		return "currencyRate/currencyRate";
 	}
 	
