@@ -57,7 +57,7 @@
 			</div>
 			<div class="comment-edit-nav">
 				<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
-				<a href="/FinalProject/boardreg"><button>글쓰기</button></a>		
+				<a href="/FinalProject/boardreg.do"><button>글쓰기</button></a>		
 			</div>
 		</div>
 	</section>

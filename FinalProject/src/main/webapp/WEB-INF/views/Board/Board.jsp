@@ -135,7 +135,7 @@
 <input type="hidden" name="continentH" value="${continent}">
 	</form>
 		<div class="edit-btn">
-			<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
+			<a href="/FinalProject/boardreg.do"><button>글쓰기</button></a>
 		</div>
 	</div>
 
