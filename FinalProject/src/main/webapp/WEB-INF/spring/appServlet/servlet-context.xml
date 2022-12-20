@@ -47,6 +47,7 @@
 	<context:component-scan base-package="com.FinalProject.Interceptor" />
 	<context:component-scan base-package="com.FinalProject.Model.TravelWarning" />
 	<context:component-scan base-package="com.FinalProject.Model.Embassy" />
+	<context:component-scan base-package="com.FinalProject.Model.Mail" />
 	
 	<interceptors>	
         <interceptor>	
@@ -54,6 +55,5 @@
             <beans:bean class="com.FinalProject.Interceptor.SessionInterceptor" />	
         </interceptor>	
 	</interceptors>
-	
 	
 </beans:beans>

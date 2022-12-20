@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.FinalProject.Model.Login.loginDto;
 import com.FinalProject.Model.Login.loginService;
+import com.FinalProject.Model.Mail.MailService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	loginService s;
+	
+	@Autowired
+	MailService m;
 	
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -82,5 +86,14 @@ public class LoginController {
 		String pw = s.findPW(new loginDto(dto.getId(), dto.getName(), dto.getJumin(), dto.getEmail()));
 		return pw;
 	}
+	
+	
+	
+    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+    @ResponseBody
+    public int mailCheck(String email) throws Exception {
+    	int checkNum = m.mailCheckGET(email);
+    	return checkNum;
+    }
 	
 }
