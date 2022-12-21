@@ -1,6 +1,5 @@
 $(function(){
-	//alert("되나?");
-	//맞지 않는 입력값 거부
+//입력값 유효성 확인
 	$("#name").on("keyup", function(){
 		$(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/,""));
 	});
@@ -22,14 +21,13 @@ $(function(){
 	$("input[name='phone3']").on("keyup", function() {
 		$(this).val($(this).val().replace(/[^0-9]/,""));
 	});
-	$("input[name='email']").on("keyup", function() {
+	$("input[name='email1']").on("keyup", function() {
 	      $(this).val($(this).val().replace(/[^a-z|A-Z|0-9]/,""));
 	});
-	$("input[name='domain']").on("keyup", function() {
+	$("input[name='email2']").on("keyup", function() {
 	      $(this).val($(this).val().replace(/[^a-z|.|]/,""));
 	});
-	
-	//클릭시 border-bottom 색상 변경
+//클릭시 border-bottom 색상 변경
 	$("input[name='name']").focus(function(){
 		$("input[name='name']").css("border-bottom", "1px solid #1089ff");
 	});
@@ -102,8 +100,8 @@ $(function(){
 	$("input[name='extraAddress']").blur(function(){
 		$("input[name='extraAddress']").css("border-bottom", "1px solid rgba(0, 0, 0, 0.1)");
 	});
-	//비밀번호 유효성 확인
-	$("#pw").blur(function(){
+//비밀번호 유효성 확인
+	$("#pw").blur(function(){	
 		let userPw = $('#pw').val();
 		let reg =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
 		if( !reg.test(userPw) ) {
@@ -114,7 +112,7 @@ $(function(){
 			$("#checkpw").css('color','green');
 		}
 	});
-	//비밀번호확인(pwc) 일치여부
+//비밀번호확인(pwc) 일치여부
 	$("#pwc").blur(function(){
 		let userPwc = $('#pwc').val();
 		let userPw = $('#pw').val();
@@ -126,12 +124,9 @@ $(function(){
 			$("#checkpwc").css('color','green');
 		}
 	});
-
-	//아이디 중복확인
+//아이디 중복확인
 	$('#id').blur(function(){
-		//alert("여기")
 		let userId = $('#id').val(); // input_id에 입력되는 값
-		//alert(userId);
 		$.ajax({
 			url : "/FinalProject/register/IdCheck",
 			type : "post",
@@ -153,15 +148,37 @@ $(function(){
 				alert("서버요청실패");
 			}
 		});
-		 
 	});
-	
-	//이메일 select
-	$("#emailSelect").on("change", function(){
-		$("input[name='email2']").val($("#emailSelect").val());
+//이메일 select
+	$("#emailSelect").on("change", function(){	
+		$("#email2").val($("#emailSelect").val());
+	});	
+//주민번호 병합
+	$("#jumin1, #jumin2").blur(function(){
+		let jumin1 = $('#jumin1').val();
+		let jumin2 = $('#jumin2').val();
+		jumin = jumin1 + "-" + jumin2;
+		$('#jumin').val(jumin);
+	});
+//전화번호 병합
+	$("#phone1, #phone2, #phone3").blur(function(){
+		let phone1 = $('#phone1').val();
+		let phone2 = $('#phone2').val();
+		let phone3 = $('#phone3').val();
+		phone = phone1 + "-" + phone2 + "-" + phone3;
+		$('#phone').val(phone);
+
+	});
+//이메일주소,도메인 병합
+	$("#email1, #email2, #emailSelect").blur(function(){
+		let email1 = $('#email1').val();
+		let email2 = $('#email2').val();
+		email = email1 + "@" + email2;
+		$('#email').val(email);
 	});
 });
 
+//Submit 전 유효성 확인
 function validate(form) {
     // validation code here ...
     var name = document.getElementById('name').value;
@@ -171,16 +188,15 @@ function validate(form) {
     var pw = document.getElementById('pw').value;
     var pwc = document.getElementById('pwc').value;
     var user_phone = document.getElementById('user_phone').value;
-    var email = document.getElementById('email').value;
-    var address = document.getElementById('address').value;
-    
-    if(name == "") {
+    var email1 = document.getElementById('email1').value;
+    var email2 = document.getElementById('email2').value;
+    var postcode = document.getElementById('postcode').value;
+	var roadAddress = document.getElementById('roadAddress').value;
+	var detailAddress = document.getElementById('detailAddress').value;
+if(name == "") {
         alert('이름을 입력하세요');
         return false;
-    }else if(jumin1 == ""){
-        alert('주민등록번호를 입력하세요');
-        return false;
-    }else if(jumin2 == ""){
+    }else if(jumin1 == ""||jumin2 == ""){
         alert('주민등록번호를 입력하세요');
         return false;
     }else if(id == ""){
@@ -195,19 +211,13 @@ function validate(form) {
     }else if(!(pw == pwc)){
         alert('입력한 비밀번호와 비밀번호확인이 일치하지 않습니다.');
         return false;
-    }else if(phone1 == ""){
+    }else if(phone1 == ""||phone2 == ""||phone3 == ""){
         alert('전화번호를 입력하세요');
         return false;
-    }else if(phone2 == ""){
-        alert('전화번호를 입력하세요');
-        return false;
-    }else if(phone3 == ""){
-        alert('전화번호를 입력하세요');
-        return false;
-    }else if(email == ""){
+    }else if(email1 == ""||email2 == ""){
         alert('이메일을 입력하세요');
         return false;
-    }else if(address == ""){
+    }else if(postcode == "" || roadAddress == "" || detailAddress == ""){
         alert('주소를 입력하세요');
         return false;
     }else{

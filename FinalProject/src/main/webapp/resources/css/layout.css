@@ -21,6 +21,7 @@ a{
 
 header{
 	height: 7.5vh;
+	width: 100vw;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -28,14 +29,18 @@ header{
 	box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
 	z-index: 5;
 	background-color: white;
+	display: flex;
+	justify-content: space-between;
 }
 
+.header_left{
+	display: flex;
+}
 .header_left div{
-	position: absolute;
-	top: 15px;
-	left: 20px;
+	line-height: 7.5vh;
+	margin-left: 20px;
+	
 }
-
 .navIcon{
 	cursor : pointer;
 	font-variation-settings:
@@ -46,7 +51,6 @@ header{
 }
 
 .header_lefthomeBtn{
-	margin-left: 50px;
 }
 
 .myPageIcon{
@@ -54,16 +58,14 @@ header{
 }
 
 .header_right{
-	position: absolute;
-	top: 15px;
-	right: 50px;
+	line-height: 7.5vh;
+	margin-right: 40px;
 }
 
 .header_right div{
 	float: left;
 	padding: 0 10px;
 }
-
 nav{
 	position: fixed;
 	top: 7.5vh;

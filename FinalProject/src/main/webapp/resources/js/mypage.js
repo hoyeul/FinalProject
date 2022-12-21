@@ -1,9 +1,16 @@
 $(function(){
-	//이메일 select
-	$("#emailSelect").on("change", function(){
-		$("input[name='email2']").val($("#emailSelect").val());
-	});
-	//맞지 않는 입력값 거부
+//기존 전화번호 이메일주소 병합
+	let phone1 = $('#phone1').val();
+	let phone2 = $('#phone2').val();
+	let phone3 = $('#phone3').val();
+	phone = phone1 + "-" + phone2 + "-" + phone3;
+	$('#phone').val(phone);
+	let email1 = $('#email1').val();
+	let email2 = $('#email2').val();
+	email = email1 + "@" + email2;
+	$('#email').val(email);
+
+//입력값 유효성 확인
 	$("input[name='phone1']").on("keyup", function() {
 		$(this).val($(this).val().replace(/[^0-9]/,""));
 	});
@@ -19,7 +26,7 @@ $(function(){
 	$("input[name='email2']").on("keyup", function() {
 	      $(this).val($(this).val().replace(/[^a-z|.|]/,""));
 	});
-	//클릭시 border-bottom 색상 변경
+//클릭시 border-bottom 색상 변경
 	$("input[name='old_pw']").focus(function(){
 		$("input[name='old_pw']").css("border-bottom", "1px solid #1089ff");
 	});
@@ -74,7 +81,7 @@ $(function(){
 	$("input[name='extraAddress']").blur(function(){
 		$("input[name='extraAddress']").css("border-bottom", "1px solid rgba(0, 0, 0, 0.1)");
 	});
-	//비밀번호 유효성 확인
+//비밀번호 유효성 확인
 	$("#pw").blur(function(){
 		let userPw = $('#pw').val();
 		let reg =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/;
@@ -86,7 +93,7 @@ $(function(){
 			$("#checkpw").css('color','green');
 		}
 	});
-	//비밀번호확인(pwc) 일치여부
+//비밀번호확인(pwc) 일치여부
 	$("#pwc").blur(function(){
 		let userPwc = $('#pwc').val();
 		let userPw = $('#pw').val();
@@ -98,7 +105,7 @@ $(function(){
 			$("#checkpwc").css('color','green');
 		}
 	});
-	//기존비밀번호 확인
+//기존비밀번호 확인
 	$("#old_pw").blur(function(){
 	let old_pw2 = $('#old_pw').val();
 	let id = $('#id').val();
@@ -121,6 +128,27 @@ $(function(){
 			alert('서버요청실패');
 		}
 	});	 
+//이메일 select
+	$("#emailSelect").on("change", function(){
+		$("input[name='email2']").val($("#emailSelect").val());
+	});
+
+//전화번호 병합
+	$("#phone1, #phone2, #phone3").blur(function(){
+		let phone1 = $('#phone1').val();
+		let phone2 = $('#phone2').val();
+		let phone3 = $('#phone3').val();
+		phone = phone1 + "-" + phone2 + "-" + phone3;
+		$('#phone').val(phone);
+
+	});
+//이메일주소,도메인 병합
+	$("#email1, #email2, #emailSelect").blur(function(){
+		let email1 = $('#email1').val();
+		let email2 = $('#email2').val();
+		email = email1 + "@" + email2;
+		$('#email').val(email);
+	});
 });
 });
 
@@ -132,10 +160,8 @@ function validate(form) {
     var phone1 = document.getElementById('phone1').value;
     var phone2 = document.getElementById('phone2').value;
     var phone3 = document.getElementById('phone3').value;
-	var phoneCheck = phone1 + phone2 + phone3;
 	var email1 = document.getElementById('email1').value;
     var email2 = document.getElementById('email2').value;
-    var emailCheck = email1 + email2;
 	var postcode = document.getElementById('postcode').value;
 	var roadAddress = document.getElementById('roadAddress').value;
 	var detailAddress = document.getElementById('detailAddress').value;
@@ -152,10 +178,10 @@ function validate(form) {
     }else if(pwc != pw){
         alert('비밀번호확인이 일치하지 않습니다 ');
         return false;
-    }else if(phoneCheck == ""){
+    }else if(phone1 == ""||phone2 == ""||phone3 == ""){
         alert('전화번호를 입력하세요');
         return false;
-    }else if(emailCheck == ""){
+    }else if(email1 == ""||email2 == ""){
         alert('이메일을 입력하세요');
         return false;
     }else if(postcode == "" || roadAddress == "" || detailAddress == ""){
