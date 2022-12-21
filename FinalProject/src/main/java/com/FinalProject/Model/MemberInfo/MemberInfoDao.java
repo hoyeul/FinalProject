@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -15,14 +17,16 @@ public class MemberInfoDao {
 	@Autowired
 	DataSource ds;	
 	
+	Connection  con= null;
+	PreparedStatement pst= null;
+	ResultSet rs = null;
+	
 	//회원가입 정보 입력
 	public void insert(MemberInfoDto dto ) {		
 		String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?,?,?)";
-		Connection  conn= null;
-		PreparedStatement pst= null;		
 		try {
-			  conn =ds.getConnection();
-			  pst = conn.prepareStatement(sql );
+			  con =ds.getConnection();
+			  pst = con.prepareStatement(sql );
 			  pst.setString(1, dto.getName());
 			  pst.setString(2, dto.getJumin());
 			  pst.setString(3, dto.getId());
@@ -36,19 +40,16 @@ public class MemberInfoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close( pst, conn);			
+			close( pst, con);			
 		} 		
 	}
 	// 아이디 중복확인
 	public int checkId(String id) {  
 		String sql = "select * from login_info_221208 where id = ?"; // 입력값이 테이블에 있는지 확인
-		Connection  conn= null;
-		PreparedStatement pst= null;
-		ResultSet rs = null;
 		int idCheck = 0;
 	    try {
-	    	conn =ds.getConnection();
-	    	pst = conn.prepareStatement(sql);
+	    	con =ds.getConnection();
+	    	pst = con.prepareStatement(sql);
 	    	pst.setString(1, id);
 			rs = pst.executeQuery();				
 			if(rs.next() || id.equals("")) {
@@ -59,16 +60,13 @@ public class MemberInfoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(conn, pst, rs);
+			close(con, pst, rs);
 		}
 		return idCheck;
 	}
 	//로그인 회원 정보 조회
 	public MemberInfoDto select(String sessionID) {
 		MemberInfoDto dto = new MemberInfoDto();
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
 		String sql = "select * from login_info_221208 where id = ?";
 		try {
 			con = ds.getConnection();
@@ -95,9 +93,6 @@ public class MemberInfoDao {
 	}
 	//수정된 회원정보 DB 입력
 	public void update(MemberInfoDto dto) {
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
 		String sql = "UPDATE login_info_221208 SET pw=?, phone=?, email=?, postcode=?, roadaddress=?, detailaddress=? WHERE id = ?";
 		try {
 			con = ds.getConnection();
@@ -120,9 +115,6 @@ public class MemberInfoDao {
 	}
 	//회원정보 삭제 및 탈퇴
 	public void delete(String sessionID) {
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
 		String sql = "DELETE FROM login_info_221208 WHERE id = ?";
 		try {
 			con = ds.getConnection();
@@ -139,13 +131,11 @@ public class MemberInfoDao {
 	// 기존비밀번호 일치 확인
 	public int checkOldPw(String id, String old_pw) {  
 		String sql = "select pw from login_info_221208 where id = ?"; // 입력값이 테이블에 있는지 확인
-		Connection  conn= null;
-		PreparedStatement pst= null;
-		ResultSet rs = null;
+		
 		int pwCheck = 0;
 	    try {
-	    	conn =ds.getConnection();
-	    	pst = conn.prepareStatement(sql);
+	    	con =ds.getConnection();
+	    	pst = con.prepareStatement(sql);
 	    	pst.setString(1, id);
 			rs = pst.executeQuery();
 			String pw = null;
@@ -161,9 +151,30 @@ public class MemberInfoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(conn, pst, rs);
+			close(con, pst, rs);
 		}
 		return pwCheck;
+	}
+	
+	public List<MemberInfoDto> searchMember(String id){
+		String sql = " select id, grade from login_info_221208 where id like '%" + id + "%' ";
+		List<MemberInfoDto> list = new ArrayList<MemberInfoDto>();
+		try {
+			con = ds.getConnection();
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				MemberInfoDto dto = new MemberInfoDto(rs.getString(1), rs.getString(2));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pst, con);
+		}
+		return list;
 	}
 	
 	private void close(AutoCloseable ...autoCloseables) {
