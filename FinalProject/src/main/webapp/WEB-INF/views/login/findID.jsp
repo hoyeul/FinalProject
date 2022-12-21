@@ -32,10 +32,15 @@
 			<div class="emailAt">@</div>
 			<input type="text" name="email2">
 		</div>
+		<div class="checkNum">
+			<span>인증번호</span><br/>
+			<input type="text" class="mail-check-input" disabled="disabled">
+			<button type="button" id="mail-Check-Btn">인증번호발송</button>
+			<input type="hidden" id="hiddenInput" value="">
+		</div>
 	</div>
 	<div class="btn_wrap">
 		<button type="button" id="find">아이디 찾기</button>
-		<div><a href="/FinalProject/home">홈으로</a></div>
 	</div>
 	</div>
 </section>

@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/board.js"></script>
+<script src="${path}/resources/js/board.js">
+</script>
 <link rel="stylesheet" href="${path}/resources/css/board.css">
 
 <body>
@@ -39,6 +40,7 @@
 			</div>
 		</div>
 		<table class="mainboard">
+
             <tr>
                 <td style="width:10%;"></td>
                 <td style="width:60%;">제목</td>

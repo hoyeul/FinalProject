@@ -16,10 +16,12 @@ public class loginDao {
 	@Autowired
 	DataSource ds;
 	
+	Connection con = null;
+	PreparedStatement pst = null;
+	ResultSet rs = null;
+	
 	public int loginConfirm(loginDto dto) {
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
+		
 		String sql = " select pw from login_info_221208 where id = ? ";
 		try {
 			con = ds.getConnection();
@@ -42,9 +44,6 @@ public class loginDao {
 	
 	public String findID(loginDto dto) {
 		
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
 		String sql = " select id from login_info_221208 where name = ? and jumin = ? and email = ? ";
 		String id = "";
 		
@@ -70,9 +69,6 @@ public class loginDao {
 	
 	public String findPW(loginDto dto) {
 		
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
 		String sql = " select pw from login_info_221208 where id = ? and name = ? and jumin = ? and email = ? ";
 		String id = "";
 		

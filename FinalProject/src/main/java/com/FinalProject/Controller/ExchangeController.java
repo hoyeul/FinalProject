@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class currencyRateController {
+public class ExchangeController {
 	
-	@RequestMapping(value = "/currencyrate")
-	public String home() {
-		return "currencyRate/currencyRate";
+	@RequestMapping(value = "/exchange")
+	public String exchange() {
+		return "exchange";
 	}
-	
 }

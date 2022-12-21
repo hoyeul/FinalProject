@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/boardup.css">
-<script src="${path}/resources/js/board.js"></script>
+<script src="${path}/resources/js/boardup.js"></script>
 </head>
 <body>
 	<section>

@@ -24,7 +24,7 @@ public class MypageController {
 	MypageService service;
 	
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
-	public String select(HttpSession session, Model model) {
+	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
 		RegisterDto registerDto = service.select(sessionID);
 		//System.out.println(registerDto);
@@ -33,8 +33,8 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
-	public String registerPost(HttpServletRequest request) {
-		//System.out.println("mypagePost");
+	public String mypagePost(HttpServletRequest request) {
+//		System.out.println("mypagePost");
 		String id = request.getParameter("id");			
 		String name = request.getParameter("name");			
 		String old_pw = request.getParameter("old_pw");			
@@ -46,10 +46,12 @@ public class MypageController {
 			String email1 = request.getParameter("email1");		
 			String email2 = request.getParameter("email2");	
 		String email = email1 + '@' + email2;
-		String address = request.getParameter("address");	
-		
-		MypageDto dto = new MypageDto(name, id, old_pw, pw, phone, email, address);
-		//System.out.println(dto);
+		String postcode = request.getParameter("postcode");	
+		String roadAddress = request.getParameter("roadAddress");	
+		String detailAddress = request.getParameter("detailAddress");	
+
+		MypageDto dto = new MypageDto(name, id, old_pw, pw, phone, email, postcode, roadAddress, detailAddress);
+//		System.out.println(dto);
 		
 		service.update(dto);
 		
@@ -62,19 +64,20 @@ public class MypageController {
 		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
 		response.setCharacterEncoding("EUC-KR");
 		
-		System.out.println(id);
-		System.out.println(old_pw);
+//		System.out.println(id);
+//		System.out.println(old_pw);
 		int pwCheck = service.checkOldPw(id,old_pw);
 		
-		System.out.println(pwCheck);
-		// 성공여부 확인 : 개발자용
-		if (pwCheck == 1) {
-			System.out.println("기존비밀번호가 일치합니다");
-		} else if (pwCheck == 0) {
-			System.out.println("기존비밀번호가 일치하지 않습니다");
-		}
-		
+//		System.out.println(pwCheck);
 		return String.valueOf(pwCheck);
-		
 	}
+	
+	@RequestMapping(value="/mypage/withdraw", method = RequestMethod.POST)
+	public String withdraw(HttpSession session) {
+		String sessionID = (String) session.getAttribute("sessionID");
+//		System.out.println(sessionID);
+		service.withdraw(sessionID);
+		return "redirect:/login";
+	}
+	
 }

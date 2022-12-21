@@ -52,6 +52,12 @@ body{
 	width: 78%;
 }
 
+.checkNum{
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 78%;
+}
+
 .infoWrap span{
 	font-size: 12px;
 }
@@ -95,8 +101,22 @@ body{
 	text-align: center;
 }
 
+.checkNum input{
+	width: 60%;
+	height: 30px;
+	border: 0px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: transparent;
+	outline: none;
+}
+
+#mail-Check-Btn{
+	margin-left: 10px;
+	padding: 3px;
+}
+
 .btn_wrap{
-	margin-top: 50px;
+	margin-top: 120px;
 	text-align: center;
 	font-size: 12px;
 	line-height: 100px;
@@ -110,11 +130,6 @@ body{
 	border: 1px solid #1089ff;
 	border-radius: 20px;
 	font-size: 13px;
-}
-
-.btn_wrap a{
-	text-decoration: none;
-	color: #1089ff;
 }
 
 

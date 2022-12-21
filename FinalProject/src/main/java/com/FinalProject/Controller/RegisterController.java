@@ -47,7 +47,7 @@ public class RegisterController {
 		String address = roadAddress + ',' + detailAddress;	
 
 		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address,postcode);
-		System.out.println(dto);
+//		System.out.println(dto);
 		
 		service.insert(dto);
 	
@@ -66,14 +66,9 @@ public class RegisterController {
 										
 		int idCheck = service.checkId(userId);
 		
-		// 성공여부 확인 : 개발자용
-		if (idCheck == 0) {
-			System.out.println("이미 존재하는 아이디입니다.");
-		} else if (idCheck == 1) {
-			System.out.println("사용 가능한 아이디입니다.");
-		}
-		
 		return String.valueOf(idCheck);
 		
 	}
+	
+	
 }

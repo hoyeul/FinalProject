@@ -12,16 +12,17 @@ $(function(){
    });
    
 	$("#find").on("click",function(){
+		let jumin = $("input[name='jumin1']").val() + "-" + $("input[name='jumin2']").val();
+		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val();
+		
 		$.ajax({
 		    url:'/FinalProject/findPW', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
 		    	id: $("input[name='id']").val(),
 		    	name: $("input[name='name']").val(),
-				jumin1: $("input[name='jumin1']").val(),
-				jumin2: $("input[name='jumin2']").val(),
-				email1: $("input[name='email1']").val(),
-				email2: $("input[name='email2']").val()
+				jumin: jumin,
+				email: email,
 		    }, //보낼 데이터
 		    dataType: 'text',	//받을 데이터
 		    success: function(data) {

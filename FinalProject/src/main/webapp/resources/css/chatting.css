@@ -1,0 +1,38 @@
+.ch{
+height: 92.5vh;
+}
+section{
+background-color:white; 
+}
+table {
+	width: 900px;
+	height: 700px;
+	margin: 0px auto;
+	padding-top: 50px;
+	border: none;
+}
+td{
+	border: none;
+}
+img{
+width:280px;
+height: 280px;
+}
+.eu_color{
+display: none;
+}
+.asia_color{
+display: none;
+}
+.northAmerica_color{
+display: none;
+}
+.africa_color{
+display: none;
+}
+.oceania_color{
+display: none;
+}
+.southAmerica_color{
+display: none;
+}
