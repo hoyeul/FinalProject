@@ -12,8 +12,6 @@ public CommentDto() {
 	
 }
 
-
-
 public CommentDto(int num, int cnum, int recm, String text, String name, String date) {
 	super();
 	this.num = num;
@@ -23,7 +21,6 @@ public CommentDto(int num, int cnum, int recm, String text, String name, String 
 	this.name = name;
 	this.date = date;
 }
-
 
 
 public CommentDto(int num,int cnum, String text, String name, String date) {

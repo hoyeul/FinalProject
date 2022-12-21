@@ -3,7 +3,6 @@ package com.FinalProject.Controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -114,11 +113,11 @@ public class BoardController {
    }
    
    @RequestMapping(value ="boardreg", method = RequestMethod.POST)
-   public String Board_insert(HttpServletRequest request, BoardDto dto) {
-	  HttpSession session = request.getSession();
-	  String sessionID = (String)session.getAttribute("sessionID");
+   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID) {
+	  // HttpSession session = request.getSession();
+	  // String sessionID = (String)session.getAttribute("sessionID");
 	  // System.out.println(sessionID);
-      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), sessionID);
+      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), regSessionID);
       
       return "redirect:/board";
    }

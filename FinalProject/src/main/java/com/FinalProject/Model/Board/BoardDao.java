@@ -98,12 +98,12 @@ public class BoardDao {
 		ResultSet rs = null;	
 		int num = 0;
 		try {
-			conn  =dataSource.getConnection();
-			String sql  = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
-			pst= conn.prepareStatement(sql);
-			 rs  =pst.executeQuery();			
+			conn = dataSource.getConnection();
+			String sql = "select count(b_num) from board where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')";			
+			pst = conn.prepareStatement(sql);
+			 rs = pst.executeQuery();			
 			if( rs.next()) {
-				 num  =rs.getInt(1);				
+				num = rs.getInt(1);				
 			}				
 		} catch (SQLException e) {		   
 			e.printStackTrace();
@@ -280,12 +280,14 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,'Jaeho',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,?,CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setString(2, dto.getText());
+			pst.setString(3, dto.getName());
+			// System.out.println("null????" + dto.getName());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();
@@ -298,13 +300,14 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,'ㅤㅤ↳acorn2',CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,?,CURRENT_timestamp) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setInt(2, s);
-			pst.setString(3, "ㅤㅤ"+dto.getText());
+			pst.setString(3, "  ┖"+dto.getText());
+			pst.setString(4, "  ┖"+dto.getName());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();

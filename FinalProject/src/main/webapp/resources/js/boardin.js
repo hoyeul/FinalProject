@@ -12,26 +12,31 @@ $(document).ready(function() {
 		let p = this.parentElement.previousSibling;
 		let Recm =  p.querySelector(".reply").value;
 		let q = this.parentElement;
-		let text=q.querySelector(".text").value;
+		let text = q.querySelector(".text").value;
+		let commentRegLoginId = document.querySelector('#user_id').value;
 		$.ajax( {
-			  type:"POST" ,
-			  url :"ReplyCm",
-			 data : {Recm:Recm,Cnum:Cnum,text:text},  
-			 success: function(data){ 
-	        	  showList1();
-	        	  alert("입력완료");
-	        	  console.log( data); 
-	        	  },
-	          error: function(){
-	        	  alert("error");
-	        	  console.log( data);
-	        	  
-	          }	
+			type:"POST" ,
+			url :"ReplyCm",
+			data :{
+			Recm:Recm,
+			Cnum:Cnum,
+			text:text,
+			name:commentRegLoginId
+			},  
+			success: function(data){
+				showList1();
+	        	alert("입력완료");
+	        	console.log( data); 
+	        },
+	        error: function(){
+	        	alert("error");
+	        	console.log( data);
+	        }	
 		});  
 	});
    
    $("#board-in-comment-box").on("click",".comment-box-delete",function(){
-      let num =$(this).attr('value');
+      let num = $(this).attr('value');
       $.ajax( {
           type:"GET" ,
           url :"CommentDE",
@@ -57,21 +62,30 @@ $(document).ready(function() {
    
    $(".comment-edit-btn").click(function(){
       let text = document.querySelector('.comment-textarea').value;
-      let Cnum =$(this).attr('value');
+      let Cnum = $(this).attr('value');
+      let commentRegLoginId = document.querySelector('#user_id').value;
       $.ajax( {
           type:"POST" ,
           url :"CommentReg",
-          data : {Cnum:Cnum,text:text},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+          data : {
+          	Cnum:Cnum, 
+          	text:text, 
+          	name:commentRegLoginId
+          	},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
           success: function(data){ 
                 document.querySelector('.comment-textarea').value='';
-                showList1();
-                alert("입력완료");
+                if( text == ""){
+	                alert("댓글을 입력해주세요.");
+                }else{
+                	showList1();
+	                alert("입력완료");
+                }
                 console.log(data); 
                 },
-             error: function(){
-                alert("comment-edit-btn error");
-                console.log(data);
-             }   
+         error: function(){
+            alert("comment-edit-btn error");
+            console.log(data);
+         }
       });  
    });
    
@@ -129,7 +143,8 @@ function toHtml1(data){
       +'<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
       +'<button class="comment-box-update" type="button">수정</button>'
       +'</div>'
-      +'<div class ="replySpace"><textarea id="text" class="text"></textarea>'
+      +'<div class ="replySpace">'
+      +'<textarea id="text" class="text"></textarea>'
       +'<button class="replyreg" type="button" value="'+item.cnum+'">등록</button>'
       +'<button class="button4" type="button">취소</button>'
       +'</div>'
@@ -233,8 +248,22 @@ function boardregbtn() {
 	// alert(loginId);
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
+		window.location.href='/FinalProject/login';
 	}
 	else{
 		window.location.href='/FinalProject/boardreg';
+	}
+}
+
+function commentregbtn() {
+	
+	let loginId = document.querySelector('#user_id').value;
+	// alert(loginId);
+	if(loginId == "" ){
+		alert("로그인 후 댓글작성이 가능합니다.");
+		window.location.href='/FinalProject/login';
+	}
+	else{
+		
 	}
 }

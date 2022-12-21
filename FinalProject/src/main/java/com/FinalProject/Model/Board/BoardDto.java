@@ -17,6 +17,7 @@ public class BoardDto {
 	public BoardDto() {
 		
 	}
+	
 	public BoardDto(int num, int num2, String continent, String select, String title, String date, int number,
 			String id) {
 		this.Num = num;
@@ -28,6 +29,7 @@ public class BoardDto {
 		this.number = number;
 		this.id = id;
 	}
+	
 	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
 			int number, String id, String upcnt, String downcnt) {
 		this.Num = num;

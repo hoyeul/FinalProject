@@ -57,7 +57,7 @@
 				<div id="board-in-comment-box"></div>
 				<div class="comment-edit-area">
 					<textarea class="comment-textarea"></textarea>
-					<button class="comment-edit-btn" type="button" value="${b.num}" onclick="">등록</button>
+					<button class="comment-edit-btn" type="button" value="${b.num}" onclick="commentregbtn()">등록</button>
 				</div>
 				<div class="comment-edit-nav">
 					<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>

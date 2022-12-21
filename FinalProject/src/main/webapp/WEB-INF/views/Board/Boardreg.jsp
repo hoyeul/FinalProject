@@ -47,6 +47,7 @@
 					<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
 					<button type="button" onclick="boardreg()">등록</button>
 				</div>
+				<input type="hidden" name="regSessionID" value="${sessionID}">
 			</div>
 		</form>
 	</div>
