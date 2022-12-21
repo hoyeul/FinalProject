@@ -46,7 +46,7 @@ public class RegisterController {
 			String detailAddress = request.getParameter("detailAddress");	
 		String address = roadAddress + ',' + detailAddress;	
 
-		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address,postcode);
+		RegisterDto dto = new RegisterDto(name,jumin,id,pw,phone,email,address,postcode, null);
 //		System.out.println(dto);
 		
 		service.insert(dto);

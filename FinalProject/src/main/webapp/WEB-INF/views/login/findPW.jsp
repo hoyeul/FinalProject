@@ -36,10 +36,18 @@
 			<div class="emailAt">@</div>
 			<input type="text" name="email2">
 		</div>
+		<div class="checkNum">
+			<span>인증번호</span><br/>
+			<div class="certificationNum">
+				<input type="text" name="mail-check-input" class="mail-check-input" disabled="disabled">
+				<div id="demo"></div>
+			</div>
+			<button type="button" id="mail-Check-Btn">인증번호발송</button>
+			<input type="hidden" id="hiddenInput" value="">
+		</div>
 	</div>
 	<div class="btn_wrap">
 		<button type="button" id="find">비밀번호 찾기</button>
-		<div><a href="/FinalProject/home">홈으로</a></div>
 	</div>
 	</div>
 </section>

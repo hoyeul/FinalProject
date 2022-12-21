@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.FinalProject.Model.TravelWarning.BlackDto " %>
-<% List<BlackDto> black = (List<BlackDto>)request.getAttribute("black"); %>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
@@ -87,37 +84,41 @@
 		<tr>
 			<td>중동/아프리카</td>
 			<td>
-			<% for(int i = 0; i < black.size(); i++){
-				if(black.get(i).getContinent().equals("중동/아프리카")){
-			%>	
-			<%=black.get(i).getCountryName() %> <br/>
-			<% }} %>
+				<c:forEach var="item" items="${black }">
+					<c:if test="${item.continent eq '중동/아프리카' }">
+						<c:out value="${item.countryName }" /><br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>미주</td>
 			<td>
-			<% for(int i = 0; i < black.size(); i++){
-				if(black.get(i).getContinent().equals("미주")){ %>
-			<%=black.get(i).getCountryName() %><% }} %> ※ 해당없음<br/>
+				<c:forEach var="item" items="${black }">
+					<c:if test="${item.continent eq '미주' }">
+						<c:out value="${item.countryName }" /><br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>유럽</td>
 			<td>
-			<% for(int i = 0; i < black.size(); i++){
-				if(black.get(i).getContinent().equals("유럽")){ %>	
-			<%=black.get(i).getCountryName() %><br/>
-			<% }} %>
+				<c:forEach var="item" items="${black }">
+					<c:if test="${item.continent eq '유럽' }">
+						<c:out value="${item.countryName }" /><br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>아시아/태평양</td>
 			<td>
-			<% for(int i = 0; i < black.size(); i++){
-				if(black.get(i).getContinent().equals("아시아/태평양")){ %>
-			<%=black.get(i).getCountryName() %><br/>
-			<% }} %>
+				<c:forEach var="item" items="${black }">
+					<c:if test="${item.continent eq '아시아/태평양' }">
+						<c:out value="${item.countryName }" /><br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 </table>

@@ -1,5 +1,4 @@
 $(function(){	
-	
 	$("input[name='name']").on("keyup", function() {
       $(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/g,""));
    });
@@ -13,27 +12,51 @@ $(function(){
    });
 	
 	$('#mail-Check-Btn').on("click", function() {
-		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val()
-		let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
-		$.ajax({
-			type : 'get',
-			url : '/FinalProject/mailCheck', 
-			data: {email:email},
-			success : function (data) {
-				alert("인증번호가 발송되었습니다");
-				checkInput.attr('disabled',false);
-				$('#hiddenInput').prop('value', data);
-			},
-			error: function(){
-				alert("error");
-			}
-		}); 
+		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val();
+		if($("input[name='name']").val() != "" && $("input[name='jumin1']").val() != "" && $("input[name='jumin2']").val() != "" && $("input[name='email1']").val() != "" && $("input[name='email2']").val() != ""){
+			var time = 180;
+			var min = "";
+			var sec = "";
+			
+			var x = setInterval(function(){
+				min = parseInt(time/60);
+				sec = time%60;
+				
+				if(min < 1)		min = "0";
+				if(sec < 10)	sec = "0" + time%60;
+				
+				document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
+				time--;
+				
+				if(time < 0){
+					clearInterval(x);
+					document.getElementById("demo").innerHTML = "";
+				}
+			}, 1000);
+			
+			
+			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
+			$.ajax({
+				type : 'get',
+				url : '/FinalProject/mailCheck', 
+				data: {email:email},
+				success : function (data) {
+					alert("인증번호가 발송되었습니다");
+					checkInput.attr('disabled',false);
+					$('#hiddenInput').prop('value', data);
+					setTimeout(() => $('#hiddenInput').prop('value', ""), 180000);
+				},
+				error: function(){
+					alert("error");
+				}
+			}); 
+		}else	{alert("정보를 입력해주세요");}
 	}); 
 	
 	
 	$("#find").on("click",function(){
-		let jumin = $("input[name='jumin1']").val() + "-" + $("input[name='jumin2']").val()
-		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val()
+		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val();
+		let jumin = $("input[name='jumin1']").val() + "-" + $("input[name='jumin2']").val();
 		
 		$.ajax({
 		    url:'/FinalProject/findID', //request 보낼 서버의 경로
@@ -60,7 +83,9 @@ $(function(){
 		       }else if($("input[name='email2']").val() == ""){
 		       		alert("이메일을 입력해주세요");
 		       		$("input[name='email2']").focus();
-		       }else if($('#hiddenInput').prop('value') != $('.mail-check-input').val()){
+		       }else if($("input[name='mail-check-input']").val() == ""){
+		       		alert("인증번호를 입력해주세요");
+		       }else if($('#hiddenInput').prop('value') != $('.mail-check-input').val() || $('.mail-check-input').val() == ""){
 		       		alert("인증번호가 맞지 않습니다");
 		       }else{
 			       if(data == ""){
@@ -76,6 +101,4 @@ $(function(){
 		    }
 		});
 	});
-	
-	
 });

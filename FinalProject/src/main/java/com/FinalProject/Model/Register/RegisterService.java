@@ -1,5 +1,7 @@
 package com.FinalProject.Model.Register;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,5 +25,8 @@ public class RegisterService {
 		
 	}
 	
+	public List<RegisterDto> searchMember(String id){
+		return dao.searchMember(id);
+	}
 	
 }

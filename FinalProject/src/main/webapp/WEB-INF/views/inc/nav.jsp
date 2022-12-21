@@ -59,7 +59,16 @@
 				</c:choose>
 			</div>
 		</div>
+		
+		<div class="nav_manager">
+			<a href="/FinalProject/manager" class="nav_manager_a">
+				<i class="material-symbols-outlined">manage_accounts</i>
+				<span>관리자페이지</span>
+			</a>
+		</div>
 	</div>
+	
+	
 	
 	<div class="nav_footer">
 		<div class="footer_userInfo">
