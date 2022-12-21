@@ -23,9 +23,11 @@
 		<div class="info">
 			<span class="key">주민번호</span><br>
 			<div class="jumin_wrap">
-				<input name="jumin1" class="jumin" id="jumin1" maxlength="6"> 
+				<input class="jumin" id="jumin1" maxlength="6"> 
 				<div class="jumin_dash">-</div>
-				<input name="jumin2" class="jumin" id="jumin2" maxlength="7" type="password">
+				<input class="jumin" id="jumin2" maxlength="7" type="password">
+				<input name="jumin" id="jumin" type="hidden">
+				
 			</div>
 		</div>
 		<div class="info">
@@ -51,15 +53,18 @@
 				<input name="phone2" class= phone id="phone2" maxlength="4">
 				<div class="phone_dash">-</div>
 				<input name="phone3" class= phone id="phone3" maxlength="4">
+				<input name="phone" id="phone" type="hidden">
 			</div>
 		</div>			
 		<div class="info">
 			<span class="key">이메일</span><br>
 			<div class="email_wrap">
-				<input name="email1"  class="email1" id="email">
+				<input class="email1" id="email1">
 				<div class="email_at">@</div>
-				<input name="email2" class="email2" id="domain">
+				<input class="email2" id="email2">
 				<div class="email_space"> </div>
+				<input name="email" id="email" type="hidden">
+				
 			<select id="emailSelect" class="email_select"> 
 					<option value="">선택</option>
 					<option value="naver.com">naver.com</option>

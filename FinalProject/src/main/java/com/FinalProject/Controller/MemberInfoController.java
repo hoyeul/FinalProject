@@ -13,73 +13,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Mypage.MypageDao;
-import com.FinalProject.Model.Mypage.MypageDto;
-import com.FinalProject.Model.Mypage.MypageService;
-import com.FinalProject.Model.Register.RegisterDao;
-import com.FinalProject.Model.Register.RegisterDto;
+import com.FinalProject.Model.MemberInfo.MemberInfoDto;
+import com.FinalProject.Model.MemberInfo.MemberInfoService;
 
 @Controller
-public class MypageController {
+public class MemberInfoController {
 	
 	@Autowired
-	MypageService service;
+	MemberInfoService service;
 	
+	//Register 화면으로 이동
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String registerGet() {
+		return "register/register";
+	}
+	//회원가입정보 DB 입력
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerPost(MemberInfoDto dto) {
+		service.insert(dto);
+		return "redirect:/login";
+	}
+	//Id 중복확인
+	@ResponseBody
+	@RequestMapping( value="/register/IdCheck" , method= RequestMethod.POST)
+	public String IdCheckService(String userId, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("EUC-KR");						
+		int idCheck = service.checkId(userId);
+		return String.valueOf(idCheck);
+	}
+	//mypage로 화면이동
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
 	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
-		RegisterDto registerDto = service.select(sessionID);
-		//System.out.println(registerDto);
+		MemberInfoDto registerDto = service.select(sessionID);
 		model.addAttribute("registerDto",registerDto);
 		return "mypage/mypage";
 	}
-	
+	//수정된 회원정보 DB 입력
 	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
-	public String mypagePost(HttpServletRequest request) {
-//		System.out.println("mypagePost");
-		String id = request.getParameter("id");			
-		String name = request.getParameter("name");			
-		String old_pw = request.getParameter("old_pw");			
-		String pw = request.getParameter("pw");			
-			String phone1 = request.getParameter("phone1");	
-			String phone2 = request.getParameter("phone2");			
-			String phone3 = request.getParameter("phone3");			
-		String phone = phone1 + '-' + phone2 + '-' + phone3;			
-			String email1 = request.getParameter("email1");		
-			String email2 = request.getParameter("email2");	
-		String email = email1 + '@' + email2;
-		String postcode = request.getParameter("postcode");	
-		String roadAddress = request.getParameter("roadAddress");	
-		String detailAddress = request.getParameter("detailAddress");	
-
-		MypageDto dto = new MypageDto(name, id, old_pw, pw, phone, email, postcode, roadAddress, detailAddress);
-//		System.out.println(dto);
-		
+	public String mypagePost(MemberInfoDto dto) {	
 		service.update(dto);
-		
 		return "redirect:/login";
 	}	
+	//기존비밀번호 일치여부 확인
 	@ResponseBody
 	@RequestMapping( value="/mypage/pwCheck" , method= RequestMethod.POST)
 	public String pwCheckService(String id, String old_pw, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
-		// ajax로 값을 받기 때문에 UTF-8로 인코딩해준다
 		response.setCharacterEncoding("EUC-KR");
-		
-//		System.out.println(id);
-//		System.out.println(old_pw);
 		int pwCheck = service.checkOldPw(id,old_pw);
-		
-//		System.out.println(pwCheck);
 		return String.valueOf(pwCheck);
 	}
-	
+	//회원탈퇴
 	@RequestMapping(value="/mypage/withdraw", method = RequestMethod.POST)
 	public String withdraw(HttpSession session) {
 		String sessionID = (String) session.getAttribute("sessionID");
-//		System.out.println(sessionID);
 		service.withdraw(sessionID);
 		return "redirect:/login";
 	}
-	
 }
