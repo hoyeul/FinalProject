@@ -14,7 +14,6 @@
 
 <body>
 <section>
-
 <div class="boardwrap">
 	<form name="frm" action="/FinalProject/board" method="get">
 		<div class="board_head">
@@ -23,7 +22,7 @@
 		<div class="board_nav">
 			<div class="board_all"><a href="" class="first_a">인기</a></div>
 			<div class="tb_nav">
-	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/FinalProject/board?continent='"checked>
+	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/FinalProject/board'"checked>
 	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아'" checked>
 	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카'" checked>
 	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽'" checked>
@@ -132,13 +131,12 @@
 <input type="hidden" name="selecttypeH" value="${type}">
 <input type="hidden" name="selectcontentH" value="${content}">
 <input type="hidden" name="continentH" value="${continent}">
+<input type="hidden" name="sessionId" value="${sessionID }" id="user_id">
 	</form>
 	<div class="edit-btn">
-		<a href="/FinalProject/boardreg"><button>글쓰기</button></a>
+		<button type="button" onclick="boardregbtn()">글쓰기</button>
 	</div>
 </div>
-
-	
 </section>
 </body>
 </html>

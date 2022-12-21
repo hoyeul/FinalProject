@@ -173,6 +173,7 @@ td{
 	margin-left: -1px;
 	background-color: white;
 	border: 1px solid silver;
+	cursor: pointer;
 }
 
 .search-img{

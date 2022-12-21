@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${path}/resources/css/boardin.css">
 </head>
 <body>
+<c:set var="loginID" value="${sessionID}"></c:set>
 	<section>
 		<div class="boardin-all-wrap">
 			<div class="boardin-inner-wrap">
@@ -47,23 +48,25 @@
 				    	<a href="/FinalProject/board"><button>목록으로</button></a>
 				    </div>
 				    <div class="update-nav-update-btn">
-				    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
-					    <a href="boardUp?num=${b.num}"><button>수정</button></a>
+						<c:if test="${loginID eq b.id}">
+					    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
+						    <a href="boardUp?num=${b.num}"><button>수정</button></a>
+						</c:if>
 					</div>
 				</div>
 				<div id="board-in-comment-box"></div>
 				<div class="comment-edit-area">
 					<textarea class="comment-textarea"></textarea>
-					<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
+					<button class="comment-edit-btn" type="button" value="${b.num}" onclick="">등록</button>
 				</div>
 				<div class="comment-edit-nav">
 					<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
-					<a href="/FinalProject/boardreg"><button>글쓰기</button></a>		
+					<button type="button" onclick="boardregbtn()">글쓰기</button>
 				</div>
 			</div>
 		</div>
 		<input type="hidden" value="${b.num}" id="board_num"/>
-		<input type="hidden" value="Jaeho" id="user_id"/>
+		<input type="hidden" value="${sessionID}" id="user_id"/>
 	</section>
 </head>
 </body>

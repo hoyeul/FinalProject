@@ -262,11 +262,11 @@ public class BoardDao {
 		}				
 	}
 	
-	public void boardreg(String continent, String select, String title, String text) {
+	public void boardreg(String continent, String select, String title, String text, String id) {
 		
 		Connection con = null;
         PreparedStatement pst = null;
-        String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,'Jaeho',0)";
+        String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,?)";
         try {
 			con = dataSource.getConnection();
 			pst = con.prepareStatement(sql);
@@ -274,6 +274,7 @@ public class BoardDao {
 			pst.setString(2, select);
 			pst.setString(3, title);
 			pst.setString(4, text);
+			pst.setString(5, id);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -288,7 +289,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		int upCount = 0;
 		String sql = " insert into board_recommend values('1','0',?,?) ";
-		String sql2 = " select sum(rec_up) from board_recommend ";
+		String sql2 = " select sum(rec_up) from board_recommend where id = ? and b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -298,6 +299,8 @@ public class BoardDao {
 			pst.close(); // 등록
 			
 			pst = conn.prepareStatement(sql2);
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
 		    rs = pst.executeQuery();
 		    if( rs.next()) {
 		    	upCount = rs.getInt(1);
