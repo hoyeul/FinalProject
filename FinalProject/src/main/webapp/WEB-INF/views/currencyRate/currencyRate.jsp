@@ -75,7 +75,7 @@
 	<div class="title_wrap">
 		<div class="section_title">
 			<div class="assignment">
-				<span class="material-symbols-outlined assignment">assignment</span>
+				<span class="material-symbols-outlined assignment">chart_data</span>
 			</div>
 			<div class="section_title_explain">
 				<span style="font-size: 24px; font-weight: bold;">환율 그래프</span><br/>
