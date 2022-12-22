@@ -3,6 +3,8 @@ package com.FinalProject.Controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,12 +32,11 @@ public class HomeController {
 	
 
 	@ResponseBody
-	@RequestMapping(value="/embassy", method = RequestMethod.POST)
-	public JSONArray embassy() throws Exception {
+	@RequestMapping(value="/home/embassy", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public String embassy(HttpServletResponse response) throws Exception {
 		EmbassyService s = new EmbassyService();
 		JSONArray array = s.embassy();
-		return array;
+		System.out.println(array.toString());
+		return array.toString();
 	}
-
-	
 }

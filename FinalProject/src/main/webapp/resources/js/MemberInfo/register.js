@@ -1,4 +1,46 @@
 $(function(){
+	$('#mail-Check-Btn').on("click", function() {
+		let email = $("#email").val();
+		if($("input[name='name']").val() != "" && $("jumin1").val() != "" && $("jumin2").val() != "" && $("email1").val() != "" && $("email2").val() != ""){
+			var time = 180;
+			var min = "";
+			var sec = "";
+			
+			var x = setInterval(function(){
+				min = parseInt(time/60);
+				sec = time%60;
+				
+				if(min < 1)		min = "0";
+				if(sec < 10)	sec = "0" + time%60;
+				
+				document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
+				time--;
+				
+				if(time < 0){
+					clearInterval(x);
+					document.getElementById("demo").innerHTML = "";
+				}
+			}, 1000);
+			
+			
+			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
+			$.ajax({
+				type : 'get',
+				url : '/FinalProject/mailCheck', 
+				data: {email:email},
+				success : function (data) {
+					alert("인증번호가 발송되었습니다");
+					checkInput.attr('disabled',false);
+					$('#hiddenInput').prop('value', data);
+					setTimeout(() => $('#hiddenInput').prop('value', ""), 180000);
+				},
+				error: function(){
+					alert("error");
+				}
+			}); 
+		}else	{alert("정보를 입력해주세요");}
+	}); 
+	
 //입력값 유효성 확인
 	$("#name").on("keyup", function(){
 		$(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/,""));
@@ -223,4 +265,5 @@ if(name == "") {
     }else{
         return confirm('Do you really want to submit the form?');
     }
+
 }
