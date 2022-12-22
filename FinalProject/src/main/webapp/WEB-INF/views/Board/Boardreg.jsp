@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="${path}/resources/css/boardreg.css">
-<script src="${path}/resources/js/boardreg.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/Board/boardreg.css">
+<script src="${path}/resources/js/Board/boardreg.js"></script>
 
 <body>
 	<section>

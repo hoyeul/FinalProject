@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.FinalProject.Model.TravelWarning.YellowDto " %>
-<% List<YellowDto> yellow = (List<YellowDto>)request.getAttribute("yellow"); %>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path }/resources/css/yellow.css">
-<script src="${path }/resources/js/yellow.js"></script>
+<link rel="stylesheet" href="${path }/resources/css/TravelWarning/yellow.css">
+<script src="${path }/resources/js/TravelWarning/yellow.js"></script>
 </head>
 <body>
 <section>
@@ -87,38 +84,41 @@
 		<tr>
 			<td>중동/아프리카</td>
 			<td>
-			<% for(int i = 0; i < yellow.size(); i++){
-				if(yellow.get(i).getContinent().equals("중동/아프리카")){
-			%>	
-			<%=yellow.get(i).getCountryName() %> (<%=yellow.get(i).getControlNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${yellow }">
+					<c:if test="${item.continent eq '중동/아프리카' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.controlNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>미주</td>
 			<td>
-			<% for(int i = 0; i < yellow.size(); i++){
-				if(yellow.get(i).getContinent().equals("미주")){ %>
-			<%=yellow.get(i).getCountryName() %> (<%=yellow.get(i).getControlNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${yellow }">
+					<c:if test="${item.continent eq '미주' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.controlNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>유럽</td>
 			<td>
-			<% for(int i = 0; i < yellow.size(); i++){
-				if(yellow.get(i).getContinent().equals("유럽")){ %>	
-			<%=yellow.get(i).getCountryName() %> (<%=yellow.get(i).getControlNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${yellow }">
+					<c:if test="${item.continent eq '유럽' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.controlNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>아시아/태평양</td>
 			<td>
-			<% for(int i = 0; i < yellow.size(); i++){
-				if(yellow.get(i).getContinent().equals("아시아/태평양")){ %>
-			<%=yellow.get(i).getCountryName() %> (<%=yellow.get(i).getControlNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${yellow }">
+					<c:if test="${item.continent eq '아시아/태평양' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.controlNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 </table>

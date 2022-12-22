@@ -4,9 +4,21 @@ input{
 	border: 0px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	outline: 0px;
+	height: 30px;
+}
+button{
+	width: 80px;
+	padding: 5px;
+	margin: 0 5px 30px 5px;
+	border: 1px solid #1089ff;
+    border-radius: 10px;
+    background-color: #1089ff;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
 }
 select{
-	border: 0px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 3px;
 }
 .reg_wrap{
@@ -86,7 +98,34 @@ select{
 	width:23%;
 	height: 30px;
 }
-
+.certification_wrap{
+	display:flex;
+}
+.certificationNum{
+	position: relative;
+}
+#demo{
+	position: absolute;
+	top: 7px;
+	right: 0;
+	font-size: 12px;
+	color: red;
+	margin-right: 30px;
+}
+.certificationNum{
+	display:flex;
+	width: 75%;
+}
+#mail-Check-Btn{
+	height: 30px;
+	width: 25%;
+	margin: 0;
+	font-size: 12px;
+}
+.mail-check-input{
+	background-color: transparent;
+	width: 95%;
+}
 .btn_wrap{
 	width: 80%;
 	margin: 0 auto;
@@ -112,8 +151,9 @@ select{
 }
 
 .d_btn{
+	height: 20px;
 	width: 25%;
-	font-size: 11px;
+	font-size: 10px;
 	border: 1px solid #1089ff;
     border-radius: 20px;
     background-color: #1089ff;
@@ -141,14 +181,4 @@ select{
 }
 .std{
 	width: 69%;
-}
-button{
-	width: 80px;
-	padding: 5px;
-	margin: 0 5px 30px 5px;
-	border: 1px solid #1089ff;
-    border-radius: 20px;
-    background-color: #1089ff;
-    cursor: pointer;
-    color: white;
 }

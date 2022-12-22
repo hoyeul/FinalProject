@@ -13,20 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.FinalProject.Model.Mypage.MypageDto;
-import com.FinalProject.Model.Mypage.MypageService;
-import com.FinalProject.Model.Register.RegisterDto;
+import com.FinalProject.Model.MemberInfo.MemberInfoDto;
+import com.FinalProject.Model.MemberInfo.MemberInfoService;
 
 @Controller
 public class MypageController {
 	
 	@Autowired
-	MypageService service;
+	MemberInfoService service;
 	
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
 	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
-		RegisterDto registerDto = service.select(sessionID);
+		MemberInfoDto registerDto = service.select(sessionID);
 		//System.out.println(registerDto);
 		model.addAttribute("registerDto",registerDto);
 		return "mypage/mypage";
@@ -50,7 +49,7 @@ public class MypageController {
 		String roadAddress = request.getParameter("roadAddress");	
 		String detailAddress = request.getParameter("detailAddress");	
 
-		MypageDto dto = new MypageDto(name, id, old_pw, pw, phone, email, postcode, roadAddress, detailAddress);
+		MemberInfoDto dto = new MemberInfoDto(name, id, old_pw, pw, phone, email, postcode, roadAddress, detailAddress);
 //		System.out.println(dto);
 		
 		service.update(dto);

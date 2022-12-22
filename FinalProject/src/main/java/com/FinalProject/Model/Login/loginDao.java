@@ -42,6 +42,27 @@ public class loginDao {
 		return 0;
 	}
 	
+	public String gradeInfo(String id) {
+		String sql = " select grade from login_info_221208 where id = ? ";
+		String grade = "";
+		try {
+			con = ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				grade = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs, pst, con);
+		}
+		return grade;
+	}
+	
 	public String findID(loginDto dto) {
 		
 		String sql = " select id from login_info_221208 where name = ? and jumin = ? and email = ? ";

@@ -9,7 +9,7 @@ body{
 	background-color: #F5F7FF;
 }
 
-.findPwWrap{
+.findIDWrap{
 	position: absolute;
     top: 50%;
     left: 50%;
@@ -22,26 +22,21 @@ body{
 }
 
 .caption{
-	height: 20%;
-	line-height: 150px;
+	height: 25%;
+	line-height: 180px;
 	text-align: center;
 	font-size: 28px;
 }
 
 .infoWrap{
+	padding-top: 10px;
 	height: 30%;
 	width: 100%;
 }
 
-.userId{
-	margin: 0 auto;
-	margin-top: 10px;
-	width: 78%;
-}
-
 .name{
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-top: 10px;
 	width: 78%;
 }
 
@@ -57,17 +52,14 @@ body{
 	width: 78%;
 }
 
-.infoWrap span{
-	font-size: 12px;
+.checkNum{
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 78%;
 }
 
-.userId input{
-	width: 100%;
-	height: 30px;
-	border: 0px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	background-color: transparent;
-	outline: none;
+.infoWrap span{
+	font-size: 12px;
 }
 
 .name input{
@@ -109,11 +101,38 @@ body{
 	text-align: center;
 }
 
+.certificationNum{
+	display: inline-block;
+	position: relative;
+}
+
+#demo{
+	position: absolute;
+	top: 5px;
+	right: 0;
+	font-size: 12px;
+	color: red;
+}
+
+.checkNum input{
+	width: 100%;
+	height: 30px;
+	border: 0px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: transparent;
+	outline: none;
+}
+
+#mail-Check-Btn{
+	margin-left: 10px;
+	padding: 3px;
+}
+
 .btn_wrap{
 	margin-top: 120px;
 	text-align: center;
 	font-size: 12px;
-	line-height: 80px;
+	line-height: 100px;
 }
 
 #find{
@@ -125,30 +144,3 @@ body{
 	border-radius: 20px;
 	font-size: 13px;
 }
-
-.btn_wrap a{
-	text-decoration: none;
-	color: #1089ff;
-}
-
-.btn_wrap div{
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/no-layout.css">
+<link rel="stylesheet" href="${path}/resources/css/Layout/no-layout.css">
 </head>
 <body>
 <!-- section 부분 -->

@@ -11,11 +11,11 @@
 		<c:choose>
 			<c:when test="${sessionID ne null }">
 				<div><a href="/FinalProject/logout">로그아웃</a></div>
-				<div><a class="header_myPage" href="/FinalProject/mypage">마이페이지</a></div>
+				<div><a class="header_myPage" href="/FinalProject/mypage.do">마이페이지</a></div>
 			</c:when>
 			<c:otherwise>
-				<div><a href="/FinalProject/login">로그인</a></div>
-				<div><a href="/FinalProject/register">회원가입</a></div>
+				<div><a href="/FinalProject/login.alreadyLogin">로그인</a></div>
+				<div><a href="/FinalProject/register.alreadyLogin">회원가입</a></div>
 			</c:otherwise>
 		</c:choose>
 		</div>

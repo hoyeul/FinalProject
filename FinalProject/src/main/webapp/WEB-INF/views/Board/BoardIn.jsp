@@ -11,8 +11,8 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/boardin.js"></script>
-<link rel="stylesheet" href="${path}/resources/css/boardin.css">
+<script src="${path}/resources/js/Board/boardin.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/Board/boardin.css">
 </head>
 <body>
 <c:set var="loginID" value="${sessionID}"></c:set>
