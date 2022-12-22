@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${path}/resources/js/boardin.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/boardin.css">
@@ -18,7 +20,7 @@
 		<div class="boardin-all-wrap">
 			<div class="boardin-inner-wrap">
 				<div class="board-in-continent-title">
-					<a href="/FinalProject/board?continent=아시아">${b.continent} 게시판</a>
+					<a href="/FinalProject/board">${b.continent} 게시판</a>
 				</div>
 				<hr class="under-continent-title">
 				<div class="board-in-title">
@@ -57,11 +59,13 @@
 				<div id="board-in-comment-box"></div>
 				<div class="comment-edit-area">
 					<textarea class="comment-textarea"></textarea>
-					<button class="comment-edit-btn" type="button" value="${b.num}" onclick="commentregbtn()">등록</button>
+					<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
 				</div>
-				<div class="comment-edit-nav">
-					<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
-					<button type="button" onclick="boardregbtn()">글쓰기</button>
+				<div>
+					<div class="comment-edit-nav">
+						<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+						<button type="button" onclick="boardregbtn()">글쓰기</button>
+					</div>
 				</div>
 			</div>
 		</div>

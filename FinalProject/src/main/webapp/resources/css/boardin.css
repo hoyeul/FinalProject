@@ -243,8 +243,8 @@
 }
 
 .comment-edit-nav{
-	margin-top: 20px;
-	float: right;
+	padding: 20px 0px;
+	text-align: right;
 }
 
 .comment-edit-nav button{

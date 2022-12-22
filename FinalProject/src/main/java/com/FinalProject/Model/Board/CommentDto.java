@@ -12,6 +12,10 @@ public CommentDto() {
 	
 }
 
+public CommentDto(String name) {
+	this.name = name;
+}
+
 public CommentDto(int num, int cnum, int recm, String text, String name, String date) {
 	super();
 	this.num = num;
@@ -69,27 +73,18 @@ public void setCnum(int cnum) {
 	Cnum = cnum;
 }
 
-
-
 public int getRecm() {
 	return Recm;
 }
 
-
-
 public void setRecm(int recm) {
 	Recm = recm;
 }
-
-
 
 @Override
 public String toString() {
 	return "CommentDto [num=" + num + ", Cnum=" + Cnum + ", Recm=" + Recm + ", text=" + text + ", name=" + name
 			+ ", date=" + date + "]";
 }
-
-
-
 
 }

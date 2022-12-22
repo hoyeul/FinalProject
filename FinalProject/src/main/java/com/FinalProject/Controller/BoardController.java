@@ -124,14 +124,14 @@ public class BoardController {
    
    @RequestMapping(value ="/boardIn", method = RequestMethod.GET)
    public String array2(BoardDto dto1,Model model,String p,String continent,SearchDto dto) {
-      int s = dto1.getNum();
-    //System.out.println("d1231231="+s);
-      int b= dto1.getNumber()+1;
-      dao.updateNum(b, s);
-      BoardDto a =dao.select(s);
-    //System.out.println("dasdasdasda="+a);
-      model.addAttribute("b",a);
-      return "Board/BoardIn";
+       int s = dto1.getNum();
+     //System.out.println("d1231231="+s);
+       int b = dto1.getNumber()+1;
+       dao.updateNum(b, s);
+       BoardDto a = dao.select(s);
+     //System.out.println("dasdasdasda="+a);
+       model.addAttribute("b",a);
+       return "Board/BoardIn";
    }
    
    @ResponseBody
