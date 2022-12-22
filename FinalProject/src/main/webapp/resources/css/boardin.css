@@ -9,12 +9,9 @@
 .board-in-all-wrap{
 	margin-top: 20px;
 	width: 70%;
-	margin: auto;
+	margin: 0 auto;
 }
 
-.board-in-continent-title{
-	margin: 20px 0px;
-}
 
 .under-continent-title{
 	border-top: 3px solid darkblue;

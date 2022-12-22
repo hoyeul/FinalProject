@@ -81,11 +81,11 @@ nav{
 }
 
 .nav_menu_wrap{
-	height: 80vh;
+	height: 82.5vh;
 }
 
 .nav_footer{
-	height: 12.5vh;
+	height: 10vh;
 	background-color: #2128320d;
 }
 
@@ -200,6 +200,17 @@ i{
 	display: block;
 	font-size: 14px;
 	padding: 10px 0 10px 20px;
+}
+
+.nav_manager{
+	padding: 10px 0;
+}
+
+.nav_manager_a{
+	display: block;
+	padding: 0 20px;
+	position: relative;
+	font-size: 14px;
 }
 
 .section{

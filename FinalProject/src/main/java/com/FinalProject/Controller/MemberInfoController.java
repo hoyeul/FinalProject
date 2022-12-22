@@ -1,6 +1,7 @@
 package com.FinalProject.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,5 +72,19 @@ public class MemberInfoController {
 		String sessionID = (String) session.getAttribute("sessionID");
 		service.withdraw(sessionID);
 		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	public String managerPage(Model model) {
+		List<MemberInfoDto> list = service.searchMember("");
+		model.addAttribute("list", list);
+		return "manager/manager";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/manager", method = RequestMethod.POST)
+	public List<MemberInfoDto> manager(String id) {
+		List<MemberInfoDto> list = service.searchMember(id);
+		return list;
 	}
 }

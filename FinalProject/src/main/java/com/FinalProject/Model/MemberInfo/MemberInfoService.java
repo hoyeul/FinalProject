@@ -1,5 +1,7 @@
 package com.FinalProject.Model.MemberInfo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +39,10 @@ public class MemberInfoService {
 	
 	public void withdraw(String sessionID) {
 		dao.delete(sessionID);
+	}
+	
+	public List<MemberInfoDto> searchMember(String id){
+		return dao.searchMember(id);
 	}
 	
 }

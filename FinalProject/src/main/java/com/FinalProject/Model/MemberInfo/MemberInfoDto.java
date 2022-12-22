@@ -1,15 +1,12 @@
 package com.FinalProject.Model.MemberInfo;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-
 public class MemberInfoDto {
 	String name;
 	String jumin;
@@ -23,6 +20,13 @@ public class MemberInfoDto {
 	String grade;
 	
 	public MemberInfoDto(){}
+	
+	public MemberInfoDto(String id, String grade){
+		this.id = id;
+		this.grade = grade;
+	}
+	
+	
 	public MemberInfoDto(String name, String id, String pw, String phone, String email, String postcode,
 			String roadAddress, String detailAddress) {
 		super();
@@ -47,7 +51,10 @@ public class MemberInfoDto {
 		this.postcode = postcode;
 		this.roadAddress = roadAddress;
 		this.detailAddress = detailAddress;
+		this.grade = "member";
 	}
+
+	
 	
 	
 	

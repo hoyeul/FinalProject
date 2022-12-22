@@ -39,14 +39,15 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.FinalProject.Controller" />
-	<context:component-scan base-package="com.FinalProject.Model.Login" />
-	<context:component-scan base-package="com.FinalProject.Model.Board"/>
-	<context:component-scan base-package="com.FinalProject.Model.Exchange" />
-	<context:component-scan base-package="com.FinalProject.Model.MemberInfo" />
 	<context:component-scan base-package="com.FinalProject.Interceptor" />
-	<context:component-scan base-package="com.FinalProject.Model.TravelWarning" />
+	<context:component-scan base-package="com.FinalProject.Model.Board"/>
 	<context:component-scan base-package="com.FinalProject.Model.Embassy" />
+	<context:component-scan base-package="com.FinalProject.Model.Login" />
 	<context:component-scan base-package="com.FinalProject.Model.Mail" />
+	<context:component-scan base-package="com.FinalProject.Model.MemberInfo" />
+	<context:component-scan base-package="com.FinalProject.Model.TravelWarning" />
+	
+	
 	
 	<interceptors>	
         <interceptor>	

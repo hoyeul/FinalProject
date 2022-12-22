@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.FinalProject.Model.TravelWarning.NavyDto " %>
-<% List<NavyDto> navy = (List<NavyDto>)request.getAttribute("navy"); %>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
@@ -88,38 +85,41 @@
 		<tr>
 			<td>중동/아프리카</td>
 			<td>
-			<% for(int i = 0; i < navy.size(); i++){
-				if(navy.get(i).getContinent().equals("중동/아프리카")){
-			%>	
-			<%=navy.get(i).getCountryName() %> (<%=navy.get(i).getAttentionNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${navy }">
+					<c:if test="${item.continent eq '중동/아프리카' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.attentionNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>미주</td>
 			<td>
-			<% for(int i = 0; i < navy.size(); i++){
-				if(navy.get(i).getContinent().equals("미주")){ %>
-			<%=navy.get(i).getCountryName() %> (<%=navy.get(i).getAttentionNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${navy }">
+					<c:if test="${item.continent eq '미주' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.attentionNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>유럽</td>
 			<td>
-			<% for(int i = 0; i < navy.size(); i++){
-				if(navy.get(i).getContinent().equals("유럽")){ %>	
-			<%=navy.get(i).getCountryName() %> (<%=navy.get(i).getAttentionNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${navy }">
+					<c:if test="${item.continent eq '유럽' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.attentionNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<td>아시아/태평양</td>
 			<td>
-			<% for(int i = 0; i < navy.size(); i++){
-				if(navy.get(i).getContinent().equals("아시아/태평양")){ %>
-			<%=navy.get(i).getCountryName() %> (<%=navy.get(i).getAttentionNote() %>)<br/>
-			<% }} %>
+				<c:forEach var="item" items="${navy }">
+					<c:if test="${item.continent eq '아시아/태평양' }">
+						<c:out value="${item.countryName }" /> (<c:out value="${item.attentionNote }" />)<br/>
+					</c:if>
+			 	</c:forEach>
 			</td>
 		</tr>
 </table>
