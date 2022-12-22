@@ -36,7 +36,6 @@ public class HomeController {
 	public String embassy(HttpServletResponse response) throws Exception {
 		EmbassyService s = new EmbassyService();
 		JSONArray array = s.embassy();
-		System.out.println(array.toString());
 		return array.toString();
 	}
 }

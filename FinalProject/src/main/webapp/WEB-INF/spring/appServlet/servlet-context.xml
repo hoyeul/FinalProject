@@ -52,8 +52,18 @@
 	<interceptors>	
         <interceptor>	
             <mapping path="/*.do" />
-            <beans:bean class="com.FinalProject.Interceptor.SessionInterceptor" />	
+            <beans:bean class="com.FinalProject.Interceptor.SessionIdNullInterceptor" />	
         </interceptor>	
+        
+        <interceptor>	
+            <mapping path="/*.onlyAdmin" />
+            <beans:bean class="com.FinalProject.Interceptor.GradeAdminInterceptor" />
+        </interceptor>
+        
+        <interceptor>	
+            <mapping path="/*.alreadyLogin" />
+            <beans:bean class="com.FinalProject.Interceptor.SessionIdNotNullInterceptor" />	
+        </interceptor>
 	</interceptors>
 	
 </beans:beans>

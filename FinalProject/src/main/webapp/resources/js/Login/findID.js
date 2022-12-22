@@ -37,7 +37,7 @@ $(function(){
 			
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
-				type : 'get',
+				type : 'post',
 				url : '/FinalProject/mailCheck', 
 				data: {email:email},
 				success : function (data) {
@@ -92,7 +92,7 @@ $(function(){
 			       		alert("정보를 잘못 입력하셨거나 존재하는 아이디가 없습니다");
 			       }else{
 			       		alert("고객님의 아이디는 " + data + " 입니다");
-			       		location.href="/FinalProject/login"
+			       		location.href="/FinalProject/login.alreadyLogin"
 			       }
 			   }
 		    },

@@ -35,9 +35,9 @@
 		</div>
 			
 		<div class="function_wrap">
-			<a href="/FinalProject/register">회원가입</a> <span>|</span>
-			<a href="/FinalProject/findID">아이디찾기</a> <span>|</span>
-			<a href="/FinalProject/findPW">비밀번호찾기</a>
+			<a href="/FinalProject/register.alreadyLogin">회원가입</a> <span>|</span>
+			<a href="/FinalProject/findID.alreadyLogin">아이디찾기</a> <span>|</span>
+			<a href="/FinalProject/findPW.alreadyLogin">비밀번호찾기</a>
 		</div>
 	</div>
 </section>

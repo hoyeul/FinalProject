@@ -9,18 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class SessionInterceptor extends HandlerInterceptorAdapter {	
-    
-	
-    @Override
+public class SessionIdNotNullInterceptor extends HandlerInterceptorAdapter{
+
+	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
        
     	HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("sessionID");		
-		System.out.println("인터셉터 로그인여부:" + id);
-		if (id == null){
+		if (id != null){
 			try {
-				response.sendRedirect(request.getContextPath() +"/login");
+				response.sendRedirect(request.getContextPath() +"/home");
 			} catch (IOException e) {				 
 				e.printStackTrace();
 			}
@@ -28,5 +26,5 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		}
 		return true;
 	} 
-    
+	
 }
