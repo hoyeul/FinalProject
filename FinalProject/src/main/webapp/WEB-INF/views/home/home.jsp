@@ -118,11 +118,6 @@ am5.ready(function() {
 	    fill: am5.color(0xf5bf27),
 	    tooltipText: "{embassy_kor_nm}" + "\n" + "{tel_no}"  + "\n" + "{emblgbd_addr}" 
 	  });
-	
-	  circle.events.on("click", function(ev) {
-	    alert("Clicked on " + ev.target.dataItem.dataContext.name)
-	  });
-	
 	  return am5.Bullet.new(root, {
 	    sprite: circle
 	  });
