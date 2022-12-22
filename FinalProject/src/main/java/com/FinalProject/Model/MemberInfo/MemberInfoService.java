@@ -45,4 +45,12 @@ public class MemberInfoService {
 		return dao.searchMember(id);
 	}
 	
+	public void updateMember(String id, String grade) {
+		dao.updateMember(id,grade);
+	}
+	
+	public void deleteMember(String id) {
+		dao.deleteMember(id);
+	}
+	
 }

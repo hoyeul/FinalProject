@@ -157,7 +157,7 @@ public class MemberInfoDao {
 	}
 	
 	public List<MemberInfoDto> searchMember(String id){
-		String sql = " select id, grade from login_info_221208 where id like '%" + id + "%' ";
+		String sql = " select id, grade from login_info_221208 where id like '%" + id + "%' order by grade ";
 		List<MemberInfoDto> list = new ArrayList<MemberInfoDto>();
 		try {
 			con = ds.getConnection();
@@ -175,6 +175,38 @@ public class MemberInfoDao {
 			close(rs, pst, con);
 		}
 		return list;
+	}
+	
+	public void updateMember(String id, String grade) {
+		String sql = " update login_info_221208 set grade = ? where id = ? ";
+		try {
+			con = ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, grade);
+			pst.setString(2, id);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pst, con);
+		}
+	}
+	
+	public void deleteMember(String id) {
+		String sql = " delete from login_info_221208 where id = ? ";
+		try {
+			con = ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pst, con);
+		}
+		
 	}
 	
 	private void close(AutoCloseable ...autoCloseables) {

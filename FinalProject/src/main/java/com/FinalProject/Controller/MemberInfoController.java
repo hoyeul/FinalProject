@@ -82,9 +82,25 @@ public class MemberInfoController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/manager", method = RequestMethod.POST)
-	public List<MemberInfoDto> manager(String id) {
+	@RequestMapping(value = "/selectManager", method = RequestMethod.POST)
+	public List<MemberInfoDto> selectManager(String id) {
 		List<MemberInfoDto> list = service.searchMember(id);
 		return list;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateManager", method = RequestMethod.POST)
+	public void updateManager(String id, String grade) {
+		service.updateMember(id, grade);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteManager", method = RequestMethod.POST)
+	public void deleteMember(String id) {
+		service.deleteMember(id);
+	}
+	
+	
+	
+	
 }

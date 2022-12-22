@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.section_wrap{
+		padding: 20px;
+	}
+	
+	.searchbar{
+		width: 780px;
+		margin: 0 auto;
+		border: 2px solid black;
+		padding: 10px;
+		background-color: white;
+	}
+	
+	.searchbar input{
+		width: 100%;
+		border: none;
+		outline: none;
+		font-size: 30px;
+	}
+	
+	table{
+		border: 1px solid black;
+		border-collapse: collapse;
+		margin: 0 auto;
+		width: 800px;
+		margin-top: 50px;
+	}
+	
+	td{
+		border: 1px solid black;
+		padding: 10px;
+		text-align: center;
+	}
+

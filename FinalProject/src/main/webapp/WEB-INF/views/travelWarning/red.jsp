@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path }/resources/css/red.css">
-<script src="${path }/resources/js/red.js"></script>
+<link rel="stylesheet" href="${path }/resources/css/TravelWarning/red.css">
+<script src="${path }/resources/js/TravelWarning/red.js"></script>
 </head>
 <body>
 <section>

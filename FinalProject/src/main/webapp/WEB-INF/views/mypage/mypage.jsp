@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/mypage.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/MemberInfo/mypage.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/AddressAPI.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/MemberInfo/AddressAPI.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/MemberInfo/mypage.js"></script>
 </head>
 <body>
 <section>

@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path }/resources/css/navy.css">
+<link rel="stylesheet" href="${path }/resources/css/TravelWarning/navy.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path }/resources/js/navy.js"></script>
+<script src="${path }/resources/js/TravelWarning/navy.js"></script>
 </head>
 <body>
 <section>

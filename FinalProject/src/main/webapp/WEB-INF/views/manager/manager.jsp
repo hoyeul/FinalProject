@@ -7,71 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.section_wrap{
-		padding: 20px;
-	}
-	
-	.searchbar{
-		width: 780px;
-		margin: 0 auto;
-		border: 2px solid black;
-		padding: 10px;
-		background-color: white;
-	}
-	
-	.searchbar input{
-		width: 100%;
-		border: none;
-		outline: none;
-		font-size: 30px;
-	}
-	
-	table{
-		border: 1px solid black;
-		border-collapse: collapse;
-		margin: 0 auto;
-		width: 800px;
-		margin-top: 50px;
-	}
-	
-	td{
-		border: 1px solid black;
-		padding: 10px;
-		text-align: center;
-	}
-	
-</style>
+<link rel="stylesheet" href="${path }/resources/css/MemberInfo/manager.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(function(){
-	
-	$("#searchID").on("keyup", function(){
-		let searchbar = $('#searchID').prop('value');
-		$.ajax({
-			url: '/FinalProject/manager',
-			type: 'post',
-			data: {id: searchbar},
-			success: function(data){
-				var html = '';
-				$.each(data, function(index , item){
-					html += '<tr>';
-					html += '<td>'+item.id+'</td>';
-					html += '<td>'+item.grade+'</td>';
-					html += '<td>'+'asdf'+'</td>';
-					html += '</tr>';
-				});
-				$("#tbody").empty();
-				$("#tbody").append(html);
-			},
-			error: function(){
-				alert("error");
-			}
-		});
-	});
-	
-});
-</script>
+<script src="${path }/resources/js/MemberInfo/manager.js"></script>
 </head>
 <body>
 <section>
@@ -91,8 +29,17 @@ $(function(){
 				<c:forEach var="item" items="${list }">
 				<tr>
 					<td>${item.id }</td>
-					<td>${item.grade }</td>
-					<td>asdf</td>
+					<td>
+						<select>
+							<option selected="selected" hidden>${item.grade }</option>
+							<option value="admin">admin</option>
+							<option value="member">member</option>
+						</select>
+					</td>
+					<td>
+						<button type="button" class="updateBtn">수정</button>
+						<button type="button" class="deleteBtn">삭제</button>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
