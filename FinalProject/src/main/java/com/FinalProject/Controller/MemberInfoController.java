@@ -35,7 +35,12 @@ public class MemberInfoController {
 	//회원가입정보 DB 입력
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(MemberInfoDto dto) {
-		service.insert(dto);
+		try {
+			service.insert(dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:/login";
 	}
 	//Id 중복확인
@@ -51,7 +56,7 @@ public class MemberInfoController {
 	@RequestMapping(value="/mypage.do", method = RequestMethod.GET)
 	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
-		MemberInfoDto registerDto = service.select(sessionID);
+		MemberInfoDto registerDto = service.mypageInfo(sessionID);
 		model.addAttribute("registerDto",registerDto);
 		return "mypage/mypage";
 	}

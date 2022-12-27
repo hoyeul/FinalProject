@@ -14,7 +14,7 @@ $(function(){
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
 				type : 'post',
-				url : '/FinalProject/mailCheckRegister', 
+				url : '/mailCheckRegister', 
 				data: {email:email},
 				success : function (data) {
 					checkInput.attr('disabled',false);
@@ -176,17 +176,17 @@ $(function(){
 	$('#id').blur(function(){
 		let userId = $('#id').val(); // input_id에 입력되는 값
 		$.ajax({
-			url : "/FinalProject/register/IdCheck",
+			url : "/register/IdCheck",
 			type : "post",
 			data : {userId: userId},
 			dataType : 'json',
 			success : function(result){
 				//alert(result);
-				if(result == 0){
+				if(result == 1){
 					//alert("사용할수없음");
 					$("#checkId").html('사용할 수 없는 아이디입니다.');
 					$("#checkId").css('color','red');
-				}else if(result == 1){
+				}else if(result == 0){
 					//alert("사용할수있음");
 					$("#checkId").html('사용할 수 있는 아이디입니다.');
 					$("#checkId").css('color','green');

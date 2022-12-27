@@ -2,7 +2,7 @@ $(function(){
 	$("#searchID").on("keyup", function(){
 		let searchbar = $('#searchID').prop('value');
 		$.ajax({
-			url: '/FinalProject/selectManager',
+			url: '/selectManager',
 			type: 'post',
 			data: {id: searchbar},
 			success: function(data){
@@ -47,11 +47,11 @@ function clickUpdateBtn(){
 		let cfm = confirm("수정하시겠습니까?");
 		if(cfm == true){
 			$.ajax({
-				url: '/FinalProject/updateManager',
+				url: '/updateManager',
 				type: 'post',
 				data: {id:id, grade:grade},
 				success: function(){
-					location.href="/FinalProject/manager.onlyAdmin"
+					location.href="/manager.onlyAdmin"
 				},
 				error: function(){
 					alert("error");
@@ -70,11 +70,11 @@ function clickDeleteBtn(){
 		
 		if(cfm == true){
 			$.ajax({
-				url: '/FinalProject/deleteManager',
+				url: '/deleteManager',
 				type: 'post',
 				data: {id:id},
 				success: function(){
-					location.href="/FinalProject/manager.onlyAdmin"
+					location.href="/manager.onlyAdmin"
 				},
 				error: function(){
 					alert("error");

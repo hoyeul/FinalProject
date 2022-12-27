@@ -32,6 +32,13 @@
 	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카&recomend=${recommend}'">
 	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카&recomend=${recommend}'">
 			    <label for="인기">인기</label>
+	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/board?continent='">
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/board?continent=아시아'" >
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/board?continent=아프리카'" >
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/board?continent=유럽'">
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/board?continent=오세아니아'">
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/board?continent=북아메리카'">
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/board?continent=남아메리카'">
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
 			    <label for="아프리카">아프리카</label>
@@ -105,6 +112,9 @@
 	</form>
 	<div class="edit-btn">
 		<button type="button" onclick="boardregbtn()">글쓰기</button>
+		<div class="edit-btn">
+			<a href="/boardreg.do"><button>글쓰기</button></a>
+		</div>
 	</div>
 	<input type="hidden" id="user_grade" value="${sessionGrade}" />
 	<input type="hidden" name="loginId" value="${sessionID}">

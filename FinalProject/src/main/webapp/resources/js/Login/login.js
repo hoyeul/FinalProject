@@ -1,7 +1,7 @@
 $(function(){
 	$("#loginBtn").on("click",function(){
 		$.ajax({
-		    url:'/FinalProject/login', //request 보낼 서버의 경로
+		    url:'/login', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
 		    	id: $("input[name='id']").val(),
@@ -19,7 +19,7 @@ $(function(){
 		        else{
 			        if(data == 0)	alert("비밀번호가 잘못되었습니다");
 			        else if(data == -1)	alert("존재하지 않는 아이디입니다.");
-			        else	location.href="/FinalProject/home"
+			        else	location.href="/home"
 		        }
 		    },
 		    error: function(err) {

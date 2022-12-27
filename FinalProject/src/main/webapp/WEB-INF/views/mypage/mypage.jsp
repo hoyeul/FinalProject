@@ -89,7 +89,7 @@
 		</div>																
 		<div class="btn_wrap">
 			<button>수정</button>
-			<button type="button" onclick="location.href='/FinalProject/home'">취소</button>
+			<button type="button" onclick="location.href='/home'">취소</button>
 		</div>			
 	</form>
 	<form action="mypage/withdraw" method="post">

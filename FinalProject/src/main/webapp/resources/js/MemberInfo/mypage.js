@@ -110,7 +110,7 @@ $(function(){
 	let old_pw2 = $('#old_pw').val();
 	let id = $('#id').val();
 	$.ajax({
-		url : "/FinalProject/mypage/pwCheck",
+		url : "/mypage/pwCheck",
 		type : "post",
 		data : {old_pw: old_pw2, id: id},
 		dataType : 'json',

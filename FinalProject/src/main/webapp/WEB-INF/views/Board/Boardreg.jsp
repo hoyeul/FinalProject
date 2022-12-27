@@ -67,6 +67,56 @@
 			</div>
 			<input type="hidden" name="regSessionID" value="${sessionID}">
 		</div>
+	<section>
+	<form name="regfrm" action="/boardreg" method="post">
+		<table>
+			<caption>게시글 등록</caption>
+	            <tr class="board-order">
+	            	<td>게시판</td>
+	                <td>
+	                	<select id="continent" name="continent">
+	                		<option value="">선택하세요</option>
+	                		<option value="아시아">아시아</option>
+	                		<option value="아프리카">아프리카</option>
+	                		<option value="유럽">유럽</option>
+	                		<option value="오세아니아">오세아니아</option>
+	                		<option value="북아메리카">북아메리카</option>
+	                		<option value="남아메리카">남아메리카</option>
+	                	</select>
+	                </td>
+	                <td>말머리</td>
+	                <td>
+						<select id="select" name="select">
+	                		<option value="">선택하세요</option>
+	                		<option value="자유">자유</option>
+	                		<option value="질문">질문</option>
+	                		<option value="후기">후기</option>
+	                		<option value="정보">정보</option>
+	                	</select>
+					</td>
+	            </tr>
+	            <tr>
+	            	<td colspan="3">
+	                	<input type="text" class="reg_title" name="title">
+	                </td>
+	            </tr>
+				<tbody>
+			            <tr>
+			                <td class="board_text" colspan="4">
+			                  		 <div class="mb-3" style="width: 100%; margin: 0 auto;">
+							            <label for="exampleFormControlTextarea1" class="form-label"></label>
+							            <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true"></textarea>
+							          </div>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td class="content_btn" colspan="3">
+			                    <button type="button" onclick="boardreg()">등록</button>
+			                    <button type="button" onclick="window.location.href='/board'">목록으로</button>
+			                </td>
+			            </tr>
+				</tbody>
+		</table>
 	</form>
 <input type="hidden" value="${sessionGrade}" id="user_grade"/>
 </div>

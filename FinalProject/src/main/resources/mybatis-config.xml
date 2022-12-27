@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE configuration
-PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
+			PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<typeAliases>
-<typeAlias alias="loginDto" type="com.FinalProject.Model.Login.loginDto"/>
-</typeAliases>
+	<typeAliases>
+		<typeAlias alias="MemberInfoDto" type="com.FinalProject.Model.MemberInfo.MemberInfoDto"/>
+		<typeAlias alias="loginDto" type="com.FinalProject.Model.Login.loginDto"/>
+	</typeAliases>
 </configuration>

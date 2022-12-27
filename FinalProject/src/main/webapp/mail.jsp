@@ -14,7 +14,7 @@ $(function(){
 		const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
 		$.ajax({
 			type : 'get',
-			url : '/FinalProject/mailCheck', 
+			url : '/mailCheck', 
 			data: {email:email},
 			success : function (data) {
 				console.log("data : " + data);
