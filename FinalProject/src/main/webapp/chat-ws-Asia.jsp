@@ -12,7 +12,7 @@
     function connect() {
         
         wsocket = new WebSocket(
-                "ws://192.168.0.95:8090/FinalProject/chat-ws");
+                "ws://192.168.0.95:8090/chat-ws");
         
         wsocket.onopen = onOpen;
         wsocket.onmessage = onMessage;

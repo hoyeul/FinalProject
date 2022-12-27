@@ -17,20 +17,20 @@
 <section>
 
 <div class="boardwrap">
-	<form name="frm" action="/FinalProject/board" method="get">
+	<form name="frm" action="/board" method="get">
 		<div class="board_head">
-			<a href="/FinalProject/board">전체 게시판</a>	
+			<a href="/board">전체 게시판</a>	
 		</div>
 		<div class="board_nav">
 			<div class="board_all"><a href="" class="first_a">인기</a></div>
 			<div class="tb_nav">
-	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/FinalProject/board?continent='">
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아'" >
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카'" >
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽'">
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아'">
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카'">
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카'">
+	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/board?continent='">
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/board?continent=아시아'" >
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/board?continent=아프리카'" >
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/board?continent=유럽'">
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/board?continent=오세아니아'">
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/board?continent=북아메리카'">
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/board?continent=남아메리카'">
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
 			    <label for="아프리카">아프리카</label>
@@ -102,7 +102,7 @@
 <input type="hidden" name="continentH" value="${continent}">
 	</form>
 		<div class="edit-btn">
-			<a href="/FinalProject/boardreg.do"><button>글쓰기</button></a>
+			<a href="/boardreg.do"><button>글쓰기</button></a>
 		</div>
 	</div>
 

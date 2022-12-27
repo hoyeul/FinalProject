@@ -23,7 +23,7 @@ $(function(){
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
 				type : 'post',
-				url : '/FinalProject/mailCheck', 
+				url : '/mailCheck', 
 				data: {email:email},
 				success : function (data) {
 					checkInput.attr('disabled',false);
@@ -63,7 +63,7 @@ $(function(){
 		let email = $("input[name='email1']").val() + "@" + $("input[name='email2']").val();
 		
 		$.ajax({
-		    url:'/FinalProject/findPW', //request 보낼 서버의 경로
+		    url:'/findPW', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
 		    	id: $("input[name='id']").val(),
@@ -104,7 +104,7 @@ $(function(){
 				       		alert("정보를 잘못 입력하셨거나 존재하는 아이디가 없습니다");
 				       }else{
 				       		alert("고객님의 아이디는 " + data + " 입니다");
-				       		location.href="/FinalProject/login.alreadyLogin"
+				       		location.href="/login.alreadyLogin"
 				       }
 				    }
 				}

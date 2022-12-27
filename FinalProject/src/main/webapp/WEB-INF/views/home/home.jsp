@@ -61,7 +61,7 @@ am5.ready(function() {
 	
 	var embassy = null;
 	$.ajax({	//순서가 안맞음 지도가 로딩 되고나서  ajax가 작동
-	    url:'/FinalProject/home/embassy', //request 보낼 서버의 경로
+	    url:'/home/embassy', //request 보낼 서버의 경로
 	    type:'get', // 메소드(get, post, put 등)
 	    dataType: 'json',	//받을 데이터
 	    async: false,

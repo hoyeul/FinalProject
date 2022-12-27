@@ -1,11 +1,11 @@
 $(function(){
 	$(".level1").on("click", function(){
-		location.href="/FinalProject/navy";
+		location.href="/navy";
 	});
 	$(".level2").on("click", function(){
-		location.href="/FinalProject/yellow";
+		location.href="/yellow";
 	});
 	$(".level3").on("click", function(){
-		location.href="/FinalProject/red";
+		location.href="/red";
 	});
 })	
