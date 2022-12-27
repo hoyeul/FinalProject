@@ -176,11 +176,11 @@ $(function(){
 			dataType : 'json',
 			success : function(result){
 				//alert(result);
-				if(result == 0){
+				if(result == 1){
 					//alert("사용할수없음");
 					$("#checkId").html('사용할 수 없는 아이디입니다.');
 					$("#checkId").css('color','red');
-				}else if(result == 1){
+				}else if(result == 0){
 					//alert("사용할수있음");
 					$("#checkId").html('사용할 수 있는 아이디입니다.');
 					$("#checkId").css('color','green');

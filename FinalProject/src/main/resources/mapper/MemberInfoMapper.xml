@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper
+3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.FinalProject.Model.MemberInfo.MemberInfoMapper">
+	<!-- 회원가입 정보 입력 -->
+	<insert id="insert" parameterType="MemberInfoDto">
+		INSERT INTO login_info_221208
+		VALUES
+		(login_seq.nextval, #{name}, #{jumin}, #{id}, #{pw}, #{phone}, #{email}, #{postcode}, #{roadAddress}, #{detailAddress}, #{grade})
+	</insert>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="checkId" parameterType="String" resultType="int">
+		select count(*) as cnt from login_info_221208 
+		where id = #{id}
+	</select>
+	<!-- 로그인 회원 정보 조회 -->
+	<select id="selectOne" parameterType="String" resultType="MemberInfoDto">
+		select * from login_info_221208 
+		where id = #{sessionID}
+	</select>
+	
+	<!-- 수정된 회원정보 DB 입력 -->
+	<update id="update" parameterType="MemberInfoDto">
+		UPDATE login_info_221208 
+		SET pw= #{pw}, phone=#{phone}, email=#{email}, postcode=#{postcode}, roadaddress=#{roadAddress}, detailaddress=#{detailAddress} 
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 회원정보 삭제 및 탈퇴 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM login_info_221208 
+		WHERE id = #{sessionID}
+	</delete>	
+	
+	<!-- 기존비밀번호 일치 확인 -->
+	<select id="checkOldPw" parameterType="String" resultType="String">
+		select pw from login_info_221208 
+		where id = #{sessionID}
+	</select>
+	
+	<!-- 관리자 회원 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		delete from login_info_221208 
+		where id = #{id}
+	</delete>
+	
+	<!-- 관리자 회원 정보 리스트 조회 -->
+	<select id="searchMember" parameterType="String" resultType="MemberInfoDto">
+		<![CDATA[
+		select id, grade from login_info_221208 
+		where id like '%'||#{id}||'%' 
+		order by grade 
+		]]>
+	</select>
+	<!-- 관리자 회원 괸리권한 변경 -->
+	<update id="updateMember" parameterType="MemberInfoDto">
+		update login_info_221208 
+		set grade = #{grade}
+		where id = #{id}
+	</update>
+</mapper>

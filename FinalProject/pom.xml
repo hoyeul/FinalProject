@@ -14,8 +14,18 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-
-	 <dependency> 
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.9</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+	 	<dependency> 
             <groupId>org.springframework</groupId> 
             <artifactId>spring-websocket</artifactId> 
             <version>${org.springframework-version}</version> 
@@ -25,14 +35,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.6</version>
         </dependency>
-	
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0.4</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
