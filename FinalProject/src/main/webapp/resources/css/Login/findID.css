@@ -104,6 +104,7 @@ body{
 .certificationNum{
 	display: inline-block;
 	position: relative;
+	width: 59%;
 }
 
 #demo{
