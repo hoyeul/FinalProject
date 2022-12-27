@@ -2,9 +2,6 @@
     padding: 0px;
     margin: 0px;
 }
-.replySpace{
-	display: none;
-}
 
 .boardin-all-wrap{
 	padding-top: 20px;
@@ -258,3 +255,127 @@
     cursor: pointer;
 }
 
+.replySpace{
+	display: none;
+}
+
+.replySpace textarea{
+    min-width: 95%;
+    max-width: 95%;
+    height: 50px;
+    min-height: 50px;
+    margin-right: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    outline: none;
+    display: block;
+}
+
+.replySpaceBtnArea{
+	text-align: right;
+	margin: 5px 0px;
+}
+
+.replySpaceBtnArea button{
+	width: 52px;
+    height: 22px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: white;
+    margin-right: 5px;
+}
+
+.replySpaceBtnArea button:hover{
+	color: blue;
+	border: 0.5px solid silver;
+	cursor: pointer;
+	box-shadow: 0 0 2px #aaa;
+}
+
+.reply {
+	float: right;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.comment-update-box{
+	border-bottom: 1px solid silver;
+    padding: 15px;
+}
+
+.comment-update-name{
+	font-weight: bold;
+    margin-right: 5px;
+}
+
+.comment-update-date{
+	font-size: 12px;
+    color: #848484;
+}
+
+.comment-update-textarea{
+	min-width: 95%;
+    max-width: 95%;
+    height: 50px;
+    min-height: 50px;
+    margin-right: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    outline: none;
+    display: block;
+}
+
+.comment-update-btn-box{
+	display: none;
+	text-align: right;
+	margin: 5px 0px;
+}
+
+.comment-update-btn-box button{
+	width: 72px;
+    height: 32px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: white;
+    margin-right: 5px;
+}
+
+.comment-update-btn-box button:hover{
+	color: blue;
+	border: 0.5px solid silver;
+	cursor: pointer;
+	box-shadow: 0 0 2px #aaa;
+}
+
+.replyreg-btn-box{
+	text-align: right;
+	margin: 5px 0px;
+}
+
+.replyreg-btn-box button{
+	width: 72px;
+    height: 32px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: white;
+    margin-right: 5px;
+}
+
+.replyreg-btn-box button:hover{
+	color: blue;
+	border: 0.5px solid silver;
+	cursor: pointer;
+	box-shadow: 0 0 2px #aaa;
+}

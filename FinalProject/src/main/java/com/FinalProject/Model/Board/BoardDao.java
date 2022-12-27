@@ -17,11 +17,10 @@ public class BoardDao {
 	@Autowired
 	DataSource dataSource;
 	
-	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count) {
+	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count,String recommend) {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
-        System.out.println("count="+count);
         int end = count-((page-1)*10);
         int start = count-(page*10)+1;
         String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi') b_date, b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
@@ -30,7 +29,7 @@ public class BoardDao {
         sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM ";
         sql+=" where num BETWEEN ? and ? ";
         sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi'),b.b_count, b.b_name ";
-        sql+=" order by b.num desc ";
+        sql+=" order by "+recommend+" desc ";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -306,8 +305,8 @@ public class BoardDao {
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, dto.getCnum());
 			pst.setInt(2, s);
-			pst.setString(3, "  ┖"+dto.getText());
-			pst.setString(4, "  ┖"+dto.getName());
+			pst.setString(3, "ㅤㅤ"+dto.getText());
+			pst.setString(4, "ㅤ┖"+dto.getName());
 			pst.executeUpdate();		
 		} catch (SQLException e) {		   
 			e.printStackTrace();
@@ -456,4 +455,5 @@ public class BoardDao {
         	e.printStackTrace(); 
         }
 	}
+	
 }

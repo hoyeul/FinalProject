@@ -42,10 +42,15 @@
 	margin: 0px 12px 0px 12px;
 }
 
+.tb_nav{
+	margin-left: 15px;
+}
+
 .tb_nav label{
 	font-size: 14px;
 	padding-right: 5px;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .mainboard{
@@ -53,6 +58,17 @@
 	text-align: center;
 	margin: auto;
 	border-collapse: collapse
+}
+
+.b_con{
+	display: inline-block;
+	width: 75px;
+	text-align: center;
+}
+
+.b_sel{
+	margin: 0px 5px;
+	text-align: center;
 }
 
 tr{

@@ -1,12 +1,13 @@
 $(function(){
 	// console.log(" test = "+  $('.b_con'));
-	let b_cons =  document.querySelectorAll(".b_con");
-	for(let i=0 ; i< b_cons.length; i++){
-	    let b_con = b_cons[i];
+	let b_sels =  document.querySelectorAll(".b_sel");
+	for(let i=0 ; i< b_sels.length; i++){
+	    let b_sel = b_sels[i];
 	    // alert( b_con.innerHTML);
-	    let country = b_con.innerHTML;
-	    if(country.trim() == "[아시아]"){	            
-	        b_con.style.color='red';
+	    let category = b_sel.innerHTML;
+	    if(category.trim() == "[공지]"){	            
+	        b_sel.style.color='red';
+	        b_sel.style.fontWeight='900';
 	    }
 	}
 });
@@ -45,7 +46,7 @@ function boardregbtn() {
 	// alert(loginId);
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
-		window.location.href='/FinalProject/login';
+		window.location.href='/FinalProject/login.alreadyLogin';
 	}
 	else{
 		window.location.href='/FinalProject/boardreg';

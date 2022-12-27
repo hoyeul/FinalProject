@@ -8,14 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${path}/resources/js/Board/boardin.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardin.css">
 </head>
 <body>
 <c:set var="loginID" value="${sessionID}"></c:set>
+<c:set var="loginGrade" value="${sessionGrade}"></c:set>
 	<section>
 		<div class="boardin-all-wrap">
 			<div class="boardin-inner-wrap">
@@ -50,7 +49,7 @@
 				    	<a href="/FinalProject/board"><button>목록으로</button></a>
 				    </div>
 				    <div class="update-nav-update-btn">
-						<c:if test="${loginID eq b.id}">
+						<c:if test="${loginID eq b.id || loginGrade eq 'admin'}">
 					    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
 						    <a href="boardUp?num=${b.num}"><button>수정</button></a>
 						</c:if>
@@ -71,6 +70,7 @@
 		</div>
 		<input type="hidden" value="${b.num}" id="board_num"/>
 		<input type="hidden" value="${sessionID}" id="user_id"/>
+		<input type="hidden" value="${sessionGrade}" id="user_grade"/>
 	</section>
 </head>
 </body>

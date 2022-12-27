@@ -9,14 +9,12 @@ $(document).ready(function() {
 	
 	$("#board-in-comment-box").on("click",".replyreg",function(){
 		let Cnum =$(this).attr('value');
-		let p = this.parentElement.previousSibling;
-		let Recm =  p.querySelector(".reply").value;
-		let q = this.parentElement;
-		let text = q.querySelector(".text").value;
+		let Recm = this.parentElement.parentElement.parentElement.querySelector(".reply").value;
+		let text = this.parentElement.parentElement.querySelector(".text").value;
 		let commentRegLoginId = document.querySelector('#user_id').value;
 		if(commentRegLoginId == ""){
 			alert("로그인 후 댓글작성이 가능합니다.");
-			window.location.href='/FinalProject/login';
+			window.location.href='/FinalProject/login.alreadyLogin';
 		}else if(text == ""){
 			alert("댓글을 입력해주세요.");
 		}else{
@@ -60,7 +58,15 @@ $(document).ready(function() {
    });
    
    $("#board-in-comment-box").on("click",".comment-box-update",function(){
-      showList2();
+      let p = this.parentElement.parentElement;
+      p.querySelector('.comment-update-btn-box').style.display="block"
+      p.querySelector('.comment-update-textarea').style.display="block"
+      p.querySelector('.comment-text').style.display="none"
+      p.querySelector('.reply').style.display="none"
+      p.querySelector('.comment-box-delete').style.display="none"
+      p.querySelector('.comment-box-update').style.display="none"
+
+	  console.log(p);
    });
    
    $("#board-in-comment-box").on("click",".button4",function(){
@@ -73,7 +79,7 @@ $(document).ready(function() {
       let commentRegLoginId = document.querySelector('#user_id').value;
       if(commentRegLoginId == ""){
 		alert("로그인 후 댓글작성이 가능합니다.");
-		window.location.href='/FinalProject/login';
+		window.location.href='/FinalProject/login.alreadyLogin';
       }else if( text == "" ){
       	alert("댓글을 입력해주세요.");
       }else{
@@ -101,21 +107,21 @@ $(document).ready(function() {
    
    $("#board-in-comment-box").on("click",".button3",function(){
       let num =$(this).attr('value');
-      let p = this.parentElement.parentElement.previousSibling;
-          let text = p.querySelector(".text").value;
-      $.ajax( {
+      let text = this.parentElement.parentElement.querySelector('.comment-update-textarea').value;
+	$.ajax( {
           type:"POST" ,
           url : "CommentUP",
           data : {num:num,text:text},
           success: function(data){ 
                 alert("수정완료");
-                console.log(data);  },
+                console.log(data); 
+                showList1();
+                 },
              error: function(){
                 alert("CommentUPerror");
                 console.log(data);      
              }   
       }); 
-      showList1();     
    });
    
 });
@@ -146,55 +152,41 @@ function showList1(){
 }
 
 function toHtml1(data){
-    let str="<div class='board-in-comment'>";
-    for( let i=0 ; i< data.length; i++){
-       let item = data[i];
-       str+=
-        '<div class="comment-info">'
-       +'<span class="comment-user">'+item.name+'</span>'
-       +'<span class="comment-date">'+'('+item.date+')'+'</span>'
-       +'<div class="comment-area">'
-       +'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
-       +'<button class="reply" type="button" value="'+item.recm+'">답글</button>'
-       +'<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
-       +'<button class="comment-box-update" type="button">수정</button>'
-       +'</div>'
-       +'<div class ="replySpace">'
-       +'<textarea id="text" class="text"></textarea>'
-       +'<button class="replyreg" type="button" value="'+item.cnum+'">등록</button>'
-       +'<button class="button4" type="button">취소</button>'
-       +'</div>'
-       +'</div>'
-    }
-    str+= "</div>";
-    return  str;
-}
-
-// 로그인 아이디가 댓글 아이디랑 일치하면 보이기.
-function commentIdCheckOk(data){
 	let loginId = document.querySelector('#user_id').value;
     let str="<div class='board-in-comment'>";
     for( let i=0 ; i< data.length; i++){
-       let item = data[i];
-       str+=
-        '<div class="comment-info">'
-       +'<span class="comment-user">'+item.name+'</span>'
-       +'<span class="comment-date">'+'('+item.date+')'+'</span>'
-       +'<div class="comment-area">'
-       +'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
-       +'<button class="reply" type="button" value="'+item.recm+'">답글</button>'
-       +'<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
-       +'<button class="comment-box-update" type="button">수정</button>'
-       +'</div>'
-       +'<div class ="replySpace">'
-       +'<textarea id="text" class="text"></textarea>'
-       +'<button class="replyreg" type="button" value="'+item.cnum+'">등록</button>'
-       +'<button class="button4" type="button">취소</button>'
-       +'</div>'
-       +'</div>'
-    }
-    str+= "</div>";
-    return  str;
+        let item = data[i];
+        let names = item.name
+        str+=
+         '<div class="comment-info">'
+        +'<span class="comment-user">'+item.name+'</span>'
+        +'<span class="comment-date">'+'('+item.date+')'+'</span>'
+        +'<div class="comment-area">'
+        +'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
+        +'<textarea data-id='+item.text+' id="text" class="comment-update-textarea" style=display:none>'+item.text+'</textarea>'
+        +'<button class="reply" type="button" value="'+item.recm+'">답글</button>'
+        if( loginId == names || ("ㅤ┖"+loginId) == names){
+        str+=
+        '<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
+        +'<button class="comment-box-update" type="button">수정</button>'
+        }
+         str+=
+        '</div>'
+        +'<div class ="replySpace">'
+        +'<textarea id="text" class="text"></textarea>'
+        +'<div class="replyreg-btn-box">'
+        +'<button class="replyreg" type="button" value="'+item.cnum+'">등록</button>'
+        +'<button class="button4" type="button">취소</button>'
+        +'</div>'
+        +'</div>'
+        +'<div class="comment-update-btn-box">'
+     	+'<button class="button3" type="button" value="'+item.num+'">수정완료</button>'
+      	+'<button class="button4" type="button">취소</button>'
+      	+'</div>'
+        +'</div>'
+     }
+     str+= "</div>";
+     return  str;
 }
 
 function loginNull(data){
@@ -220,35 +212,23 @@ function loginNull(data){
    return  str;
 }
 
-function showList2(){
-   let Cnum = document.querySelector('.comment-edit-btn').value;
-     $.ajax(
-             {
-                type:"GET" ,
-                url: "RegIn" ,
-                data : {Cnum:Cnum},
-                success:function(data){
-                   let dataHtml = toHtml2(data);
-                   $("#board-in-comment-box").html(dataHtml);
-                   console.log(data);                   
-                },
-                error: function(){
-                   alert("showList2error");             
-                }   
-             }      
-         );
-}
 
 function toHtml2(data){
-   let str="<table>";
+   let str="<div class='comment-update-box'>";
    for( let i=0 ; i< data.length; i++){
       let item = data[i];
-      str+= '<tr class="comment"><td><textarea data-id='+item.text+' id="text" class="text">'+item.text+'</textarea></td>'
-      +'<td>'+item.name+'</td><td>'+item.date+'</td></tr><tr class="comment2" colspan="3"><td>'
+      str+=
+       '<div class="comment">'
+      +'<span class="comment-update-name">'+item.name+'</span><span class="comment-update-date">'+item.date+'</span>'
+      +'<textarea data-id='+item.text+' id="text" class="text">'+item.text+'</textarea>'
+      +'</div>'
+      +'<div class="comment-update-btn-box">'
       +'<button class="button3" type="button" value="'+item.num+'">수정완료</button>'
-      +'<button class="button4" type="button">취소</button></td></tr>'        
+      +'<button class="button4" type="button">취소</button>'
+      +'</div>'
+      +'</div>'
    }
-   str+= "</table>";
+   str+= "</div>";
    return  str;
 }
 
@@ -314,7 +294,7 @@ function boardregbtn() {
 	// alert(loginId);
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
-		window.location.href='/FinalProject/login';
+		window.location.href='/FinalProject/login.alreadyLogin';
 	}
 	else{
 		window.location.href='/FinalProject/boardreg';

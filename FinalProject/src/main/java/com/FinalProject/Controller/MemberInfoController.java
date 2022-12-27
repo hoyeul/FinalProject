@@ -62,7 +62,7 @@ public class MemberInfoController {
 	@RequestMapping( value="/mypage/pwCheck" , method= RequestMethod.POST)
 	public String pwCheckService(String id, String old_pw, HttpServletRequest request,HttpServletResponse response) throws IOException { 		 
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("EUC-KR");
+		response.setCharacterEncoding("UTF-8");
 		int pwCheck = service.checkOldPw(id,old_pw);
 		return String.valueOf(pwCheck);
 	}

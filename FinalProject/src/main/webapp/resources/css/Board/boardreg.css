@@ -48,9 +48,8 @@ input::-webkit-input-placeholder{
 }
 
 .reg_textarea{
-	width: 778px;
 	min-width: 778px;
-	height: 50vh;
+	max-width: 778px;
 	min-height: 50vh;
 	padding: 10px;
 	font-size: 15px;

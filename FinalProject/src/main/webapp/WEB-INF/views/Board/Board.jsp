@@ -12,24 +12,26 @@
 <script src="${path}/resources/js/Board/board.js">
 </script>
 <link rel="stylesheet" href="${path}/resources/css/Board/board.css">
-
 <body>
 <section>
 <div class="boardwrap">
+<c:set var="loginGrade" value="${sessionGrade}"></c:set>
+<c:set var="continentCheck" value="${continent}"></c:set>
 	<form name="frm" action="/FinalProject/board" method="get">
 		<div class="board_head">
-			<a href="/FinalProject/board">전체 게시판</a>	
+			<a href="/FinalProject/board">${continent} 게시판</a>
 		</div>
 		<div class="board_nav">
-			<div class="board_all"><a href="" class="first_a">인기</a></div>
 			<div class="tb_nav">
-	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/FinalProject/board'"checked>
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아'" checked>
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카'" checked>
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽'" checked>
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아'" checked>
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카'" checked>
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카'" checked>
+				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/FinalProject/board?recomend=recomend'">
+	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/FinalProject/board?recomend=b.num'">  			
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아&recomend=${recomend}'" >
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카&recomend=${recomend}'">
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽&recomend=${recomend}'">
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아&recomend=${recomend}'">
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카&recomend=${recomend}'">
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카&recomend=${recomend}'">
+			    <label for="인기">인기</label>
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
 			    <label for="아프리카">아프리카</label>
@@ -40,7 +42,6 @@
 			</div>
 		</div>
 		<table class="mainboard">
-
             <tr>
                 <td style="width:10%;"></td>
                 <td style="width:60%;">제목</td>
@@ -53,8 +54,8 @@
 	        <tr>
 	            <td>${item.num2}</td>
 	            <td style=" text-align: left;">
-		            <span class="b_con">[${item.continent}] </span>
-		            <span class="b_sel">[${item.select}] </span>
+		            <span class="b_con">[${item.continent}]</span>
+		            <span class="b_sel">[${item.select}]</span>
 		            <a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a>
 	            </td>
 	            <td>${item.id}</td>
@@ -138,6 +139,8 @@
 	<div class="edit-btn">
 		<button type="button" onclick="boardregbtn()">글쓰기</button>
 	</div>
+	<input type="hidden" id="user_grade" value="${sessionGrade}" />
+	<input type="hidden" name="loginId" value="${sessionID}">
 </div>
 </section>
 </body>
