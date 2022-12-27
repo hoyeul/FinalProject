@@ -1,5 +1,4 @@
 $(function(){	
-	
 	$("input[name='name']").on("keyup", function() {
       $(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/g,""));
    });
@@ -60,6 +59,8 @@ $(function(){
 		       }else if($("input[name='email2']").val() == ""){
 		       		alert("이메일을 입력해주세요");
 		       		$("input[name='email2']").focus();
+		       }else if($("input[name='mail-check-input']").val() == ""){
+		       		alert("인증번호를 입력해주세요");
 		       }else if($('#hiddenInput').prop('value') != $('.mail-check-input').val()){
 		       		alert("인증번호가 맞지 않습니다");
 		       }else{
@@ -76,6 +77,4 @@ $(function(){
 		    }
 		});
 	});
-	
-	
 });

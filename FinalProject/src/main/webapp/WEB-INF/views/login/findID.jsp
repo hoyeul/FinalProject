@@ -34,7 +34,7 @@
 		</div>
 		<div class="checkNum">
 			<span>인증번호</span><br/>
-			<input type="text" class="mail-check-input" disabled="disabled">
+			<input type="text" name="mail-check-input" class="mail-check-input" disabled="disabled">
 			<button type="button" id="mail-Check-Btn">인증번호발송</button>
 			<input type="hidden" id="hiddenInput" value="">
 		</div>

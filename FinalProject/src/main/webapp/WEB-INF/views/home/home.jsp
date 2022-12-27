@@ -154,7 +154,7 @@ pointSeries.data.setAll([{
 	            </tr>
 				<c:forEach var="list" items="${list}">
 		        <tr>
-		            <td>${list.num2}</td>
+		            <td>${list.num}</td>
 		            <td style=" text-align: left;">
 			            <span class="b_con">[${list.continent}] </span>
 			            <span class="b_sel">[${list.select}] </span>

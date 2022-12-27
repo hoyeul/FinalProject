@@ -10,7 +10,10 @@
 
 <link rel="stylesheet" href="${path}/resources/css/boardreg.css">
 <script src="${path}/resources/js/boardreg.js"></script>
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 
+
+</head>
 <body>
 	<section>
 	<form name="regfrm" action="/FinalProject/boardreg" method="post">
@@ -48,7 +51,10 @@
 				<tbody>
 			            <tr>
 			                <td class="board_text" colspan="4">
-			                   <textarea name="text" class="in_text" contenteditable="true"></textarea>
+			                  		 <div class="mb-3" style="width: 100%; margin: 0 auto;">
+							            <label for="exampleFormControlTextarea1" class="form-label"></label>
+							            <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true"></textarea>
+							          </div>
 			                </td>
 			            </tr>
 			            <tr>
