@@ -24,10 +24,10 @@ public class BoardDao {
         System.out.println("count="+count);
         int end =count-((page-1)*10);
         int start = count-(page*10)+1;       
-        String sql = "select b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from( ";
-        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_date,b_count,b_name from board where b_continent like ";
+        String sql = "select b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name from( ";
+        sql+=" select rownum num,b_num ,b_continent,b_select,b_text,b_title,b_count,b_name,case when (to_char(SYSDATE,'dd')-to_char(b_date,'dd'))>=1 then to_char(b_date,'mm.dd') else to_char(b_date,'hh24:mi') end as b_date,case when b_select ='공지' then 1  else 2 end as admin from board where b_continent like ";
         sql+=" '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') )";
-        sql+=" where num BETWEEN ? and ? order by num desc";
+        sql+=" where num BETWEEN ? and ? order by admin,num desc";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -61,7 +61,7 @@ public class BoardDao {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;     
-        String sql = "select * from(select  b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from board order by b_date desc) where rownum<=5";
+        String sql = "select * from(select  rownum num,b_num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from board order by b_date desc) where rownum<=5";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
@@ -163,7 +163,7 @@ public class BoardDao {
 		}				
 	}
 
-	public void update(BoardDto dto) {
+	public void update(BoardDto dto,String freeboard_content) {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
@@ -174,7 +174,7 @@ public class BoardDao {
 			pst.setString(1, dto.getContinent());
 			pst.setString(2, dto.getSelect());
 			pst.setString(3, dto.getTitle());
-			pst.setString(4, dto.getText());
+			pst.setString(4, freeboard_content);
 			pst.setInt(5, dto.getNum());
 			pst.executeUpdate();
 		} catch (SQLException e) {

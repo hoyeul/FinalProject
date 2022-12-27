@@ -16,7 +16,7 @@ table {
 }
 
 .reg_title{
-	width: 100%;
+	width: 97%;
 	height: 25px;
 	text-align: left;
 	border: 2px solid #ef3e61;
@@ -29,7 +29,7 @@ table {
 	text-align: left;
 }
 
-.in_text{
+.form-control{
 	width: 80%;
 	height: 400px;
 	text-align: left;
@@ -61,6 +61,8 @@ a {
     border-left: 1px dashed #ef3e61;
 
 }
+
+
 .board-order__item td {
     border-top: 1px solid  #ef3e61;
     border-left: 1px dashed #ef3e61;

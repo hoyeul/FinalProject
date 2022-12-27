@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/Chatting/chatting.js"></script>
-<link rel="stylesheet" href="${path}/resources/css/Chatting/chatting.css">
+<script src="${path}/resources/js/chatting.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/chatting.css">
 </head>
 <body>
 <section>
