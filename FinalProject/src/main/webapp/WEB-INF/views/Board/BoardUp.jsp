@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/boardup.css">
-<script src="${path}/resources/js/boardup.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/Board/boardup.css">
+<script src="${path}/resources/js/Board/boardup.js"></script>
 <script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>

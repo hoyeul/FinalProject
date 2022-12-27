@@ -13,8 +13,8 @@ $(function(){
 			
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
-				type : 'get',
-				url : '/FinalProject/mailCheck', 
+				type : 'post',
+				url : '/FinalProject/mailCheckRegister', 
 				data: {email:email},
 				success : function (data) {
 					checkInput.attr('disabled',false);

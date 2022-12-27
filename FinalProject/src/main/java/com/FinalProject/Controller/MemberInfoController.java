@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.FinalProject.Model.Mail.MailService;
 import com.FinalProject.Model.MemberInfo.MemberInfoDto;
 import com.FinalProject.Model.MemberInfo.MemberInfoService;
 
@@ -22,6 +23,9 @@ public class MemberInfoController {
 	
 	@Autowired
 	MemberInfoService service;
+	
+	@Autowired
+	MailService m;
 	
 	//register 화면으로 이동
 	@RequestMapping(value = "/register.alreadyLogin", method = RequestMethod.GET)
@@ -99,5 +103,12 @@ public class MemberInfoController {
 	public void deleteMember(String id) {
 		service.deleteMember(id);
 	}
+	
+	@RequestMapping(value="/mailCheckRegister", method=RequestMethod.POST)
+    @ResponseBody
+    public int mailCheckRegister(String email) throws Exception {
+    	int checkNum = m.mailCheckGET(email);
+    	return checkNum;
+    }
 	
 }
