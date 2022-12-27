@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/login.js"></script>
-<link rel="stylesheet" href="${path}/resources/css/login.css">
+<script src="${path}/resources/js/Login/login.js"></script>
+<link rel="stylesheet" href="${path}/resources/css/Login/login.css">
 </head>
 <body>
 <section>
@@ -35,9 +35,9 @@
 		</div>
 			
 		<div class="function_wrap">
-			<a href="/FinalProject/register">회원가입</a> <span>|</span>
-			<a href="/FinalProject/findID">아이디찾기</a> <span>|</span>
-			<a href="/FinalProject/findPW">비밀번호찾기</a>
+			<a href="/FinalProject/register.alreadyLogin">회원가입</a> <span>|</span>
+			<a href="/FinalProject/findID.alreadyLogin">아이디찾기</a> <span>|</span>
+			<a href="/FinalProject/findPW.alreadyLogin">비밀번호찾기</a>
 		</div>
 	</div>
 </section>

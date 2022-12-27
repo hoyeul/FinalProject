@@ -50,15 +50,24 @@
 			<div class="nav_cusInfo_menu_div">
 				<c:choose>
 					<c:when test="${sessionID ne null }">
-						<a href="/FinalProject/mypage" class="nav_cusInfo_menu_a">회원정보수정</a>
+						<a href="/FinalProject/mypage.do" class="nav_cusInfo_menu_a">회원정보수정</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/FinalProject/findID" class="nav_cusInfo_menu_a">아이디찾기</a>
-						<a href="/FinalProject/findPW" class="nav_cusInfo_menu_a">비밀번호찾기</a>
+						<a href="/FinalProject/findID.alreadyLogin" class="nav_cusInfo_menu_a">아이디찾기</a>
+						<a href="/FinalProject/findPW.alreadyLogin" class="nav_cusInfo_menu_a">비밀번호찾기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
+		
+		<c:if test="${sessionGrade eq 'admin' }">
+		<div class="nav_manager">
+			<a href="/FinalProject/manager.onlyAdmin" class="nav_manager_a">
+				<i class="material-symbols-outlined">manage_accounts</i>
+				<span>관리자페이지</span>
+			</a>
+		</div>
+		</c:if>
 	</div>
 	
 	<div class="nav_footer">

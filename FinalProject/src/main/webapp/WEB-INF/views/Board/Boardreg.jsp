@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
 <link rel="stylesheet" href="${path}/resources/css/boardreg.css">
 <script src="${path}/resources/js/boardreg.js"></script>
 <script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
+
 
 
 </head>

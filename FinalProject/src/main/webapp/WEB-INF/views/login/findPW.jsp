@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/findPW.css">
+<link rel="stylesheet" href="${path}/resources/css/Login/findPW.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${path}/resources/js/findPW.js"></script>
+<script src="${path}/resources/js/Login/findPW.js"></script>
 </head>
 <body>
 <section>
@@ -38,7 +38,10 @@
 		</div>
 		<div class="checkNum">
 			<span>인증번호</span><br/>
-			<input type="text" name="mail-check-input" class="mail-check-input" disabled="disabled">
+			<div class="certificationNum">
+				<input type="text" name="mail-check-input" class="mail-check-input" disabled="disabled">
+				<div id="demo"></div>
+			</div>
 			<button type="button" id="mail-Check-Btn">인증번호발송</button>
 			<input type="hidden" id="hiddenInput" value="">
 		</div>

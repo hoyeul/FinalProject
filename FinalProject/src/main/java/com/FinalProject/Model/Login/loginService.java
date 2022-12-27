@@ -20,6 +20,10 @@ public class loginService {
 		return dao.loginConfirm(dto);
 	}
 	
+	public String gradeInfo(String id) {
+		return dao.gradeInfo(id);
+	}
+	
 	public String findID(loginDto dto) {
 		return dao.findID(dto);
 	}

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.section_wrap{
+	width: 900px;	
+	margin: 0 auto;
+	padding: 50px 0;
+}
+.title_wrap{
+	display: flex;
+	justify-content: space-between;
+}
+.section_title{
+	display: flex;
+}
+.assignment {
+  font-size: 48px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' -25,
+  'opsz' 48
+  
+}
+.section_title_explain{
+	padding-left: 10px;
+}
+#continent{
+	width: 80px;
+}
+#country{
+	width: 80px;
+}
+.select_wrap{
+	margin-right: 10px;
+	line-height: 70px;
+}
+select{
+	border-radius: 5px;
+	font-size: 12px; 
+	padding: 2px 0;
+}
+#curve_chart{
+	height: 450px;
+}
