@@ -30,7 +30,6 @@ public class HomeController {
 		return "home/home";
 	}
 	
-
 	@ResponseBody
 	@RequestMapping(value="/home/embassy", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String embassy(HttpServletResponse response) throws Exception {

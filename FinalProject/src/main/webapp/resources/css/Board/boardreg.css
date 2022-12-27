@@ -3,16 +3,31 @@
     margin: 0px;
 }
 
-table, td {
-    border: none;
-    text-align: center;
-    border-collapse: collapse;
+.boardreg-wrap{
+	width: 800px;
+	margin: auto;
 }
 
-table {
-    width: 80%;
-    margin: 0px auto;
-    border-bottom: 3px solid #ef3e61;
+.boardreg-inner-wrap{
+	padding-top: 30px;
+}
+
+.boardreg-titlereg-area{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.boardreg-selectConSel-area{
+	padding : 20px 0px;
+	display: flex;
+}
+
+.boardreg-selectConSel-area span{
+	font-size: 15px;
+}
+
+.boardreg-selectConSel-area select{
+	margin: 0px 5px;
 }
 
 .reg_title{
@@ -23,12 +38,32 @@ table {
 	margin:3px 0px 3px 0px;
 	padding: 5px;
 	outline:none;
+	padding: 0px 10px;
+	font-size: 13px;
+	width: 776px;
+	height: 35px;
+	outline: none;
 }
 
-.board_text{
-	text-align: left;
+input::-webkit-input-placeholder{
+	font-weight: bold;
 }
 
+.boardreg-textarea{
+	width: 100%;
+	margin-top: 20px;
+}
+
+.reg_textarea{
+	min-width: 778px;
+	max-width: 778px;
+	min-height: 50vh;
+	padding: 10px;
+	font-size: 15px;
+	outline: none;
+}
+
+<<<<<<< HEAD
 .form-control{
 	width: 80%;
 	height: 400px;
@@ -91,6 +126,21 @@ a {
     font-weight: 700;
     border: none;
     border-radius: 15px;
+=======
+.boardreg-btn{
+	padding: 20px 0px;
+	text-align: right;
+}
+
+.boardreg-btn button{
+	width: 120px;
+    padding: 5px;
+    background-color: #303030;
+>>>>>>> origin/NewNewMaster
     color: white;
-    background-color: #ef3e61;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }

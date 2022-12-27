@@ -3,74 +3,69 @@
     margin: 0px;
 }
 
-table, td {
-    border: none;
-    text-align: center;
-    border-collapse: collapse;
-}
-table{
-width: 800px;
-margin: 0px auto;
-border-bottom: 3px solid  #ef3e61;
+.boardup-wrap{
+	width: 800px;
+	margin: auto;
 }
 
-caption{
-    padding: 15px;
-    font-size: 24px;
-    font-weight: 800;
+.boardup-inner-wrap{
+	padding-top: 30px;
 }
 
-a {
-	text-decoration: none;
-	color: black;
+.boardup-title-area{
+	font-size: 25px;
+	font-weight: bold;
 }
 
-.board-order{
-    font-size: 15px;
-    font-weight: bold;
-    
-
-}
-.board-order td{
-    padding: 10px;
-    border-top: 3px solid  #ef3e61;
-    border-bottom: 2px solid  #ef3e61;
-    border-left: 1px dashed #ef3e61;
-
-}
-.board-order__item td {
-    border-top: 1px solid  #ef3e61;
-    border-left: 1px dashed #ef3e61;
-    padding: 5px 0px;
-    margin: 5px 0px;
-}
-.board-order__item td:first-child,
-.board-order td:first-child{
-    border-left: none;
+.boardup-selectConSel-area{
+	padding : 20px 0px;
+	display: flex;
 }
 
-.enter__btn {
-    height: 50px;
-    padding: 10px;
-    text-align: right;
-    border-bottom: 3px solid  #ef3e61;
-    border-top: 2px solid  #ef3e61;
-  }
+.boardup-selectConSel-area span{
+	font-size: 15px;
+}
 
-.enter__btn button {
-    width: 100px;
-    height: 40px;
-    margin-right: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    border: none;
-    border-radius: 15px;
+.boardup-selectConSel-area select{
+	margin: 0px 5px;
+}
+
+.up-title{
+	padding: 0px 10px;
+	font-size: 13px;
+	width: 776px;
+	height: 35px;
+	outline: none;
+}
+
+.boardup-textarea{
+	width: 100%;
+	margin-top: 20px;
+}
+
+.up_textarea{
+	width: 778px;
+	min-width: 778px;
+	height: 50vh;
+	min-height: 50vh;
+	padding: 10px;
+	font-size: 15px;
+	outline: none;
+}
+
+.boardup-btn{
+	float: right;
+	margin-top: 10px;
+}
+
+.boardup-btn button{
+	width: 120px;
+    padding: 5px;
+    background-color: #303030;
     color: white;
-    background-color: #ef3e61;
-}
-textarea{
-	width:800px;
-	resize:none;
-	padding:15px;
-	outline:none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }

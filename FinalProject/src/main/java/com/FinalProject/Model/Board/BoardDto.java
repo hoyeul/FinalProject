@@ -11,14 +11,27 @@ public class BoardDto {
 	int number;
 	String id;
 	String recommend;
-	
+	String upcnt;
+	String downcnt;
+
 	public BoardDto() {
 		
 	}
-
+	
+	public BoardDto(int num, int num2, String continent, String select, String title, String date, int number,
+			String id) {
+		this.Num = num;
+		this.Num2 = num2;
+		this.Continent = continent;
+		this.Select = select;
+		this.Title = title;
+		this.Date = date;
+		this.number = number;
+		this.id = id;
+	}
+	
 	public BoardDto(int num, int num2, String continent, String select, String title, String text, String date,
-			int number, String id, String recommend) {
-		super();
+			int number, String id, String upcnt, String downcnt) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -28,7 +41,8 @@ public class BoardDto {
 		this.Date = date;
 		this.number = number;
 		this.id = id;
-		this.recommend = recommend;
+		this.upcnt = upcnt;
+		this.downcnt = downcnt;
 	}
 
 	public BoardDto( int num,String continent, String select, String title,String Text) {
@@ -50,7 +64,7 @@ public class BoardDto {
 	}
 
 	
-	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number,String id) {
+	public BoardDto(int num,int num2, String continent, String select, String title, String date, int number, String id, String recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -59,10 +73,12 @@ public class BoardDto {
 		this.Date = date;
 		this.number = number;
 		this.id = id;
+		this.recommend = recommend;
+		
 	}
 	
 	public BoardDto(int num,int num2, String continent, String select, String title, String text, String date, int number,
-			String id) {
+			String id, String recommend) {
 		this.Num = num;
 		this.Num2 = num2;
 		this.Continent = continent;
@@ -72,7 +88,9 @@ public class BoardDto {
 		this.Date = date;
 		this.number = number;
 		this.id = id;
+		this.recommend = recommend;
 	}
+	
 	public int getNum() {
 		return Num;
 	}
@@ -136,6 +154,21 @@ public class BoardDto {
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
+	public String getUpcnt() {
+		return upcnt;
+	}
+
+	public void setUpcnt(String upcnt) {
+		this.upcnt = upcnt;
+	}
+
+	public String getDowncnt() {
+		return downcnt;
+	}
+
+	public void setDowncnt(String downcnt) {
+		this.downcnt = downcnt;
+	}
 
 	@Override
 	public String toString() {
@@ -143,5 +176,4 @@ public class BoardDto {
 				+ ", Title=" + Title + ", Text=" + Text + ", Date=" + Date + ", number=" + number + ", id=" + id
 				+ ", recommend=" + recommend + "]";
 	}
-
 }

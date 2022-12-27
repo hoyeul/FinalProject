@@ -49,7 +49,7 @@ public class BoardController {
          content="";
          continent="";
          dao.count(continent,type,text,name);
-         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
          model.addAttribute("list", list);
       }else if(Pa == null && continent!=null && content==null && type==null && text==null) {
          page=1;
@@ -57,21 +57,21 @@ public class BoardController {
          text="";
          content="";
          dao.count(continent,type,text,name);
-         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
          model.addAttribute("list", list);
       }else if(Pa == null) {
          page=1;
          if(content.equals("작성자")) {
             name=text;
             text="";
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
             text=name;
          }else if(content.equals("제목")) {
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
          }else{
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
          }
       }else {
@@ -80,16 +80,16 @@ public class BoardController {
             text="";
             dao.count(continent,type,text,name);
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
             text=name;
          }else if(content.equals("제목")) {
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
          }else{
             page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name));
+            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
          }
       }
@@ -112,6 +112,11 @@ public class BoardController {
    @RequestMapping(value ="boardreg", method = RequestMethod.POST)
    public String Board_insert(BoardDto dto,String freeboard_content) {
       dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), freeboard_content);
+   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID) {
+	  // HttpSession session = request.getSession();
+	  // String sessionID = (String)session.getAttribute("sessionID");
+	  // System.out.println(sessionID);
+      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), regSessionID);
       
       return "redirect:/board";
    }
@@ -119,13 +124,12 @@ public class BoardController {
    @RequestMapping(value ="/boardIn", method = RequestMethod.GET)
    public String array2(BoardDto dto1,Model model,String p,String continent,SearchDto dto) {
       int s = dto1.getNum();
-      int b= dto1.getNumber()+1;
+      int b = dto1.getNumber()+1;
       dao.updateNum(b, s);
-      BoardDto a =dao.select(s);
+      BoardDto a = dao.select(s);
       model.addAttribute("b",a);
       return "Board/BoardIn";
    }
-   
    
    @ResponseBody
    @RequestMapping(value ="/RegIn", method = RequestMethod.GET)
@@ -152,7 +156,7 @@ public class BoardController {
    @RequestMapping(value ="/boardDE", method = RequestMethod.GET)
    public String delete(BoardDto dto) {
       int s = dto.getNum();
-      dao.delet(s);
+      dao.delete(s);
       return "redirect:/board";
    }
    
@@ -185,6 +189,31 @@ public class BoardController {
       dao.insert(dto);
       return "Board/BoardIn";
    }
+   
+   @ResponseBody
+   @RequestMapping(value = "/RecommendReg", method = RequestMethod.POST)	// 정상적인경우 1:추천, 비정상 0:이미추천 
+   public int recUp(RecommendDto dto) {
+	   
+	   int upConut = 0;
+	   boolean flag = dao.recUpConfirm(dto);	// 0 , 1
+	   if(flag) {
+		   upConut = dao.recUp(dto);		  
+	   }  
+	   return upConut; // 0 ,   5 =>  "5"
+   }
+   
+   @ResponseBody
+   @RequestMapping(value = "/RecommendDown", method = RequestMethod.POST)
+   public int recdown(RecommendDto dto) {
+	   
+	   int downcntCheck = 0;
+	   boolean flag = dao.recdownConfirm(dto);
+	   if(flag) {
+		   downcntCheck = dao.recdown(dto);
+	   }
+	   return downcntCheck;
+   }
+	
    @RequestMapping(value ="/Chatting", method = RequestMethod.GET)
    public String Chatting(Model model) {
       return "/chat-ws";
