@@ -64,7 +64,14 @@ public class BoardDao {
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;     
-        String sql = "select * from(select  b_num,num,b_continent,b_select,b_title,to_char(b_date,'hh24:mi'),b_count,b_name from board order by b_date desc) where rownum<=5";
+        String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, ";
+          	   sql+= " case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
+          	   sql+= " b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count from ";
+          	   sql+= " (select b_num, num, b_continent, b_select, b_title, b_date, b_count, b_name ";
+          	   sql+= " from (select num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ORDER BY num DESC)where ROWNUM <=5) b ";
+          	   sql+= " left outer join board_recommend br on b.B_NUM = br.B_NUM ";
+          	   sql+= " group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
+          	   sql+= " order by b_date desc ";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
@@ -80,7 +87,8 @@ public class BoardDao {
             String b_date=rs.getString(6);
             int b_count=rs.getInt(7);
             String b_name=rs.getString(8);
-            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name);
+            String b_recommend=rs.getString(9);
+            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
 		} catch (SQLException e) {
@@ -328,6 +336,8 @@ public class BoardDao {
 			pst.setString(4, text);
 			pst.setString(5, id);
 			pst.executeUpdate();
+			pst.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally { 
@@ -341,7 +351,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		int upCount = 0;
 		String sql = " insert into board_recommend values('1','0',?,?) ";
-		String sql2 = " select sum(rec_up) from board_recommend where id = ? and b_num = ? ";
+		String rec_upSql = " SELECT sum(rec_up) FROM board_recommend where b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -350,9 +360,8 @@ public class BoardDao {
 			pst.executeUpdate();
 			pst.close();
 			
-			pst = conn.prepareStatement(sql2);
-			pst.setString(1, dto.getId());
-			pst.setInt(2, dto.getB_num());
+			pst = conn.prepareStatement(rec_upSql);
+			pst.setInt(1, dto.getB_num());
 		    rs = pst.executeQuery();
 		    if( rs.next()) {
 		    	upCount = rs.getInt(1);
@@ -366,6 +375,7 @@ public class BoardDao {
 		return upCount;
 	}
 	
+	
 	public int recdown(RecommendDto dto) {		
 		Connection conn = null;
 		PreparedStatement pst = null;
@@ -373,7 +383,7 @@ public class BoardDao {
 		
 		int downcnt = 0;
 		String sql = " insert into board_recommend values('0','1',?,?) ";
-		String sql2 = " select sum(rec_down) from board_recommend where id = ? and b_num = ? ";
+		String rec_downSql = " SELECT sum(rec_down) FROM board_recommend where b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -382,9 +392,8 @@ public class BoardDao {
 			pst.executeUpdate();
 			pst.close();
 			
-			pst = conn.prepareStatement(sql2);
-			pst.setString(1, dto.getId());
-			pst.setInt(2, dto.getB_num());
+			pst = conn.prepareStatement(rec_downSql);
+			pst.setInt(1, dto.getB_num());
 		    rs = pst.executeQuery();
 		    if( rs.next()) {
 		    	downcnt = rs.getInt(1);

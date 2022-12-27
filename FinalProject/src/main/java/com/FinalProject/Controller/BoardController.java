@@ -31,12 +31,12 @@ public class BoardController {
       String Pa=dto.getPage();
       String name="";
       if( recommend == null ){
-    	  recommend = "b.num";
+    	  recommend = "b_date";
       }else {
     	  if(recommend.equals("recommend") || recommend.equals("rec_count")) {
         	  recommend = "rec_count";          
           }else {
-        	  recommend = "b.num";
+        	  recommend = "b_date";
           }
       }
       int page=0;
@@ -109,11 +109,7 @@ public class BoardController {
    
    @RequestMapping(value ="boardreg", method = RequestMethod.POST)
    public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID) {
-	  // HttpSession session = request.getSession();
-	  // String sessionID = (String)session.getAttribute("sessionID");
-	  // System.out.println(sessionID);
       dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), regSessionID);
-      
       return "redirect:/board";
    }
    

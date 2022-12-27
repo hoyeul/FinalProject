@@ -23,14 +23,14 @@
 		</div>
 		<div class="board_nav">
 			<div class="tb_nav">
-				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/FinalProject/board?recomend=recomend'">
-	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/FinalProject/board?recomend=b.num'">  			
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아&recomend=${recomend}'" >
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카&recomend=${recomend}'">
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽&recomend=${recomend}'">
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아&recomend=${recomend}'">
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카&recomend=${recomend}'">
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카&recomend=${recomend}'">
+				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/FinalProject/board?recommend=recommend'">
+	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/FinalProject/board?recommend=b.num'">  			
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아&recomend=${recommend}'" >
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카&recomend=${recommend}'">
 			    <label for="인기">인기</label>
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>

@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model) {
 		ArrayList<BoardDto> list = dao.arrayRecent();
-		 model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		return "home/home";
 	}
 	
