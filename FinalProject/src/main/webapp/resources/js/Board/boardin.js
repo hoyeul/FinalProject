@@ -18,7 +18,7 @@ CKEDITOR.replace( 'ckeditor', {
 		let commentRegLoginId = document.querySelector('#user_id').value;
 		if(commentRegLoginId == ""){
 			alert("로그인 후 댓글작성이 가능합니다.");
-			window.location.href='/FinalProject/login.alreadyLogin';
+			window.location.href='/login.alreadyLogin';
 		}else if(text == ""){
 			alert("댓글을 입력해주세요.");
 		}else{
@@ -83,7 +83,7 @@ CKEDITOR.replace( 'ckeditor', {
       let commentRegLoginId = document.querySelector('#user_id').value;
       if(commentRegLoginId == ""){
 		alert("로그인 후 댓글작성이 가능합니다.");
-		window.location.href='/FinalProject/login.alreadyLogin';
+		window.location.href='/login.alreadyLogin';
       }else if( text == "" ){
       	alert("댓글을 입력해주세요.");
       }else{
@@ -97,8 +97,7 @@ CKEDITOR.replace( 'ckeditor', {
 	          	},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
 	          success: function(data){ 
                 	showList1();
-	                alert("입력완료");
-	                alert(data);
+	                // alert("입력완료");
 	                document.querySelector('.comment-textarea').value = "";
 	                console.log(data); 
 	                },
@@ -244,7 +243,7 @@ $(function(){
 			let loginId = document.querySelector('#user_id').value;
 			if(loginId == ""){
 				alert("로그인 후 추천이 가능합니다.");
-				window.location.href='/FinalProject/login.alreadyLogin';
+				window.location.href='/login.alreadyLogin';
 			}else{
 				$.ajax({
 				url: "RecommendReg",
@@ -278,7 +277,7 @@ $(function(){
 			let loginId = document.querySelector('#user_id').value;
 			if(loginId == ""){
 				alert("로그인 후 비추천이 가능합니다.");
-				window.location.href='/FinalProject/login.alreadyLogin';
+				window.location.href='/login.alreadyLogin';
 			}else{
 			$.ajax({
 				url: "RecommendDown",
@@ -311,9 +310,9 @@ function boardregbtn() {
 	let loginId = document.querySelector('#user_id').value;
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
-		window.location.href='/FinalProject/login.alreadyLogin';
+		window.location.href='/login.alreadyLogin';
 	}
 	else{
-		window.location.href='/FinalProject/boardreg';
+		window.location.href='/boardreg';
 	}
 }

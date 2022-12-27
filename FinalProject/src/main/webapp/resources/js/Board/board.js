@@ -46,9 +46,9 @@ function boardregbtn() {
 	// alert(loginId);
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
-		window.location.href='/FinalProject/login.alreadyLogin';
+		window.location.href='/login.alreadyLogin';
 	}
 	else{
-		window.location.href='/FinalProject/boardreg';
+		window.location.href='/boardreg';
 	}
 }
