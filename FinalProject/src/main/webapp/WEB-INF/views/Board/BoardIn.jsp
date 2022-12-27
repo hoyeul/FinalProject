@@ -14,56 +14,67 @@
 <link rel="stylesheet" href="${path}/resources/css/Board/boardin.css">
 </head>
 <body>
+<c:set var="loginID" value="${sessionID}"></c:set>
+<c:set var="loginGrade" value="${sessionGrade}"></c:set>
 	<section>
-		<div class="board-in-all-wrap">
-			<div class="board-in-continent-title">
-				<a href="/FinalProject/board?continent=아시아">${b.continent} 게시판</a>
-			</div>
-			<hr class="under-continent-title">
-			<div class="board-in-title">
-				<span>[${b.select}] ${b.title}</span>
-				<span>${b.id}</span>
-				<span> | </span>
-				<span>${b.date}</span>
-				<span>조회수 ${b.number}</span>
-			</div>
-			<div class="board-in-textarea">
-			 <div class="mb-3" style="width: 100%; margin: 0 auto;">
-					<label for="exampleFormControlTextarea1" class="form-label"></label>
-					<textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true" readonly="readonly">${b.text}</textarea>
-			 </div>
-			</div>
-			<div class="recommend-btn-area">
-				<div class="rec-btn-inner-area">
-					<button class="recommend-btn">
-						<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-up.png"/>">
-						<span class="rec-text">추천</span>
-					</button>
-					<button class="recommend-btn">
-						<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-down.png"/>">
-						<span class="rec-text">비추천</span>
-					</button>
+		<div class="boardin-all-wrap">
+			<div class="boardin-inner-wrap">
+				<div class="board-in-continent-title">
+					<a href="/FinalProject/board">${b.continent} 게시판</a>
 				</div>
-			</div>
-			<div class="update-nav">
-				<div class="update-nav-goList">
-			    	<a href="/FinalProject/board"><button>목록으로</button></a>
-			    </div>
-			    <div class="update-nav-update-btn">
-			    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
-				    <a href="boardUp?num=${b.num}"><button>수정</button></a>
+				<hr class="under-continent-title">
+				<div class="board-in-title">
+					<span>[${b.select}] ${b.title}</span>
+					<span>${b.id}</span>
+					<span> | </span>
+					<span>${b.date}</span>
+					<span>조회수 ${b.number}</span>
 				</div>
-			</div>
-			<div id="board-in-comment-box"></div>
-			<div class="comment-edit-area">
-				<textarea class="comment-textarea"></textarea>
-				<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
-			</div>
-			<div class="comment-edit-nav">
-				<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
-				<a href="/FinalProject/boardreg.do"><button>글쓰기</button></a>		
+				<div class="board-in-textarea">
+					<div class="mb-3"">
+					     <label for="exampleFormControlTextarea1" class="form-label"></label>
+					     <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true" readonly="readonly">${b.text}</textarea>
+					</div>
+				</div>
+				<div class="recommend-btn-area">
+					<div class="rec-btn-inner-area">
+						<button class="recommend-btn" id="recUp">
+							<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-up.png"/>">
+							<span class="rec-text">추천 <span id="recUpHtml">${b.upcnt}</span></span>
+						</button>
+						<button class="recommend-btn" id="recDown">
+							<img class="recommend-img" alt="" src="<c:url value="resources/image/rec-down.png"/>">
+							<span class="rec-text">비추천 <span id="recDownHtml">${b.downcnt}</span></span>
+						</button>
+					</div>
+				</div>
+				<div class="update-nav">
+					<div class="update-nav-goList">
+				    	<a href="/FinalProject/board"><button>목록으로</button></a>
+				    </div>
+				    <div class="update-nav-update-btn">
+						<c:if test="${loginID eq b.id || loginGrade eq 'admin'}">
+					    	<a href="boardDE?num=${b.num}"><button>삭제</button></a>
+						    <a href="boardUp?num=${b.num}"><button>수정</button></a>
+						</c:if>
+					</div>
+				</div>
+				<div id="board-in-comment-box"></div>
+				<div class="comment-edit-area">
+					<textarea class="comment-textarea"></textarea>
+					<button class="comment-edit-btn" type="button" value="${b.num}">등록</button>
+				</div>
+				<div>
+					<div class="comment-edit-nav">
+						<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+						<button type="button" onclick="boardregbtn()">글쓰기</button>
+					</div>
+				</div>
 			</div>
 		</div>
+		<input type="hidden" value="${b.num}" id="board_num"/>
+		<input type="hidden" value="${sessionID}" id="user_id"/>
+		<input type="hidden" value="${sessionGrade}" id="user_grade"/>
 	</section>
 </head>
 </body>

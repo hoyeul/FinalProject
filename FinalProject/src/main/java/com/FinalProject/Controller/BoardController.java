@@ -25,6 +25,7 @@ import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
 import com.FinalProject.Model.Board.CommentDto;
 import com.FinalProject.Model.Board.Pagination;
+import com.FinalProject.Model.Board.RecommendDto;
 import com.FinalProject.Model.Board.SearchDto;
 import com.google.gson.JsonObject;
 
@@ -35,12 +36,21 @@ public class BoardController {
    BoardDao dao;
    
    @RequestMapping(value ="/board", method = RequestMethod.GET)
-   public String array(Model model,String continent,SearchDto dto) {
+   public String array(Model model,String continent,SearchDto dto,String recommend) {
       String text=dto.getText();
       String content=dto.getSelectcontent();
       String type=dto.getSelecttype();
       String Pa=dto.getPage();
       String name="";
+      if( recommend == null ){
+    	  recommend = "b_date";
+      }else {
+    	  if(recommend.equals("recommend") || recommend.equals("rec_count")) {
+        	  recommend = "rec_count";          
+          }else {
+        	  recommend = "b_date";
+          }
+      }
       int page=0;
       if(Pa == null && continent==null && content==null && type==null && text==null) {
          page=1;
@@ -93,9 +103,11 @@ public class BoardController {
             model.addAttribute("list", list);
          }
       }
-      int Allrecoard=dao.count(continent,type,text,name);
-      Pagination paination = new Pagination();
-      model.addAttribute("page", paination.page(Pa, Allrecoard));
+      
+      int Allrecord = dao.count(continent, type, text, name);
+      Pagination pagination = new Pagination();
+      model.addAttribute("page", pagination.page(Pa, Allrecord));
+      model.addAttribute("recommend", recommend);
       model.addAttribute("text", text);
       model.addAttribute("type", type);
       model.addAttribute("content", content);
@@ -110,14 +122,8 @@ public class BoardController {
    }
    
    @RequestMapping(value ="boardreg", method = RequestMethod.POST)
-   public String Board_insert(BoardDto dto,String freeboard_content) {
-      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), freeboard_content);
-   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID) {
-	  // HttpSession session = request.getSession();
-	  // String sessionID = (String)session.getAttribute("sessionID");
-	  // System.out.println(sessionID);
-      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), regSessionID);
-      
+   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID, String freeboard_content) {
+      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), freeboard_content, regSessionID);
       return "redirect:/board";
    }
    
@@ -147,9 +153,9 @@ public class BoardController {
       return "Board/BoardUp";
    }
    
-   @RequestMapping(value ="boardUp",produces="text/plain;charset=UTF-8" ,method = RequestMethod.POST)
-   public String Up2(BoardDto dto,String freeboard_content) {   
-      dao.update(dto,freeboard_content);
+   @RequestMapping(value = "boardUp",produces="text/plain;charset=UTF-8" ,method = RequestMethod.POST)
+   public String Up2(BoardDto dto, String freeboard_content) {   
+      dao.updateBoard(dto, freeboard_content);
       return "redirect:/boardIn?num="+dto.getNum()+"";
    }
    
@@ -179,7 +185,7 @@ public class BoardController {
    @ResponseBody
    @RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
    public String UpdateCM(  CommentDto dto) {
-      dao.update(dto);
+      dao.updateCM(dto);
       return "Board/BoardIn";
    }
    
@@ -224,59 +230,56 @@ public class BoardController {
    }
    
    @ResponseBody
-	@RequestMapping(value = "fileupload.do")
+   @RequestMapping(value = "fileupload.do")
    public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
-		JsonObject jsonObject = new JsonObject();
-		PrintWriter printWriter = null;
-		OutputStream out = null;
-		MultipartFile file = multiFile.getFile("upload");
-		
-		if(file != null) {
-			if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
-				if(file.getContentType().toLowerCase().startsWith("image/")) {
-				    try{
-				    	 
-			            String fileName = file.getOriginalFilename();
-			            byte[] bytes = file.getBytes();
-			           
-			            String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/noticeimg"); //저장경로
-			            System.out.println("uploadPath:"+uploadPath);
+      JsonObject jsonObject = new JsonObject();
+      PrintWriter printWriter = null;
+      OutputStream out = null;
+      MultipartFile file = multiFile.getFile("upload");
+      
+      if(file != null) {
+         if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
+            if(file.getContentType().toLowerCase().startsWith("image/")) {
+                try{
+                    
+                     String fileName = file.getOriginalFilename();
+                     byte[] bytes = file.getBytes();
+                    
+                     String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/noticeimg"); //저장경로
+                     System.out.println("uploadPath:"+uploadPath);
 
-			            File uploadFile = new File(uploadPath);
-			            if(!uploadFile.exists()) {
-			            	uploadFile.mkdir();
-			            }
-			            String fileName2 = UUID.randomUUID().toString();
-			            uploadPath = uploadPath + "/" + fileName2 +fileName;
-			            
-			            out = new FileOutputStream(new File(uploadPath));
-			            out.write(bytes);
-			            
-			            printWriter = resp.getWriter();
-			            String fileUrl = req.getContextPath() + "/resources/image/noticeimg/" +fileName2 +fileName; //url경로
-			            System.out.println("fileUrl :" + fileUrl);
-			            JsonObject json = new JsonObject();
-			            json.addProperty("uploaded", 1);
-			            json.addProperty("fileName", fileName);
-			            json.addProperty("url", fileUrl);
-			            printWriter.print(json);
-			            System.out.println(json);
-			 
-			        }catch(IOException e){
-			            e.printStackTrace();
-			        } finally {
-			            if (out != null) {
-		                    out.close();
-		                }
-		                if (printWriter != null) {
-		                    printWriter.close();
-		                }
-			        }
-				}
-
-			
-		}
-		
-		}
+                     File uploadFile = new File(uploadPath);
+                     if(!uploadFile.exists()) {
+                        uploadFile.mkdir();
+                     }
+                     String fileName2 = UUID.randomUUID().toString();
+                     uploadPath = uploadPath + "/" + fileName2 +fileName;
+                     
+                     out = new FileOutputStream(new File(uploadPath));
+                     out.write(bytes);
+                     
+                     printWriter = resp.getWriter();
+                     String fileUrl = req.getContextPath() + "/resources/image/noticeimg/" +fileName2 +fileName; //url경로
+                     System.out.println("fileUrl :" + fileUrl);
+                     JsonObject json = new JsonObject();
+                     json.addProperty("uploaded", 1);
+                     json.addProperty("fileName", fileName);
+                     json.addProperty("url", fileUrl);
+                     printWriter.print(json);
+                     System.out.println(json);
+          
+                 }catch(IOException e){
+                     e.printStackTrace();
+                 } finally {
+                     if (out != null) {
+                          out.close();
+                      }
+                      if (printWriter != null) {
+                          printWriter.close();
+                      }
+                 }
+            }
+         }
+      }
    }
 }

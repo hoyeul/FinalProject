@@ -210,6 +210,7 @@ am5.ready(function() {
 		            <td>${list.id}</td>
 		            <td style="">${list.date}</td>
 		            <td>${list.number}</td>
+		            <td>${list.recommend}</td>
 		        </tr> 
 				</c:forEach>
 				</table>

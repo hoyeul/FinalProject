@@ -98,6 +98,7 @@ CKEDITOR.replace( 'ckeditor', {
 	          success: function(data){ 
                 	showList1();
 	                alert("입력완료");
+	                alert(data);
 	                document.querySelector('.comment-textarea').value = "";
 	                console.log(data); 
 	                },

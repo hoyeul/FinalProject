@@ -4,62 +4,62 @@
 }
 
 .boardup-wrap{
-	width: 800px;
-	margin: auto;
+   width: 800px;
+   margin: auto;
 }
 
 .boardup-inner-wrap{
-	padding-top: 30px;
+   padding: 30px 0px;
 }
 
 .boardup-title-area{
-	font-size: 25px;
-	font-weight: bold;
+   font-size: 25px;
+   font-weight: bold;
 }
 
 .boardup-selectConSel-area{
-	padding : 20px 0px;
-	display: flex;
+   padding : 20px 0px;
+   display: flex;
 }
 
 .boardup-selectConSel-area span{
-	font-size: 15px;
+   font-size: 15px;
 }
 
 .boardup-selectConSel-area select{
-	margin: 0px 5px;
+   margin: 0px 5px;
 }
 
 .up-title{
-	padding: 0px 10px;
-	font-size: 13px;
-	width: 776px;
-	height: 35px;
-	outline: none;
+   padding: 0px 10px;
+   font-size: 13px;
+   width: 776px;
+   height: 35px;
+   outline: none;
 }
 
 .boardup-textarea{
-	width: 100%;
-	margin-top: 20px;
+   width: 100%;
+   margin-top: 20px;
 }
 
 .up_textarea{
-	width: 778px;
-	min-width: 778px;
-	height: 50vh;
-	min-height: 50vh;
-	padding: 10px;
-	font-size: 15px;
-	outline: none;
+   width: 778px;
+   min-width: 778px;
+   height: 50vh;
+   min-height: 50vh;
+   padding: 10px;
+   font-size: 15px;
+   outline: none;
 }
 
 .boardup-btn{
-	float: right;
-	margin-top: 10px;
+   text-align: right;
+   margin-top: 20px;
 }
 
 .boardup-btn button{
-	width: 120px;
+    width: 120px;
     padding: 5px;
     background-color: #303030;
     color: white;
@@ -68,4 +68,5 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    margin-left: 5px;
 }
