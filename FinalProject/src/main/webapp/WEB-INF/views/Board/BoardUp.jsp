@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardup.css">
 <script src="${path}/resources/js/Board/boardup.js"></script>
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<section>
@@ -50,7 +51,10 @@
 				</tr>
 				<tr>
 					<td class="enter__btn" colspan="8">
-					<textarea name="text">${a.text}</textarea>
+						<div class="mb-3" style="width: 100%; margin: 0 auto;">
+						<label for="exampleFormControlTextarea1" class="form-label"></label>
+						 <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true">${a.text }</textarea>
+						 </div>
 					</td>
 				</tr>
 				<tr>

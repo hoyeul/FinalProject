@@ -24,7 +24,7 @@ public class LoginController {
 	@Autowired
 	MailService m;
 	
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/login.alreadyLogin")
 	public String login() {
 		return "login/login";
 	}
@@ -36,8 +36,10 @@ public class LoginController {
 		int num = s.loginConfirm(new loginDto(dto.getId(), dto.getPw()));
 		
 		if(num == 1) {
+			String grade = s.gradeInfo(dto.getId());
 			HttpSession session = request.getSession();
 			session.setAttribute("sessionID", dto.getId());
+			session.setAttribute("sessionGrade", grade);
 			if(ckbox == true) {
 				Cookie cookie = new Cookie("id", dto.getId());
 				response.addCookie(cookie);
@@ -58,30 +60,30 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "home/home";
+		return "redirect:/home";
 	}
 	
-	@RequestMapping(value="/findID")
+	@RequestMapping(value="/findID.alreadyLogin")
 	public String findID() {
 		return "login/findID";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findID", method = RequestMethod.POST)
-	public String findID(loginDto dto){
+	public String findID(loginDto dto) throws Exception{
 		
 		String id = s.findID(new loginDto(dto.getName(), dto.getJumin(), dto.getEmail()));
 		return id;
 	}
 	
-	@RequestMapping(value="/findPW")
+	@RequestMapping(value="/findPW.alreadyLogin")
 	public String findPW() {
 		return "login/findPW";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/findPW", method = RequestMethod.POST)
-	public String findPW(loginDto dto){
+	public String findPW(loginDto dto) throws Exception{
 		
 		String pw = s.findPW(new loginDto(dto.getId(), dto.getName(), dto.getJumin(), dto.getEmail()));
 		return pw;
@@ -89,7 +91,7 @@ public class LoginController {
 	
 	
 	
-    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+    @RequestMapping(value="/mailCheck", method=RequestMethod.POST)
     @ResponseBody
     public int mailCheck(String email) throws Exception {
     	int checkNum = m.mailCheckGET(email);

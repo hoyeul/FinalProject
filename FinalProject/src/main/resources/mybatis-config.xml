@@ -5,5 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MemberInfoDto" type="com.FinalProject.Model.MemberInfo.MemberInfoDto"/>
+		<typeAlias alias="loginDto" type="com.FinalProject.Model.Login.loginDto"/>
 	</typeAliases>
 </configuration>

@@ -17,14 +17,24 @@ public class loginService {
 	}
 
 	public int loginConfirm(loginDto dto) {
-		return dao.loginConfirm(dto);
+		int num = 0;
+		String pw = dao.loginConfirm(dto);
+		if(pw != null) {
+			if(pw.equals(dto.getPw()))	num = 1;
+			else						num = 0;
+		}else	num = -1;
+		return num;
 	}
 	
-	public String findID(loginDto dto) {
+	public String gradeInfo(String id) throws Exception{
+		return dao.gradeInfo(id);
+	}
+	
+	public String findID(loginDto dto) throws Exception{
 		return dao.findID(dto);
 	}
 	
-	public String findPW(loginDto dto) {
+	public String findPW(loginDto dto) throws Exception{
 		return dao.findPW(dto);
 	}
 	

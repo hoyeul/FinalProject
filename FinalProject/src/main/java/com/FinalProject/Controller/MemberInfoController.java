@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.FinalProject.Model.Mail.MailService;
 import com.FinalProject.Model.MemberInfo.MemberInfoDto;
 import com.FinalProject.Model.MemberInfo.MemberInfoService;
 
@@ -23,8 +24,11 @@ public class MemberInfoController {
 	@Autowired
 	MemberInfoService service;
 	
-	//Register 화면으로 이동
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@Autowired
+	MailService m;
+	
+	//register 화면으로 이동
+	@RequestMapping(value = "/register.alreadyLogin", method = RequestMethod.GET)
 	public String registerGet() {
 		return "register/register";
 	}
@@ -49,7 +53,7 @@ public class MemberInfoController {
 		return String.valueOf(idCheck);
 	}
 	//mypage로 화면이동
-	@RequestMapping(value="/mypage", method = RequestMethod.GET)
+	@RequestMapping(value="/mypage.do", method = RequestMethod.GET)
 	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
 		MemberInfoDto registerDto = service.mypageInfo(sessionID);
@@ -79,7 +83,7 @@ public class MemberInfoController {
 		return "redirect:/login";
 	}
 	
-	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager.onlyAdmin", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		List<MemberInfoDto> list = service.searchMember("");
 		model.addAttribute("list", list);
@@ -105,7 +109,11 @@ public class MemberInfoController {
 		service.deleteMember(id);
 	}
 	
-	
-	
+	@RequestMapping(value="/mailCheckRegister", method=RequestMethod.POST)
+    @ResponseBody
+    public int mailCheckRegister(String email) throws Exception {
+    	int checkNum = m.mailCheckGET(email);
+    	return checkNum;
+    }
 	
 }

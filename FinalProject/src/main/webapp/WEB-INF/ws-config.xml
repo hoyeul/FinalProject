@@ -14,8 +14,18 @@
 
   <websocket:handlers>
       <websocket:mapping handler="chatHandler" path="/chat-ws" />
+            <websocket:mapping handler="chatHandler2" path="/chat-ws2" />
+               <websocket:mapping handler="chatHandler3" path="/chat-ws3" />
+                  <websocket:mapping handler="chatHandler4" path="/chat-ws4" />
+                     <websocket:mapping handler="chatHandler5" path="/chat-ws5" />
+                        <websocket:mapping handler="chatHandler6" path="/chat-ws6" />
   </websocket:handlers>
 
   <bean id="chatHandler" class="com.FinalProject.Controller.ChatWebSocketHandler" />
+    <bean id="chatHandler2" class="com.FinalProject.Controller.ChatWebSocketHandler2" />
+        <bean id="chatHandler3" class="com.FinalProject.Controller.ChatWebSocketHandler3" />
+            <bean id="chatHandler4" class="com.FinalProject.Controller.ChatWebSocketHandler4" />
+                <bean id="chatHandler5" class="com.FinalProject.Controller.ChatWebSocketHandler5" />
+                    <bean id="chatHandler6" class="com.FinalProject.Controller.ChatWebSocketHandler6" />
 
 </beans>

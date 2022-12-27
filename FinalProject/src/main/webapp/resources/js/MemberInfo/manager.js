@@ -1,5 +1,4 @@
 $(function(){
-	
 	$("#searchID").on("keyup", function(){
 		let searchbar = $('#searchID').prop('value');
 		$.ajax({
@@ -26,48 +25,8 @@ $(function(){
 				});
 				$("#tbody").empty();
 				$("#tbody").append(html);
-				
-				$(".updateBtn").on("click", function(){
-					let selectbox = this.parentElement.previousElementSibling.firstElementChild;
-					let id = this.parentElement.previousElementSibling.previousElementSibling.innerHTML;
-					let grade = selectbox.options[selectbox.selectedIndex].value;
-					
-					let cfm = confirm("수정하시겠습니까?");
-					if(cfm == true){
-						$.ajax({
-							url: '/FinalProject/updateManager',
-							type: 'post',
-							data: {id:id, grade:grade},
-							success: function(){
-								location.href="/FinalProject/manager"
-							},
-							error: function(){
-								alert("error");
-							}
-						});
-					}
-					
-				});
-				
-				$(".deleteBtn").on("click", function(){
-					
-					let id = this.parentElement.previousElementSibling.previousElementSibling.innerHTML;
-					let cfm = confirm("정말로 삭제하시겠습니까?");
-					
-					if(cfm == true){
-						$.ajax({
-							url: '/FinalProject/deleteManager',
-							type: 'post',
-							data: {id:id},
-							success: function(){
-								location.href="/FinalProject/manager"
-							},
-							error: function(){
-								alert("error");
-							}
-						});
-					}
-				});
+				clickUpdateBtn();
+				clickDeleteBtn();
 			},
 			error: function(){
 				alert("error");
@@ -75,7 +34,11 @@ $(function(){
 		});
 	});
 	
-	
+	clickUpdateBtn();
+	clickDeleteBtn();
+});
+
+function clickUpdateBtn(){
 	$(".updateBtn").on("click", function(){
 		let selectbox = this.parentElement.previousElementSibling.firstElementChild;
 		let id = this.parentElement.previousElementSibling.previousElementSibling.innerHTML;
@@ -88,7 +51,7 @@ $(function(){
 				type: 'post',
 				data: {id:id, grade:grade},
 				success: function(){
-					location.href="/FinalProject/manager"
+					location.href="/FinalProject/manager.onlyAdmin"
 				},
 				error: function(){
 					alert("error");
@@ -97,8 +60,9 @@ $(function(){
 		}
 		
 	});
-	
-	
+}
+
+function clickDeleteBtn(){
 	$(".deleteBtn").on("click", function(){
 		
 		let id = this.parentElement.previousElementSibling.previousElementSibling.innerText;
@@ -110,7 +74,7 @@ $(function(){
 				type: 'post',
 				data: {id:id},
 				success: function(){
-					location.href="/FinalProject/manager"
+					location.href="/FinalProject/manager.onlyAdmin"
 				},
 				error: function(){
 					alert("error");
@@ -118,5 +82,4 @@ $(function(){
 			});
 		}
 	});
-	
-});
+}

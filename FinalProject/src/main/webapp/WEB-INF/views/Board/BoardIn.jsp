@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${path}/resources/js/Board/boardin.js"></script>
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardin.css">
 </head>
 <body>
@@ -27,7 +28,10 @@
 				<span>조회수 ${b.number}</span>
 			</div>
 			<div class="board-in-textarea">
-			    <textarea name="content" readonly="readonly">${b.text}</textarea>
+			 <div class="mb-3" style="width: 100%; margin: 0 auto;">
+					<label for="exampleFormControlTextarea1" class="form-label"></label>
+					<textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true" readonly="readonly">${b.text}</textarea>
+			 </div>
 			</div>
 			<div class="recommend-btn-area">
 				<div class="rec-btn-inner-area">

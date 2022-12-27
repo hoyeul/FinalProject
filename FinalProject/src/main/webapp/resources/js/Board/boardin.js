@@ -1,6 +1,10 @@
 $(document).ready(function() {
+CKEDITOR.replace( 'ckeditor', {
+    width:'100%',
+    height:'400px',
+});
    showList1();
-   
+
     $("#board-in-comment-box").on("click",".reply",function(){
 		let p = this.parentElement.nextSibling;
 		console.log(p);
@@ -170,6 +174,7 @@ function toHtml2(data){
    str+= "</table>";
    return  str;
 }
+
 
 
 

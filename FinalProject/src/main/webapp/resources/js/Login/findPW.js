@@ -1,3 +1,5 @@
+var x;
+
 $(function(){	
 	$("input[name='name']").on("keyup", function() {
       $(this).val($(this).val().replace(/[^ㄱ-ㅎ|가-힣|ㅏ-ㅣ]/g,""));
@@ -18,32 +20,33 @@ $(function(){
 			var min = "";
 			var sec = "";
 			
-			var x = setInterval(function(){
-				min = parseInt(time/60);
-				sec = time%60;
-				
-				if(min < 1)		min = "0";
-				if(sec < 10)	sec = "0" + time%60;
-				
-				document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
-				time--;
-				
-				if(time < 0){
-					clearInterval(x);
-					document.getElementById("demo").innerHTML = "";
-				}
-			}, 1000);
-			
-			
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
-				type : 'get',
+				type : 'post',
 				url : '/FinalProject/mailCheck', 
 				data: {email:email},
 				success : function (data) {
-					alert("인증번호가 발송되었습니다");
 					checkInput.attr('disabled',false);
 					$('#hiddenInput').prop('value', data);
+					
+					clearInterval(x);
+					x = setInterval(function(){
+						min = parseInt(time/60);
+						sec = time%60;
+						
+						if(min < 1)		min = "0";
+						if(sec < 10)	sec = "0" + time%60;
+						
+						document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
+						time--;
+						
+						if(time < 0){
+							clearInterval(x);
+							document.getElementById("demo").innerHTML = "";
+						}
+					}, 1000);
+					alert("인증번호가 발송되었습니다");
+					clearTimeout(setTimeout(() => $('#hiddenInput').prop('value', ""), 180000));
 					setTimeout(() => $('#hiddenInput').prop('value', ""), 180000);
 				},
 				error: function(){
@@ -90,16 +93,21 @@ $(function(){
 		       		$("input[name='email2']").focus();
 		       }else if($("input[name='mail-check-input']").val() == ""){
 		       		alert("인증번호를 입력해주세요");
-		       }else if($('#hiddenInput').prop('value') != $('.mail-check-input').val() || $('.mail-check-input').val() == ""){
-		       		alert("인증번호가 맞지 않습니다");
 		       }else{
-			       if(data == ""){
-			       		alert("정보를 잘못 입력하셨거나 존재하는 아이디가 없습니다");
-			       }else{
-			       		alert("고객님의 비밀번호는 " + data + " 입니다");
-			       		location.href="/FinalProject/login";
-			       }
-			   }
+		       		if(document.getElementById("demo").innerHTML == ""){
+		       			alert("인증번호 유효시간이 만료되었습니다");
+		       		}
+		       		else if($('#hiddenInput').prop('value') != $('.mail-check-input').val()){
+			       		alert("인증번호가 맞지 않습니다");
+			        }else{
+				       if(data == ""){
+				       		alert("정보를 잘못 입력하셨거나 존재하는 아이디가 없습니다");
+				       }else{
+				       		alert("고객님의 아이디는 " + data + " 입니다");
+				       		location.href="/FinalProject/login.alreadyLogin"
+				       }
+				    }
+				}
 		    },
 		    error: function(err) {
 		        alert("error");
