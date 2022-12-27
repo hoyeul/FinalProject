@@ -348,7 +348,7 @@ public class BoardDao {
 			pst.setInt(1, dto.getB_num());
 			pst.setString(2, dto.getId());
 			pst.executeUpdate();
-			pst.close(); // 등록
+			pst.close();
 			
 			pst = conn.prepareStatement(sql2);
 			pst.setString(1, dto.getId());

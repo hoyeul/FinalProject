@@ -236,7 +236,12 @@ $(function(){
 		$("#recUp").click(function(){
 			let id = $("#user_id").val();
 			let b_num = $("#board_num").val();
-			$.ajax({
+			let loginId = document.querySelector('#user_id').value;
+			if(loginId == ""){
+				alert("로그인 후 추천이 가능합니다.");
+				window.location.href='/FinalProject/login.alreadyLogin';
+			}else{
+				$.ajax({
 				url: "RecommendReg",
                 type: "POST",
                 data: {
@@ -257,6 +262,7 @@ $(function(){
                 	alert("추천기능에러");
 			   	}
 			})
+			}
 		})
 })
 
@@ -264,6 +270,11 @@ $(function(){
 		$("#recDown").click(function(){
 			let id = $("#user_id").val();
 			let b_num = $("#board_num").val();
+			let loginId = document.querySelector('#user_id').value;
+			if(loginId == ""){
+				alert("로그인 후 비추천이 가능합니다.");
+				window.location.href='/FinalProject/login.alreadyLogin';
+			}else{
 			$.ajax({
 				url: "RecommendDown",
                 type: "POST",
@@ -285,13 +296,13 @@ $(function(){
 			    	alert("추천기능에러");
 			   	}
 			})
+			}
 		})
 })
 
 function boardregbtn() {
 	
 	let loginId = document.querySelector('#user_id').value;
-	// alert(loginId);
 	if(loginId =="" ){
 		alert("로그인 후 글쓰기가 가능합니다.");
 		window.location.href='/FinalProject/login.alreadyLogin';
