@@ -33,7 +33,7 @@ CKEDITOR.replace( 'ckeditor', {
 				},
 				success: function(data){
                 	showList1();
-	                alert("입력완료");
+	                // alert("입력완료");
 	                console.log( data); 
 		        },
 		        error: function(){
@@ -52,7 +52,7 @@ CKEDITOR.replace( 'ckeditor', {
           data : {num:num},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
           success: function(data){ 
                 showList1();
-                alert("삭제완료");
+                // alert("삭제완료");
                 console.log( data);  },
              error: function(){
                 alert("readyerror");
@@ -117,7 +117,7 @@ CKEDITOR.replace( 'ckeditor', {
           url : "CommentUP",
           data : {num:num,text:text},
           success: function(data){ 
-                alert("수정완료");
+                // alert("수정완료");
                 console.log(data); 
                 showList1();
                  },

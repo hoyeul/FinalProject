@@ -22,7 +22,7 @@
 			<div class="boardup-selectConSel-area">
 				<span class="con-sel">게시판</span>
                	<select id="continent" name="continent">
-               		<option value="">선택하세요</option>
+               		<option value="${a.continent}">${a.continent}</option>
                		<option value="전체">전체</option>
                		<option value="아시아">아시아</option>
                		<option value="아프리카">아프리카</option>
@@ -35,7 +35,7 @@
 				<c:choose>
                	<c:when test="${loginGrade eq 'admin'}">
 					<select id="select" name="select">
-	               		<option value="">선택하세요</option>
+	               		<option value="${a.select}">${a.select}</option>
 	               		<option value="공지">공지</option>
 	               		<option value="자유">자유</option>
 	               		<option value="질문">질문</option>
@@ -45,7 +45,7 @@
 	            </c:when>
 	            <c:otherwise>
 	            	<select id="select" name="select">
-	               		<option value="">선택하세요</option>
+	               		<option value="${a.select}">${a.select}</option>
 	               		<option value="자유">자유</option>
 	               		<option value="질문">질문</option>
 	               		<option value="후기">후기</option>

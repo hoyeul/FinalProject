@@ -23,13 +23,15 @@ public class BoardDao {
         ResultSet rs=null;
         int end = count-((page-1)*10);
         int start = count-(page*10)+1;
-        String sql = " select b.b_num, b.num, b.b_continent,b.b_select, b.b_title, case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as b_date,case when b_select ='공지' then 1  else 2 end as admin ,b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
+        String sql = " select b.b_num, b.num, b.b_continent,b.b_select, b.b_title,";
+        sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
+        sql+=" case when b_select ='공지' then 1 else 2 end as admin ,b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
         sql+=" from (select rownum  num, b_num , b_continent, b_select, b_title,b_name, b_date, b_count from board ";
         sql+=" where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')) b ";
         sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM ";
         sql+=" where num BETWEEN ? and ? ";
-        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
-        sql+=" order by admin,"+recommend+" desc ";
+        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b.b_date, b.b_count, b.b_name ";
+        sql+=" order by admin "+recommend+" , writetime desc ";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -46,10 +48,10 @@ public class BoardDao {
             String b_select = rs.getString(4);
             String b_title = rs.getString(5);
             String b_date = rs.getString(6);
-            int b_count = rs.getInt(7);
-            String b_name = rs.getString(8);
-            String b_recommend = rs.getString(9);
-            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_recommend,b_name);
+            int b_count = rs.getInt(8);
+            String b_name = rs.getString(9);
+            String b_recommend = rs.getString(10);
+            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
 		} catch (SQLException e) {
@@ -65,14 +67,12 @@ public class BoardDao {
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         String sql =" select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, ";
-        sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 ";
-        sql+=" then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
-        sql+=" b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count from ";
-        sql+=" (select b_num, num, b_continent, b_select, b_title, b_date,b_count, b_name ";
-        sql+=" from (select num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ORDER BY num DESC) ";
-        sql+=" where ROWNUM <=5) b left outer join board_recommend br on b.B_NUM = br.B_NUM ";
-        sql+=" group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name order by b_date desc ";
-
+        sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
+        sql+=" b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
+        sql+=" from (select ROWNUM Rnum, b_num, num , b_continent, b_select, b_title, b_date, b_count, b_name from board ORDER BY num desc, Rnum desc ) b ";
+        sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM where rownum between 1 and 6 ";
+        sql+=" group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
+        sql+=" ORDER BY writetime DESC ";
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();

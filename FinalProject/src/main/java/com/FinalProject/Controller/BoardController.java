@@ -42,12 +42,12 @@ public class BoardController {
       String Pa=dto.getPage();
       String name="";
       if( recommend == null ){
-    	  recommend = "b_date";
+    	  recommend = "";
       }else {
     	  if(recommend.equals("recommend") || recommend.equals("rec_count")) {
-        	  recommend = "rec_count";          
+        	  recommend = ", rec_count desc";
           }else {
-        	  recommend = "b_date";
+        	  recommend = "";
           }
       }
       int page=0;
@@ -59,7 +59,6 @@ public class BoardController {
          continent="";
          dao.count(continent,type,text,name);
          ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-         System.out.println(list);
          model.addAttribute("list", list);
       }else if(Pa == null && continent!=null && content==null && type==null && text==null) {
          page=1;
