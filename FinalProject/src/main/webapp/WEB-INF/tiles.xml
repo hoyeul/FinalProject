@@ -17,6 +17,14 @@
 		<put-attribute name="section" value="/WEB-INF/views/login/{1}.jsp" />
   </definition>
   
+  <definition name="register/*" extends="empty">
+		<put-attribute name="section" value="/WEB-INF/views/register/{1}.jsp" />
+  </definition>
+  
+  <definition name="mypage/*" extends="empty">
+		<put-attribute name="section" value="/WEB-INF/views/mypage/{1}.jsp" />
+  </definition>
+  
    <definition name="*/*" extends="layout">
 		<put-attribute name="section" value="/WEB-INF/views/{1}/{2}.jsp" />
   </definition>
