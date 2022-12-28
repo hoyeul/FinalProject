@@ -4,7 +4,7 @@
 <header>
 	<div class="header_left">
 		<div class="material-symbols-outlined navIcon">menu</div>
-		<div class="header_lefthomeBtn"><a href="/">header</a></div>
+		<div class="header_lefthomeBtn"><a href="/">IMTravler</a></div>
 	</div>
 	<div class="header_right">
 		<div class="header_right_login">

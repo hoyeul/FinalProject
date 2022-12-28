@@ -21,7 +21,6 @@
 			<div class="nav_information_menu_div">
 				<a href="/navy" class="nav_information_menu_a">단계별 여행경보</a>
 				<a href="/currencyrate" class="nav_information_menu_a">환율정보</a>
-				<a class="nav_information_menu_a">선택3</a>
 			</div>
 		</div>
 		
