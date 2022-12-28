@@ -45,12 +45,13 @@ public class BoardController {
       if( recommend == null ){
     	  recommend = "b_date";
       }else {
-    	  if(recommend.equals("recommend") || recommend.equals("rec_count")) {
-        	  recommend = "rec_count";          
+    	  if(recommend.equals("recommend") || recommend.equals("total")) {
+        	  recommend = "total";
           }else {
         	  recommend = "b_date";
           }
       }
+      System.out.println("bbbb="+recommend);
       int page=0;
       if(Pa == null && continent==null && content==null && type==null && text==null) {
          page=1;
@@ -99,6 +100,15 @@ public class BoardController {
             model.addAttribute("list", list);
          }else{
             page=Integer.parseInt(Pa);
+            if(type==null) {
+            type="";
+            }else if(text==null) {
+            text="";
+            }else if(content==null) {
+            content="";
+            }else if(continent==null) {
+            continent="";
+            }
             ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
             model.addAttribute("list", list);
          }

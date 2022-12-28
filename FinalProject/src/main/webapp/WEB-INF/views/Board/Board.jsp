@@ -23,8 +23,8 @@
 		</div>
 		<div class="board_nav">
 			<div class="tb_nav">
-				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/board?recommend=recommend'">
-	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/board?recommend=b.num'">  			
+				<input type="radio" class="radio" id="인기" name="recommend" value="total" onclick="location='/board?recommend=total'"checked>
+	  			<input type="radio" class="radio" id="전체" name="recommend" value="b_date" onclick="location='/board?recommend=b_date'">  			
 	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/board?continent=아시아&recomend=${recommend}'" >
 	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/board?continent=아프리카&recomend=${recommend}'">
 	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/board?continent=유럽&recomend=${recommend}'">
@@ -32,13 +32,6 @@
 	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/board?continent=북아메리카&recomend=${recommend}'">
 	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/board?continent=남아메리카&recomend=${recommend}'">
 			    <label for="인기">인기</label>
-	  			<input type="radio" class="radio" id="전체" name="continent" value="" onclick="location='/board?continent='">
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/board?continent=아시아'" >
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/board?continent=아프리카'" >
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/board?continent=유럽'">
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/board?continent=오세아니아'">
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/board?continent=북아메리카'">
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/board?continent=남아메리카'">
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
 			    <label for="아프리카">아프리카</label>
@@ -59,11 +52,11 @@
             </tr>
 			<c:forEach var="item" items="${list}">
 	        <tr>
-	            <td>${item.num2}</td>
+	            <td>${item.num}</td>
 	            <td style=" text-align: left;">
 		            <span class="b_con">[${item.continent}]</span>
 		            <span class="b_sel">[${item.select}]</span>
-		            <a href="boardIn?num=${item.num}&number=${item.number}">${item.title}</a>
+		            <a href="boardIn?num=${item.num2}&number=${item.number}">${item.title}</a>
 	            </td>
 	            <td>${item.id}</td>
 	            <td style="">${item.date}</td>
@@ -80,7 +73,7 @@
               <c:forEach var="i" begin="${ page.index}" end="${ page.grpEndPage}" step="1">
               <button class="pagebtn" name="page" value="${i}">${i} </button>
               </c:forEach>
-              <c:if    test="${ page.index<=page.totalPage}">
+              <c:if    test="${ page.index<page.totalPage}">
                <button class="movepage-btn" name="page" value="${  page.index+5 }">다음＞</button>  
               </c:if >
          </div>
@@ -108,6 +101,7 @@
 <input type="hidden" name="selecttypeH" value="${type}">
 <input type="hidden" name="selectcontentH" value="${content}">
 <input type="hidden" name="continentH" value="${continent}">
+<input type="hidden" name="recommendH" value="${recommend}">
 <input type="hidden" name="sessionId" value="${sessionID }" id="user_id">
 	</form>
 	<div class="edit-btn">

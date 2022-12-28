@@ -17,6 +17,7 @@ window.addEventListener("load",function(){
 	let selecttypeName = frm.selecttypeH.value;
 	let selectcontentName = frm.selectcontentH.value;
 	let continentName = frm.continentH.value;
+	let recommendName = frm.recommendH.value;
 	
 	let selecttype = frm.selecttype;
 	for(let i=0; i<selecttype.options.length; i++){
@@ -38,6 +39,14 @@ window.addEventListener("load",function(){
 			continentRadio[i].checked=true;
 		}
 	}
+	
+		let recommendRadio = frm.recommend;
+	for(let i=0;i<recommendRadio.length; i++){
+		if(recommendRadio[i].value==recommendName){
+			recommendRadio[i].checked=true;
+		}
+	}
+	
 });
 
 function boardregbtn() {
