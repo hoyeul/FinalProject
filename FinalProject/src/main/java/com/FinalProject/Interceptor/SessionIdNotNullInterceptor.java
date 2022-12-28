@@ -18,7 +18,7 @@ public class SessionIdNotNullInterceptor extends HandlerInterceptorAdapter{
 		String id = (String) session.getAttribute("sessionID");		
 		if (id != null){
 			try {
-				response.sendRedirect(request.getContextPath() +"/home");
+				response.sendRedirect(request.getContextPath() +"/");
 			} catch (IOException e) {				 
 				e.printStackTrace();
 			}
