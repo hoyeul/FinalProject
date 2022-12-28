@@ -4,7 +4,7 @@
 <nav id="nav">
 	<div class="nav_menu_wrap">
 		<div class="nav_home">
-			<a href="/home" class="nav_a">
+			<a href="/" class="nav_a">
 				<i class="material-symbols-outlined">home</i>
 				<span>메인화면</span>
 			</a>
