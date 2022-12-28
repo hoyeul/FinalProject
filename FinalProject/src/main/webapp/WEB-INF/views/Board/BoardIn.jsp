@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${path}/resources/js/Board/boardin.js"></script>
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardin.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
 		<div class="boardin-all-wrap">
 			<div class="boardin-inner-wrap">
 				<div class="board-in-continent-title">
-					<a href="/FinalProject/board">${b.continent} 게시판</a>
+					<a href="/board">${b.continent} 게시판</a>
 				</div>
 				<hr class="under-continent-title">
 				<div class="board-in-title">
@@ -30,7 +31,10 @@
 					<span>조회수 ${b.number}</span>
 				</div>
 				<div class="board-in-textarea">
-				    <textarea name="content" readonly="readonly">${b.text}</textarea>
+					<div class="mb-3">
+					     <label for="exampleFormControlTextarea1" class="form-label"></label>
+					     <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true" readonly="readonly">${b.text}</textarea>
+					</div>
 				</div>
 				<div class="recommend-btn-area">
 					<div class="rec-btn-inner-area">
@@ -46,7 +50,7 @@
 				</div>
 				<div class="update-nav">
 					<div class="update-nav-goList">
-				    	<a href="/FinalProject/board"><button>목록으로</button></a>
+				    	<a href="/board"><button>목록으로</button></a>
 				    </div>
 				    <div class="update-nav-update-btn">
 						<c:if test="${loginID eq b.id || loginGrade eq 'admin'}">
@@ -62,15 +66,15 @@
 				</div>
 				<div>
 					<div class="comment-edit-nav">
-						<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+						<button type="button" onclick="window.location.href='/board'">목록으로</button>
 						<button type="button" onclick="boardregbtn()">글쓰기</button>
 					</div>
 				</div>
-			</div>
-		</div>
 		<input type="hidden" value="${b.num}" id="board_num"/>
 		<input type="hidden" value="${sessionID}" id="user_id"/>
 		<input type="hidden" value="${sessionGrade}" id="user_grade"/>
+		</div>
+	</div>
 	</section>
 </head>
 </body>

@@ -3,6 +3,19 @@
     margin: 0px;
 }
 
+.cke_top{
+	display: none;
+}
+
+.mb-3{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.cke_bottom{
+	display: none;
+}
+
 .boardin-all-wrap{
 	padding-top: 20px;
 	margin: auto;

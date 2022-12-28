@@ -70,7 +70,7 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findID", method = RequestMethod.POST)
-	public String findID(loginDto dto){
+	public String findID(loginDto dto) throws Exception{
 		
 		String id = s.findID(new loginDto(dto.getName(), dto.getJumin(), dto.getEmail()));
 		return id;
@@ -83,7 +83,7 @@ public class LoginController {
 	
 	@ResponseBody
 	@RequestMapping(value="/findPW", method = RequestMethod.POST)
-	public String findPW(loginDto dto){
+	public String findPW(loginDto dto) throws Exception{
 		
 		String pw = s.findPW(new loginDto(dto.getId(), dto.getName(), dto.getJumin(), dto.getEmail()));
 		return pw;

@@ -61,7 +61,7 @@ am5.ready(function() {
 	
 	var embassy = null;
 	$.ajax({	//순서가 안맞음 지도가 로딩 되고나서  ajax가 작동
-	    url:'/FinalProject/home/embassy', //request 보낼 서버의 경로
+	    url:'/home/embassy', //request 보낼 서버의 경로
 	    type:'get', // 메소드(get, post, put 등)
 	    dataType: 'json',	//받을 데이터
 	    async: false,
@@ -106,6 +106,12 @@ am5.ready(function() {
 		  geometry: am5map.getGeoRectangle(90, 180, -90, -180)
 		});
 		
+	// Create main polygon series for countries
+	// https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
+	var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+		  geoJSON: am5geodata_worldLow,
+		  exclude: ["AQ"]
+		}));
 	// Create point series
 	var pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {
 	  latitudeField: "embassy_lat",
@@ -114,7 +120,7 @@ am5.ready(function() {
 	
 	pointSeries.bullets.push(function() {
 	  var circle = am5.Circle.new(root, {
-	    radius: 3,
+	    radius: 2,
 	    fill: am5.color(0xf5bf27),
 	    tooltipText: "{embassy_kor_nm}" + "\n" + "{tel_no}"  + "\n" + "{emblgbd_addr}" 
 	  });
@@ -127,12 +133,7 @@ am5.ready(function() {
 			embassy
 	);	
 
-	// Create main polygon series for countries
-	// https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
-	var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
-	  geoJSON: am5geodata_worldLow,
-	  exclude: ["AQ"]
-	}));
+	
 
 	polygonSeries.mapPolygons.template.setAll({
 	  tooltipText: "{name}",
@@ -190,7 +191,7 @@ am5.ready(function() {
 		<div class="main_center">
 			<div class="main_board">
 				<table class="mainboard">	
-				<caption><h3><a href="/FinalProject/board">게시판 최신순</a></h3></caption>
+				<caption><h3><a href="/board">게시판 최신순</a></h3></caption>
 	            <tr>
 	                <td style="width:10%;"></td>
 	                <td style="width:50%;">제목</td>
@@ -201,7 +202,7 @@ am5.ready(function() {
 	            </tr>
 				<c:forEach var="list" items="${list}">
 		        <tr>
-		            <td>${list.num2}</td>
+		            <td>${list.num}</td>
 		            <td style=" text-align: left;">
 			            <span class="b_con">[${list.continent}] </span>
 			            <span class="b_sel">[${list.select}] </span>

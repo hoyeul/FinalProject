@@ -12,6 +12,16 @@
 		<property name="password" value="1234"></property>
 	</bean>
 	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation"  value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -31,6 +41,4 @@
             </props>
         </property>
     </bean>
-	
-	
 </beans>

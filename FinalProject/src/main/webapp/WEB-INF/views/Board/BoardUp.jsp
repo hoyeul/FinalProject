@@ -9,13 +9,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardup.css">
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="${path}/resources/js/Board/boardup.js"></script>
 </head>
 <body>
 <section>
 <div class="boardup-wrap">
 <c:set var="loginGrade" value="${sessionGrade}"></c:set>
-	<form name="upfrm" action="/FinalProject/boardUp" method="post">
+	<form name="upfrm" action="/boardUp" method="post">
 	<div class="boardup-inner-wrap">
 		<div class="boardup-title-area">게시글 수정</div>
 			<div class="boardup-selectConSel-area">
@@ -57,10 +58,13 @@
 	            <input type=text value="${a.title}" name="title" class="up-title">
 			</div>
 			<div class="boardup-textarea">
-				<textarea name="text" class="up_textarea">${a.text}</textarea>
+				<div class="mb-3" style="width: 100%; margin: 0 auto;">
+                  <label for="exampleFormControlTextarea1" class="form-label"></label>
+                 <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true">${a.text}</textarea>
+                </div>
 			</div>
 			<div class="boardup-btn">
-				<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+				<button type="button" onclick="window.location.href='/board'">목록으로</button>
 				<button type="button" onclick="boardup()">수정완료</button>
 			</div>
 		<input type=number value="${a.num}" name="num" readonly="readonly" style="display:none">

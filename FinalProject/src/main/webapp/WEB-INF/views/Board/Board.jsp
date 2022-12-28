@@ -17,20 +17,20 @@
 <div class="boardwrap">
 <c:set var="loginGrade" value="${sessionGrade}"></c:set>
 <c:set var="continentCheck" value="${continent}"></c:set>
-	<form name="frm" action="/FinalProject/board" method="get">
+	<form name="frm" action="/board" method="get">
 		<div class="board_head">
-			<a href="/FinalProject/board">${continent} 게시판</a>
+			<a href="/board">${continent} 게시판</a>
 		</div>
 		<div class="board_nav">
 			<div class="tb_nav">
-				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/FinalProject/board?recommend=recommend'">
-	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/FinalProject/board?recommend=b.num'">  			
-	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/FinalProject/board?continent=아시아&recomend=${recommend}'" >
-	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/FinalProject/board?continent=아프리카&recomend=${recommend}'">
-	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/FinalProject/board?continent=유럽&recomend=${recommend}'">
-	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/FinalProject/board?continent=오세아니아&recomend=${recommend}'">
-	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/FinalProject/board?continent=북아메리카&recomend=${recommend}'">
-	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/FinalProject/board?continent=남아메리카&recomend=${recommend}'">
+				<input type="radio" class="radio" id="인기" name="recomend" value="인기" onclick="location='/board?recommend=recommend'">
+	  			<input type="radio" class="radio" id="전체" name="recomend" value="전체" onclick="location='/board?recommend=b.num'">  			
+	            <input type="radio" class="radio" id="아시아" name="continent" value="아시아" onclick="location='/board?continent=아시아&recomend=${recommend}'" >
+	            <input type="radio" class="radio" id="아프리카" name="continent" value="아프리카" onclick="location='/board?continent=아프리카&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="유럽" name="continent" value="유럽" onclick="location='/board?continent=유럽&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="오세아니아" name="continent" value="오세아니아" onclick="location='/board?continent=오세아니아&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="북아메리카" name="continent" value="북아메리카" onclick="location='/board?continent=북아메리카&recomend=${recommend}'">
+	            <input type="radio" class="radio" id="남아메리카" name="continent" value="남아메리카" onclick="location='/board?continent=남아메리카&recomend=${recommend}'">
 			    <label for="인기">인기</label>
 			    <label for="전체">전체</label>
 			    <label for="아시아">아시아</label>
@@ -65,52 +65,19 @@
 	        </tr> 
 			</c:forEach>
 		</table>
-		<div class="page-move-button-wrap">
-			<div class="p-g-b-inner-wrap">
-		        <%
-				 int currentPage=1;
-				 if( request.getAttribute("p") != null){
-				 	 currentPage  =(Integer) request.getAttribute("p");
-				 }
-				 int countpage  =(Integer) request.getAttribute("a");
-				 int totRecords =countpage ; 
-				 int pageSize = 10; 
-				 int totalPage;               	 
-				 int grpSize = 5;             
-				 int currentGrp = 0;  	  	 	 
-				 int reamin = totRecords  %  pageSize ;		 
-				 if( reamin == 0 )
-					 totalPage = totRecords / pageSize;		 
-				 else 
-					 totalPage = totRecords / pageSize +1;
-				 int remain2 = currentPage % grpSize;    
-				 if( remain2 == 0 )
-					 currentGrp  = currentPage  / grpSize ;     		 
-				 else 
-					 currentGrp = currentPage  / grpSize  +1;   	 
-				 int grpStartPage = ( currentGrp -1 ) * grpSize +1 ;  
-				 int grpEndPage = currentGrp * grpSize;                
-				 if( grpEndPage > totalPage){
-					 grpEndPage = totalPage;    
-				 }	 	 
-				 int index = grpStartPage;	 
-				 if( currentGrp >1){
-			 	%>		 
-				 <button class="movepage-btn" name="page" value="<%=index-1 %>">＜이전</button> 	    
-				 <%
-				 } 	 
-				 while( index <= grpEndPage){		 
-				 %>
-				 	<button class="pagebtn" name="page" value="<%=index%>"><%=index %> </button>
-			        <%
-					  index ++;       
-				 }	 
-				 if( index <= totalPage){%>	
-				 <button class="movepage-btn" name="page" value="<%=index %>">다음＞</button>
-				<% }
-				%>
-			</div>
-		</div>
+		      <div class="page-move-button-wrap">
+         <div class="p-g-b-inner-wrap"> 
+             <c:if    test="${ page.currentGrp >1}">
+             <button class="movepage-btn" name="page" value="${ page.index-1 }">＜이전</button>    
+             </c:if >                          
+              <c:forEach var="i" begin="${ page.index}" end="${ page.grpEndPage}" step="1">
+              <button class="pagebtn" name="page" value="${i}">${i} </button>
+              </c:forEach>
+              <c:if    test="${ page.index<=page.totalPage}">
+               <button class="movepage-btn" name="page" value="${  page.index+5 }">다음＞</button>  
+              </c:if >
+         </div>
+      </div>
        	<div class="search_wrap">
        		<div class="search_area">
        			<div class="search-inner-area">

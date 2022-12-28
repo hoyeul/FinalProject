@@ -8,12 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/resources/css/Board/boardreg.css">
+<script type="text/javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="${path}/resources/js/Board/boardreg.js"></script>
 <body>
 <section>
 <div class="boardreg-wrap">
 <c:set var="loginGrade" value="${sessionGrade}"></c:set>
-<form name="regfrm" action="/FinalProject/boardreg" method="post">
+<form name="regfrm" action="/boardreg" method="post">
 	<div class="boardreg-inner-wrap">
 		<div class="boardreg-titlereg-area">게시글 등록</div>
 			<div class="boardreg-selectConSel-area">
@@ -55,10 +56,13 @@
 				<input type="text" class="reg_title" name="title" placeholder="제목을 입력해 주세요.">
 			</div>
 			<div class="boardreg-textarea">
-				<textarea name="text" class="reg_textarea" contenteditable="true" placeholder="내용을 입력해 주세요."></textarea>
+				<div class="mb-3" style="width: 100%; margin: 0 auto;">
+                  <label for="exampleFormControlTextarea1" class="form-label"></label>
+                 <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true"></textarea>
+                </div>
 			</div>
 			<div class="boardreg-btn">
-				<button type="button" onclick="window.location.href='/FinalProject/board'">목록으로</button>
+				<button type="button" onclick="window.location.href='/board'">목록으로</button>
 				<button type="button" onclick="boardreg()">등록</button>
 			</div>
 			<input type="hidden" name="regSessionID" value="${sessionID}">

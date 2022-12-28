@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.FinalProject.Model.Mail.MailService;
 import com.FinalProject.Model.MemberInfo.MemberInfoDto;
 import com.FinalProject.Model.MemberInfo.MemberInfoService;
 
@@ -23,6 +24,9 @@ public class MemberInfoController {
 	@Autowired
 	MemberInfoService service;
 	
+	@Autowired
+	MailService m;
+	
 	//register 화면으로 이동
 	@RequestMapping(value = "/register.alreadyLogin", method = RequestMethod.GET)
 	public String registerGet() {
@@ -31,7 +35,12 @@ public class MemberInfoController {
 	//회원가입정보 DB 입력
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPost(MemberInfoDto dto) {
-		service.insert(dto);
+		try {
+			service.insert(dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:/login";
 	}
 	//Id 중복확인
@@ -47,7 +56,7 @@ public class MemberInfoController {
 	@RequestMapping(value="/mypage.do", method = RequestMethod.GET)
 	public String mypageGet(HttpSession session, Model model) {
 		String sessionID = (String) session.getAttribute("sessionID");
-		MemberInfoDto registerDto = service.select(sessionID);
+		MemberInfoDto registerDto = service.mypageInfo(sessionID);
 		model.addAttribute("registerDto",registerDto);
 		return "mypage/mypage";
 	}
@@ -99,5 +108,12 @@ public class MemberInfoController {
 	public void deleteMember(String id) {
 		service.deleteMember(id);
 	}
+	
+	@RequestMapping(value="/mailCheckRegister", method=RequestMethod.POST)
+    @ResponseBody
+    public int mailCheckRegister(String email) throws Exception {
+    	int checkNum = m.mailCheckGET(email);
+    	return checkNum;
+    }
 	
 }

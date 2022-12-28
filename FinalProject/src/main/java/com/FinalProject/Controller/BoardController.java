@@ -1,21 +1,32 @@
 package com.FinalProject.Controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.FinalProject.Model.Board.BoardDao;
 import com.FinalProject.Model.Board.BoardDto;
 import com.FinalProject.Model.Board.CommentDto;
+import com.FinalProject.Model.Board.Pagination;
 import com.FinalProject.Model.Board.RecommendDto;
 import com.FinalProject.Model.Board.SearchDto;
+import com.google.gson.JsonObject;
 
 @Controller
 public class BoardController {
@@ -24,7 +35,7 @@ public class BoardController {
    BoardDao dao;
    
    @RequestMapping(value ="/board", method = RequestMethod.GET)
-   public String array(Model model,String p,String continent,SearchDto dto,String recommend) {
+   public String array(Model model,String continent,SearchDto dto,String recommend) {
       String text=dto.getText();
       String content=dto.getSelectcontent();
       String type=dto.getSelecttype();
@@ -48,6 +59,7 @@ public class BoardController {
          continent="";
          dao.count(continent,type,text,name);
          ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
+         System.out.println(list);
          model.addAttribute("list", list);
       }else if(Pa == null && continent!=null && content==null && type==null && text==null) {
          page=1;
@@ -91,9 +103,11 @@ public class BoardController {
             model.addAttribute("list", list);
          }
       }
-      model.addAttribute("a", dao.count(continent,type,text,name));
+      
+      int Allrecord = dao.count(continent, type, text, name);
+      Pagination pagination = new Pagination();
+      model.addAttribute("page", pagination.page(Pa, Allrecord));
       model.addAttribute("recommend", recommend);
-      model.addAttribute("p", page);
       model.addAttribute("text", text);
       model.addAttribute("type", type);
       model.addAttribute("content", content);
@@ -108,8 +122,8 @@ public class BoardController {
    }
    
    @RequestMapping(value ="boardreg", method = RequestMethod.POST)
-   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID) {
-      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), dto.getText(), regSessionID);
+   public String Board_insert(HttpServletRequest request, BoardDto dto, String regSessionID, String freeboard_content) {
+      dao.boardreg(dto.getContinent(), dto.getSelect(), dto.getTitle(), freeboard_content, regSessionID);
       return "redirect:/board";
    }
    
@@ -140,8 +154,8 @@ public class BoardController {
    }
    
    @RequestMapping(value = "boardUp",produces="text/plain;charset=UTF-8" ,method = RequestMethod.POST)
-   public String Up2(BoardDto dto) {   
-      dao.update(dto);
+   public String Up2(BoardDto dto, String freeboard_content) {   
+      dao.updateBoard(dto, freeboard_content);
       return "redirect:/boardIn?num="+dto.getNum()+"";
    }
    
@@ -171,7 +185,7 @@ public class BoardController {
    @ResponseBody
    @RequestMapping(value ="/CommentUP", method = RequestMethod.POST)
    public String UpdateCM(  CommentDto dto) {
-      dao.update(dto);
+      dao.updateCM(dto);
       return "Board/BoardIn";
    }
    
@@ -213,5 +227,59 @@ public class BoardController {
    @RequestMapping(value ="/chatting_main", method = RequestMethod.GET)
    public String Chatting_main(Model model) {
       return "chatting/chatting";
+   }
+   
+   @ResponseBody
+   @RequestMapping(value = "fileupload.do")
+   public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception{
+      JsonObject jsonObject = new JsonObject();
+      PrintWriter printWriter = null;
+      OutputStream out = null;
+      MultipartFile file = multiFile.getFile("upload");
+      
+      if(file != null) {
+         if(file.getSize() >0 && StringUtils.isNotBlank(file.getName())) {
+            if(file.getContentType().toLowerCase().startsWith("image/")) {
+                try{
+                    
+                     String fileName = file.getOriginalFilename();
+                     byte[] bytes = file.getBytes();
+                    
+                     String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/noticeimg"); //저장경로
+                     System.out.println("uploadPath:"+uploadPath);
+
+                     File uploadFile = new File(uploadPath);
+                     if(!uploadFile.exists()) {
+                        uploadFile.mkdir();
+                     }
+                     String fileName2 = UUID.randomUUID().toString();
+                     uploadPath = uploadPath + "/" + fileName2 +fileName;
+                     
+                     out = new FileOutputStream(new File(uploadPath));
+                     out.write(bytes);
+                     
+                     printWriter = resp.getWriter();
+                     String fileUrl = req.getContextPath() + "/resources/image/noticeimg/" +fileName2 +fileName; //url경로
+                     System.out.println("fileUrl :" + fileUrl);
+                     JsonObject json = new JsonObject();
+                     json.addProperty("uploaded", 1);
+                     json.addProperty("fileName", fileName);
+                     json.addProperty("url", fileUrl);
+                     printWriter.print(json);
+                     System.out.println(json);
+          
+                 }catch(IOException e){
+                     e.printStackTrace();
+                 } finally {
+                     if (out != null) {
+                          out.close();
+                      }
+                      if (printWriter != null) {
+                          printWriter.close();
+                      }
+                 }
+            }
+         }
+      }
    }
 }

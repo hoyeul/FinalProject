@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.FinalProject.Model.Login.loginDtoMapper">
+    <select id="loginConfirm" parameterType="loginDto" resultType="String">
+    	SELECT pw
+        FROM login_info_221208
+        where id = #{id}
+    </select>
+    
+    <select id="gradeInfo" parameterType="String" resultType="String">			<!-- id는 맘대로, parameterType: 넘어오는값 형태, resultType : 결과값 형태 -->
+        SELECT grade
+        FROM login_info_221208
+        where id = #{id}
+    </select>
+    
+    <select id="findID" parameterType="loginDto" resultType="String">
+    	SELECT id
+        FROM login_info_221208
+        where name = #{name} and jumin = #{jumin} and email = #{email}
+    </select>
+    
+    <select id="findPW" parameterType="loginDto" resultType="String">
+        SELECT pw
+        FROM login_info_221208
+        where id = #{id} and name = #{name} and jumin = #{jumin} and email = #{email}
+    </select>
+    
+</mapper>

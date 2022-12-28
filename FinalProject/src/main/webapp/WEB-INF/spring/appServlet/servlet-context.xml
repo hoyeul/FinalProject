@@ -16,13 +16,22 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/ckeditor/**" location="/resources/ckeditor/" />
+	
 	<!-- tiles 설정 -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	    <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	    <beans:property name="order" value="1" />
 	</beans:bean>
-	 
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		
+		<!-- 최대 업로드 가능한 바이트 크기(바이트 단위), -1은 제한이 없음을 의미 -->
+		<beans:property name="maxUploadSize" value="10485760" />
+		
+		<!-- 업로드 요청을 변환할 때 사용할 문자 인코딩 방식 -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+	
+	</beans:bean> 
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 	    <beans:property name="definitions">
 	        <beans:list>

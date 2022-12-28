@@ -23,13 +23,13 @@ public class BoardDao {
         ResultSet rs=null;
         int end = count-((page-1)*10);
         int start = count-(page*10)+1;
-        String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi') b_date, b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
-        sql+=" from (select rownum  num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ";
+        String sql = " select b.b_num, b.num, b.b_continent,b.b_select, b.b_title, case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as b_date,case when b_select ='공지' then 1  else 2 end as admin ,b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
+        sql+=" from (select rownum  num, b_num , b_continent, b_select, b_title,b_name, b_date, b_count from board ";
         sql+=" where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')) b ";
         sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM ";
         sql+=" where num BETWEEN ? and ? ";
-        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, to_char(b.b_date,'hh24:mi'),b.b_count, b.b_name ";
-        sql+=" order by "+recommend+" desc ";
+        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
+        sql+=" order by admin,"+recommend+" desc ";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
@@ -49,7 +49,7 @@ public class BoardDao {
             int b_count = rs.getInt(7);
             String b_name = rs.getString(8);
             String b_recommend = rs.getString(9);
-            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
+            dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_recommend,b_name);
             list.add(dto);
             }
 		} catch (SQLException e) {
@@ -63,15 +63,16 @@ public class BoardDao {
 	public ArrayList<BoardDto> arrayRecent() {
 		Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs=null;     
-        String sql = " select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, ";
-          	   sql+= " case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
-          	   sql+= " b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count from ";
-          	   sql+= " (select b_num, num, b_continent, b_select, b_title, b_date, b_count, b_name ";
-          	   sql+= " from (select num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ORDER BY num DESC)where ROWNUM <=5) b ";
-          	   sql+= " left outer join board_recommend br on b.B_NUM = br.B_NUM ";
-          	   sql+= " group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
-          	   sql+= " order by b_date desc ";
+        ResultSet rs=null;
+        String sql =" select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, ";
+        sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 ";
+        sql+=" then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
+        sql+=" b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count from ";
+        sql+=" (select b_num, num, b_continent, b_select, b_title, b_date,b_count, b_name ";
+        sql+=" from (select num, b_num , b_continent, b_select, b_text, b_title, b_date, b_count, b_name from board ORDER BY num DESC) ";
+        sql+=" where ROWNUM <=5) b left outer join board_recommend br on b.B_NUM = br.B_NUM ";
+        sql+=" group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name order by b_date desc ";
+
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
@@ -87,7 +88,8 @@ public class BoardDao {
             String b_date=rs.getString(6);
             int b_count=rs.getInt(7);
             String b_name=rs.getString(8);
-            String b_recommend=rs.getString(9);
+            String b_recommend = rs.getString(9);
+
             dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
@@ -178,7 +180,7 @@ public class BoardDao {
 		}				
 	}
 
-	public void update(BoardDto dto) {
+	public void updateBoard(BoardDto dto, String freeboard_content) {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
@@ -189,7 +191,7 @@ public class BoardDao {
 			pst.setString(1, dto.getContinent());
 			pst.setString(2, dto.getSelect());
 			pst.setString(3, dto.getTitle());
-			pst.setString(4, dto.getText());
+			pst.setString(4, freeboard_content);
 			pst.setInt(5, dto.getNum());
 			pst.executeUpdate();
 		} catch (SQLException e) {
@@ -265,7 +267,7 @@ public class BoardDao {
 		}				
 	}
 	
-	public void update(CommentDto dto) {
+	public void updateCM(CommentDto dto) {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
@@ -325,9 +327,9 @@ public class BoardDao {
 	
 	public void boardreg(String continent, String select, String title, String text, String id) {
 		Connection con = null;
-        PreparedStatement pst = null;
-        String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,?)";
-        try {
+		PreparedStatement pst = null;
+		String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,?)";
+		try {
 			con = dataSource.getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setString(1, continent);
@@ -337,12 +339,11 @@ public class BoardDao {
 			pst.setString(5, id);
 			pst.executeUpdate();
 			pst.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally { 
-	    	close(pst,con);
-	    }
+			close(pst,con);
+		}
 	}
 	
 	public int recUp(RecommendDto dto) {		

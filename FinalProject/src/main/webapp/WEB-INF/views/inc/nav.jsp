@@ -4,7 +4,7 @@
 <nav id="nav">
 	<div class="nav_menu_wrap">
 		<div class="nav_home">
-			<a href="/FinalProject/home" class="nav_a">
+			<a href="/home" class="nav_a">
 				<i class="material-symbols-outlined">home</i>
 				<span>메인화면</span>
 			</a>
@@ -19,8 +19,8 @@
 		</div>
 		<div class="nav_information_menu">
 			<div class="nav_information_menu_div">
-				<a href="/FinalProject/navy" class="nav_information_menu_a">단계별 여행경보</a>
-				<a href="/FinalProject/currencyrate" class="nav_information_menu_a">환율정보</a>
+				<a href="/navy" class="nav_information_menu_a">단계별 여행경보</a>
+				<a href="/currencyrate" class="nav_information_menu_a">환율정보</a>
 				<a class="nav_information_menu_a">선택3</a>
 			</div>
 		</div>
@@ -34,8 +34,8 @@
 		</div>
 		<div class="nav_board_menu">
 			<div class="nav_board_menu_div">
-				<a class="nav_board_menu_a" href="/FinalProject/board">전체 게시판</a>
-				<a class="nav_board_menu_a" href="/FinalProject/chatting_main">채팅방</a>
+				<a class="nav_board_menu_a" href="/board">전체 게시판</a>
+				<a class="nav_board_menu_a" href="/chatting_main">채팅방</a>
 			</div>
 		</div>
 		
@@ -50,11 +50,11 @@
 			<div class="nav_cusInfo_menu_div">
 				<c:choose>
 					<c:when test="${sessionID ne null }">
-						<a href="/FinalProject/mypage.do" class="nav_cusInfo_menu_a">회원정보수정</a>
+						<a href="/mypage.do" class="nav_cusInfo_menu_a">회원정보수정</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/FinalProject/findID.alreadyLogin" class="nav_cusInfo_menu_a">아이디찾기</a>
-						<a href="/FinalProject/findPW.alreadyLogin" class="nav_cusInfo_menu_a">비밀번호찾기</a>
+						<a href="/findID.alreadyLogin" class="nav_cusInfo_menu_a">아이디찾기</a>
+						<a href="/findPW.alreadyLogin" class="nav_cusInfo_menu_a">비밀번호찾기</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -62,7 +62,7 @@
 		
 		<c:if test="${sessionGrade eq 'admin' }">
 		<div class="nav_manager">
-			<a href="/FinalProject/manager.onlyAdmin" class="nav_manager_a">
+			<a href="/manager.onlyAdmin" class="nav_manager_a">
 				<i class="material-symbols-outlined">manage_accounts</i>
 				<span>관리자페이지</span>
 			</a>

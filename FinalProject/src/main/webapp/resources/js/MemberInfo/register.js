@@ -1,3 +1,5 @@
+var x;
+
 $(function(){
 	$('#mail-Check-Btn').on("click", function() {
 		let email = $("#email").val();
@@ -6,32 +8,36 @@ $(function(){
 			var min = "";
 			var sec = "";
 			
-			var x = setInterval(function(){
-				min = parseInt(time/60);
-				sec = time%60;
-				
-				if(min < 1)		min = "0";
-				if(sec < 10)	sec = "0" + time%60;
-				
-				document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
-				time--;
-				
-				if(time < 0){
-					clearInterval(x);
-					document.getElementById("demo").innerHTML = "";
-				}
-			}, 1000);
+			
 			
 			
 			let checkInput = $(".mail-check-input") // 인증번호 입력하는곳 
 			$.ajax({
-				type : 'get',
-				url : '/FinalProject/mailCheck', 
+				type : 'post',
+				url : '/mailCheckRegister', 
 				data: {email:email},
 				success : function (data) {
-					alert("인증번호가 발송되었습니다");
 					checkInput.attr('disabled',false);
 					$('#hiddenInput').prop('value', data);
+					
+					clearInterval(x);
+					x = setInterval(function(){
+						min = parseInt(time/60);
+						sec = time%60;
+						
+						if(min < 1)		min = "0";
+						if(sec < 10)	sec = "0" + time%60;
+						
+						document.getElementById("demo").innerHTML = "0" + min + ":" + sec;
+						time--;
+						
+						if(time < 0){
+							clearInterval(x);
+							document.getElementById("demo").innerHTML = "";
+						}
+					}, 1000);
+					alert("인증번호가 발송되었습니다");
+					clearTimeout(setTimeout(() => $('#hiddenInput').prop('value', ""), 180000));
 					setTimeout(() => $('#hiddenInput').prop('value', ""), 180000);
 				},
 				error: function(){
@@ -170,17 +176,17 @@ $(function(){
 	$('#id').blur(function(){
 		let userId = $('#id').val(); // input_id에 입력되는 값
 		$.ajax({
-			url : "/FinalProject/register/IdCheck",
+			url : "/register/IdCheck",
 			type : "post",
 			data : {userId: userId},
 			dataType : 'json',
 			success : function(result){
 				//alert(result);
-				if(result == 0){
+				if(result == 1){
 					//alert("사용할수없음");
 					$("#checkId").html('사용할 수 없는 아이디입니다.');
 					$("#checkId").css('color','red');
-				}else if(result == 1){
+				}else if(result == 0){
 					//alert("사용할수있음");
 					$("#checkId").html('사용할 수 있는 아이디입니다.');
 					$("#checkId").css('color','green');
