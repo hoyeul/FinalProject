@@ -19,7 +19,7 @@ $(function(){
 		        else{
 			        if(data == 0)	alert("비밀번호가 잘못되었습니다");
 			        else if(data == -1)	alert("존재하지 않는 아이디입니다.");
-			        else	location.href="/home"
+			        else	location.href="/"
 		        }
 		    },
 		    error: function(err) {

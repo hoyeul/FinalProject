@@ -127,7 +127,11 @@
         
         
         <property name="java-output-path" value="target/classes"/>
+<<<<<<< HEAD
         <property name="context-root" value="/"/>
+=======
+        <property name="context-root" value="FinalProject"/>
+>>>>>>> 08582ffe02b14ffba4cb82c26676df57845a796a
                                                                                                                                                                                         	
     
     

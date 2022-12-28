@@ -4,7 +4,7 @@
 <nav id="nav">
 	<div class="nav_menu_wrap">
 		<div class="nav_home">
-			<a href="/home" class="nav_a">
+			<a href="/" class="nav_a">
 				<i class="material-symbols-outlined">home</i>
 				<span>메인화면</span>
 			</a>
@@ -21,7 +21,6 @@
 			<div class="nav_information_menu_div">
 				<a href="/navy" class="nav_information_menu_a">단계별 여행경보</a>
 				<a href="/currencyrate" class="nav_information_menu_a">환율정보</a>
-				<a class="nav_information_menu_a">선택3</a>
 			</div>
 		</div>
 		

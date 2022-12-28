@@ -60,7 +60,7 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/findID.alreadyLogin")

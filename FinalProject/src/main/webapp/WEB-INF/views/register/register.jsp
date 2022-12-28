@@ -104,7 +104,7 @@
 		</div>						
 		<div class="btn_wrap">
 			<button type="submit">등록</button>
-			<button type="button" onclick="location.href='/home'">취소</button>
+			<button type="button" onclick="location.href='/'">취소</button>
 		</div>	
 		<input name="grade" value="member" type="hidden">		
 	</form>
