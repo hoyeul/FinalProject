@@ -191,7 +191,7 @@ am5.ready(function() {
 		<div class="main_center">
 			<div class="main_board">
 				<table class="mainboard">	
-				<caption><h3>최신순</h3></caption>
+				<caption><h3><a href="/board">게시판 최신순</a></h3></caption>
 	            <tr>
 	                <td style="width:10%;"></td>
 	                <td style="width:50%;">제목</td>
@@ -211,6 +211,7 @@ am5.ready(function() {
 		            <td>${list.id}</td>
 		            <td style="">${list.date}</td>
 		            <td>${list.number}</td>
+		            <td>${list.recommend}</td>
 		        </tr> 
 				</c:forEach>
 				</table>
