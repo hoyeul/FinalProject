@@ -1,54 +1,41 @@
-# Introduction
-## 팀 '점심원정대' 소개
-    우리 팀 이름은 '점심원정대'로 약 반년간 진행된 웹개발자과정에서 꾸준히 등원하여 점심을 함께한 4명의 인원들로 구성되었습니다.
-## 개발일정
-    개발자로의 첫 출발을 마무리 짓는 마지막 프로젝트는 2022/12/1 부터 2022/12/29까지 4주간 진행되었습니다.
-    초기 프로젝트 계획은 아래와 같이 정해졌습니다.
-    <GanttChart 추가>
+# 에이콘아카데미 파이널프로젝트
+## ✈️ IMTraveler
+우리는 해외 여행자들 위한 커뮤니티 사이트 입니다.
+발음 그대로 I am traveler를 의미하며 사이트가 직접적으로 제공하는 여행관련 정보와 사용자들로 하여 정보를 공유할 수 있는 사이버 공간입니다.
+    
+## 🛠 기능 요약
+1. 여행관련 정보 제공
+2. 이용자들로 하여 정보를 공유할 수 있는 공간을 제공
 
-# 프로젝트 주제 선정
-## 프로젝트 목적
-    - 웹개발과정 중 익힌 기술들을 적극적으로 활용하고 응용하여 체득함
-    -  
-## 브레인스토밍
-    - 냉장고 내의 물건 목록 정리 프로그램
-    - 코로나 정보 공유 사이트
-    - 여행 정보 커뮤니티 (선택됨)
+## ⏰ 개발 기간
+2022년 12월 1일 ~ 2022년 12월 28일      
 
-# Methodology: 
-(detail your approach to the solving the problem in such a manner that anyone reading this document could reproduce your results).
-## 사용된 스택
-    주요 언어: Java, Javascript
-    데이터베이스: Oracle
-    Framwork: Spring
-## 개발명세서
-    <개발명세서 이미지 삽입>
-## ERD
-    <ERD 이미지 삽입>
+## 👩‍💻 멤버 구성
+- 유호열(팀장)
+- 홍윤성
+- 고기현
+- 원재호  
 
-## 유호열 (팀장)
-    - 
-## 홍윤성
-    - 회원가입
-        Controller를 통해
-    - 회원정보수정
-        - 우편주소 API
-    - 홈화면 지도 API
-## 고기현
-    - 게시판
-## 원재호
+## 📌 기술
+- HTML, CSS, JavaScript, Ajax, jQuery
+- Java Spring
+- Oracle 19c
+- AWS
 
-# Results: 
-(brief narrative explaining the results as depicted in the figures.)
-## 결과를 페이지별로 소개
+## 📌 주요 기능
+- 국가별 여행 경보
+- 통화별 환율 그래프
+- 영사관 위치 및 연락처 정보
+- 게시판 및 채팅 등..
 
-# Discussion/Conclusion
+## 📑참조
+- amChart : https://www.amcharts.com/
+- 외교부해외안전여행: https://www.0404.go.kr/dev/main.mofa
+- 공공데이터포탈 : https://www.data.go.kr/index.do
+- 우리은행 기간별평균환율조회: https://sbiz.wooribank.com/biz/Dream?withyou=BZFXD0021
+- 구글차트 : https://developers.google.com/chart
+- 구글아이콘 : https://fonts.google.com/icons
+- 부트스트랩 : https://startbootstrap.com/theme/sb-admin-pro-angular
+- CK에디터: https://ckeditor.com/
 
 
-
-# Reference: 
-(any reference material used for project)
-- AmChart: https://www.amcharts.com/docs/v5/
-- 
-
-# Source Code

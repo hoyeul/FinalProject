@@ -23,7 +23,7 @@ public class HomeController {
 	@Autowired
 	BoardDao dao;
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		ArrayList<BoardDto> list = dao.arrayRecent();
 		model.addAttribute("list", list);

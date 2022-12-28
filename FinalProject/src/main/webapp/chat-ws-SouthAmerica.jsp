@@ -101,6 +101,7 @@ padding:5px;
 .nickname{
 font-weight: bold;
 padding-bottom:10px; 
+display: inline-block;
 }
 </style>
 </head>

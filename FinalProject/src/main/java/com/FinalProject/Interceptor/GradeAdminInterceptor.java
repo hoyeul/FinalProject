@@ -18,7 +18,7 @@ public class GradeAdminInterceptor extends HandlerInterceptorAdapter{
 		String grade = (String) session.getAttribute("sessionGrade");
 		if (! "admin".equals(grade)){
 			try {
-				response.sendRedirect(request.getContextPath() +"/home");
+				response.sendRedirect(request.getContextPath() +"/");
 			} catch (IOException e) {				 
 				e.printStackTrace();
 			}
