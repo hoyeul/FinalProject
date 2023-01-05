@@ -18,42 +18,45 @@ public class BoardDao {
 	DataSource dataSource;
 	
 	public ArrayList<BoardDto> ArraySelect(int page,String continent,String type,String text,String name,int count,String recommend) {
+		
 		Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         int end = count-((page-1)*10);
-        int start = count-(page*10)+1;
-        String sql = " select b.b_num, b.num, b.b_continent,b.b_select, b.b_title,";
-        sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
-        sql+=" case when b_select ='공지' then 1 else 2 end as admin ,b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
-        sql+=" from (select rownum  num, b_num , b_continent, b_select, b_title,b_name, b_date, b_count from board ";
-        sql+=" where b_continent like '%"+continent+"%' and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%')) b ";
-        sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM ";
-        sql+=" where num BETWEEN ? and ? ";
-        sql+=" group by b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b.b_date, b.b_count, b.b_name ";
-        sql+=" order by admin "+recommend+" , writetime desc ";
+        int start = count-(page*10)+1;             
+        
+        String sql  = " select * from ( select rownum  num , bnum ,  b_continent,  b_select ,   b_title,   case when (to_char(SYSDATE,'dd')-to_char(b_date,'dd'))>=1 then to_char(b_date,'mm.dd') else to_char(b_date,'hh24:mi') end as b_date , b_count,  b_name ,total from "
+                + " ( select  a.b_num  bnum,  b_continent, b_select, b_title, b_date, admin ,b_count, b_name ,b.B_NUM ,    nvl(sum(b.REC_UP) - sum(b.REC_DOWN),0) total  "
+                + " from (select  b_num , b_continent, b_select, b_text, b_title, "
+                + " b_date, b_count, b_name  ,   case when b_select like '공지' then 1  else 2 end as admin  from board where b_continent like '%"+continent+"%' "
+                + " and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') ) a "
+                + "  left outer join   board_recommend  b  on a.b_num = b.b_num group by   a.b_num,  b_continent, b_select, b_title, b_date, "
+                + "  b_count, b_name ,b.B_NUM  ,admin order by admin desc , "+recommend+") ) where num between  ? and ? order by num desc";
         
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, start);
-            pstmt.setInt(2, end);
+             pstmt.setInt(1, start);
+             pstmt.setInt(2, end);
             rs  = pstmt.executeQuery();         
             while( rs.next()){
             BoardDto dto = new BoardDto();
-            int b_num = rs.getInt(1);
-            int num = rs.getInt(2);
-            String b_continent = rs.getString(3);
-            String b_select = rs.getString(4);
-            String b_title = rs.getString(5);
-            String b_date = rs.getString(6);
-            int b_count = rs.getInt(8);
-            String b_name = rs.getString(9);
-            String b_recommend = rs.getString(10);
+            int b_num= rs.getInt(1);
+            int num= rs.getInt(2);
+            String b_continent=rs.getString(3);
+            String b_select=rs.getString(4);
+            String b_title=rs.getString(5);
+            String b_date=rs.getString(6);
+            int b_count=rs.getInt(7);
+            String b_name=rs.getString(8);
+            String b_recommend = rs.getString(9);
             dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
+            
+            
+            System.out.print(  "count= " + list.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 	    } finally { 
@@ -65,14 +68,15 @@ public class BoardDao {
 	public ArrayList<BoardDto> arrayRecent() {
 		Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs=null;
+        ResultSet rs=null;     
         String sql =" select b.b_num, b.num, b.b_continent, b.b_select, b.b_title, ";
         sql+=" case when (to_char(SYSDATE,'dd')-to_char(b.b_date,'dd'))>=1 then to_char(b.b_date,'mm.dd') else to_char(b.b_date,'hh24:mi') end as writetime, ";
         sql+=" b.b_count, b.b_name, nvl(sum(rec_up) - sum(rec_down),0)as rec_count ";
         sql+=" from (select ROWNUM Rnum, b_num, num , b_continent, b_select, b_title, b_date, b_count, b_name from board ORDER BY num desc, Rnum desc ) b ";
-        sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM where rownum between 1 and 6 ";
+        sql+=" left outer join board_recommend br on b.B_NUM = br.B_NUM where rownum between 1 and 5 ";
         sql+=" group by  b.b_num, b.num, b.b_continent, b.b_select, b.b_title, b_date,b.b_count, b.b_name ";
         sql+=" ORDER BY writetime DESC ";
+        
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
@@ -89,7 +93,6 @@ public class BoardDao {
             int b_count=rs.getInt(7);
             String b_name=rs.getString(8);
             String b_recommend = rs.getString(9);
-
             dto = new BoardDto(b_num,num,b_continent,b_select,b_title,b_date,b_count,b_name,b_recommend);
             list.add(dto);
             }
@@ -352,7 +355,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		int upCount = 0;
 		String sql = " insert into board_recommend values('1','0',?,?) ";
-		String rec_upSql = " SELECT sum(rec_up) FROM board_recommend where b_num = ? ";
+		String sql2 = " select sum(rec_up) from board_recommend where id = ? and b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -361,8 +364,9 @@ public class BoardDao {
 			pst.executeUpdate();
 			pst.close();
 			
-			pst = conn.prepareStatement(rec_upSql);
-			pst.setInt(1, dto.getB_num());
+			pst = conn.prepareStatement(sql2);
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
 		    rs = pst.executeQuery();
 		    if( rs.next()) {
 		    	upCount = rs.getInt(1);
@@ -376,7 +380,6 @@ public class BoardDao {
 		return upCount;
 	}
 	
-	
 	public int recdown(RecommendDto dto) {		
 		Connection conn = null;
 		PreparedStatement pst = null;
@@ -384,7 +387,7 @@ public class BoardDao {
 		
 		int downcnt = 0;
 		String sql = " insert into board_recommend values('0','1',?,?) ";
-		String rec_downSql = " SELECT sum(rec_down) FROM board_recommend where b_num = ? ";
+		String sql2 = " select sum(rec_down) from board_recommend where id = ? and b_num = ? ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -393,8 +396,9 @@ public class BoardDao {
 			pst.executeUpdate();
 			pst.close();
 			
-			pst = conn.prepareStatement(rec_downSql);
-			pst.setInt(1, dto.getB_num());
+			pst = conn.prepareStatement(sql2);
+			pst.setString(1, dto.getId());
+			pst.setInt(2, dto.getB_num());
 		    rs = pst.executeQuery();
 		    if( rs.next()) {
 		    	downcnt = rs.getInt(1);
