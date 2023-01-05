@@ -25,15 +25,14 @@ public class BoardDao {
         int end = count-((page-1)*10);
         int start = count-(page*10)+1;             
         
-        String sql  = " select * from ( select rownum  num , bnum ,  b_continent,  b_select ,   b_title,   b_date , b_count,  b_name ,total from "
+        String sql  = " select * from ( select rownum  num , bnum ,  b_continent,  b_select ,   b_title,   case when (to_char(SYSDATE,'dd')-to_char(b_date,'dd'))>=1 then to_char(b_date,'mm.dd') else to_char(b_date,'hh24:mi') end as b_date , b_count,  b_name ,total from "
         + " ( select  a.b_num  bnum,  b_continent, b_select, b_title, b_date, admin ,b_count, b_name ,b.B_NUM ,    nvl(sum(b.REC_UP) - sum(b.REC_DOWN),0) total  "
-        + " from (select  b_num , b_continent, b_select, b_text, b_title, case when (to_char(SYSDATE,'dd')-to_char(b_date,'dd'))>=1 then to_char(b_date,'mm.dd') "
-        + " else to_char(b_date,'hh24:mi') end as b_date, b_count, b_name  ,   case when b_select like '공지' then 1  else 2 end as admin  from board where b_continent like '%"+continent+"%' "
+        + " from (select  b_num , b_continent, b_select, b_text, b_title, "
+        + " b_date, b_count, b_name  ,   case when b_select like '공지' then 1  else 2 end as admin  from board where b_continent like '%"+continent+"%' "
         + " and b_select like '%"+type+"%' and b_name like '%"+name+"%' and (b_text like '%"+text+"%' or b_title like '%"+text+"%') ) a "
         + "  left outer join   board_recommend  b  on a.b_num = b.b_num group by   a.b_num,  b_continent, b_select, b_title, b_date, "
         + "  b_count, b_name ,b.B_NUM  ,admin order by admin desc , "+recommend+") ) where num between  ? and ? order by num desc";
         
-        System.out.print( sql);
         ArrayList<BoardDto> list = new ArrayList<BoardDto>();
     	try {
     		conn = dataSource.getConnection();
@@ -57,7 +56,6 @@ public class BoardDao {
             }
             
             
-            System.out.print(  "count= " + list.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 	    } finally { 
@@ -189,7 +187,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " UPDATE board SET b_continent=?, b_select=?, b_title=?, b_text=?, b_date = CURRENT_timestamp where b_num = ?";			
+		String sql = " UPDATE board SET b_continent=?, b_select=?, b_title=?, b_text=?, b_date = CURRENT_timestamp + 9/24 where b_num = ?";			
 		try {
 			conn = dataSource.getConnection();
 			pst = conn.prepareStatement(sql);
@@ -294,7 +292,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,?,CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,comment_seq2.NEXTVAL,?,?,CURRENT_timestamp + 9/24) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -314,7 +312,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;	
-		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,?,CURRENT_timestamp) ";
+		String sql = " insert into CM values(comment_seq.NEXTVAL,?,?,?,?,CURRENT_timestamp + 9/24) ";
 		try {
 			conn = dataSource.getConnection();			
 			pst = conn.prepareStatement(sql);
@@ -333,7 +331,7 @@ public class BoardDao {
 	public void boardreg(String continent, String select, String title, String text, String id) {
 		Connection con = null;
 		PreparedStatement pst = null;
-		String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp,0,?)";
+		String sql = "insert into board values (board_seq.NEXTVAL,board_seq2.NEXTVAL,?,?,?,?,CURRENT_timestamp + 9/24,0,?)";
 		try {
 			con = dataSource.getConnection();
 			pst = con.prepareStatement(sql);

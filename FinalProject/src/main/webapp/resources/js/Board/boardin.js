@@ -33,7 +33,6 @@ CKEDITOR.replace( 'ckeditor', {
 				},
 				success: function(data){
                 	showList1();
-	                alert("입력완료");
 	                console.log( data); 
 		        },
 		        error: function(){
@@ -52,7 +51,6 @@ CKEDITOR.replace( 'ckeditor', {
           data : {num:num},  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
           success: function(data){ 
                 showList1();
-                alert("삭제완료");
                 console.log( data);  },
              error: function(){
                 alert("readyerror");
@@ -157,6 +155,7 @@ function showList1(){
 
 function toHtml1(data){
 	let loginId = document.querySelector('#user_id').value;
+	let adminId = document.querySelector('#user_grade').value;
     let str="<div class='board-in-comment'>";
     for( let i=0 ; i< data.length; i++){
         let item = data[i];
@@ -169,7 +168,11 @@ function toHtml1(data){
         +'<span class="comment-text" readonly="readonly">'+ item.text+'</span>'
         +'<textarea data-id='+item.text+' id="text" class="comment-update-textarea" style=display:none>'+item.text+'</textarea>'
         +'<button class="reply" type="button" value="'+item.recm+'">답글</button>'
-        if( loginId == names || ("ㅤ┖"+loginId) == names){
+        if( adminId == "admin" ){
+        str+=
+        '<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
+        +'<button class="comment-box-update" type="button">수정</button>'
+        }else if( loginId == names || ("ㅤ┖"+loginId) == names){
         str+=
         '<button class="comment-box-delete" type="button" value="'+item.num+'">삭제</button>'
         +'<button class="comment-box-update" type="button">수정</button>'

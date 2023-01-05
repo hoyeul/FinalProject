@@ -31,9 +31,8 @@
 					<span>조회수 ${b.number}</span>
 				</div>
 				<div class="board-in-textarea">
-					<div class="mb-3"">
-					     <label for="exampleFormControlTextarea1" class="form-label"></label>
-					     <textarea class="form-control " name="freeboard_content" id="ckeditor" rows="6" contenteditable="true" readonly="readonly">${b.text}</textarea>
+					<div class="mb-3">
+					     ${b.text}
 					</div>
 				</div>
 				<div class="recommend-btn-area">

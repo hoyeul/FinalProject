@@ -29,7 +29,6 @@ public class MemberInfoDao {
 	public int checkId(String id) throws Exception { 
 		int r;
 		r = session.selectOne(namespace+"checkId", id); 
-		System.out.println(r);
 		return r;
 	}
 	
@@ -44,8 +43,8 @@ public class MemberInfoDao {
 	}
 	
 	//회원정보 삭제 및 탈퇴
-	public int delete(String sessionId) throws Exception { 
-		return session.delete(namespace+"delete", sessionId); 
+	public void delete(String sessionId) throws Exception { 
+		session.delete(namespace+"delete", sessionId); 
 	}
 	
 	// 기존비밀번호 일치 확인

@@ -3,7 +3,6 @@ $(function(){
 	let b_sels =  document.querySelectorAll(".b_sel");
 	for(let i=0 ; i< b_sels.length; i++){
 	    let b_sel = b_sels[i];
-	    // alert( b_con.innerHTML);
 	    let category = b_sel.innerHTML;
 	    if(category.trim() == "[공지]"){	            
 	        b_sel.style.color='red';
@@ -52,9 +51,7 @@ window.addEventListener("load",function(){
 function boardregbtn() {
 	
 	let loginId = document.querySelector('#user_id').value;
-	// alert(loginId);
 	if(loginId =="" ){
-		alert("로그인 후 글쓰기가 가능합니다.");
 		window.location.href='/login.alreadyLogin';
 	}
 	else{

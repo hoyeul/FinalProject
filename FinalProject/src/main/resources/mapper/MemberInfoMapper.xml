@@ -31,7 +31,7 @@
 	
 	<!-- 회원정보 삭제 및 탈퇴 -->
 	<delete id="delete" parameterType="String">
-		DELETE FROM login_info_221208 
+		DELETE FROM login_info_221208  
 		WHERE id = #{sessionID}
 	</delete>	
 	

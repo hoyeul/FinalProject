@@ -73,7 +73,7 @@
               <c:forEach var="i" begin="${ page.index}" end="${ page.grpEndPage}" step="1">
               <button class="pagebtn" name="page" value="${i}">${i} </button>
               </c:forEach>
-              <c:if    test="${ page.index<page.totalPage}">
+              <c:if    test="${ page.grpEndPage<page.totalPage}">
                <button class="movepage-btn" name="page" value="${  page.index+5 }">다음＞</button>  
               </c:if >
          </div>

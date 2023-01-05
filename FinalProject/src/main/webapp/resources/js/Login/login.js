@@ -1,7 +1,7 @@
 $(function(){
 	$("#loginBtn").on("click",function(){
 		$.ajax({
-		    url:'/login', //request 보낼 서버의 경로
+		    url:'/login.alreadyLogin', //request 보낼 서버의 경로
 		    type:'post', // 메소드(get, post, put 등)
 		    data:{
 		    	id: $("input[name='id']").val(),

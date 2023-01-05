@@ -76,7 +76,6 @@ var keycode = (event.keyCode ? event.keyCode : event.which);
             event.stopPropagation();
         });
         $('#sendBtn').click(function() { send(); });
-        $('#enterBtn').click(function() { connect(); });
         $('#exitBtn').click(function() { disconnect(); });
     });
 </script>
@@ -107,7 +106,7 @@ display: inline-block;
 </head>
 <body>
     이름:<input type="text" id="nickname">
-    <input type="button" id="enterBtn" value="입장">
+    <input type="button" id="enterBtn" value="입장" onclick="connect();this.onclick=null;">
     <input type="button" id="exitBtn" value="나가기">
     
     <h1>유럽</h1>

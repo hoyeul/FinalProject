@@ -93,7 +93,9 @@
 		</div>			
 	</form>
 	<form action="mypage/withdraw" method="post">
-		<button>회원탈퇴</button>
+		<div id="withdraw_wrap">
+			<button id="withdraw">회원탈퇴</button>
+		</div>
 	</form>
 	
 	</div>

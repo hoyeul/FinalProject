@@ -29,7 +29,7 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.alreadyLogin", method = RequestMethod.POST)
 	public void login(HttpServletRequest request, HttpServletResponse response, 
 			loginDto dto, boolean ckbox) throws Exception {
 		

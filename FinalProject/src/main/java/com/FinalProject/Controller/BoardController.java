@@ -45,74 +45,45 @@ public class BoardController {
       if( recommend == null ){
     	  recommend = "b_date";
       }else {
-    	  if(recommend.equals("recommend") || recommend.equals("total")) {
+    	  if(recommend.equals("total")) {
         	  recommend = "total";
           }else {
         	  recommend = "b_date";
           }
       }
-      System.out.println("bbbb="+recommend);
+      
       int page=0;
-      if(Pa == null && continent==null && content==null && type==null && text==null) {
-         page=1;
-         type="";
-         text="";
-         content="";
-         continent="";
-         dao.count(continent,type,text,name);
-         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-         model.addAttribute("list", list);
-      }else if(Pa == null && continent!=null && content==null && type==null && text==null) {
-         page=1;
-         type="";
-         text="";
-         content="";
-         dao.count(continent,type,text,name);
-         ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-         model.addAttribute("list", list);
-      }else if(Pa == null) {
-         page=1;
-         if(content.equals("작성자")) {
-            name=text;
-            text="";
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-            text=name;
-         }else if(content.equals("제목")) {
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-         }else{
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-         }
-      }else {
-         if(content.equals("작성자")) {
-            name=text;
-            text="";
-            dao.count(continent,type,text,name);
-            page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-            text=name;
-         }else if(content.equals("제목")) {
-            page=Integer.parseInt(Pa);
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-         }else{
-            page=Integer.parseInt(Pa);
-            if(type==null) {
-            type="";
-            }else if(text==null) {
-            text="";
-            }else if(content==null) {
-            content="";
-            }else if(continent==null) {
-            continent="";
-            }
-            ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
-            model.addAttribute("list", list);
-         }
-      }
+      if(type==null) {
+          type="";
+          } 
+      if(text==null) {
+          text="";
+          }
+      if(content==null) {
+          content="";
+          }
+      if(continent==null) {
+          continent="";
+          }
+      if(Pa == null) {
+             page=1;
+          }
+      if(Pa != null) {
+             page=Integer.parseInt(Pa);
+          } 
+      if(content.equals("작성자")) {
+          name=text;
+          text="";
+          ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
+          model.addAttribute("list", list);
+          text=name;
+       }else if(content.equals("제목")) {
+          ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
+          model.addAttribute("list", list);
+       }else{
+          ArrayList<BoardDto> list = dao.ArraySelect(page,continent,type,text,name,dao.count(continent,type,text,name),recommend);
+          model.addAttribute("list", list);
+       }
       
       int Allrecord = dao.count(continent, type, text, name);
       Pagination pagination = new Pagination();
@@ -256,7 +227,7 @@ public class BoardController {
                      byte[] bytes = file.getBytes();
                     
                      String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/noticeimg"); //저장경로
-                     System.out.println("uploadPath:"+uploadPath);
+                  
 
                      File uploadFile = new File(uploadPath);
                      if(!uploadFile.exists()) {
@@ -270,13 +241,12 @@ public class BoardController {
                      
                      printWriter = resp.getWriter();
                      String fileUrl = req.getContextPath() + "/resources/image/noticeimg/" +fileName2 +fileName; //url경로
-                     System.out.println("fileUrl :" + fileUrl);
                      JsonObject json = new JsonObject();
                      json.addProperty("uploaded", 1);
                      json.addProperty("fileName", fileName);
                      json.addProperty("url", fileUrl);
                      printWriter.print(json);
-                     System.out.println(json);
+                    
           
                  }catch(IOException e){
                      e.printStackTrace();

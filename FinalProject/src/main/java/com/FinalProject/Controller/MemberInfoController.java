@@ -41,7 +41,7 @@ public class MemberInfoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/login";
+		return "redirect:/login.alreadyLogin";
 	}
 	//Id 중복확인
 	@ResponseBody
@@ -64,7 +64,7 @@ public class MemberInfoController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
 	public String mypagePost(MemberInfoDto dto) {	
 		service.update(dto);
-		return "redirect:/login";
+		return "redirect:/login.alreadyLogin";
 	}	
 	//기존비밀번호 일치여부 확인
 	@ResponseBody
@@ -80,7 +80,8 @@ public class MemberInfoController {
 	public String withdraw(HttpSession session) {
 		String sessionID = (String) session.getAttribute("sessionID");
 		service.withdraw(sessionID);
-		return "redirect:/login";
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/manager.onlyAdmin", method = RequestMethod.GET)

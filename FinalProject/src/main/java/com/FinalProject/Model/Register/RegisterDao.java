@@ -16,7 +16,6 @@ public class RegisterDao {
 	DataSource datasource;	
 	//회원가입 정보 입력
 	public void insert(RegisterDto dto ) {		
-		System.out.println("insert메소드");
 		String sql ="INSERT INTO login_info_221208 VALUES(login_seq.nextval,?,?,?,?,?,?,?,?)";
 		Connection  conn= null;
 		PreparedStatement pst= null;		

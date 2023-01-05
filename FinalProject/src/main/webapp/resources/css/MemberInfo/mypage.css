@@ -150,10 +150,17 @@ select{
 button{
 	width: 80px;
 	padding: 5px;
-	margin: 0 5px 30px 5px;
+	margin: 0 5px 0px 5px;
 	border: 1px solid #1089ff;
     border-radius: 20px;
     background-color: #1089ff;
     cursor: pointer;
     color: white;
+}
+#withdraw{
+	margin: 0px auto 30px auto;
+}
+#withdraw_wrap{
+	width: 100%;
+	text-align: center;
 }
